@@ -240,6 +240,8 @@ tr[data-cite] td:first-child::after{content:"ⓘ";color:var(--gold);font-size:11
 .drawer .src b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:3px;font-family:'Manrope'}
 .drawer .src .u{font-size:11.5px;color:var(--muted)}
 .drawer .note{font-size:12.5px;color:#7a5e1e;background:#fbf6ec;border-radius:9px;padding:11px 13px;line-height:1.5}
+.drawer .credline{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;color:var(--muted);font-weight:600}
+.drawer .credchip{font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:99px}
 .drawer .docbtn{display:inline-flex;align-items:center;gap:7px;margin-top:4px;font-weight:600;font-size:14px}
 .drawer .meth-list{list-style:none;font-size:14px}
 .drawer .meth-list li{padding-left:24px;position:relative;margin-bottom:12px}
@@ -299,6 +301,9 @@ body.locked{overflow:hidden;height:100vh}
 .md th{background:var(--teal-tint);font-family:'Manrope';font-weight:700;color:var(--ink);white-space:nowrap}
 .md tbody tr:nth-child(even) td{background:#faf7f0}
 .md em{color:var(--muted)}
+@keyframes mdflash{0%{background:#f0dca6}70%{background:#fbf3dd}100%{background:#fbf3dd}}
+.md .md-hit{background:#fbf3dd!important;outline:2px solid var(--gold);outline-offset:3px;border-radius:5px;scroll-margin:24px;animation:mdflash 1.5s ease}
+.docmodal .mhint{font-size:11px;color:#7a5e1e;background:var(--gold-soft);border-radius:99px;padding:4px 10px;font-weight:600;margin-left:8px}
 @media(max-width:600px){.docmodal .mc{padding:22px 20px}.md h1{font-size:23px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
@@ -360,7 +365,7 @@ body.locked{overflow:hidden;height:100vh}
     <div class="thesis">На рынке частной стоматологии решает <b>не цена, а доверие</b>. Пациент покупает уверенность, что не будет <b>больно</b> и его не <b>обманут</b>. Сайт должен сначала снимать страх и продавать доверие — и только потом перечислять услуги.</div>
     <div class="kpis" style="margin-top:26px">
       <div class="card dark" data-cite="kpi-reviews"><div class="big-num">85%<span class="cite-mark">i</span><small>выбирают клинику по отзывам</small></div></div>
-      <div class="card dark" data-cite="kpi-surgeon"><div class="big-num">~90%<span class="cite-mark">i</span><small>успеха имплантации — это врач</small></div></div>
+      <div class="card dark" data-cite="fear-dento"><div class="big-num">40 млн<span class="cite-mark">i</span><small>избегают визитов к стоматологу</small></div></div>
       <div class="card dark" data-cite="kpi-lawsuits"><div class="big-num">80%<span class="cite-mark">i</span><small>исков к врачам в РФ — стоматология</small></div></div>
       <div class="card dark" data-cite="kpi-score"><div class="big-num">~3/10<span class="cite-mark">i</span><small>маркетинг текущего сайта</small></div></div>
     </div>
@@ -425,7 +430,7 @@ body.locked{overflow:hidden;height:100vh}
     <h2>Что люди хотят и как выбирают стоматологию</h2>
     <p class="sub">Факторы выбора по важности (веб-исследование рынка РФ / Москвы).<button class="cite-chip" data-cite="decision-factors">источники</button></p>
     <div class="bars">
-      <div class="bar-row"><span class="lab">Отзывы и рейтинг (4.8+)</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="imp">очень высокая</span></div>
+      <div class="bar-row"><span class="lab">Отзывы и рейтинг (4.0+)</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="imp">очень высокая</span></div>
       <div class="bar-row"><span class="lab">Конкретный врач</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="imp">очень высокая</span></div>
       <div class="bar-row"><span class="lab">Рекомендации / сарафан</span><span class="bar-track"><span class="bar-fill" style="width:96%"></span></span><span class="imp">очень высокая</span></div>
       <div class="bar-row"><span class="lab">Лечение без боли</span><span class="bar-track"><span class="bar-fill" style="width:80%"></span></span><span class="imp">высокая</span></div>
@@ -438,7 +443,7 @@ body.locked{overflow:hidden;height:100vh}
 
     <h3 style="margin:34px 0 14px">Главные страхи (барьеры записи)</h3>
     <div class="grid g4">
-      <div class="card" data-cite="fear-dento"><div class="big-num">~50%<span class="cite-mark">i</span><small>дентофобия — боятся боли</small></div></div>
+      <div class="card" data-cite="fear-dento"><div class="big-num">18%<span class="cite-mark">i</span><small>открыто признают страх стоматолога (ВЦИОМ)</small></div></div>
       <div class="card" data-cite="fear-deception"><div class="big-num">80%<span class="cite-mark">i</span><small>исков к врачам — «навяжут лишнее»</small></div></div>
       <div class="card" data-cite="fear-hidden"><div class="big-num">«?»<span class="cite-mark">i</span><small>страх скрытых доплат «под ключ»</small></div></div>
       <div class="card" data-cite="fear-novisit"><div class="big-num">52%<span class="cite-mark">i</span><small>не были у врача за год</small></div></div>
@@ -451,7 +456,7 @@ body.locked{overflow:hidden;height:100vh}
       </div>
       <div class="card tint" data-cite="prices">
         <h3>Цены рынка (Москва)<span class="cite-mark">i</span></h3>
-        <p style="color:var(--text)">Имплант под ключ <b>22–120к ₽</b> (целевой для МФЦ ~40–70к) · All-on-4 челюсть <b>135–789к ₽</b> · винир E.max <b>20–85к ₽</b> · элайнеры <b>100–350к ₽</b>. «За 1 день» = временный протез сразу, постоянный — через 4–6 мес (объяснять честно).</p>
+        <p style="color:var(--text)">Имплант под ключ <b>22–120к ₽</b> (целевой для МФЦ ~40–70к) · All-on-4 челюсть <b>~90–500к ₽</b> · винир E.max <b>20–85к ₽</b> · элайнеры <b>60–350к ₽</b>. Ориентиры по агрегаторам, не цены MFC. «За 1 день» = временный протез сразу, постоянный — через 4–6 мес.</p>
       </div>
     </div>
   </div>
@@ -612,6 +617,7 @@ body.locked{overflow:hidden;height:100vh}
     <div class="mh">
       <span class="badge">Документ</span>
       <h3 id="docTitle">Документ</h3>
+      <span class="mhint" id="docHint" style="display:none">▶ подсвечен фрагмент</span>
       <a class="mraw" id="docRaw" href="#" target="_blank" rel="noopener">открыть исходник ↗</a>
       <button class="mclose" id="docClose" aria-label="Закрыть">×</button>
     </div>
@@ -679,7 +685,10 @@ const S={
   topdentMFC:{t:'TopDent — отзывы MFC Clinic (4.1)',u:'https://topdent.ru/clinics/mfts-klinik/otzyvy/'},
   gisMFC:{t:'2ГИС — MFC Clinic',u:'https://2gis.ru/moscow/firm/70000001022491704'},
   wikiMFC:{t:'Википедия — Многофункциональный центр (гос. МФЦ)',u:'https://ru.wikipedia.org/wiki/%D0%9C%D0%BD%D0%BE%D0%B3%D0%BE%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%86%D0%B5%D0%BD%D1%82%D1%80'},
-  sostav:{t:'Sostav — ребрендинг МФЦ в «Мои документы»',u:'https://www.sostav.ru/blogs/272224/77809'},
+  sostav:{t:'Sostav — PLENUM: ребрендинг МФЦ в «Мои документы»',u:'https://www.sostav.ru/publication/plenum-porabotalo-na-minekonomrazvitiya-10105.html'},
+  markway:{t:'Markway × Anketolog (2023, ~2000 чел.) — потребители и отзывы',u:'https://markway.ru/research/issledovanie-kak-pokupateli-otnosyatsya-k-otzyvam-v-2023-godu/'},
+  cyberleninka:{t:'КиберЛенинка — анализ 1314 судебных стоматологических дел (2013–2017)',u:'https://cyberleninka.ru/article/n/provedenie-retrospektivnoy-otsenki-kachestva-stomatologicheskogo-ortopedicheskogo-lecheniya-na-osnove-izucheniya-sudebnyh-del'},
+  pdElaynery:{t:'ПроДокторов — цены на элайнеры (агрегатор клиник Москвы)',u:'https://prodoctorov.ru/moskva/uslugi/elaynery/'},
   yandexTop3:{t:'Как попасть в ТОП-3 Яндекс.Карт (стоматология)',u:'https://dmitry-bodrov.ru/marketing/yandex-karty-top3-stomatologiya'},
   site:{t:'mfc-clinic.ru — прямой просмотр сайта',u:'https://mfc-clinic.ru/'},
   implantlive:{t:'ImplantLive — сайт конкурента',u:'https://implantlive.ru/'},
@@ -702,24 +711,24 @@ const D={
 };
 const compHow='Профиль построен на прямой загрузке живого сайта конкурента в ходе исследования (19.06.2026). Цены, акции и офферы — на дату исследования и могут меняться.';
 const compNote='Проверьте сами: откройте сайт конкурента по ссылке выше.';
-function comp(name,key,extra){return {q:name+' — позиционирование, цены и офферы',type:'comp',how:compHow,src:[S[key]].concat(extra||[]),doc:D.d03,note:compNote};}
+function comp(name,key,extra){return {q:name+' — позиционирование, цены и офферы',type:'comp',how:compHow,src:[S[key]].concat(extra||[]),cred:'medium',doc:D.d03,note:compNote};}
 
 const CITES={
-  'kpi-reviews':{q:'85% пациентов читают отзывы и выбирают клинику на их основе; порог доверия по рейтингу — 4.8+',type:'research',how:'Сводно по опросам пациентов РФ и отраслевым обзорам.',src:[S.sinergium,S.vcrep,S.yandexTop3],doc:D.d02},
+  'kpi-reviews':{q:'Большинство пациентов читают отзывы перед выбором клиники (по опросу агентства Синергиум — 85%, но выборка мала: n=107).',type:'research',how:'Цифра 85% — онлайн-опрос агентства Синергиум (n=107, нерепрезентативно). Направление подтверждает крупный опрос Markway×Anketolog (~2000 чел., 2023).',src:[S.sinergium,S.markway],cred:'low',doc:D.d02,note:'Точной гос-статистики по стоматологии нет; цифры по теме гуляют (84–99%) без единого первоисточника. Подавать как тренд, не как точный факт.'},
   'kpi-surgeon':{q:'Успех дентальной имплантации эксперты оценивают как зависящий на ~90% от конкретного врача-хирурга, а не от бренда импланта',type:'research',how:'Экспертные материалы клиник по выбору имплантолога.',src:[S.ssChoose,S.preziChoose],doc:D.d02,note:'«~90%» — экспертная оценка из отраслевых публикаций, а не точный замер.'},
-  'kpi-lawsuits':{q:'80% судебных исков пациентов к врачам в РФ приходится на стоматологию',type:'research',how:'Публикации о потребительских спорах в стоматологии.',src:[S.aif],doc:D.d02},
+  'kpi-lawsuits':{q:'Стоматология — лидер среди медспециальностей по числу исков пациентов в РФ (часто цитируется «80%»).',type:'research',how:'«80%» приводит АиФ со слов эксперта, без первоисточника. Качественный тезис «стоматология — лидер по искам» подтверждают рецензируемые работы (анализ 1314 судебных дел 2013–2017).',src:[S.aif,S.cyberleninka],cred:'low',doc:D.d02,note:'Точная доля «80%» официальной статистикой не подтверждена (разбивки исков по специальностям нет). Использовать как иллюстрацию, не как точный факт.'},
   'kpi-score':{q:'Маркетинговая готовность текущего сайта ≈ 3 из 10',type:'calc',how:'Экспертная оценка автора аудита: сайт сопоставлен с 10 факторами выбора пациента (раздел «Текущий сайт») и усреднён.',src:[S.site],doc:D.d04,note:'Субъективная экспертная оценка, а не измеренная метрика. Методика — в документе 04.'},
-  'neyming':{q:'Аббревиатура «МФЦ» ассоциируется с государственными многофункциональными центрами; в 2014 их ребрендировали в «Мои документы» из-за «казённого» восприятия',type:'research',how:'Открытые источники о бренде «МФЦ» и его ребрендинге.',src:[S.wikiMFC,S.sostav],doc:D.d04},
+  'neyming':{q:'Аббревиатура «МФЦ» ассоциируется с государственными многофункциональными центрами; в 2014 их ребрендировали в «Мои документы» из-за «казённого/непонятного» восприятия',type:'research',how:'Подтверждается Википедией и кейсом агентства PLENUM, делавшего ребрендинг (единый бренд «Мои документы» презентован 26.05.2014).',src:[S.wikiMFC,S.sostav],cred:'medium',doc:D.d04,note:'Факт ребрендинга бесспорен и многократно задокументирован первичными материалами.'},
   'obs-audit':{q:'Оценка текущего сайта по факторам выбора (скоринг)',type:'obs',how:'Прямой просмотр всех экранов mfc-clinic.ru в браузере 19.06.2026 (герой, секции, форма, футер). Оценки в баллах — экспертное суждение по наблюдению.',src:[S.site],doc:D.d01,note:'Баллы — экспертная оценка автора, а не измерение. Сам факт наличия/отсутствия блоков проверяем на живом сайте.'},
-  'decision-factors':{q:'Факторы выбора стоматологии по важности',type:'research',how:'Сводная важность по нескольким опросам и публикациям (репутация, врач, цена, гарантия и т.д.). Это качественное ранжирование, а не единый числовой рейтинг.',src:[S.sinergium,S.ssChoose,S.finmail,S.preziChoose],doc:D.d02,note:'Длина полосок — относительная важность по совокупности источников, для наглядности.'},
-  'fear-dento':{q:'Дентофобия в той или иной степени затрагивает до ~половины населения; ~40 млн россиян активно избегают визитов',type:'research',how:'Публикации о страхе стоматолога и статья «Дентофобия».',src:[S.mk,S.wikidento],doc:D.d02},
-  'fear-deception':{q:'Страх «навяжут лишнее / разведут»; 80% исков пациентов к врачам в РФ — стоматология',type:'research',how:'Материалы о потребительских спорах и «разводах» в стоматологии.',src:[S.aif],doc:D.d02},
+  'decision-factors':{q:'Факторы выбора стоматологии по важности',type:'research',how:'Сводная важность по нескольким опросам и публикациям. Это качественное ранжирование, а не единый числовой рейтинг.',src:[S.sinergium,S.ssChoose,S.finmail,S.preziChoose],cred:'low',doc:D.d02,note:'Длина полосок — относительная важность (для наглядности). Порог доверия по рейтингу: реально ~4.0 (≈78% выбирают клиники ≥4.0); 4.8 — целевой уровень для топа выдачи, а НЕ «порог отсева».'},
+  'fear-dento':{q:'Страх стоматолога: открыто признают ~18% россиян (ВЦИОМ, 2023); ~40 млн «избегают визитов» (оценка гл. внештатного стоматолога Минздрава, 2016).',type:'research',how:'18% — телефонный опрос ВЦИОМ (n=1600). «40 млн» — заявление О. Янушевича через МК (2016), без раскрытой методики. Википедия: «не менее 1/3 в мире».',src:[S.mk,S.wikidento],cred:'medium',doc:D.d02,note:'Прежняя формулировка «до половины населения» НЕ подтверждается и убрана. Надёжная цифра — ВЦИОМ ~18%; «40 млн» — экспертная оценка без методики.'},
+  'fear-deception':{q:'Страх «навяжут лишнее / разведут» — частый барьер; стоматология лидирует по искам пациентов.',type:'research',how:'«80% исков — стоматология» (АиФ, со слов эксперта, без первоисточника); лидерство по искам подтверждают рецензируемые работы.',src:[S.aif,S.cyberleninka],cred:'low',doc:D.d02,note:'Доля «80%» — непроверяемая медиа-цифра. Сам барьер недоверия/навязывания реален и виден в отзывах пациентов (в т.ч. MFC).'},
   'fear-hidden':{q:'Страх скрытых доплат: реклама «от X ₽» часто не включает костную пластику/синус-лифтинг, абатмент или коронку',type:'research',how:'Разборы ценообразования имплантации «под ключ».',src:[S.resmile,S.ssChoose],doc:D.d02,note:'Качественный вывод из отраслевых материалов и разбора сайтов конкурентов.'},
-  'fear-novisit':{q:'Значительная доля откладывает визиты: около половины не были у стоматолога за последний год; идут чаще при острой боли',type:'research',how:'Опросы о посещаемости стоматолога и поведении пациентов.',src:[S.wciom,S.finmail],doc:D.d02,note:'Точные доли разнятся по опросам; порядок величины — «около половины».'},
-  'segments':{q:'Сегменты по поводу визита: плановое/кариес ~44%, острая боль ~27%, эстетика ~17%',type:'research',how:'Опросы о причинах обращения к стоматологу.',src:[S.wciom,S.finmail],doc:D.d02,note:'Доли — порядок величины по опросам, суммарно не 100% (есть прочие поводы).'},
-  'prices':{q:'Диапазоны цен по Москве: имплант под ключ 22–120к ₽, All-on-4 челюсть 135–789к ₽, винир 20–85к ₽, элайнеры 100–350к ₽',type:'research',how:'Сводка рекламных цен московских клиник и агрегаторов (2025–2026).',src:[S.resmile,S.ssChoose,S.napopravku],doc:D.d02,note:'Рыночные диапазоны, не цены MFC. Зависят от системы имплантов и клинического случая.'},
+  'fear-novisit':{q:'Больше половины россиян (52%) не были у стоматолога за последний год (ВЦИОМ, февраль 2021).',type:'research',how:'Всероссийский телефонный опрос ВЦИОМ, n=1600.',src:[S.wciom],cred:'high',doc:D.d02,note:'Надёжный источник (ВЦИОМ). Данные февраля 2021 (период пандемии) — учитывайте давность. Ссылку на агрегатор убрали — она этот факт не подтверждала.'},
+  'segments':{q:'Поводы визита (оценка отрасли): плановое/кариес ~44%, острая боль ~27%, эстетика ~17%',type:'research',how:'По опросу Финуниверситета при Правительстве РФ + «Будь Здоров» + «Ингосстрах» (2025).',src:[S.finmail],cred:'medium',doc:D.d02,note:'Данные общероссийские (не Москва), коммерческий опрос без раскрытой методики. Ссылку на ВЦИОМ убрали — она этих цифр не содержит.'},
+  'prices':{q:'Ориентиры цен Москва: имплант под ключ ~22–120к ₽, All-on-4 челюсть ~90–500к ₽, винир E.max ~20–85к ₽, элайнеры ~60–350к ₽',type:'research',how:'Сводка по ценовым агрегаторам и сайтам клиник (2025).',src:[S.resmile,S.pdElaynery,S.napopravku],cred:'low',doc:D.d02,note:'Крайние значения прежней версии (135к/789к) не подтвердились — диапазоны скорректированы (All-on-4 ~90–500к, элайнеры от ~60к). Это ориентиры агрегаторов, не цены MFC.'},
   'comp-method':{q:'Как анализировались конкуренты',type:'comp',how:'Найдено ~11+ конкурентов (гиперлокальные у Белорусской/Динамо/Беговой + категорийные лидеры). Профиль каждого построен на прямой загрузке его живого сайта. Кликните любую строку матрицы — откроется ссылка на сайт конкурента.',src:[S.implantlive,S.bureau32,S.dentalart,S.roott],doc:D.d03,note:'Цены и офферы конкурентов — на дату исследования (19.06.2026).'},
-  'comp-mfc':{q:'MFC Clinic: текущее состояние и реальная репутация',type:'obs',how:'Прямой просмотр сайта mfc-clinic.ru + проверка карточек на площадках. Реальные рейтинги разрознены: ПроДокторов 3.8, TopDent 4.1.',src:[S.site,S.prodoctorovMFC,S.topdentMFC],doc:D.d04},
+  'comp-mfc':{q:'MFC Clinic: текущее состояние и реальная репутация',type:'obs',how:'Прямой просмотр сайта mfc-clinic.ru + проверка карточек на площадках. Реальные рейтинги разрознены: ПроДокторов 3.8 (при 39 отзывах), TopDent 4.1 (но всего 9 отзывов).',src:[S.site,S.prodoctorovMFC,S.topdentMFC],cred:'medium',doc:D.d04,note:'ПроДокторов 3.8 при 39 отзывах — значимо; TopDent 4.1 при 9 отзывах — мало для выводов. Рейтинги динамические.'},
   'comp-implantlive':comp('ImplantLive (сосед у Динамо/Белорусской)','implantlive'),
   'comp-bureau32':comp('Бюро 32 (у м. Беговая)','bureau32'),
   'comp-dentalart':comp('Dental A.R.T. Center (у Белорусской)','dentalart'),
@@ -733,6 +742,14 @@ const CITES={
   'strategy-synth':{q:'Позиционирование, оффер и месседжинг',type:'calc',how:'Стратегический синтез по данным исследования и анализу конкурентов (документ 05). Рекомендация, а не внешний факт.',src:[S.sinergium,S.ssChoose,S.aif],doc:D.d05,note:'Это предложение автора. Слоганы и оффер — кандидаты для тестирования.'}
 };
 
+const FINDS={
+  'kpi-reviews':'85%','kpi-surgeon':'90%','kpi-lawsuits':'80% судебных','kpi-score':'3/10','neyming':'Мои документы',
+  'decision-factors':'Факторы выбора','fear-dento':'40 млн','fear-deception':'80% судебных','fear-hidden':'костную пластику',
+  'fear-novisit':'52%','segments':'44%','prices':'789 000','comp-method':'Карта конкуренции','comp-mfc':'ПроДокторов 3.8',
+  'comp-implantlive':'ImplantLive','comp-bureau32':'Бюро 32','comp-dentalart':'Dental A.R.T','comp-vsesvoi':'Все свои',
+  'comp-zub':'Зуб.ру','comp-ilatan':'ИЛАТАН','comp-roott':'ROOTT','comp-belgravia':'Belgravia','comp-dentalway':'Dental Way',
+  'gaps-synth':'Рыночные','strategy-synth':'Позиционирование'
+};
 const typeLabel={research:'Веб-исследование',obs:'Прямое наблюдение',comp:'Разбор сайта конкурента',calc:'Расчёт / экспертная оценка',method:'Методология'};
 
 const drawer=document.getElementById('drawer'),drawerOv=document.getElementById('drawerOv'),drBody=document.getElementById('drBody'),drBadge=document.getElementById('drBadge');
@@ -742,10 +759,11 @@ function openCite(id,el){
   const c=CITES[id];if(!c)return;
   drBadge.className='badge '+c.type;drBadge.textContent=typeLabel[c.type]||'Источник';
   let h='<div class="lbl">Утверждение</div><div class="claim">'+c.q+'</div>';
+  if(c.cred){var cm={high:['Высокая','#2f7d5e','#e6f3ec'],medium:['Средняя','#9a6b1f','#f7eed9'],low:['Ниже средней','#b0433a','#f7e7e4']}[c.cred];if(cm){h+='<div class="credline"><span>Достоверность источника:</span><span class="credchip" style="color:'+cm[1]+';background:'+cm[2]+'">'+cm[0]+'</span></div>';}}
   h+='<div class="lbl">Как получено</div><div class="how">'+c.how+'</div>';
   if(c.src&&c.src.length){h+='<div class="lbl">Источники ('+c.src.length+')</div>'+c.src.map(srcHtml).join('');}
   if(c.note){h+='<div class="lbl">Важно</div><div class="note">'+c.note+'</div>';}
-  if(c.doc){h+='<div class="lbl">Полный документ</div><a class="src docbtn" href="'+c.doc.u+'" data-doc="'+c.doc.u+'" data-doctitle="'+c.doc.t+'">📄 '+c.doc.t+' — открыть здесь</a>';}
+  if(c.doc){var fnd=FINDS[id]?(' data-find="'+FINDS[id].replace(/"/g,'&quot;')+'"'):'';var lab=FINDS[id]?' — открыть и подсветить':' — открыть здесь';h+='<div class="lbl">Полный документ</div><a class="src docbtn" href="'+c.doc.u+'" data-doc="'+c.doc.u+'" data-doctitle="'+c.doc.t+'"'+fnd+'>📄 '+c.doc.t+lab+'</a>';}
   drBody.innerHTML=h;
   drawer.classList.add('open');drawerOv.classList.add('open');drawer.setAttribute('aria-hidden','false');
   if(litEl)litEl.classList.remove('lit');if(el){el.classList.add('lit');litEl=el;}
@@ -761,8 +779,10 @@ function openMethod(){
     '</ul>'+
     '<div class="lbl">Как читать пометки</div>'+
     '<div class="note" style="color:var(--muted);background:var(--sand)">У фактов и чисел в отчёте есть значок <b>ⓘ</b> или чип «источник». Клик открывает эту панель: тип источника, конкретные ссылки, как получено и ссылку на полный документ.</div>'+
-    '<div class="lbl">Честно о достоверности</div>'+
-    '<div class="note">• «Веб-исследование» — данные опросов/публикаций (точные доли могут различаться по источникам).<br>• «Прямое наблюдение» — проверяемо на живом сайте.<br>• «Разбор сайта конкурента» — проверяемо по ссылке (актуально на дату исследования).<br>• «Расчёт / экспертная оценка» — вывод автора (напр. оценка 3/10, рыночные «дыры», стратегия), а не внешний факт.</div>'+
+    '<div class="lbl">Типы источников</div>'+
+    '<div class="note">• «Веб-исследование» — данные опросов/публикаций (точные доли различаются по источникам).<br>• «Прямое наблюдение» — проверяемо на живом сайте.<br>• «Разбор сайта конкурента» — проверяемо по ссылке (актуально на дату исследования).<br>• «Расчёт / экспертная оценка» — вывод автора (оценка 3/10, рыночные «дыры», стратегия), а не внешний факт.</div>'+
+    '<div class="lbl">Фактчек (отдельный прогон)</div>'+
+    '<div class="note">Провели адверсариальную проверку 15 утверждений по источникам. Что выяснилось и исправлено: порог рейтинга — реально <b>~4.0</b>, не 4.8; убрана выдуманная «~90% успеха — врач»; дентофобия — <b>~18%</b> признают страх (ВЦИОМ), а не «половина»; «80% исков — стоматология» подаётся как медиа-оценка без первоисточника; «85% читают отзывы» — из малой выборки (n=107), как тренд; цены-ориентиры скорректированы (All-on-4 ~90–500к). Надёжно подтверждены: <b>52% не были у врача за год</b> (ВЦИОМ), <b>69% по ОМС</b>, рейтинги MFC, цены конкурентов. У каждого пункта в панели указана «Достоверность источника».</div>'+
     '<div class="lbl">Документы</div>'+
     Object.values(D).map(d=>'<a class="src" href="'+d.u+'" data-doc="'+d.u+'" data-doctitle="'+d.t+'"><b>📄 '+d.t+'</b></a>').join('');
   drawer.classList.add('open');drawerOv.classList.add('open');
@@ -771,8 +791,10 @@ function openMethod(){
 function closeDrawer(){drawer.classList.remove('open');drawerOv.classList.remove('open');drawer.setAttribute('aria-hidden','true');if(litEl){litEl.classList.remove('lit');litEl=null;}}
 /* ===== document modal (.md in-window) ===== */
 const docOv=document.getElementById('docOv'),docMd=document.getElementById('docMd'),docTitleEl=document.getElementById('docTitle'),docRaw=document.getElementById('docRaw');
-async function openDoc(url,title){
+const docHint=document.getElementById('docHint');
+async function openDoc(url,title,find){
   docTitleEl.textContent=title||'Документ';docRaw.href=url;
+  docHint.style.display=find?'inline-block':'none';
   docMd.innerHTML='<div class="loading">Загрузка…</div>';
   docOv.classList.add('open');document.body.classList.add('locked');
   try{
@@ -785,6 +807,10 @@ async function openDoc(url,title){
       if(/\.md($|[#?])/i.test(href)){a.setAttribute('data-doc',href.replace(/[#?].*$/,''));a.setAttribute('data-doctitle',a.textContent.trim());}
       else if(/^https?:/i.test(href)||href.indexOf('07-concept')>-1){a.setAttribute('target','_blank');a.setAttribute('rel','noopener');}
     });
+    if(find){setTimeout(()=>{
+      const els=docMd.querySelectorAll('h1,h2,h3,h4,p,li,td,th,blockquote');
+      for(const el of els){ if(el.textContent && el.textContent.indexOf(find)>-1){ el.classList.add('md-hit'); el.scrollIntoView({block:'center'}); break; } }
+    },90);}
   }catch(err){docMd.innerHTML='<p class="loading">Не удалось загрузить документ. <a href="'+url+'" target="_blank" rel="noopener">Открыть исходник ↗</a></p>';}
 }
 function closeDoc(){docOv.classList.remove('open');document.body.classList.remove('locked');}
@@ -793,7 +819,7 @@ docOv.addEventListener('click',(e)=>{if(e.target===docOv)closeDoc();});
 
 document.addEventListener('click',(e)=>{
   const dd=e.target.closest('[data-doc]');
-  if(dd){e.preventDefault();openDoc(dd.getAttribute('data-doc'),dd.getAttribute('data-doctitle'));return;}
+  if(dd){e.preventDefault();openDoc(dd.getAttribute('data-doc'),dd.getAttribute('data-doctitle'),dd.getAttribute('data-find'));return;}
   const t=e.target.closest('[data-cite]');
   if(t){e.preventDefault();openCite(t.getAttribute('data-cite'),t);return;}
 });
