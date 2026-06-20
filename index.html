@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MFC Clinic — редизайн: маркетинг, стратегия, концепт</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E3A34;--teal:#18675D;--teal-600:#1F7A6E;--teal-tint:#E6F1EE;
+  --sand:#F5EFE4;--sand-deep:#ECE1CF;--gold:#C2A05A;--gold-soft:#EADDC2;
+  --white:#fff;--text:#1B2B28;--muted:#5C6B67;--line:#DCE5E2;
+  --red:#C2554A;--amber:#C2934A;--green:#3E8E6E;
+  --shadow:0 8px 30px rgba(14,58,52,.08);--shadow-lg:0 18px 50px rgba(14,58,52,.14);
+  --r:18px;--sidebar:266px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--sand);line-height:1.6;font-size:15.5px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Manrope',sans-serif;color:var(--ink);line-height:1.12;font-weight:800;letter-spacing:-.01em}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+
+/* layout */
+.layout{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh}
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;background:var(--ink);color:#fff;padding:28px 22px;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
+.side .brand{display:flex;align-items:center;gap:11px;margin-bottom:8px}
+.side .brand .mark{width:40px;height:40px;border-radius:11px;background:var(--gold);display:grid;place-items:center;color:var(--ink);flex:none}
+.side .brand .nm{display:block;font-family:'Manrope';font-weight:800;font-size:18px;color:#fff;line-height:1.05}
+.side .brand .ds{display:block;font-size:10.5px;color:rgba(255,255,255,.6);margin-top:2px}
+.side .meta{font-size:12px;color:rgba(255,255,255,.55);margin:6px 0 16px;border-bottom:1px solid rgba(255,255,255,.13);padding-bottom:16px}
+.toc{display:flex;flex-direction:column;gap:2px}
+.toc a{display:flex;align-items:center;gap:11px;color:rgba(255,255,255,.72);font-size:14px;font-weight:500;padding:10px 12px;border-radius:10px;text-decoration:none;transition:.15s}
+.toc a:hover{background:rgba(255,255,255,.06);color:#fff;text-decoration:none}
+.toc a.active{background:rgba(194,160,90,.16);color:#fff}
+.toc a .n{font-family:'Manrope';font-weight:700;font-size:12px;color:var(--gold);width:20px;flex:none}
+.side .foot{margin-top:auto;padding-top:18px;font-size:11.5px;color:rgba(255,255,255,.45);line-height:1.5}
+.side .dl{display:block;margin-top:14px;background:var(--gold);color:var(--ink);text-align:center;font-family:'Manrope';font-weight:700;padding:11px;border-radius:10px;font-size:13.5px}
+.side .dl:hover{text-decoration:none;background:#cdaf6c}
+
+/* content */
+.main{padding:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 48px}
+.sec{padding:74px 0;border-bottom:1px solid var(--line)}
+.sec:last-child{border-bottom:0}
+.kicker{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.kicker .n{font-family:'Manrope';background:var(--gold-soft);color:#7a5e1e;width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:13px}
+h2{font-size:clamp(26px,3vw,38px);margin-bottom:12px}
+h3{font-size:20px;margin:0 0 10px}
+.sub{font-size:17px;color:var(--muted);max-width:760px;margin-bottom:30px}
+p{margin-bottom:12px}
+.note{font-size:13px;color:var(--muted)}
+
+/* hero/cover */
+.cover{background:linear-gradient(160deg,var(--ink),#0a2c27);color:#fff;padding:72px 0 64px;border-bottom:0}
+.cover .wrap{max-width:1080px}
+.cover .kicker{color:var(--gold)}
+.cover h1{color:#fff;font-size:clamp(34px,4.6vw,56px);line-height:1.04;margin-bottom:18px;max-width:880px}
+.cover h1 .ac{color:var(--gold)}
+.cover .lead{font-size:19px;color:rgba(255,255,255,.8);max-width:680px;margin-bottom:26px}
+.cover .chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.cover .chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 15px;font-size:13px;color:rgba(255,255,255,.85)}
+.thesis{background:rgba(194,160,90,.12);border:1px solid rgba(194,160,90,.3);border-left:4px solid var(--gold);border-radius:12px;padding:20px 24px;font-size:17px;color:#fff;max-width:820px}
+.thesis b{color:var(--gold)}
+
+/* cards/grids */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.card.dark{background:var(--ink);color:#fff;border:0}
+.card.dark h3{color:#fff}
+.card.tint{background:var(--teal-tint);border:0}
+.card .ic{width:42px;height:42px;border-radius:11px;background:var(--gold-soft);color:#7a5e1e;display:grid;place-items:center;margin-bottom:14px}
+.card.dark .ic{background:rgba(194,160,90,.18);color:var(--gold)}
+.card h3{font-size:17px}
+.card p{font-size:14px;color:var(--muted);margin:0}
+.card.dark p{color:rgba(255,255,255,.72)}
+.big-num{font-family:'Manrope';font-weight:800;font-size:34px;color:var(--teal);line-height:1}
+.card.dark .big-num{color:var(--gold)}
+.big-num small{display:block;font-family:'Inter';font-weight:500;font-size:13px;color:var(--muted);margin-top:8px}
+.card.dark .big-num small{color:rgba(255,255,255,.7)}
+
+/* bars (charts) */
+.bars{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px 26px}
+.bar-row{display:grid;grid-template-columns:230px 1fr 124px;align-items:center;gap:14px;padding:9px 0}
+.bar-row+.bar-row{border-top:1px solid var(--line)}
+.bar-row .lab{font-size:14px;font-weight:500;color:var(--ink)}
+.bar-track{display:block;height:11px;background:var(--sand-deep);border-radius:99px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--teal-600))}
+.bar-row .imp{font-size:12px;color:var(--muted);text-align:right;font-weight:600}
+
+/* scorecard */
+.score-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.score-table td,.score-table th{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+.score-table th{background:var(--teal-tint);font-family:'Manrope';font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+.score-table tr:last-child td{border-bottom:0}
+.dots{letter-spacing:2px;font-size:13px;white-space:nowrap}
+.dot-bad{color:var(--red)}.dot-mid{color:var(--amber)}.dot-ok{color:var(--green)}.dot-off{color:var(--line)}
+.score-badge{display:inline-flex;align-items:baseline;gap:8px;background:var(--ink);color:#fff;border-radius:14px;padding:14px 22px;margin-top:6px}
+.score-badge b{font-family:'Manrope';font-size:34px;color:var(--red)}
+
+/* two-col lists */
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.list-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.list-card h3{display:flex;align-items:center;gap:9px;font-size:16px;margin-bottom:14px}
+.list-card.good h3{color:var(--green)}
+.list-card.bad h3{color:var(--red)}
+.list-card ul{list-style:none}
+.list-card li{position:relative;padding-left:24px;margin-bottom:10px;font-size:14px}
+.list-card li::before{position:absolute;left:0;top:1px;font-weight:700}
+.list-card.good li::before{content:"✓";color:var(--green)}
+.list-card.bad li::before{content:"✕";color:var(--red)}
+
+/* matrix table */
+.matrix-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+.matrix{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;min-width:760px}
+.matrix th,.matrix td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.matrix th{background:var(--ink);color:#fff;font-family:'Manrope';font-size:12px;position:sticky;top:0}
+.matrix tr.me td{background:var(--gold-soft)}
+.matrix tr.me td:first-child{font-weight:700}
+.matrix td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}.par{color:var(--amber);font-weight:700}
+
+/* gaps */
+.gap-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:18px 20px}
+.gap-card .rank{font-family:'Manrope';font-weight:800;color:var(--gold);font-size:13px;margin-bottom:6px}
+.gap-card h3{font-size:15.5px;margin-bottom:6px}
+.gap-card p{font-size:13.5px;color:var(--muted);margin:0}
+
+/* strategy callouts */
+.callout{background:var(--ink);color:#fff;border-radius:var(--r);padding:30px 32px;margin-bottom:18px}
+.callout .kicker{color:var(--gold)}
+.callout .stmt{font-family:'Manrope';font-weight:700;font-size:clamp(20px,2.4vw,28px);line-height:1.25;color:#fff}
+.callout .stmt b{color:var(--gold)}
+.offer{background:var(--gold-soft);border-radius:var(--r);padding:26px 30px;border-left:4px solid var(--gold)}
+.offer .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#7a5e1e;font-weight:700;margin-bottom:8px}
+.offer .txt{font-family:'Manrope';font-weight:700;font-size:21px;color:var(--ink)}
+.offer .txt .z{color:var(--teal)}
+.slogans{display:flex;flex-direction:column;gap:10px}
+.slogan{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-family:'Manrope';font-weight:600;color:var(--ink);font-size:16px;display:flex;gap:12px;align-items:center}
+.slogan.main{background:var(--teal);color:#fff;border:0;font-size:18px}
+.slogan .tag{font-size:10px;font-family:'Inter';font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--gold);color:var(--ink);padding:3px 8px;border-radius:99px;flex:none}
+.msg-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.msg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.msg .h{font-family:'Manrope';font-weight:700;color:var(--ink);font-size:14.5px;margin-bottom:5px;display:flex;gap:9px;align-items:center}
+.msg .h .b{width:24px;height:24px;border-radius:7px;background:var(--teal-tint);color:var(--teal);display:grid;place-items:center;font-size:12px;flex:none}
+.msg p{font-size:13px;color:var(--muted);margin:0}
+
+/* visual spec */
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.sw{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.sw .chip{height:64px}
+.sw .meta{padding:9px 11px}
+.sw .nm{font-size:12.5px;font-weight:700;color:var(--ink)}
+.sw .hex{font-size:11px;color:var(--muted);font-family:monospace}
+.type-spec{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.type-spec .d{font-family:'Manrope';font-weight:800;font-size:34px;color:var(--ink);line-height:1.1}
+.type-spec .b{font-family:'Inter';font-size:16px;color:var(--text);margin-top:10px}
+.type-spec .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:14px}
+.princ{display:flex;flex-wrap:wrap;gap:9px}
+.princ span{background:var(--teal-tint);color:var(--teal);border-radius:99px;padding:8px 15px;font-size:13px;font-weight:600}
+.princ span.no{background:#f7e7e4;color:var(--red)}
+
+/* concept showcase */
+.concept-box{background:var(--ink);border-radius:var(--r);padding:30px;color:#fff}
+.concept-box h3{color:#fff;font-size:22px}
+.concept-box p{color:rgba(255,255,255,.78);font-size:15px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Manrope';font-weight:700;font-size:15px;padding:13px 24px;border-radius:999px;background:var(--gold);color:var(--ink);text-decoration:none;transition:.15s}
+.btn:hover{background:#cdaf6c;text-decoration:none;transform:translateY(-1px)}
+.btn.ghost{background:transparent;border:2px solid rgba(255,255,255,.35);color:#fff}
+.feat-chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.feat-chips span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:99px;padding:6px 13px;font-size:12.5px;color:rgba(255,255,255,.85)}
+.frame{margin-top:22px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.15);background:#fff;height:560px;position:relative}
+.frame iframe{width:1440px;height:1018px;border:0;transform:scale(.55);transform-origin:top left}
+.frame .ov{position:absolute;inset:0;cursor:pointer;background:transparent}
+
+/* mobile cover stats */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+
+@media(max-width:1080px){
+  .layout{grid-template-columns:1fr}
+  .side{position:sticky;top:0;height:auto;flex-direction:row;align-items:center;gap:14px;padding:12px 16px;z-index:40;overflow-x:auto}
+  .side .brand{margin:0;flex:none}.side .brand .ds,.side .meta,.side .foot,.side .dl{display:none}
+  .toc{flex-direction:row;gap:4px}
+  .toc a{white-space:nowrap;padding:8px 11px;font-size:13px}
+  .toc a .n{display:none}
+  .wrap{padding:0 24px}
+  .g4,.g3,.g2,.cols2,.msg-grid,.kpis{grid-template-columns:1fr 1fr}
+  .swatches{grid-template-columns:repeat(3,1fr)}
+  .bar-row{grid-template-columns:130px 1fr 80px;gap:8px}
+  .bar-row .lab{font-size:12.5px}
+  .frame iframe{transform:scale(.4)}
+}
+@media(max-width:600px){
+  .g4,.g3,.g2,.cols2,.msg-grid,.kpis,.swatches{grid-template-columns:1fr}
+  .sec{padding:48px 0}
+}
+
+/* ===== citations / traceability ===== */
+[data-cite]{position:relative;cursor:pointer}
+[data-cite]:hover{outline:2px dashed var(--gold);outline-offset:4px;border-radius:8px}
+[data-cite].lit{outline:2px solid var(--gold);outline-offset:4px;border-radius:8px}
+.cite-mark{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:10px;font-weight:800;font-family:'Manrope';font-style:normal;vertical-align:super;margin-left:5px;line-height:1}
+tr[data-cite]:hover{outline:0}
+tr[data-cite] td:first-child::after{content:"ⓘ";color:var(--gold);font-size:11px;margin-left:6px;vertical-align:super}
+.cite-chip{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);color:#7a5e1e;border:0;border-radius:99px;padding:5px 12px;font-size:12.5px;font-weight:700;font-family:'Inter';cursor:pointer;margin-left:8px;vertical-align:middle}
+.cite-chip:hover{background:#e2cf9f}
+.cite-chip::before{content:"ⓘ";font-size:13px}
+.matrix tr[data-cite]{cursor:pointer}
+.matrix tr[data-cite].lit td{box-shadow:inset 0 0 0 2px var(--gold)}
+
+/* drawer */
+.drawer-ov{position:fixed;inset:0;background:rgba(10,30,27,.5);opacity:0;visibility:hidden;transition:.25s;z-index:120}
+.drawer-ov.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:450px;max-width:93vw;background:#fff;box-shadow:-20px 0 60px rgba(14,58,52,.22);transform:translateX(101%);transition:.32s cubic-bezier(.4,0,.2,1);z-index:121;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer .dh{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.drawer .badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:6px 11px;border-radius:99px}
+.badge.research{background:var(--teal-tint);color:var(--teal)}
+.badge.obs{background:#e6f3ec;color:var(--green)}
+.badge.comp{background:var(--gold-soft);color:#7a5e1e}
+.badge.calc{background:#e7ecea;color:#43615a}
+.badge.method{background:var(--ink);color:#fff}
+.drawer .close{margin-left:auto;background:var(--sand);border:0;width:34px;height:34px;border-radius:50%;font-size:20px;cursor:pointer;color:var(--ink);line-height:1}
+.drawer .close:hover{background:var(--sand-deep)}
+.drawer .dc{padding:24px;overflow-y:auto;flex:1}
+.drawer h4{font-size:19px;margin-bottom:4px}
+.drawer .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:20px 0 8px}
+.drawer .lbl:first-child{margin-top:0}
+.drawer .claim{font-size:15px;color:var(--text);background:var(--sand);border-left:3px solid var(--gold);padding:13px 15px;border-radius:0 8px 8px 0}
+.drawer .how{font-size:14px;color:var(--text)}
+.drawer .src{display:block;font-size:13px;padding:11px 13px;border:1px solid var(--line);border-radius:11px;margin-bottom:9px;color:var(--teal);word-break:break-word;text-decoration:none}
+.drawer .src:hover{background:var(--teal-tint);text-decoration:none}
+.drawer .src b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:3px;font-family:'Manrope'}
+.drawer .src .u{font-size:11.5px;color:var(--muted)}
+.drawer .note{font-size:12.5px;color:#7a5e1e;background:#fbf6ec;border-radius:9px;padding:11px 13px;line-height:1.5}
+.drawer .docbtn{display:inline-flex;align-items:center;gap:7px;margin-top:4px;font-weight:600;font-size:14px}
+.drawer .meth-list{list-style:none;font-size:14px}
+.drawer .meth-list li{padding-left:24px;position:relative;margin-bottom:12px}
+.drawer .meth-list li::before{content:"";position:absolute;left:0;top:6px;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+
+/* methodology fab */
+.method-fab{position:fixed;right:20px;bottom:20px;z-index:90;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:13px 19px;font-family:'Manrope';font-weight:700;font-size:13.5px;cursor:pointer;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:8px}
+.method-fab:hover{background:#14564e}
+.method-fab svg{flex:none}
+
+/* password gate */
+.gate{position:fixed;inset:0;z-index:300;background:linear-gradient(160deg,var(--ink),#0a2c27);display:grid;place-items:center;padding:24px}
+.gate.hidden{display:none}
+.gate .box{background:#fff;border-radius:20px;padding:40px 34px;max-width:390px;width:100%;text-align:center;box-shadow:var(--shadow-lg)}
+.gate .mark{width:56px;height:56px;border-radius:15px;background:var(--ink);color:#fff;display:grid;place-items:center;margin:0 auto 18px}
+.gate h2{font-size:23px;margin-bottom:7px}
+.gate p{color:var(--muted);font-size:14px;margin-bottom:22px}
+.gate input{width:100%;padding:15px 16px;border:1px solid var(--line);border-radius:12px;font-size:16px;text-align:center;margin-bottom:12px;font-family:'Inter'}
+.gate input:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+.gate button{width:100%;padding:15px;border:0;border-radius:12px;background:var(--gold);color:var(--ink);font-family:'Manrope';font-weight:700;font-size:16px;cursor:pointer}
+.gate button:hover{background:#cdaf6c}
+.gate .err{color:var(--red);font-size:13px;margin-top:11px;min-height:17px}
+body.locked{overflow:hidden;height:100vh}
+@media(max-width:600px){.method-fab{bottom:14px;right:14px;padding:11px 15px}}
+</style>
+</head>
+<body class="locked">
+
+<!-- PASSWORD GATE -->
+<div class="gate" id="gate">
+  <div class="box">
+    <div class="mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7"/></svg></div>
+    <h2>MFC Clinic — отчёт</h2>
+    <p>Доступ по паролю. Введите пароль, чтобы открыть материалы редизайна.</p>
+    <form id="gateForm">
+      <input type="password" id="gatePass" placeholder="Пароль" autocomplete="current-password" autofocus>
+      <button type="submit">Открыть</button>
+      <div class="err" id="gateErr"></div>
+    </form>
+  </div>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="side">
+  <div class="brand">
+    <span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3C8 3 6 5 6 9c0 3 1 5 1.5 8C8 19 8.5 21 10 21c1 0 1-2 2-2s1 2 2 2c1.5 0 2-2 2.5-4 .5-3 1.5-5 1.5-8 0-4-2-6-6-6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+    <span><span class="nm">MFC Clinic</span><span class="ds">Редизайн · дело проекта</span></span>
+  </div>
+  <div class="meta">Маркетинговый аудит → стратегия → концепт<br>19.06.2026</div>
+  <nav class="toc" id="toc">
+    <a href="#cover"><span class="n">00</span>Обзор</a>
+    <a href="#summary"><span class="n">01</span>Резюме</a>
+    <a href="#audit"><span class="n">02</span>Текущий сайт</a>
+    <a href="#patients"><span class="n">03</span>Что хотят пациенты</a>
+    <a href="#competitors"><span class="n">04</span>Конкуренты</a>
+    <a href="#strategy"><span class="n">05</span>Стратегия</a>
+    <a href="#visual"><span class="n">06</span>Визуальное ТЗ</a>
+    <a href="#concept"><span class="n">07</span>Концепт</a>
+  </nav>
+  <a href="07-concept/index.html" target="_blank" class="dl">Открыть прототип →</a>
+  <div class="foot">Источники: веб-исследование (16 агентов), живой разбор сайтов конкурентов. Полные документы 01–06 — в папке проекта.</div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- COVER -->
+<section class="cover sec" id="cover">
+  <div class="wrap">
+    <div class="kicker"><span>Маркетинговый редизайн</span></div>
+    <h1>MFC Clinic: как из «сайта-визитки» сделать <span class="ac">машину доверия и записи</span></h1>
+    <p class="lead">Полный путь от маркетинга к дизайну для стоматологии у м. Белорусская: что хотят пациенты, кто конкуренты, чем побеждаем и как это выглядит.</p>
+    <div class="chips">
+      <span class="chip">Стоматология · Москва</span>
+      <span class="chip">м. Белорусская / Динамо / Беговая</span>
+      <span class="chip">Сегмент средний+</span>
+      <span class="chip">mfc-clinic.ru</span>
+    </div>
+    <div class="thesis">На рынке частной стоматологии решает <b>не цена, а доверие</b>. Пациент покупает уверенность, что не будет <b>больно</b> и его не <b>обманут</b>. Сайт должен сначала снимать страх и продавать доверие — и только потом перечислять услуги.</div>
+    <div class="kpis" style="margin-top:26px">
+      <div class="card dark" data-cite="kpi-reviews"><div class="big-num">85%<span class="cite-mark">i</span><small>выбирают клинику по отзывам</small></div></div>
+      <div class="card dark" data-cite="kpi-surgeon"><div class="big-num">~90%<span class="cite-mark">i</span><small>успеха имплантации — это врач</small></div></div>
+      <div class="card dark" data-cite="kpi-lawsuits"><div class="big-num">80%<span class="cite-mark">i</span><small>исков к врачам в РФ — стоматология</small></div></div>
+      <div class="card dark" data-cite="kpi-score"><div class="big-num">~3/10<span class="cite-mark">i</span><small>маркетинг текущего сайта</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 SUMMARY -->
+<section class="sec" id="summary">
+  <div class="wrap">
+    <div class="kicker"><span class="n">01</span>Резюме</div>
+    <h2>Главное за минуту</h2>
+    <p class="sub">Шесть выводов, на которых держится вся стратегия.</p>
+    <div class="grid g3">
+      <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 0 1 18 0M12 3v2m0 14v2" stroke="currentColor" stroke-width="1.6"/></svg></div><h3>Диагноз сайта</h3><p>Красивая «галерея о себе»: пустой герой без оффера и цен, нет кейсов, «99% довольных» без пруфов, scroll-jacking в блоке «Команда».</p></div>
+      <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 3h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg></div><h3>Два страха = два рычага</h3><p>Боль (дентофобия у ~половины) и обман/переплата. Кто снимет их прямо на сайте — выиграет.</p></div>
+      <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Свободные «дыры»</h3><p>Калькулятор сметы + рассрочка 0% (нет ни у кого), флагман «зубы за 1 день» с честными этапами, блок «анти-обман».</p></div>
+      <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.5"/></svg></div><h3>Врач — главный актив</h3><p>Выбирают конкретного хирурга. Безличный бренд «МФЦ» закрываем карточками врачей и лицом флагмана.</p></div>
+      <div class="card" data-cite="neyming"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><h3>Нейминг «МФЦ»<span class="cite-mark">i</span></h3><p>Ассоциация с госцентрами (очереди, дёшево). Нейтрализуем дескриптором + латиницей + визуалом, без ребрендинга.</p></div>
+      <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m12 3 2.5 5 5.5.8-4 3.9.9 5.5L12 18l-4.9 2.2.9-5.5-4-3.9 5.5-.8L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><h3>Позиция</h3><p>Честная и человечная стоматология средний+ №1 у Белорусской с флагманом «зубы за 1 день».</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 AUDIT -->
+<section class="sec" id="audit">
+  <div class="wrap">
+    <div class="kicker"><span class="n">02</span>Текущий сайт</div>
+    <h2>Оценка mfc-clinic.ru по факторам выбора</h2>
+    <p class="sub">Сайт аккуратный по форме, но не отвечает на вопросы, которые пациент задаёт перед записью. Маркетинговая готовность — около 3 из 10.<button class="cite-chip" data-cite="obs-audit">источник: наблюдение</button></p>
+    <table class="score-table">
+      <tr><th>Фактор выбора</th><th>На сайте сейчас</th><th>Оценка</th></tr>
+      <tr><td>Отзывы и рейтинг</td><td>2 текста без источника, «99%» без пруфов</td><td class="dots"><span class="dot-bad">●●</span><span class="dot-off">●●●●●●●●</span></td></tr>
+      <tr><td>Лечение без боли</td><td>блока нет</td><td class="dots"><span class="dot-bad">●</span><span class="dot-off">●●●●●●●●●</span></td></tr>
+      <tr><td>Прозрачность цены / анти-обман</td><td>декларация, цен на главной нет</td><td class="dots"><span class="dot-bad">●●</span><span class="dot-off">●●●●●●●●</span></td></tr>
+      <tr><td>Цена и рассрочка</td><td>нет на главной, рассрочки нет</td><td class="dots"><span class="dot-bad">●●</span><span class="dot-off">●●●●●●●●</span></td></tr>
+      <tr><td>Конкретный врач</td><td>фото + должность, без регалий/кейсов</td><td class="dots"><span class="dot-mid">●●●●</span><span class="dot-off">●●●●●●</span></td></tr>
+      <tr><td>Гарантия</td><td>«гарантия на лечение» без условий</td><td class="dots"><span class="dot-mid">●●●</span><span class="dot-off">●●●●●●●</span></td></tr>
+      <tr><td>Близость / парковка</td><td>есть, но спрятано в текст/футер</td><td class="dots"><span class="dot-ok">●●●●●●</span><span class="dot-off">●●●●</span></td></tr>
+      <tr><td>Оборудование</td><td>Carl Zeiss упомянут как факт, не выгода</td><td class="dots"><span class="dot-ok">●●●●●●</span><span class="dot-off">●●●●</span></td></tr>
+    </table>
+    <div class="cols2" style="margin-top:22px">
+      <div class="list-card good"><h3>Сильное (сохранить)</h3><ul>
+        <li>Сдержанная «взрослая» палитра — есть зачаток характера</li>
+        <li>Реальные фото врачей и кабинетов (не сток)</li>
+        <li>Сформулированы факты: 12 лет, микроскоп Carl Zeiss, парковка</li>
+        <li>График 9–21 без выходных — сильное преимущество</li>
+      </ul></div>
+      <div class="list-card bad"><h3>Критичные проблемы</h3><ul>
+        <li><b>Scroll-jacking</b> в блоке «Команда» — посетитель застревает</li>
+        <li>Герой не продаёт: нет оффера, цен, фото и кнопки записи</li>
+        <li>Нет цен и кейсов «до/после» на главной</li>
+        <li>Слабые доказательства и репутация (реально 3.8–4.1, не 99%)</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PATIENTS -->
+<section class="sec" id="patients">
+  <div class="wrap">
+    <div class="kicker"><span class="n">03</span>Спрос</div>
+    <h2>Что люди хотят и как выбирают стоматологию</h2>
+    <p class="sub">Факторы выбора по важности (веб-исследование рынка РФ / Москвы).<button class="cite-chip" data-cite="decision-factors">источники</button></p>
+    <div class="bars">
+      <div class="bar-row"><span class="lab">Отзывы и рейтинг (4.8+)</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="imp">очень высокая</span></div>
+      <div class="bar-row"><span class="lab">Конкретный врач</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="imp">очень высокая</span></div>
+      <div class="bar-row"><span class="lab">Рекомендации / сарафан</span><span class="bar-track"><span class="bar-fill" style="width:96%"></span></span><span class="imp">очень высокая</span></div>
+      <div class="bar-row"><span class="lab">Лечение без боли</span><span class="bar-track"><span class="bar-fill" style="width:80%"></span></span><span class="imp">высокая</span></div>
+      <div class="bar-row"><span class="lab">Прозрачность / анти-обман</span><span class="bar-track"><span class="bar-fill" style="width:80%"></span></span><span class="imp">высокая</span></div>
+      <div class="bar-row"><span class="lab">Цена / цена-качество</span><span class="bar-track"><span class="bar-fill" style="width:76%"></span></span><span class="imp">высокая</span></div>
+      <div class="bar-row"><span class="lab">Гарантия</span><span class="bar-track"><span class="bar-fill" style="width:74%"></span></span><span class="imp">высокая</span></div>
+      <div class="bar-row"><span class="lab">Близость / парковка</span><span class="bar-track"><span class="bar-fill" style="width:62%"></span></span><span class="imp">средняя-высокая</span></div>
+      <div class="bar-row"><span class="lab">Рассрочка 0%</span><span class="bar-track"><span class="bar-fill" style="width:52%"></span></span><span class="imp">растёт</span></div>
+    </div>
+
+    <h3 style="margin:34px 0 14px">Главные страхи (барьеры записи)</h3>
+    <div class="grid g4">
+      <div class="card" data-cite="fear-dento"><div class="big-num">~50%<span class="cite-mark">i</span><small>дентофобия — боятся боли</small></div></div>
+      <div class="card" data-cite="fear-deception"><div class="big-num">80%<span class="cite-mark">i</span><small>исков к врачам — «навяжут лишнее»</small></div></div>
+      <div class="card" data-cite="fear-hidden"><div class="big-num">«?»<span class="cite-mark">i</span><small>страх скрытых доплат «под ключ»</small></div></div>
+      <div class="card" data-cite="fear-novisit"><div class="big-num">52%<span class="cite-mark">i</span><small>не были у врача за год</small></div></div>
+    </div>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card tint" data-cite="segments">
+        <h3>Сегменты и триггеры<span class="cite-mark">i</span></h3>
+        <p style="color:var(--text)"><b>Острая боль</b> ~27% · <b>Плановое/семья</b> ~44% · <b>Эстетика</b> ~17% · <b>Имплантация / All-on-4</b> (высокий чек) · <b>Тревожные</b> (сквозной). Сайт строим по задачам пациента, а не по медкатегориям.</p>
+      </div>
+      <div class="card tint" data-cite="prices">
+        <h3>Цены рынка (Москва)<span class="cite-mark">i</span></h3>
+        <p style="color:var(--text)">Имплант под ключ <b>22–120к ₽</b> (целевой для МФЦ ~40–70к) · All-on-4 челюсть <b>135–789к ₽</b> · винир E.max <b>20–85к ₽</b> · элайнеры <b>100–350к ₽</b>. «За 1 день» = временный протез сразу, постоянный — через 4–6 мес (объяснять честно).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 COMPETITORS -->
+<section class="sec" id="competitors">
+  <div class="wrap">
+    <div class="kicker"><span class="n">04</span>Конкуренты</div>
+    <h2>Кто рядом и чем берёт</h2>
+    <p class="sub">Профили построены на живой загрузке сайтов конкурентов. Рынок поляризован: холодные «прайс-машины» против дорогих премиум-клиник со спрятанными ценами.<button class="cite-chip" data-cite="comp-method">как анализировали</button></p>
+    <p class="note" style="margin:-18px 0 18px">Любая строка таблицы кликабельна — откроется ссылка на сайт конкурента для самостоятельной проверки.</p>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <tr><th>Клиника</th><th>Сегмент</th><th>Цены</th><th>«За 1 день»</th><th>Лид-магнит</th><th>Слабость</th></tr>
+        <tr class="me" data-cite="comp-mfc"><td>MFC (сейчас)</td><td>средний+</td><td class="no">нет на главной</td><td class="par">без цены/этапов</td><td class="par">скидка 5%</td><td>нет доверия/цен/кейсов</td></tr>
+        <tr data-cite="comp-implantlive"><td>ImplantLive (сосед)</td><td>средний+</td><td class="yes">радикальная</td><td class="no">честно 6–8 мес</td><td class="yes">консультация+КТ 0₽</td><td>нет эмоции «за 1 день»</td></tr>
+        <tr data-cite="comp-bureau32"><td>Бюро 32 (Беговая)</td><td>премиум</td><td class="par">относительно</td><td class="par">не в герое</td><td class="no">нет акций</td><td>нет флагмана, мало цифр</td></tr>
+        <tr data-cite="comp-dentalart"><td>Dental ART</td><td>средний</td><td class="par">«рассчитать»</td><td class="par">есть</td><td class="yes">консультация+3D</td><td>малый стаж 5 лет</td></tr>
+        <tr data-cite="comp-vsesvoi"><td>Все свои!</td><td>масс/средний</td><td class="yes">детальный прайс</td><td class="yes">All-on-4 акция</td><td class="yes">1-й приём бесплатно</td><td>перегружен, «дёшево»</td></tr>
+        <tr data-cite="comp-zub"><td>Зуб.ру</td><td>масс/средний</td><td class="yes">очень детальная</td><td class="par">слабо выделен</td><td class="yes">рассрочка 0%</td><td>безликий</td></tr>
+        <tr data-cite="comp-ilatan"><td>ИЛАТАН</td><td>средний+</td><td class="yes">прайс + акции</td><td class="par">есть</td><td class="par">акции</td><td>устаревший визуал</td></tr>
+        <tr data-cite="comp-roott"><td>ROOTT</td><td>средний+</td><td class="yes">«под ключ»</td><td class="yes">«за 1–3 дня»</td><td class="yes">3 врача + КТ</td><td>только имплантация</td></tr>
+        <tr data-cite="comp-belgravia"><td>Belgravia</td><td>премиум</td><td class="par">прайс отдельно</td><td class="par">не в герое</td><td class="yes">Check-up 7777₽</td><td>дорого, отсекает средний</td></tr>
+        <tr data-cite="comp-dentalway"><td>Dental Way</td><td>премиум/+</td><td class="yes">относительно</td><td class="no">нет акцента</td><td class="yes">осмотр+КТ+бонус</td><td>окраина города</td></tr>
+      </table>
+    </div>
+    <h3 style="margin:30px 0 14px">Рыночные «дыры» — куда бить<button class="cite-chip" data-cite="gaps-synth">как получено</button></h3>
+    <div class="grid g3">
+      <div class="gap-card"><div class="rank">ПРИОРИТЕТ 1</div><h3>Флагман «зубы за 1 день»</h3><p>Эмоция + честные этапы + фиксированная цена под ключ. Целиком нет ни у кого рядом.</p></div>
+      <div class="gap-card"><div class="rank">ПРИОРИТЕТ 2</div><h3>Калькулятор + рассрочка 0%</h3><p>Интерактивный расчёт сметы и платежа — нет ни у одного конкурента.</p></div>
+      <div class="gap-card"><div class="rank">ПРИОРИТЕТ 3</div><h3>«Честный подход»</h3><p>Анти-обман: бесплатно, план с обоснованием, второе мнение. Закрывает и свой негатив.</p></div>
+      <div class="gap-card"><div class="rank">+</div><h3>Лечение без боли</h3><p>Седация и бережность в среднем+ у Белорусской — свободно.</p></div>
+      <div class="gap-card"><div class="rank">+</div><h3>Честная гарантия в цифрах</h3><p>У одних её нет, у других «100 лет» (неправдоподобно). Недозанято.</p></div>
+      <div class="gap-card"><div class="rank">+</div><h3>Тёплый бренд в центре</h3><p>Соседи холодные и корпоративные. Человечность + премиум — свободно.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 STRATEGY -->
+<section class="sec" id="strategy">
+  <div class="wrap">
+    <div class="kicker"><span class="n">05</span>Стратегия</div>
+    <h2>Как победить: позиционирование и месседжинг<button class="cite-chip" data-cite="strategy-synth">как получено</button></h2>
+    <div class="callout">
+      <div class="kicker">Позиционирование</div>
+      <div class="stmt">Полнопрофильная частная стоматология средний+ <b>№1 у Белорусской</b>, с флагманом «зубы за 1 день». Лечим <b>без боли и без лишнего</b>: план и фиксированная цена до начала, гарантия письменно.</div>
+    </div>
+    <div class="offer" style="margin-bottom:18px">
+      <div class="lbl">Главный оффер (вместо размытой скидки 5%)</div>
+      <div class="txt">Бесплатная консультация + 3D-снимок и план лечения — <span class="z">0 ₽</span>, ни к чему не обязывает</div>
+    </div>
+    <div class="grid g2">
+      <div>
+        <h3 style="margin-bottom:12px">Слоганы</h3>
+        <div class="slogans">
+          <div class="slogan main"><span class="tag">главный</span>Зубы за 1 день. Честная цена под ключ — без скрытых доплат</div>
+          <div class="slogan">Стоматология, где цену вы знаете заранее</div>
+          <div class="slogan">Лечим без боли и без лишнего</div>
+          <div class="slogan">Новая улыбка у Белорусской — без очередей</div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Опорные сообщения</h3>
+        <div class="msg-grid">
+          <div class="msg"><div class="h"><span class="b">1</span>Честная цена под ключ</div><p>Фикс-смета до начала, всё включено.</p></div>
+          <div class="msg"><div class="h"><span class="b">2</span>Зубы за 1 день</div><p>Честные этапы All-on-4.</p></div>
+          <div class="msg"><div class="h"><span class="b">3</span>Без боли</div><p>Анестезия, седация, без осуждения.</p></div>
+          <div class="msg"><div class="h"><span class="b">4</span>Свой врач</div><p>Регалии, стаж, кейсы, отзывы.</p></div>
+          <div class="msg"><div class="h"><span class="b">5</span>Гарантия в договоре</div><p>Письменно, оригинальные системы.</p></div>
+          <div class="msg"><div class="h"><span class="b">6</span>Без очередей</div><p>3 метро, парковка, по записи.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="card tint" style="margin-top:20px">
+      <h3>Тон голоса</h3>
+      <p style="color:var(--text)">Тёплый, человечный, спокойный и уверенный — как внимательный врач, которому нечего скрывать. Живой русский без канцелярита и без «акционного» давления. Прямо снимает страхи и не осуждает за состояние зубов.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 VISUAL -->
+<section class="sec" id="visual">
+  <div class="wrap">
+    <div class="kicker"><span class="n">06</span>Визуальное ТЗ</div>
+    <h2>Дизайн-система</h2>
+    <p class="sub">Премиальный минимализм с теплом и воздухом. Антитеза госучреждению и стерильно-холодному медстилю.</p>
+    <h3 style="margin-bottom:12px">Палитра</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#0E3A34"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#0E3A34</div></div></div>
+      <div class="sw"><div class="chip" style="background:#18675D"></div><div class="meta"><div class="nm">Teal</div><div class="hex">#18675D</div></div></div>
+      <div class="sw"><div class="chip" style="background:#E6F1EE"></div><div class="meta"><div class="nm">Teal tint</div><div class="hex">#E6F1EE</div></div></div>
+      <div class="sw"><div class="chip" style="background:#F5EFE4"></div><div class="meta"><div class="nm">Sand</div><div class="hex">#F5EFE4</div></div></div>
+      <div class="sw"><div class="chip" style="background:#C2A05A"></div><div class="meta"><div class="nm">Gold</div><div class="hex">#C2A05A</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--line)"></div><div class="meta"><div class="nm">White</div><div class="hex">#FFFFFF</div></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="type-spec">
+        <div class="d">Зубы за 1 день</div>
+        <div class="lbl">Manrope 800 — заголовки</div>
+        <div class="b">Полнопрофильная стоматология. Честно, без боли, без лишнего — с понятной ценой и гарантией.</div>
+        <div class="lbl">Inter — основной текст</div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Принципы</h3>
+        <div class="princ">
+          <span>Машина доверия, не галерея</span>
+          <span>Премиальный минимализм</span>
+          <span>Доказательства видны сразу</span>
+          <span>Mobile-first</span>
+          <span>Бережная анимация</span>
+          <span class="no">✕ scroll-jacking</span>
+          <span class="no">✕ стоки / AI-фото</span>
+          <span class="no">✕ красный / неон</span>
+          <span class="no">✕ пустой герой</span>
+        </div>
+        <h3 style="margin:20px 0 10px">Структура главной</h3>
+        <p class="note">Sticky-шапка → Hero с оффером → Trust-полоса → Честный подход → Флагман All-on-4 + калькулятор → Лечение без боли → Врачи → Услуги по задачам → До/после → Цены → Отзывы с площадок → Оборудование через выгоду → Локация + запись.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 CONCEPT -->
+<section class="sec" id="concept">
+  <div class="wrap">
+    <div class="kicker"><span class="n">07</span>Концепт</div>
+    <h2>Визуальная концепция новой главной</h2>
+    <p class="sub">Кликабельный прототип, реализующий всю стратегию. Фото — аккуратные плейсхолдеры с подписями (без стоков, по ТЗ).</p>
+    <div class="concept-box">
+      <h3>Интерактивный прототип</h3>
+      <p>Рабочий калькулятор сметы и рассрочки, слайдер «до/после», отзывы с площадок и ответами клиники, форма записи, mobile-first — без scroll-jacking.</p>
+      <div class="feat-chips">
+        <span>Hero с оффером 0 ₽</span><span>Trust-полоса</span><span>Честный подход</span><span>All-on-4 + калькулятор</span><span>Без боли</span><span>Карточки врачей</span><span>Услуги по задачам</span><span>Слайдер до/после</span><span>Отзывы + ответы клиники</span><span>Форма записи</span>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="07-concept/index.html" target="_blank" class="btn">Открыть прототип в полном размере →</a>
+        <a href="#cover" class="btn ghost">Наверх</a>
+      </div>
+      <div class="frame">
+        <iframe src="07-concept/index.html" title="Прототип MFC Clinic" loading="lazy" scrolling="no"></iframe>
+        <a class="ov" href="07-concept/index.html" target="_blank" aria-label="Открыть прототип"></a>
+      </div>
+      <p class="note" style="color:rgba(255,255,255,.55);margin-top:12px">Превью масштабировано. Кликните, чтобы открыть полноразмерную интерактивную версию.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- methodology button -->
+<button class="method-fab" id="methodBtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5m0-8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Как собран отчёт</button>
+
+<!-- source drawer -->
+<div class="drawer-ov" id="drawerOv"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dh">
+    <span class="badge" id="drBadge">Источник</span>
+    <button class="close" id="drClose" aria-label="Закрыть">×</button>
+  </div>
+  <div class="dc" id="drBody"></div>
+</aside>
+
+<script>
+/* ===== PASSWORD GATE (client-side) ===== */
+const PASS_HASH="8e8db19d90f14ffb5556faba69b9a231e5a2c0739426c89bf14abb22d95cb928";
+async function sha256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+function openSite(){document.getElementById('gate').classList.add('hidden');document.body.classList.remove('locked');try{sessionStorage.setItem('mfc_ok','1')}catch(e){}}
+(function gate(){
+  let ok=false;try{ok=sessionStorage.getItem('mfc_ok')==='1'}catch(e){}
+  if(ok){openSite();return;}
+  const f=document.getElementById('gateForm');
+  f.addEventListener('submit',async(e)=>{
+    e.preventDefault();
+    const v=document.getElementById('gatePass').value;
+    const h=await sha256(v);
+    if(h===PASS_HASH){openSite();}
+    else{document.getElementById('gateErr').textContent='Неверный пароль';document.getElementById('gatePass').value='';}
+  });
+})();
+
+/* ===== scrollspy ===== */
+const links=[...document.querySelectorAll('#toc a')];
+const map={};links.forEach(a=>map[a.getAttribute('href').slice(1)]=a);
+const obs=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'));
+      const a=map[e.target.id];if(a){a.classList.add('active');a.scrollIntoView({block:'nearest',inline:'center'});}
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('main .sec').forEach(s=>obs.observe(s));
+
+/* ===== sources / traceability ===== */
+const S={
+  sinergium:{t:'Синергиум — исследование репутации стоматологий',u:'https://sinergium.ru/blog/issledovanie-upravlenie-reputaciej-dlya-stomatologij'},
+  vcrep:{t:'VC.ru — репутация как ключевой фактор выбора',u:'https://vc.ru/marketing/972755-reputaciya-klyuchevoi-faktor-vybora-stomatologii'},
+  vcotz:{t:'VC.ru — отзывы для стоматологии',u:'https://vc.ru/marketing/447617-otzyvy-dlya-stomatologii'},
+  finmail:{t:'Финансы Mail / РГ — за чей счёт россияне лечат зубы',u:'https://finance.mail.ru/article/rassrochka-kredit-ili-nakopleniya-za-chey-schet-rossiyane-lechat-zuby-67200399/'},
+  rg:{t:'Российская газета — рассрочка/кредит на лечение зубов',u:'https://rg.ru/2025/07/28/rassrochka-kredit-ili-nakopleniia-za-chej-schet-rossiiane-lechat-zuby.html'},
+  mk:{t:'МК — 40 млн россиян боятся стоматолога',u:'https://www.mk.ru/social/health/2016/03/21/40-millionov-rossiyan-boyatsya-poseshhat-stomatologa.html'},
+  wikidento:{t:'Википедия — Дентофобия',u:'https://ru.wikipedia.org/wiki/Дентофобия'},
+  aif:{t:'АиФ — как нас «разводят» стоматологи',u:'https://aif.ru/health/life/kak_nas_razvodyat_stomatologi'},
+  wciom:{t:'ВЦИОМ — здоровые привычки',u:'https://wciom.ru/analytical-reviews/analiticheskii-obzor/zelenyi-svet-zdorovym-privychkam'},
+  ssChoose:{t:'StartSmile — как выбрать клинику для имплантации',u:'https://www.startsmile.ru/blog/kak-vybrat-kliniku-dlya-implantatsii-zubov.html'},
+  preziChoose:{t:'ПрезиДЕНТ — как выбрать стоматологию в Москве',u:'https://prezi-dent.ru/zhurnal/stati/kak-vybrat-stomatologiyu-v-moskve'},
+  resmile:{t:'ReSmile — стоимость установки импланта',u:'https://resmileclinic.ru/articles/implantatsiya-zubov/stoimost-ustanovki-zubnogo-implanta/'},
+  napopravku:{t:'НаПоправку — элайнеры/цены',u:'https://napopravku.ru/moskva/uslugi/ehlajnery-invisalign/'},
+  prodoctorovMFC:{t:'ПроДокторов — карточка MFC Clinic (рейтинг 3.8)',u:'https://prodoctorov.ru/moskva/lpu/41141-mfc-clinic/'},
+  topdentMFC:{t:'TopDent — отзывы MFC Clinic (4.1)',u:'https://topdent.ru/clinics/mfts-klinik/otzyvy/'},
+  gisMFC:{t:'2ГИС — MFC Clinic',u:'https://2gis.ru/moscow/firm/70000001022491704'},
+  wikiMFC:{t:'Википедия — Многофункциональный центр (гос. МФЦ)',u:'https://ru.wikipedia.org/wiki/Многофункциональный_центр'},
+  sostav:{t:'Sostav — ребрендинг МФЦ в «Мои документы»',u:'https://www.sostav.ru/blogs/272224/77809'},
+  yandexTop3:{t:'Как попасть в ТОП-3 Яндекс.Карт (стоматология)',u:'https://dmitry-bodrov.ru/marketing/yandex-karty-top3-stomatologiya'},
+  site:{t:'mfc-clinic.ru — прямой просмотр сайта',u:'https://mfc-clinic.ru/'},
+  implantlive:{t:'ImplantLive — сайт конкурента',u:'https://implantlive.ru/'},
+  bureau32:{t:'Бюро 32 — сайт конкурента',u:'https://bureau32.ru/'},
+  dentalart:{t:'Dental A.R.T. Center — сайт конкурента',u:'https://dentalac.ru/'},
+  vsesvoi:{t:'Все свои! — сайт конкурента',u:'https://vse-svoi.ru'},
+  zub:{t:'Зуб.ру — сайт конкурента',u:'https://www.zub.ru'},
+  ilatan:{t:'ИЛАТАН — сайт конкурента',u:'https://www.stomatologia-ilatan.ru/'},
+  roott:{t:'ROOTT — сайт конкурента',u:'https://dentalroott.ru/'},
+  belgravia:{t:'Belgravia Dental Studio — сайт конкурента',u:'https://belgraviadent.ru/'},
+  dentalway:{t:'Dental Way — сайт конкурента',u:'https://dentalway.ru'}
+};
+const D={
+  d01:{t:'01 · Аудит текущего сайта',u:'01-audit-tekuschego-sayta.md'},
+  d02:{t:'02 · Маркетинговый аудит ниши',u:'02-marketing-audit-nisha.md'},
+  d03:{t:'03 · Анализ конкурентов',u:'03-competitor-analysis.md'},
+  d04:{t:'04 · Оценка МФЦ vs конкуренты',u:'04-marketing-evaluation.md'},
+  d05:{t:'05 · Позиционирование и месседжинг',u:'05-messaging-and-positioning.md'},
+  d06:{t:'06 · Визуальное ТЗ',u:'06-visual-spec-TZ.md'}
+};
+const compHow='Профиль построен на прямой загрузке живого сайта конкурента в ходе исследования (19.06.2026). Цены, акции и офферы — на дату исследования и могут меняться.';
+const compNote='Проверьте сами: откройте сайт конкурента по ссылке выше.';
+function comp(name,key,extra){return {q:name+' — позиционирование, цены и офферы',type:'comp',how:compHow,src:[S[key]].concat(extra||[]),doc:D.d03,note:compNote};}
+
+const CITES={
+  'kpi-reviews':{q:'85% пациентов читают отзывы и выбирают клинику на их основе; порог доверия по рейтингу — 4.8+',type:'research',how:'Сводно по опросам пациентов РФ и отраслевым обзорам.',src:[S.sinergium,S.vcrep,S.yandexTop3],doc:D.d02},
+  'kpi-surgeon':{q:'Успех дентальной имплантации эксперты оценивают как зависящий на ~90% от конкретного врача-хирурга, а не от бренда импланта',type:'research',how:'Экспертные материалы клиник по выбору имплантолога.',src:[S.ssChoose,S.preziChoose],doc:D.d02,note:'«~90%» — экспертная оценка из отраслевых публикаций, а не точный замер.'},
+  'kpi-lawsuits':{q:'80% судебных исков пациентов к врачам в РФ приходится на стоматологию',type:'research',how:'Публикации о потребительских спорах в стоматологии.',src:[S.aif],doc:D.d02},
+  'kpi-score':{q:'Маркетинговая готовность текущего сайта ≈ 3 из 10',type:'calc',how:'Экспертная оценка автора аудита: сайт сопоставлен с 10 факторами выбора пациента (раздел «Текущий сайт») и усреднён.',src:[S.site],doc:D.d04,note:'Субъективная экспертная оценка, а не измеренная метрика. Методика — в документе 04.'},
+  'neyming':{q:'Аббревиатура «МФЦ» ассоциируется с государственными многофункциональными центрами; в 2014 их ребрендировали в «Мои документы» из-за «казённого» восприятия',type:'research',how:'Открытые источники о бренде «МФЦ» и его ребрендинге.',src:[S.wikiMFC,S.sostav],doc:D.d04},
+  'obs-audit':{q:'Оценка текущего сайта по факторам выбора (скоринг)',type:'obs',how:'Прямой просмотр всех экранов mfc-clinic.ru в браузере 19.06.2026 (герой, секции, форма, футер). Оценки в баллах — экспертное суждение по наблюдению.',src:[S.site],doc:D.d01,note:'Баллы — экспертная оценка автора, а не измерение. Сам факт наличия/отсутствия блоков проверяем на живом сайте.'},
+  'decision-factors':{q:'Факторы выбора стоматологии по важности',type:'research',how:'Сводная важность по нескольким опросам и публикациям (репутация, врач, цена, гарантия и т.д.). Это качественное ранжирование, а не единый числовой рейтинг.',src:[S.sinergium,S.ssChoose,S.finmail,S.preziChoose],doc:D.d02,note:'Длина полосок — относительная важность по совокупности источников, для наглядности.'},
+  'fear-dento':{q:'Дентофобия в той или иной степени затрагивает до ~половины населения; ~40 млн россиян активно избегают визитов',type:'research',how:'Публикации о страхе стоматолога и статья «Дентофобия».',src:[S.mk,S.wikidento],doc:D.d02},
+  'fear-deception':{q:'Страх «навяжут лишнее / разведут»; 80% исков пациентов к врачам в РФ — стоматология',type:'research',how:'Материалы о потребительских спорах и «разводах» в стоматологии.',src:[S.aif],doc:D.d02},
+  'fear-hidden':{q:'Страх скрытых доплат: реклама «от X ₽» часто не включает костную пластику/синус-лифтинг, абатмент или коронку',type:'research',how:'Разборы ценообразования имплантации «под ключ».',src:[S.resmile,S.ssChoose],doc:D.d02,note:'Качественный вывод из отраслевых материалов и разбора сайтов конкурентов.'},
+  'fear-novisit':{q:'Значительная доля откладывает визиты: около половины не были у стоматолога за последний год; идут чаще при острой боли',type:'research',how:'Опросы о посещаемости стоматолога и поведении пациентов.',src:[S.wciom,S.finmail],doc:D.d02,note:'Точные доли разнятся по опросам; порядок величины — «около половины».'},
+  'segments':{q:'Сегменты по поводу визита: плановое/кариес ~44%, острая боль ~27%, эстетика ~17%',type:'research',how:'Опросы о причинах обращения к стоматологу.',src:[S.wciom,S.finmail],doc:D.d02,note:'Доли — порядок величины по опросам, суммарно не 100% (есть прочие поводы).'},
+  'prices':{q:'Диапазоны цен по Москве: имплант под ключ 22–120к ₽, All-on-4 челюсть 135–789к ₽, винир 20–85к ₽, элайнеры 100–350к ₽',type:'research',how:'Сводка рекламных цен московских клиник и агрегаторов (2025–2026).',src:[S.resmile,S.ssChoose,S.napopravku],doc:D.d02,note:'Рыночные диапазоны, не цены MFC. Зависят от системы имплантов и клинического случая.'},
+  'comp-method':{q:'Как анализировались конкуренты',type:'comp',how:'Найдено ~11+ конкурентов (гиперлокальные у Белорусской/Динамо/Беговой + категорийные лидеры). Профиль каждого построен на прямой загрузке его живого сайта. Кликните любую строку матрицы — откроется ссылка на сайт конкурента.',src:[S.implantlive,S.bureau32,S.dentalart,S.roott],doc:D.d03,note:'Цены и офферы конкурентов — на дату исследования (19.06.2026).'},
+  'comp-mfc':{q:'MFC Clinic: текущее состояние и реальная репутация',type:'obs',how:'Прямой просмотр сайта mfc-clinic.ru + проверка карточек на площадках. Реальные рейтинги разрознены: ПроДокторов 3.8, TopDent 4.1, 2ГИС.',src:[S.site,S.prodoctorovMFC,S.topdentMFC,S.gisMFC],doc:D.d04},
+  'comp-implantlive':comp('ImplantLive (сосед у Динамо/Белорусской)','implantlive'),
+  'comp-bureau32':comp('Бюро 32 (у м. Беговая)','bureau32'),
+  'comp-dentalart':comp('Dental A.R.T. Center (у Белорусской)','dentalart'),
+  'comp-vsesvoi':comp('Все свои!','vsesvoi'),
+  'comp-zub':comp('Зуб.ру','zub'),
+  'comp-ilatan':comp('ИЛАТАН','ilatan'),
+  'comp-roott':comp('ROOTT','roott'),
+  'comp-belgravia':comp('Belgravia Dental Studio','belgravia'),
+  'comp-dentalway':comp('Dental Way','dentalway'),
+  'gaps-synth':{q:'Рыночные «дыры» — куда бить',type:'calc',how:'Синтез: пересечение того, чего хотят пациенты (раздел 03), и того, чего нет у конкурентов (живой разбор сайтов, раздел 04). Это вывод-рекомендация, а не внешний факт.',src:[S.implantlive,S.bureau32,S.ssChoose],doc:D.d04,note:'Аналитический вывод автора на основе данных исследования.'},
+  'strategy-synth':{q:'Позиционирование, оффер и месседжинг',type:'calc',how:'Стратегический синтез по данным исследования и анализу конкурентов (документ 05). Рекомендация, а не внешний факт.',src:[S.sinergium,S.ssChoose,S.aif],doc:D.d05,note:'Это предложение автора. Слоганы и оффер — кандидаты для тестирования.'}
+};
+
+const typeLabel={research:'Веб-исследование',obs:'Прямое наблюдение',comp:'Разбор сайта конкурента',calc:'Расчёт / экспертная оценка',method:'Методология'};
+
+const drawer=document.getElementById('drawer'),drawerOv=document.getElementById('drawerOv'),drBody=document.getElementById('drBody'),drBadge=document.getElementById('drBadge');
+let litEl=null;
+function srcHtml(s){return '<a class="src" href="'+s.u+'" target="_blank" rel="noopener"><b>'+s.t+'</b><span class="u">'+s.u+'</span></a>';}
+function openCite(id,el){
+  const c=CITES[id];if(!c)return;
+  drBadge.className='badge '+c.type;drBadge.textContent=typeLabel[c.type]||'Источник';
+  let h='<div class="lbl">Утверждение</div><div class="claim">'+c.q+'</div>';
+  h+='<div class="lbl">Как получено</div><div class="how">'+c.how+'</div>';
+  if(c.src&&c.src.length){h+='<div class="lbl">Источники ('+c.src.length+')</div>'+c.src.map(srcHtml).join('');}
+  if(c.note){h+='<div class="lbl">Важно</div><div class="note">'+c.note+'</div>';}
+  if(c.doc){h+='<div class="lbl">Полный документ</div><a class="src docbtn" href="'+c.doc.u+'" target="_blank" rel="noopener">📄 '+c.doc.t+'</a>';}
+  drBody.innerHTML=h;
+  drawer.classList.add('open');drawerOv.classList.add('open');drawer.setAttribute('aria-hidden','false');
+  if(litEl)litEl.classList.remove('lit');if(el){el.classList.add('lit');litEl=el;}
+}
+function openMethod(){
+  drBadge.className='badge method';drBadge.textContent=typeLabel.method;
+  drBody.innerHTML='<div class="lbl">Как собран этот отчёт</div>'+
+    '<ul class="meth-list">'+
+    '<li><b>Разведка.</b> Живой просмотр сайта mfc-clinic.ru — все экраны вручную в браузере (19.06.2026).</li>'+
+    '<li><b>Веб-исследование.</b> Многоагентный прогон (16 агентов) с поиском по русскоязычным источникам: спрос и принятие решения пациентами, высокочековые услуги (имплантация/All-on-4/виниры/элайнеры), конверсия и визуальные тренды, репутационные площадки и проблема нейминга.</li>'+
+    '<li><b>Конкуренты.</b> Профиль каждого конкурента построен на прямой загрузке его живого сайта (не по памяти). Цены и офферы — на дату исследования.</li>'+
+    '<li><b>Синтез.</b> Оценка сайта против факторов выбора и конкурентов, поиск рыночных «дыр», стратегия и визуальное ТЗ.</li>'+
+    '</ul>'+
+    '<div class="lbl">Как читать пометки</div>'+
+    '<div class="note" style="color:var(--muted);background:var(--sand)">У фактов и чисел в отчёте есть значок <b>ⓘ</b> или чип «источник». Клик открывает эту панель: тип источника, конкретные ссылки, как получено и ссылку на полный документ.</div>'+
+    '<div class="lbl">Честно о достоверности</div>'+
+    '<div class="note">• «Веб-исследование» — данные опросов/публикаций (точные доли могут различаться по источникам).<br>• «Прямое наблюдение» — проверяемо на живом сайте.<br>• «Разбор сайта конкурента» — проверяемо по ссылке (актуально на дату исследования).<br>• «Расчёт / экспертная оценка» — вывод автора (напр. оценка 3/10, рыночные «дыры», стратегия), а не внешний факт.</div>'+
+    '<div class="lbl">Документы</div>'+
+    Object.values(D).map(d=>'<a class="src" href="'+d.u+'" target="_blank" rel="noopener"><b>📄 '+d.t+'</b></a>').join('');
+  drawer.classList.add('open');drawerOv.classList.add('open');
+  if(litEl){litEl.classList.remove('lit');litEl=null;}
+}
+function closeDrawer(){drawer.classList.remove('open');drawerOv.classList.remove('open');drawer.setAttribute('aria-hidden','true');if(litEl){litEl.classList.remove('lit');litEl=null;}}
+document.addEventListener('click',(e)=>{
+  const t=e.target.closest('[data-cite]');
+  if(t){e.preventDefault();openCite(t.getAttribute('data-cite'),t);return;}
+});
+document.getElementById('drClose').addEventListener('click',closeDrawer);
+drawerOv.addEventListener('click',closeDrawer);
+document.getElementById('methodBtn').addEventListener('click',openMethod);
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeDrawer();});
+</script>
+</body>
+</html>
