@@ -267,6 +267,61 @@ tr[data-cite] td:first-child::after{content:"ⓘ";color:var(--gold);font-size:11
 body.locked{overflow:hidden;height:100vh}
 @media(max-width:600px){.method-fab{bottom:14px;right:14px;padding:11px 15px}}
 
+/* priority table */
+.prio{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-size:14px}
+.prio th,.prio td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line)}
+.prio th{background:var(--ink);color:#fff;font-family:'Manrope';font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.prio tr:last-child td{border-bottom:0}
+.prio td:first-child{font-weight:600;color:var(--ink)}
+.prio .imp{font-size:12.5px;color:var(--muted)}
+.prio .sc{font-family:'Manrope';font-weight:800}
+.prio .p{font-weight:700;font-size:12px;white-space:nowrap}
+.p-crit{color:var(--red)}.p-imp{color:var(--amber)}.p-sup{color:var(--green)}
+.prio tr.crit td{background:#fbf0ee}
+/* now -> after */
+.na{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px 26px;margin-top:14px}
+.na-row{display:grid;grid-template-columns:210px 1fr;gap:16px;align-items:center;padding:9px 0}
+.na-row+.na-row{border-top:1px solid var(--line)}
+.na-row .lab{font-size:13.5px;color:var(--ink);font-weight:500}
+.na-bars{display:flex;flex-direction:column;gap:6px}
+.na-bar{display:flex;align-items:center;gap:8px}
+.na-bar .tr{flex:1;height:10px;border-radius:99px;background:var(--sand-deep);overflow:hidden}
+.na-bar .tr i{display:block;height:100%;border-radius:99px}
+.na-now .tr i{background:#c2554a}
+.na-aft .tr i{background:linear-gradient(90deg,var(--teal),var(--gold))}
+.na-bar .v{font-family:'Manrope';font-weight:700;font-size:12px;width:42px;text-align:right}
+.na-now .v{color:#c2554a}.na-aft .v{color:var(--teal)}
+.na-leg{display:flex;gap:20px;font-size:12px;color:var(--muted);margin:4px 0 0}
+.na-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.overall{display:flex;align-items:center;gap:18px;margin-top:18px;background:var(--ink);color:#fff;border-radius:var(--r);padding:22px 28px;flex-wrap:wrap}
+.overall .lblo{font-size:13px;color:rgba(255,255,255,.7);font-weight:600}
+.overall .from{font-family:'Manrope';font-weight:800;font-size:30px;color:#d98b80}
+.overall .ar{color:var(--gold);font-size:26px;font-weight:800}
+.overall .to{font-family:'Manrope';font-weight:800;font-size:36px;color:var(--gold)}
+/* positioning map */
+.posmap{position:relative;background:linear-gradient(135deg,#fbfdfc,#f3f0e9);border:1px solid var(--line);border-radius:var(--r);height:520px;margin-top:16px;overflow:hidden}
+.posmap .axx{position:absolute;left:6%;right:6%;top:50%;height:1px;background:#cdd8d4}
+.posmap .axy{position:absolute;top:6%;bottom:6%;left:50%;width:1px;background:#cdd8d4}
+.posmap .axlab{position:absolute;font-size:11.5px;color:var(--muted);font-weight:700;background:rgba(255,255,255,.7);padding:2px 6px;border-radius:4px}
+.posmap .zone{position:absolute;border-radius:16px;background:rgba(194,160,90,.13);border:1.5px dashed var(--gold)}
+.posmap .zlab{position:absolute;font-size:11px;color:#7a5e1e;font-weight:700}
+.dot{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.dot .pt{width:11px;height:11px;border-radius:50%;background:#8aa39d}
+.dot .nm{font-size:10.5px;color:#566b66;white-space:nowrap;background:rgba(255,255,255,.78);padding:0 4px;border-radius:3px;font-weight:600}
+.dot.mfc .pt{width:15px;height:15px;background:#5c6b67;border:2px solid #fff;box-shadow:0 0 0 1px #5c6b67}
+.dot.mfc .nm{color:#3a4a46}
+.dot.target{z-index:4}
+.dot.target .pt{width:auto;height:auto;background:none;color:var(--gold);font-size:26px;line-height:1}
+.dot.target .nm{color:var(--ink);font-weight:800;background:var(--gold-soft);font-size:12px}
+.posmap .arrow{position:absolute;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 6px,transparent 6px 11px);transform-origin:left center;z-index:2}
+/* why palette */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+.why .w{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 18px;display:flex;gap:13px}
+.why .w .sw{width:34px;height:34px;border-radius:9px;flex:none;border:1px solid var(--line)}
+.why .w b{font-family:'Manrope';color:var(--ink);display:block;margin-bottom:3px;font-size:14px}
+.why .w p{font-size:12.7px;color:var(--muted);margin:0;line-height:1.5}
+@media(max-width:680px){.na-row{grid-template-columns:1fr}.why{grid-template-columns:1fr}.posmap{height:440px}.dot .nm{font-size:9px}}
+
 /* document modal */
 .docmodal-ov{position:fixed;inset:0;background:rgba(10,30,27,.55);opacity:0;visibility:hidden;transition:.22s;z-index:140;display:grid;place-items:center;padding:24px}
 .docmodal-ov.open{opacity:1;visibility:visible}
@@ -337,6 +392,7 @@ body.locked{overflow:hidden;height:100vh}
     <a href="#cover"><span class="n">00</span>Обзор</a>
     <a href="#summary"><span class="n">01</span>Резюме</a>
     <a href="#audit"><span class="n">02</span>Текущий сайт</a>
+    <a href="#priority"><span class="n">★</span>Приоритеты</a>
     <a href="#patients"><span class="n">03</span>Что хотят пациенты</a>
     <a href="#competitors"><span class="n">04</span>Конкуренты</a>
     <a href="#strategy"><span class="n">05</span>Стратегия</a>
@@ -423,6 +479,41 @@ body.locked{overflow:hidden;height:100vh}
   </div>
 </section>
 
+<!-- PRIORITY + NOW->AFTER -->
+<section class="sec" id="priority">
+  <div class="wrap">
+    <div class="kicker"><span class="n">★</span>Приоритеты</div>
+    <h2>Важность × текущая оценка = что чинить первым<button class="cite-chip" data-cite="priority-method">как считали</button></h2>
+    <p class="sub">Объединили две таблицы: насколько фактор важен пациенту (раздел «Спрос») и как он закрыт на сайте сейчас (раздел «Текущий сайт»). Высокая важность + низкая оценка = критичный приоритет.</p>
+    <table class="prio">
+      <tr><th>Фактор</th><th>Важно пациенту</th><th>Сайт сейчас</th><th>Приоритет</th></tr>
+      <tr class="crit"><td>Кейсы «до/после»</td><td class="imp">высокая</td><td class="sc p-crit">0/10</td><td class="p p-crit">🔴 Критично</td></tr>
+      <tr class="crit"><td>Лечение без боли</td><td class="imp">высокая (дентофобия)</td><td class="sc p-crit">1/10</td><td class="p p-crit">🔴 Критично</td></tr>
+      <tr class="crit"><td>Прозрачность цены / анти-обман</td><td class="imp">высокая</td><td class="sc p-crit">2/10</td><td class="p p-crit">🔴 Критично</td></tr>
+      <tr class="crit"><td>Отзывы и рейтинг</td><td class="imp">очень высокая</td><td class="sc p-crit">2/10</td><td class="p p-crit">🔴 Критично</td></tr>
+      <tr class="crit"><td>Цена и рассрочка</td><td class="imp">высокая</td><td class="sc p-crit">2/10</td><td class="p p-crit">🔴 Критично</td></tr>
+      <tr class="crit"><td>Конкретный врач (регалии, кейсы)</td><td class="imp">очень высокая</td><td class="sc p-crit">4/10</td><td class="p p-crit">🔴 Критично</td></tr>
+      <tr><td>Гарантия (конкретно, письменно)</td><td class="imp">высокая</td><td class="sc" style="color:var(--amber)">3/10</td><td class="p p-imp">🟠 Важно</td></tr>
+      <tr><td>Близость / парковка</td><td class="imp">средняя-высокая</td><td class="sc" style="color:var(--green)">6/10</td><td class="p p-sup">🟢 Поддержать</td></tr>
+      <tr><td>Оборудование (через выгоду)</td><td class="imp">средняя</td><td class="sc" style="color:var(--green)">6/10</td><td class="p p-sup">🟢 Поддержать</td></tr>
+    </table>
+    <p class="note" style="margin-top:10px">Читается как roadmap: первым делом — кейсы, «без боли», прозрачная цена/рассрочка, отзывы и карточки врачей. Парковку и оборудование не строим заново — просто подаём через выгоду.</p>
+
+    <h3 style="margin:34px 0 6px">Сейчас → после редизайна</h3>
+    <p class="sub" style="margin-bottom:14px">Прогноз, как новая структура закроет каждый фактор. Это <b>цель</b>, а не обещание: реальные цифры подтверждаются уже на работающем сайте (заявки, аналитика).</p>
+    <div class="na">
+      <div class="na-leg"><span><span class="na-dot" style="background:#c2554a"></span>сейчас</span><span><span class="na-dot" style="background:var(--teal)"></span>цель после редизайна</span></div>
+      <div class="na-row"><span class="lab">Отзывы и рейтинг</span><div class="na-bars"><div class="na-bar na-now"><span class="tr"><i style="width:20%"></i></span><span class="v">2/10</span></div><div class="na-bar na-aft"><span class="tr"><i style="width:85%"></i></span><span class="v">8.5</span></div></div></div>
+      <div class="na-row"><span class="lab">Лечение без боли</span><div class="na-bars"><div class="na-bar na-now"><span class="tr"><i style="width:10%"></i></span><span class="v">1/10</span></div><div class="na-bar na-aft"><span class="tr"><i style="width:90%"></i></span><span class="v">9</span></div></div></div>
+      <div class="na-row"><span class="lab">Прозрачность / анти-обман</span><div class="na-bars"><div class="na-bar na-now"><span class="tr"><i style="width:20%"></i></span><span class="v">2/10</span></div><div class="na-bar na-aft"><span class="tr"><i style="width:90%"></i></span><span class="v">9</span></div></div></div>
+      <div class="na-row"><span class="lab">Цена и рассрочка</span><div class="na-bars"><div class="na-bar na-now"><span class="tr"><i style="width:15%"></i></span><span class="v">1.5</span></div><div class="na-bar na-aft"><span class="tr"><i style="width:85%"></i></span><span class="v">8.5</span></div></div></div>
+      <div class="na-row"><span class="lab">Конкретный врач</span><div class="na-bars"><div class="na-bar na-now"><span class="tr"><i style="width:40%"></i></span><span class="v">4/10</span></div><div class="na-bar na-aft"><span class="tr"><i style="width:90%"></i></span><span class="v">9</span></div></div></div>
+      <div class="na-row"><span class="lab">Кейсы до/после</span><div class="na-bars"><div class="na-bar na-now"><span class="tr"><i style="width:3%"></i></span><span class="v">0/10</span></div><div class="na-bar na-aft"><span class="tr"><i style="width:80%"></i></span><span class="v">8</span></div></div></div>
+    </div>
+    <div class="overall"><span class="lblo">Общая маркетинговая готовность сайта</span><span class="from">~3/10</span><span class="ar">→</span><span class="to">~8.5/10</span></div>
+  </div>
+</section>
+
 <!-- 03 PATIENTS -->
 <section class="sec" id="patients">
   <div class="wrap">
@@ -493,6 +584,29 @@ body.locked{overflow:hidden;height:100vh}
       <div class="gap-card"><div class="rank">+</div><h3>Честная гарантия в цифрах</h3><p>У одних её нет, у других «100 лет» (неправдоподобно). Недозанято.</p></div>
       <div class="gap-card"><div class="rank">+</div><h3>Тёплый бренд в центре</h3><p>Соседи холодные и корпоративные. Человечность + премиум — свободно.</p></div>
     </div>
+    <h3 style="margin:34px 0 6px">Карта позиционирования: где свободно<button class="cite-chip" data-cite="posmap-method">как построена</button></h3>
+    <p class="sub" style="margin-bottom:0">Рынок поляризован: холодные «прайс-машины» внизу и дорогой премиум справа. Тёплый, честный, средний+ (верх-центр) — почти пусто. Туда и целимся (★).</p>
+    <div class="posmap">
+      <div class="axx"></div><div class="axy"></div>
+      <div class="zone" style="left:36%;top:7%;width:40%;height:31%"></div>
+      <div class="zlab" style="left:39%;top:9%">свободно: тёплый + честный + средний+</div>
+      <div class="axlab" style="left:50%;top:1.5%;transform:translateX(-50%)">↑ тёплый · человечный · честный</div>
+      <div class="axlab" style="left:50%;bottom:1.5%;transform:translateX(-50%)">↓ холодный · корпоративный</div>
+      <div class="axlab" style="left:1%;top:50%;transform:translateY(-50%)">доступно →</div>
+      <div class="axlab" style="right:1%;top:50%;transform:translateY(-50%)">премиум</div>
+      <div class="dot" style="left:16%;top:72%"><span class="pt"></span><span class="nm">Все свои!</span></div>
+      <div class="dot" style="left:27%;top:66%"><span class="pt"></span><span class="nm">Зуб.ру</span></div>
+      <div class="dot" style="left:45%;top:63%"><span class="pt"></span><span class="nm">ImplantLive</span></div>
+      <div class="dot" style="left:37%;top:54%"><span class="pt"></span><span class="nm">Dental ART</span></div>
+      <div class="dot" style="left:57%;top:50%"><span class="pt"></span><span class="nm">ИЛАТАН</span></div>
+      <div class="dot" style="left:65%;top:60%"><span class="pt"></span><span class="nm">ROOTT</span></div>
+      <div class="dot" style="left:82%;top:46%"><span class="pt"></span><span class="nm">Бюро 32</span></div>
+      <div class="dot" style="left:91%;top:38%"><span class="pt"></span><span class="nm">Belgravia</span></div>
+      <div class="dot" style="left:60%;top:27%"><span class="pt"></span><span class="nm">Dental Way</span></div>
+      <div class="dot mfc" style="left:50%;top:55%"><span class="pt"></span><span class="nm">MFC сейчас</span></div>
+      <div class="dot target" style="left:57%;top:19%"><span class="pt">★</span><span class="nm">MFC — цель</span></div>
+    </div>
+    <p class="note" style="margin-top:10px">Ось X — цена (доступно → премиум), ось Y — подача (холодная ↔ тёплая/честная). Положение точек — экспертная оценка по сайтам конкурентов, иллюстративно.</p>
   </div>
 </section>
 
@@ -576,6 +690,16 @@ body.locked{overflow:hidden;height:100vh}
         <h3 style="margin:20px 0 10px">Структура главной</h3>
         <p class="note">Sticky-шапка → Hero с оффером → Trust-полоса → Честный подход → Флагман All-on-4 + калькулятор → Лечение без боли → Врачи → Услуги по задачам → До/после → Цены → Отзывы с площадок → Оборудование через выгоду → Локация + запись.</p>
       </div>
+    </div>
+    <h3 style="margin:34px 0 6px">Почему именно такие цвет и шрифт</h3>
+    <p class="sub" style="margin-bottom:0">Каждое решение — ответ на стратегию: доверие, премиально-но-доступно, антитеза «казёнщине МФЦ», бережность к тревожной аудитории.</p>
+    <div class="why">
+      <div class="w"><span class="sw" style="background:#18675D"></span><div><b>Тёмный teal, а не «сине-белый»</b><p>Доверие и медицина — но отстройка от моря одинаковых сине-белых клиник. Цвет уже был в бренде MFC — эволюционируем, а не ломаем.</p></div></div>
+      <div class="w"><span class="sw" style="background:#F5EFE4"></span><div><b>Тёплый беж (sand)</b><p>Тепло и премиальность — прямая антитеза «казённому» восприятию аббревиатуры МФЦ (госцентр = холод, очереди).</p></div></div>
+      <div class="w"><span class="sw" style="background:#C2A05A"></span><div><b>Золото-акцент</b><p>Премиальность без пафоса; выделяет главное — «0 ₽», кнопки, цифры. Дёшево не выглядит.</p></div></div>
+      <div class="w"><span class="sw" style="background:#C2554A"></span><div><b>Без красного</b><p>Красный повышает тревожность, а значимая часть аудитории — дентофобы. Поэтому он запрещён даже в акцентах (здесь показан только как «нельзя»).</p></div></div>
+      <div class="w"><span class="sw" style="background:#0E3A34;color:#fff;display:grid;place-items:center;font-family:Manrope;font-weight:800;font-size:13px">Aa</span><div><b>Manrope + Inter, латиница «MFC Clinic»</b><p>Геометрия = современность и премиум; латиница уводит от госаббревиатуры «МФЦ / Мои документы».</p></div></div>
+      <div class="w"><span class="sw" style="background:#E6F1EE;display:grid;place-items:center;color:#18675D">✦</span><div><b>Воздух, без scroll-jacking</b><p>Спокойствие = анти-тревога. И это прямое исправление главного UX-дефекта старого сайта (перехват скролла).</p></div></div>
     </div>
   </div>
 </section>
@@ -739,6 +863,8 @@ const CITES={
   'comp-belgravia':comp('Belgravia Dental Studio','belgravia'),
   'comp-dentalway':comp('Dental Way','dentalway'),
   'gaps-synth':{q:'Рыночные «дыры» — куда бить',type:'calc',how:'Синтез: пересечение того, чего хотят пациенты (раздел 03), и того, чего нет у конкурентов (живой разбор сайтов, раздел 04). Это вывод-рекомендация, а не внешний факт.',src:[S.implantlive,S.bureau32,S.ssChoose],doc:D.d04,note:'Аналитический вывод автора на основе данных исследования.'},
+  'priority-method':{q:'Приоритеты = важность фактора × его текущая оценка на сайте',type:'calc',how:'Важность взята из раздела «Спрос» (что важно пациенту), оценка — из аудита сайта. Высокая важность + низкая оценка = критичный приоритет. Цифры «после» — целевые прогнозы, не обещания.',src:[S.site],doc:D.d04,note:'Это рамка для приоритизации, а не измерение. «После»-оценки проверяются уже на работающем сайте (заявки, аналитика, A/B).'},
+  'posmap-method':{q:'Карта позиционирования конкурентов',type:'calc',how:'Оси: цена (доступно→премиум) и подача (холодная↔тёплая/честная). Положение точек — экспертная оценка на основе живого разбора сайтов конкурентов (раздел 04).',src:[S.implantlive,S.belgravia,S.dentalway],doc:D.d04,note:'Иллюстративная карта (perceptual map), а не замер. Помогает увидеть свободную нишу, требует проверки на реальных данных.'},
   'strategy-synth':{q:'Позиционирование, оффер и месседжинг',type:'calc',how:'Стратегический синтез по данным исследования и анализу конкурентов (документ 05). Рекомендация, а не внешний факт.',src:[S.sinergium,S.ssChoose,S.aif],doc:D.d05,note:'Это предложение автора. Слоганы и оффер — кандидаты для тестирования.'}
 };
 
@@ -783,6 +909,8 @@ function openMethod(){
     '<div class="note">• «Веб-исследование» — данные опросов/публикаций (точные доли различаются по источникам).<br>• «Прямое наблюдение» — проверяемо на живом сайте.<br>• «Разбор сайта конкурента» — проверяемо по ссылке (актуально на дату исследования).<br>• «Расчёт / экспертная оценка» — вывод автора (оценка 3/10, рыночные «дыры», стратегия), а не внешний факт.</div>'+
     '<div class="lbl">Фактчек (отдельный прогон)</div>'+
     '<div class="note">Провели адверсариальную проверку 15 утверждений по источникам. Что выяснилось и исправлено: порог рейтинга — реально <b>~4.0</b>, не 4.8; убрана выдуманная «~90% успеха — врач»; дентофобия — <b>~18%</b> признают страх (ВЦИОМ), а не «половина»; «80% исков — стоматология» подаётся как медиа-оценка без первоисточника; «85% читают отзывы» — из малой выборки (n=107), как тренд; цены-ориентиры скорректированы (All-on-4 ~90–500к). Надёжно подтверждены: <b>52% не были у врача за год</b> (ВЦИОМ), <b>69% по ОМС</b>, рейтинги MFC, цены конкурентов. У каждого пункта в панели указана «Достоверность источника».</div>'+
+    '<div class="lbl">Методология и ограничения (честно)</div>'+
+    '<div class="note">Это <b>кабинетное</b> исследование: вторичные источники + живой разбор сайтов + эвристический аудит. Рамка «спрос пациента × гэпы конкурентов = возможности» даёт <b>гипотезы</b>, а не доказанные факты. Чего НЕ было: интервью/опросов ваших пациентов, аналитики текущего сайта и конверсии, A/B-тестов офферов; данные конкурентов — снимок на дату; часть отраслевой статистики слаба. После фактчека выводы по <b>направлению не изменились</b> (правились величины/атрибуция). Перед крупными вложениями стоит провалидировать: 5–7 интервью с пациентами, веб-аналитика, тест офферов.</div>'+
     '<div class="lbl">Документы</div>'+
     Object.values(D).map(d=>'<a class="src" href="'+d.u+'" data-doc="'+d.u+'" data-doctitle="'+d.t+'"><b>📄 '+d.t+'</b></a>').join('');
   drawer.classList.add('open');drawerOv.classList.add('open');
