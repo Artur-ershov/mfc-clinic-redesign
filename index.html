@@ -264,7 +264,44 @@ tr[data-cite] td:first-child::after{content:"ⓘ";color:var(--gold);font-size:11
 .gate .err{color:var(--red);font-size:13px;margin-top:11px;min-height:17px}
 body.locked{overflow:hidden;height:100vh}
 @media(max-width:600px){.method-fab{bottom:14px;right:14px;padding:11px 15px}}
+
+/* document modal */
+.docmodal-ov{position:fixed;inset:0;background:rgba(10,30,27,.55);opacity:0;visibility:hidden;transition:.22s;z-index:140;display:grid;place-items:center;padding:24px}
+.docmodal-ov.open{opacity:1;visibility:visible}
+.docmodal{background:#fff;border-radius:16px;width:900px;max-width:95vw;max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);transform:translateY(14px);transition:.25s}
+.docmodal-ov.open .docmodal{transform:none}
+.docmodal .mh{display:flex;align-items:center;gap:12px;padding:16px 24px;border-bottom:1px solid var(--line);flex:none}
+.docmodal .mh .badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:6px 11px;border-radius:99px;background:var(--gold-soft);color:#7a5e1e}
+.docmodal .mh h3{font-size:16px;margin:0;font-family:'Manrope'}
+.docmodal .mh .mraw{margin-left:auto;font-size:12.5px;color:var(--muted);font-weight:600}
+.docmodal .mclose{background:var(--sand);border:0;width:34px;height:34px;border-radius:50%;font-size:20px;cursor:pointer;color:var(--ink);line-height:1}
+.docmodal .mclose:hover{background:var(--sand-deep)}
+.docmodal .mc{padding:30px 42px;overflow-y:auto}
+.docmodal .loading{color:var(--muted);font-size:14px}
+/* rendered markdown */
+.md{font-size:15px;color:var(--text);line-height:1.65}
+.md h1{font-size:27px;margin:0 0 6px}
+.md h1+p,.md h1+p+p{color:var(--muted)}
+.md h2{font-size:21px;margin:30px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.md h3{font-size:17px;margin:22px 0 8px}
+.md h4{font-size:15px;margin:18px 0 6px}
+.md p{margin:0 0 12px}
+.md ul,.md ol{margin:0 0 14px;padding-left:22px}
+.md li{margin-bottom:6px}
+.md a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.md strong{color:var(--ink);font-weight:700}
+.md blockquote{border-left:3px solid var(--gold);background:var(--sand);padding:12px 16px;margin:0 0 14px;border-radius:0 8px 8px 0;color:#5b4a2c}
+.md blockquote p:last-child{margin:0}
+.md code{background:var(--sand);padding:2px 6px;border-radius:5px;font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.md hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+.md table{border-collapse:collapse;width:100%;margin:0 0 16px;font-size:13.5px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+.md th{background:var(--teal-tint);font-family:'Manrope';font-weight:700;color:var(--ink);white-space:nowrap}
+.md tbody tr:nth-child(even) td{background:#faf7f0}
+.md em{color:var(--muted)}
+@media(max-width:600px){.docmodal .mc{padding:22px 20px}.md h1{font-size:23px}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 </head>
 <body class="locked">
 
@@ -569,6 +606,19 @@ body.locked{overflow:hidden;height:100vh}
 <!-- methodology button -->
 <button class="method-fab" id="methodBtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5m0-8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Как собран отчёт</button>
 
+<!-- document modal (renders .md in-window) -->
+<div class="docmodal-ov" id="docOv">
+  <div class="docmodal" role="dialog" aria-modal="true">
+    <div class="mh">
+      <span class="badge">Документ</span>
+      <h3 id="docTitle">Документ</h3>
+      <a class="mraw" id="docRaw" href="#" target="_blank" rel="noopener">открыть исходник ↗</a>
+      <button class="mclose" id="docClose" aria-label="Закрыть">×</button>
+    </div>
+    <div class="mc"><div class="md" id="docMd"><div class="loading">Загрузка…</div></div></div>
+  </div>
+</div>
+
 <!-- source drawer -->
 <div class="drawer-ov" id="drawerOv"></div>
 <aside class="drawer" id="drawer" aria-hidden="true">
@@ -618,8 +668,8 @@ const S={
   finmail:{t:'Финансы Mail / РГ — за чей счёт россияне лечат зубы',u:'https://finance.mail.ru/article/rassrochka-kredit-ili-nakopleniya-za-chey-schet-rossiyane-lechat-zuby-67200399/'},
   rg:{t:'Российская газета — рассрочка/кредит на лечение зубов',u:'https://rg.ru/2025/07/28/rassrochka-kredit-ili-nakopleniia-za-chej-schet-rossiiane-lechat-zuby.html'},
   mk:{t:'МК — 40 млн россиян боятся стоматолога',u:'https://www.mk.ru/social/health/2016/03/21/40-millionov-rossiyan-boyatsya-poseshhat-stomatologa.html'},
-  wikidento:{t:'Википедия — Дентофобия',u:'https://ru.wikipedia.org/wiki/Дентофобия'},
-  aif:{t:'АиФ — как нас «разводят» стоматологи',u:'https://aif.ru/health/life/kak_nas_razvodyat_stomatologi'},
+  wikidento:{t:'Википедия — Дентофобия',u:'https://ru.wikipedia.org/wiki/%D0%94%D0%B5%D0%BD%D1%82%D0%BE%D1%84%D0%BE%D0%B1%D0%B8%D1%8F'},
+  aif:{t:'АиФ — как нас «разводят» стоматологи',u:'https://aif.ru/health/life/kak_nas_razvodyat_stomatologi_chto_nuzhno_znat_chtoby_ne_ostatsya_bez_deneg'},
   wciom:{t:'ВЦИОМ — здоровые привычки',u:'https://wciom.ru/analytical-reviews/analiticheskii-obzor/zelenyi-svet-zdorovym-privychkam'},
   ssChoose:{t:'StartSmile — как выбрать клинику для имплантации',u:'https://www.startsmile.ru/blog/kak-vybrat-kliniku-dlya-implantatsii-zubov.html'},
   preziChoose:{t:'ПрезиДЕНТ — как выбрать стоматологию в Москве',u:'https://prezi-dent.ru/zhurnal/stati/kak-vybrat-stomatologiyu-v-moskve'},
@@ -628,7 +678,7 @@ const S={
   prodoctorovMFC:{t:'ПроДокторов — карточка MFC Clinic (рейтинг 3.8)',u:'https://prodoctorov.ru/moskva/lpu/41141-mfc-clinic/'},
   topdentMFC:{t:'TopDent — отзывы MFC Clinic (4.1)',u:'https://topdent.ru/clinics/mfts-klinik/otzyvy/'},
   gisMFC:{t:'2ГИС — MFC Clinic',u:'https://2gis.ru/moscow/firm/70000001022491704'},
-  wikiMFC:{t:'Википедия — Многофункциональный центр (гос. МФЦ)',u:'https://ru.wikipedia.org/wiki/Многофункциональный_центр'},
+  wikiMFC:{t:'Википедия — Многофункциональный центр (гос. МФЦ)',u:'https://ru.wikipedia.org/wiki/%D0%9C%D0%BD%D0%BE%D0%B3%D0%BE%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%86%D0%B5%D0%BD%D1%82%D1%80'},
   sostav:{t:'Sostav — ребрендинг МФЦ в «Мои документы»',u:'https://www.sostav.ru/blogs/272224/77809'},
   yandexTop3:{t:'Как попасть в ТОП-3 Яндекс.Карт (стоматология)',u:'https://dmitry-bodrov.ru/marketing/yandex-karty-top3-stomatologiya'},
   site:{t:'mfc-clinic.ru — прямой просмотр сайта',u:'https://mfc-clinic.ru/'},
@@ -669,7 +719,7 @@ const CITES={
   'segments':{q:'Сегменты по поводу визита: плановое/кариес ~44%, острая боль ~27%, эстетика ~17%',type:'research',how:'Опросы о причинах обращения к стоматологу.',src:[S.wciom,S.finmail],doc:D.d02,note:'Доли — порядок величины по опросам, суммарно не 100% (есть прочие поводы).'},
   'prices':{q:'Диапазоны цен по Москве: имплант под ключ 22–120к ₽, All-on-4 челюсть 135–789к ₽, винир 20–85к ₽, элайнеры 100–350к ₽',type:'research',how:'Сводка рекламных цен московских клиник и агрегаторов (2025–2026).',src:[S.resmile,S.ssChoose,S.napopravku],doc:D.d02,note:'Рыночные диапазоны, не цены MFC. Зависят от системы имплантов и клинического случая.'},
   'comp-method':{q:'Как анализировались конкуренты',type:'comp',how:'Найдено ~11+ конкурентов (гиперлокальные у Белорусской/Динамо/Беговой + категорийные лидеры). Профиль каждого построен на прямой загрузке его живого сайта. Кликните любую строку матрицы — откроется ссылка на сайт конкурента.',src:[S.implantlive,S.bureau32,S.dentalart,S.roott],doc:D.d03,note:'Цены и офферы конкурентов — на дату исследования (19.06.2026).'},
-  'comp-mfc':{q:'MFC Clinic: текущее состояние и реальная репутация',type:'obs',how:'Прямой просмотр сайта mfc-clinic.ru + проверка карточек на площадках. Реальные рейтинги разрознены: ПроДокторов 3.8, TopDent 4.1, 2ГИС.',src:[S.site,S.prodoctorovMFC,S.topdentMFC,S.gisMFC],doc:D.d04},
+  'comp-mfc':{q:'MFC Clinic: текущее состояние и реальная репутация',type:'obs',how:'Прямой просмотр сайта mfc-clinic.ru + проверка карточек на площадках. Реальные рейтинги разрознены: ПроДокторов 3.8, TopDent 4.1.',src:[S.site,S.prodoctorovMFC,S.topdentMFC],doc:D.d04},
   'comp-implantlive':comp('ImplantLive (сосед у Динамо/Белорусской)','implantlive'),
   'comp-bureau32':comp('Бюро 32 (у м. Беговая)','bureau32'),
   'comp-dentalart':comp('Dental A.R.T. Center (у Белорусской)','dentalart'),
@@ -695,7 +745,7 @@ function openCite(id,el){
   h+='<div class="lbl">Как получено</div><div class="how">'+c.how+'</div>';
   if(c.src&&c.src.length){h+='<div class="lbl">Источники ('+c.src.length+')</div>'+c.src.map(srcHtml).join('');}
   if(c.note){h+='<div class="lbl">Важно</div><div class="note">'+c.note+'</div>';}
-  if(c.doc){h+='<div class="lbl">Полный документ</div><a class="src docbtn" href="'+c.doc.u+'" target="_blank" rel="noopener">📄 '+c.doc.t+'</a>';}
+  if(c.doc){h+='<div class="lbl">Полный документ</div><a class="src docbtn" href="'+c.doc.u+'" data-doc="'+c.doc.u+'" data-doctitle="'+c.doc.t+'">📄 '+c.doc.t+' — открыть здесь</a>';}
   drBody.innerHTML=h;
   drawer.classList.add('open');drawerOv.classList.add('open');drawer.setAttribute('aria-hidden','false');
   if(litEl)litEl.classList.remove('lit');if(el){el.classList.add('lit');litEl=el;}
@@ -714,19 +764,43 @@ function openMethod(){
     '<div class="lbl">Честно о достоверности</div>'+
     '<div class="note">• «Веб-исследование» — данные опросов/публикаций (точные доли могут различаться по источникам).<br>• «Прямое наблюдение» — проверяемо на живом сайте.<br>• «Разбор сайта конкурента» — проверяемо по ссылке (актуально на дату исследования).<br>• «Расчёт / экспертная оценка» — вывод автора (напр. оценка 3/10, рыночные «дыры», стратегия), а не внешний факт.</div>'+
     '<div class="lbl">Документы</div>'+
-    Object.values(D).map(d=>'<a class="src" href="'+d.u+'" target="_blank" rel="noopener"><b>📄 '+d.t+'</b></a>').join('');
+    Object.values(D).map(d=>'<a class="src" href="'+d.u+'" data-doc="'+d.u+'" data-doctitle="'+d.t+'"><b>📄 '+d.t+'</b></a>').join('');
   drawer.classList.add('open');drawerOv.classList.add('open');
   if(litEl){litEl.classList.remove('lit');litEl=null;}
 }
 function closeDrawer(){drawer.classList.remove('open');drawerOv.classList.remove('open');drawer.setAttribute('aria-hidden','true');if(litEl){litEl.classList.remove('lit');litEl=null;}}
+/* ===== document modal (.md in-window) ===== */
+const docOv=document.getElementById('docOv'),docMd=document.getElementById('docMd'),docTitleEl=document.getElementById('docTitle'),docRaw=document.getElementById('docRaw');
+async function openDoc(url,title){
+  docTitleEl.textContent=title||'Документ';docRaw.href=url;
+  docMd.innerHTML='<div class="loading">Загрузка…</div>';
+  docOv.classList.add('open');document.body.classList.add('locked');
+  try{
+    const res=await fetch(url);if(!res.ok)throw new Error(res.status);
+    const text=await res.text();
+    docMd.innerHTML=(window.marked&&marked.parse)?marked.parse(text):'<pre style="white-space:pre-wrap">'+text.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</pre>';
+    docMd.parentElement.scrollTop=0;
+    docMd.querySelectorAll('a').forEach(a=>{
+      const href=a.getAttribute('href')||'';
+      if(/\.md($|[#?])/i.test(href)){a.setAttribute('data-doc',href.replace(/[#?].*$/,''));a.setAttribute('data-doctitle',a.textContent.trim());}
+      else if(/^https?:/i.test(href)||href.indexOf('07-concept')>-1){a.setAttribute('target','_blank');a.setAttribute('rel','noopener');}
+    });
+  }catch(err){docMd.innerHTML='<p class="loading">Не удалось загрузить документ. <a href="'+url+'" target="_blank" rel="noopener">Открыть исходник ↗</a></p>';}
+}
+function closeDoc(){docOv.classList.remove('open');document.body.classList.remove('locked');}
+document.getElementById('docClose').addEventListener('click',closeDoc);
+docOv.addEventListener('click',(e)=>{if(e.target===docOv)closeDoc();});
+
 document.addEventListener('click',(e)=>{
+  const dd=e.target.closest('[data-doc]');
+  if(dd){e.preventDefault();openDoc(dd.getAttribute('data-doc'),dd.getAttribute('data-doctitle'));return;}
   const t=e.target.closest('[data-cite]');
   if(t){e.preventDefault();openCite(t.getAttribute('data-cite'),t);return;}
 });
 document.getElementById('drClose').addEventListener('click',closeDrawer);
 drawerOv.addEventListener('click',closeDrawer);
 document.getElementById('methodBtn').addEventListener('click',openMethod);
-document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeDrawer();});
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape'){if(docOv.classList.contains('open'))closeDoc();else closeDrawer();}});
 </script>
 </body>
 </html>
