@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MFC Clinic — Концепт E · Kinetic Noir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+:root{--bg:#0d1110;--bg2:#141a18;--cream:#f0eee7;--muted:#8b958f;--mint:#5ff0c0;--mint-d:#2bd29e;--line:rgba(240,238,231,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--cream);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.dis{font-family:'Unbounded',sans-serif;letter-spacing:-.03em;line-height:.9}
+.wrap{max-width:1280px;margin:0 auto;padding:0 30px}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;transition:.18s;border:1px solid transparent}
+.btn-m{background:var(--mint);color:#062019}.btn-m:hover{background:#7ff7d0}
+.btn-o{border-color:var(--line);color:var(--cream)}.btn-o:hover{border-color:var(--mint);color:var(--mint)}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mint);font-weight:800}
+nav .wrap{display:flex;align-items:center;gap:26px;padding:26px 30px}
+.logo{font-family:'Unbounded';font-weight:800;font-size:20px;margin-right:auto}.logo b{color:var(--mint)}
+.nav-links{display:flex;gap:24px;font-size:14px;color:var(--muted)}.nav-links a:hover{color:var(--cream)}
+/* hero type-as-layout */
+.hero{padding:30px 0 40px;position:relative}
+.hero .top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:10px}
+.hero .top p{color:var(--muted);max-width:420px;font-size:16px}
+.hero h1{font-family:'Unbounded';font-weight:900;font-size:clamp(54px,15.5vw,250px);line-height:.84;letter-spacing:-.04em;text-transform:uppercase}
+.hero h1 .o{-webkit-text-stroke:2px var(--cream);color:transparent}
+.hero h1 .m{color:var(--mint)}
+.hero .row2{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:14px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero .rate{font-size:14px;color:var(--muted)}.hero .rate b{font-family:'Unbounded';color:var(--cream);font-size:22px}.hero .rate .st{color:var(--mint)}
+.hero .strip{margin-top:34px;border-radius:20px;overflow:hidden;height:280px;position:relative}
+.hero .strip img{width:100%;height:100%;object-fit:cover;filter:grayscale(.3) brightness(.85)}
+.hero .strip .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,17,16,.6),transparent 50%,rgba(13,17,16,.6))}
+.hero .strip .badge{position:absolute;left:24px;bottom:24px;background:var(--mint);color:#062019;font-weight:800;padding:10px 18px;border-radius:999px;font-size:14px}
+/* marquee */
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden;white-space:nowrap;margin-top:50px}
+.marq .track{display:inline-flex;gap:40px;animation:scroll 26s linear infinite}
+.marq span{font-family:'Unbounded';font-weight:700;font-size:26px;color:var(--muted)}
+.marq span b{color:var(--mint);-webkit-text-fill-color:var(--mint)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* section */
+section{padding:90px 0}
+.shead{max-width:700px;margin-bottom:40px}
+.shead h2{font-family:'Unbounded';font-weight:800;font-size:clamp(30px,5vw,60px);line-height:.98;margin:14px 0;text-transform:uppercase;letter-spacing:-.02em}
+.shead p{color:var(--muted);font-size:17px}
+/* stats split */
+.flag{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.flag .ph{position:relative;min-height:440px}.flag .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.2)}
+.flag .txt{padding:54px;background:var(--bg2)}
+.flag h2{font-family:'Unbounded';font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:.98;margin:14px 0 18px;text-transform:uppercase}
+.flag .step{display:flex;gap:16px;padding:16px 0;border-top:1px solid var(--line);align-items:baseline}
+.flag .step .num{font-family:'Unbounded';color:var(--mint);font-weight:800;font-size:22px;width:46px;flex:none}
+.flag .step b{display:block}.flag .step span{font-size:13px;color:var(--muted)}
+.flag .price{margin-top:22px}.flag .price b{font-family:'Unbounded';font-size:30px;color:var(--mint)}.flag .price span{color:var(--muted);font-size:13px}
+/* doctors */
+.docs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.doc{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg2)}
+.doc .ph{aspect-ratio:4/5;overflow:hidden}.doc .ph img{width:100%;height:100%;object-fit:cover;object-position:top;filter:grayscale(.4);transition:.3s}
+.doc:hover .ph img{filter:grayscale(0)}
+.doc .b{padding:16px}.doc .sp{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);font-weight:800}
+.doc h3{font-family:'Unbounded';font-weight:700;font-size:14px;margin:5px 0 2px}.doc p{font-size:12px;color:var(--muted)}
+/* cta */
+.cta{text-align:center;border:1px solid var(--line);border-radius:28px;padding:80px 30px;background:radial-gradient(60% 120% at 50% 0%,rgba(95,240,192,.12),transparent 60%)}
+.cta h2{font-family:'Unbounded';font-weight:900;font-size:clamp(34px,7vw,90px);line-height:.9;text-transform:uppercase;letter-spacing:-.03em;margin-bottom:18px}
+.cta h2 .m{color:var(--mint)}
+.cta p{color:var(--muted);margin-bottom:26px}
+.free{display:inline-block;background:var(--mint);color:#062019;font-weight:800;padding:3px 12px;border-radius:999px}
+footer{padding:50px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.tagchip{position:fixed;left:16px;bottom:16px;z-index:50;background:var(--mint);color:#062019;font-size:12px;padding:9px 15px;border-radius:999px;font-weight:800}
+@media(max-width:900px){.flag{grid-template-columns:1fr}.flag .ph{min-height:280px}.docs{grid-template-columns:1fr 1fr}.nav-links{display:none}.hero h1{font-size:clamp(48px,16vw,90px)}}
+@media(max-width:560px){.docs{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div id="g" style="position:fixed;inset:0;z-index:9999;background:#0d1110;display:grid;place-items:center;font-family:Manrope,system-ui">
+ <form id="gf" style="background:#141a18;border:1px solid rgba(240,238,231,.12);padding:34px;border-radius:18px;text-align:center;max-width:340px;width:90%;color:#f0eee7">
+  <div style="font-family:'Unbounded',sans-serif;font-weight:800;font-size:18px;margin-bottom:6px">MFC Clinic — концепты</div>
+  <div style="color:#8b958f;font-size:13px;margin-bottom:16px">Доступ по паролю</div>
+  <input id="gp" type="password" placeholder="Пароль" style="width:100%;padding:13px;border:1px solid rgba(240,238,231,.2);background:#0d1110;color:#f0eee7;border-radius:10px;text-align:center;margin-bottom:10px;font-size:15px">
+  <button style="width:100%;padding:13px;border:0;border-radius:10px;background:#5ff0c0;color:#062019;font-weight:800;cursor:pointer;font-size:15px">Открыть</button>
+  <div id="ge" style="color:#ff9b8b;font-size:12px;margin-top:8px;min-height:14px"></div>
+ </form>
+</div>
+<script>(function(){var H="8e8db19d90f14ffb5556faba69b9a231e5a2c0739426c89bf14abb22d95cb928";var inIf=false;try{inIf=top!==self}catch(e){inIf=true}var ok=false;try{ok=sessionStorage.getItem('mfc_ok')==='1'}catch(e){}var g=document.getElementById('g');if(inIf||ok){g.remove();return}document.documentElement.style.overflow='hidden';async function sh(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}document.getElementById('gf').addEventListener('submit',async function(e){e.preventDefault();var h=await sh(document.getElementById('gp').value);if(h===H){try{sessionStorage.setItem('mfc_ok','1')}catch(e){}document.documentElement.style.overflow='';g.remove()}else{document.getElementById('ge').textContent='Неверный пароль'}})})();</script>
+
+<nav><div class="wrap">
+  <div class="logo">MFC<b>.</b>Clinic</div>
+  <div class="nav-links"><a href="#">Имплантация</a><a href="#">All-on-4</a><a href="#">Врачи</a><a href="#">Цены</a></div>
+  <a class="btn btn-m" href="#" style="padding:11px 20px">Записаться</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="top">
+    <span class="eyebrow">Стоматология · м. Белорусская</span>
+    <p>Имплантация и «зубы за 1 день» без боли и без обмана. Цена и план — до начала.</p>
+  </div>
+  <h1 class="dis">ЗУБЫ<br><span class="o">ЗА 1</span> <span class="m">ДЕНЬ</span></h1>
+  <div class="row2">
+    <div class="cta"><a class="btn btn-m" href="#">Бесплатная консультация + 3D</a><a class="btn btn-o" href="#">Цены и рассрочка</a></div>
+    <div class="rate"><span class="st">★★★★★</span> <b>4.9</b> · 95 отзывов</div>
+  </div>
+  <div class="strip"><img src="../07-concept/assets/cabinet.jpg" alt=""><div class="ov"></div><div class="badge">All-on-4 от 149 900 ₽ · рассрочка 0%</div></div>
+</div></header>
+
+<div class="marq"><div class="track">
+  <span>Имплантация <b>·</b> All-on-4 <b>·</b> Виниры <b>·</b> Без боли <b>·</b> Carl Zeiss <b>·</b> Честная цена <b>·</b> Гарантия в договоре <b>·</b> Рассрочка 0% <b>·</b></span>
+  <span>Имплантация <b>·</b> All-on-4 <b>·</b> Виниры <b>·</b> Без боли <b>·</b> Carl Zeiss <b>·</b> Честная цена <b>·</b> Гарантия в договоре <b>·</b> Рассрочка 0% <b>·</b></span>
+</div></div>
+
+<section><div class="wrap">
+  <div class="flag">
+    <div class="ph"><img src="../07-concept/assets/diagnostics.jpg" alt=""></div>
+    <div class="txt">
+      <span class="eyebrow">Флагман</span>
+      <h2 class="dis">All-on-4 под ключ</h2>
+      <p style="color:var(--muted)">Несъёмные зубы за один день. Честно о каждом этапе.</p>
+      <div class="step"><span class="num">01</span><div><b>Диагностика и план</b><span>КТ, 3D-планирование, фиксированная цена</span></div></div>
+      <div class="step"><span class="num">02</span><div><b>Временные зубы — в день операции</b><span>4 импланта и несъёмный протез сразу</span></div></div>
+      <div class="step" style="border-bottom:1px solid var(--line)"><span class="num">03</span><div><b>Постоянный цирконий</b><span>через 4–6 месяцев</span></div></div>
+      <div class="price"><b class="dis">от 149 900 ₽</b> <span>· от 6 246 ₽/мес</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Команда</span><h2 class="dis">Свой врач</h2><p>Конкретные специалисты с регалиями и кейсами.</p></div>
+  <div class="docs">
+    <div class="doc"><div class="ph"><img src="../07-concept/assets/doc-implantolog.jpg" alt=""></div><div class="b"><div class="sp">Хирург-имплантолог</div><h3>Магомедов М.</h3><p>★ 4.9 · 140 отзывов</p></div></div>
+    <div class="doc"><div class="ph"><img src="../07-concept/assets/doc-1.jpg" alt=""></div><div class="b"><div class="sp">Гл. врач · ортопед</div><h3>Додова З.</h3><p>★ 4.9 · 86 отзывов</p></div></div>
+    <div class="doc"><div class="ph"><img src="../07-concept/assets/doc-2.jpg" alt=""></div><div class="b"><div class="sp">Ортодонт</div><h3>Хасханова Д.</h3><p>★ 4.8 · 64 отзыва</p></div></div>
+    <div class="doc"><div class="ph"><img src="../07-concept/assets/doc-3.jpg" alt=""></div><div class="b"><div class="sp">Терапевт</div><h3>Султыгова П.</h3><p>★ 4.9 · 72 отзыва</p></div></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="cta">
+    <span class="eyebrow">Запись</span>
+    <h2 class="dis">Первый шаг<br><span class="m">бесплатно</span></h2>
+    <p>Консультация, 3D-снимок и план лечения <span class="free">0 ₽</span> · ни к чему не обязывает.</p>
+    <a class="btn btn-m" href="#">Записаться на приём</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot"><div>MFC Clinic · 2-й Боткинский проезд, 8 · м. Белорусская</div><div>+7 (495) 320-04-07</div></div></footer>
+<a class="tagchip" href="index.html">← Концепт E · Kinetic Noir · к галерее</a>
+</body></html>
