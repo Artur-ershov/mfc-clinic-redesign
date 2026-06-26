@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MFC Clinic — Концепт I · Lavender Calm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+:root{--ink:#3a3552;--lav:#8a7ee0;--lav-d:#6f61cf;--bg:#f3effb;--cream:#fbf8f3;--rose:#dca9bf;--muted:#7d7795;--line:#e6e0f2}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;transition:.18s;border:0}
+.btn-l{background:var(--lav);color:#fff}.btn-l:hover{background:var(--lav-d)}
+.btn-w{background:#fff;color:var(--ink);box-shadow:0 6px 20px rgba(58,53,82,.08)}.btn-w:hover{transform:translateY(-2px)}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lav-d);font-weight:800}
+nav .wrap{display:flex;align-items:center;gap:26px;padding:24px 28px}
+.logo{font-weight:800;font-size:20px;margin-right:auto}.logo b{color:var(--lav)}
+.nav-links{display:flex;gap:22px;font-size:14px;font-weight:600;opacity:.8}.nav-links a:hover{opacity:1}
+/* hero */
+.hero{position:relative;padding:34px 0 70px;overflow:hidden}
+.hero::before{content:"";position:absolute;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(138,126,224,.28),transparent 65%);top:-280px;left:-140px}
+.hero::after{content:"";position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(220,169,191,.26),transparent 65%);bottom:-240px;right:-120px}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr .92fr;gap:46px;align-items:center}
+.hero h1{font-size:clamp(40px,6.2vw,82px);line-height:1;letter-spacing:-.02em;font-weight:800;margin:18px 0 20px}
+.hero h1 .gr{background:linear-gradient(100deg,var(--lav),var(--rose));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:430px;margin-bottom:28px}
+.hero .cta{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:26px}
+.hero .pills{display:flex;gap:10px;flex-wrap:wrap}
+.hero .pill{background:#fff;border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:600;box-shadow:0 6px 18px rgba(58,53,82,.06)}
+.hero-img{position:relative}
+.hero-img .main{border-radius:36px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 36px 80px rgba(111,97,207,.22)}
+.hero-img .main img{width:100%;height:100%;object-fit:cover}
+.hero-img .card{position:absolute;left:-24px;bottom:40px;background:#fff;border-radius:20px;padding:14px 18px;box-shadow:0 18px 44px rgba(58,53,82,.14);display:flex;gap:12px;align-items:center}
+.hero-img .card .ic{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--lav),var(--rose));color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.hero-img .card b{display:block;font-size:14px}.hero-img .card span{font-size:12px;color:var(--muted)}
+/* section */
+section{padding:80px 0}
+.shead{max-width:680px;margin-bottom:36px}
+.shead h2{font-size:clamp(28px,4vw,46px);line-height:1.04;font-weight:800;margin:12px 0}
+.shead p{color:var(--muted);font-size:17px}
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:200px;gap:16px}
+.bt{border-radius:28px;overflow:hidden;position:relative;padding:26px;display:flex;flex-direction:column;background:#fff;box-shadow:0 12px 34px rgba(58,53,82,.06)}
+.bt.lav{background:linear-gradient(140deg,var(--lav),var(--lav-d));color:#fff}
+.bt.rose{background:linear-gradient(140deg,#e7bccd,var(--rose));color:#5a2f43}
+.bt.img{padding:0}.bt.img img{width:100%;height:100%;object-fit:cover}
+.bt.span2{grid-column:span 2}.bt.row2{grid-row:span 2}
+.bt h3{font-size:20px;font-weight:800;margin-bottom:6px}
+.bt p{font-size:13.5px;opacity:.85}
+.bt .big{font-size:34px;font-weight:800;margin-top:auto}
+.bt .ph-cap{position:absolute;left:18px;bottom:18px;background:rgba(255,255,255,.9);border-radius:12px;padding:8px 13px;font-weight:700;font-size:13px;color:var(--ink)}
+/* doctors */
+.docs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.doc{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 12px 30px rgba(58,53,82,.06)}
+.doc .ph{aspect-ratio:1/1;overflow:hidden}.doc .ph img{width:100%;height:100%;object-fit:cover;object-position:top}
+.doc .bd{padding:16px}.doc .sp{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--lav-d);font-weight:800}
+.doc h3{font-weight:800;font-size:15px;margin:5px 0 2px}.doc p{font-size:12.5px;color:var(--muted)}
+/* cta */
+.cta{background:linear-gradient(135deg,var(--lav),var(--rose));color:#fff;border-radius:36px;padding:72px 40px;text-align:center}
+.cta h2{font-size:clamp(30px,5vw,56px);line-height:1.02;font-weight:800;margin-bottom:14px}
+.cta p{color:rgba(255,255,255,.92);margin-bottom:26px}
+.free{display:inline-block;background:#fff;color:var(--lav-d);font-weight:800;padding:3px 12px;border-radius:999px}
+footer{padding:46px 0;color:var(--muted);font-size:14px}.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.tagchip{position:fixed;left:16px;bottom:16px;z-index:50;background:var(--lav);color:#fff;font-size:12px;padding:9px 15px;border-radius:999px;font-weight:700}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.bento{grid-template-columns:1fr 1fr}.bt.row2{grid-row:auto}.bt.span2{grid-column:span 2}.docs{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:560px){.bento,.docs{grid-template-columns:1fr}.bt.span2{grid-column:span 1}}
+</style></head>
+<body>
+<div id="g" style="position:fixed;inset:0;z-index:9999;background:#3a3552;display:grid;place-items:center;font-family:Manrope,system-ui">
+ <form id="gf" style="background:#fff;padding:34px;border-radius:22px;text-align:center;max-width:340px;width:90%">
+  <div style="font-weight:800;font-size:18px;margin-bottom:6px">MFC Clinic — концепты</div>
+  <div style="color:#888;font-size:13px;margin-bottom:16px">Доступ по паролю</div>
+  <input id="gp" type="password" placeholder="Пароль" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:12px;text-align:center;margin-bottom:10px;font-size:15px">
+  <button style="width:100%;padding:13px;border:0;border-radius:12px;background:#8a7ee0;color:#fff;font-weight:700;cursor:pointer;font-size:15px">Открыть</button>
+  <div id="ge" style="color:#c0392b;font-size:12px;margin-top:8px;min-height:14px"></div>
+ </form>
+</div>
+<script>(function(){var H="8e8db19d90f14ffb5556faba69b9a231e5a2c0739426c89bf14abb22d95cb928";var inIf=false;try{inIf=top!==self}catch(e){inIf=true}var ok=false;try{ok=sessionStorage.getItem('mfc_ok')==='1'}catch(e){}var g=document.getElementById('g');if(inIf||ok){g.remove();return}document.documentElement.style.overflow='hidden';async function sh(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}document.getElementById('gf').addEventListener('submit',async function(e){e.preventDefault();var h=await sh(document.getElementById('gp').value);if(h===H){try{sessionStorage.setItem('mfc_ok','1')}catch(e){}document.documentElement.style.overflow='';g.remove()}else{document.getElementById('ge').textContent='Неверный пароль'}})})();</script>
+
+<nav><div class="wrap">
+  <div class="logo">MFC<b>.</b>Clinic</div>
+  <div class="nav-links"><a href="#">Имплантация</a><a href="#">Эстетика</a><a href="#">Врачи</a><a href="#">Цены</a></div>
+  <a class="btn btn-l" href="#" style="padding:11px 20px">Записаться</a>
+</div></nav>
+
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">Стоматология · м. Белорусская</span>
+    <h1>Спокойная забота о вашей <span class="gr">улыбке</span></h1>
+    <p class="lead">Лечим бережно и без боли. Честная цена и план — до начала, гарантия — в договоре.</p>
+    <div class="cta"><a class="btn btn-l" href="#">Бесплатная консультация + 3D</a><a class="btn btn-w" href="#">Цены</a></div>
+    <div class="pills"><span class="pill">★ 4.9 · 95 отзывов</span><span class="pill">Без боли · седация</span><span class="pill">Рассрочка 0%</span></div>
+  </div>
+  <div class="hero-img">
+    <div class="main"><img src="assets/gen-lavender-portrait.jpg" alt=""></div>
+    <div class="card"><span class="ic">12</span><div><b>12 лет</b><span>возвращаем улыбки</span></div></div>
+  </div>
+</div></header>
+
+<section style="padding-top:10px"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Флагман и услуги</span><h2>Зубы за 1 день — спокойно и честно</h2></div>
+  <div class="bento">
+    <div class="bt lav row2"><h3>«Зубы за 1 день» · All-on-4</h3><p>Несъёмные зубы вместо съёмного протеза. Честные этапы: временный протез — в день операции, постоянный цирконий — через 4–6 мес.</p><div class="big">от 149 900 ₽</div></div>
+    <div class="bt img"><img src="assets/gen-lavender-room.jpg" alt=""><span class="ph-cap">Спокойная атмосфера</span></div>
+    <div class="bt"><h3>Без боли</h3><p>Современная анестезия и седация для тревожных. Бережно и без осуждения.</p></div>
+    <div class="bt img span2"><img src="assets/gen-smile-closeup.jpg" alt=""><span class="ph-cap">Эстетика · виниры · Zoom</span></div>
+    <div class="bt rose"><h3>0 ₽</h3><p>Консультация + 3D-снимок и план лечения. Ни к чему не обязывает.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Атмосфера</span><h2>Спокойно с порога</h2><p>Мягкий свет, живые растения и тишина вместо больничного коридора.</p></div>
+  <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px">
+    <div style="border-radius:28px;overflow:hidden;aspect-ratio:16/10;position:relative;box-shadow:0 14px 40px rgba(58,53,82,.08)"><img src="assets/gen-lavender-lounge.jpg" alt="" style="width:100%;height:100%;object-fit:cover"><span style="position:absolute;left:18px;bottom:18px;background:#fff;border-radius:14px;padding:9px 15px;font-weight:700;font-size:13px">Зона ожидания · уютно и не страшно</span></div>
+    <div style="border-radius:28px;overflow:hidden;aspect-ratio:16/10;position:relative;box-shadow:0 14px 40px rgba(58,53,82,.08)"><img src="assets/gen-lavender-orchid.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Команда</span><h2>Вы выбираете своего врача</h2></div>
+  <div class="docs">
+    <div class="doc"><div class="ph"><img src="../07-concept/assets/doc-implantolog.jpg" alt=""></div><div class="bd"><div class="sp">Хирург-имплантолог</div><h3>Магомедов М.</h3><p>★ 4.9 · 140 отзывов</p></div></div>
+    <div class="doc"><div class="ph"><img src="../07-concept/assets/doc-1.jpg" alt=""></div><div class="bd"><div class="sp">Гл. врач · ортопед</div><h3>Додова З.</h3><p>★ 4.9 · 86 отзывов</p></div></div>
+    <div class="doc"><div class="ph"><img src="../07-concept/assets/doc-2.jpg" alt=""></div><div class="bd"><div class="sp">Ортодонт</div><h3>Хасханова Д.</h3><p>★ 4.8 · 64 отзыва</p></div></div>
+    <div class="doc"><div class="ph"><img src="../07-concept/assets/doc-3.jpg" alt=""></div><div class="bd"><div class="sp">Терапевт</div><h3>Султыгова П.</h3><p>★ 4.9 · 72 отзыва</p></div></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="cta">
+    <span class="eyebrow" style="color:rgba(255,255,255,.85)">Запись</span>
+    <h2>Первый шаг — спокойно и бесплатно</h2>
+    <p>Консультация, 3D-снимок и план лечения <span class="free">0 ₽</span> · ни к чему не обязывает.</p>
+    <a class="btn btn-w" href="#">Записаться</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot"><div>MFC Clinic · 2-й Боткинский проезд, 8 · м. Белорусская</div><div>+7 (495) 320-04-07</div></div></footer>
+<a class="tagchip" href="index.html">← Концепт I · Lavender Calm · к галерее</a>
+</body></html>
