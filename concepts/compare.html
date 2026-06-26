@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MFC Clinic — Сравнение: до/после правок и направления J</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+:root{--ink:#1b2422;--bg:#eceae3;--card:#fff;--muted:#6e746e;--gold:#b08a4e;--line:#dcdcd3}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+a{color:inherit;text-decoration:none}
+.top{padding:22px 0;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px}
+.top .logo{font-weight:800;font-size:18px;margin-right:auto}
+.top a.back{font-size:14px;color:var(--muted)}
+.head{padding:54px 0 26px}
+.head .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.head h1{font-size:clamp(28px,4.4vw,46px);line-height:1.05;margin:12px 0 14px;letter-spacing:-.02em}
+.head p{color:var(--muted);font-size:17px;max-width:780px}
+h2.sec{font-size:clamp(22px,3vw,32px);margin:46px 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;max-width:760px;margin-bottom:22px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.pcard.win{border-color:var(--gold);box-shadow:0 20px 44px rgba(176,138,78,.18)}
+.plabel{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--line);font-weight:700;font-size:15px}
+.plabel .pill{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.pill.before{background:#f0e3d6;color:#8a5a32}
+.pill.after{background:#dfe9e2;color:#3f706a}
+.prev{height:480px;overflow:hidden;position:relative;background:#e7e2d6}
+.prev iframe{width:1280px;height:1640px;border:0;transform:scale(.46);transform-origin:top left;pointer-events:none}
+.prev .ov{position:absolute;inset:0}
+.pnote{padding:12px 18px;font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:22px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th,td{text-align:left;padding:12px 16px;font-size:14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f4f1ea;font-weight:700;font-size:12.5px;letter-spacing:.02em}
+td.b{color:#8a5a32}td.a{color:#3f706a}
+tr:last-child td{border-bottom:0}
+.dirs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dcard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.dcard:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(27,36,34,.12)}
+.dcard.win{border-color:var(--gold)}
+.dprev{height:230px;overflow:hidden;position:relative;border-bottom:1px solid var(--line);background:#e7e2d6}
+.dprev iframe{width:1280px;height:1500px;border:0;transform:scale(.305);transform-origin:top left;pointer-events:none}
+.dbody{padding:16px 18px;display:flex;flex-direction:column;flex:1}
+.dbody .t{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.dbody h3{font-size:18px;margin:5px 0 6px}
+.dbody p{font-size:13px;color:var(--muted);margin-bottom:12px}
+.dbody .open{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px;border-radius:10px;background:var(--ink);color:#fff;font-weight:700;font-size:13.5px}
+.others{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:20px;font-size:14px;color:var(--muted)}
+.others b{color:var(--ink)}
+.others .row{margin-top:8px}
+.note{font-size:13px;color:var(--muted);padding:34px 0 70px;max-width:820px}
+@media(max-width:860px){.cmp{grid-template-columns:1fr}.dirs{grid-template-columns:1fr}.prev{height:420px}}
+</style></head>
+<body>
+<div id="g" style="position:fixed;inset:0;z-index:9999;background:#1b2422;display:grid;place-items:center;font-family:Manrope,system-ui">
+ <form id="gf" style="background:#fff;padding:34px;border-radius:18px;text-align:center;max-width:340px;width:90%">
+  <div style="font-weight:800;font-size:18px;margin-bottom:6px">MFC Clinic — концепты</div>
+  <div style="color:#888;font-size:13px;margin-bottom:16px">Доступ по паролю</div>
+  <input id="gp" type="password" placeholder="Пароль" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;text-align:center;margin-bottom:10px;font-size:15px">
+  <button style="width:100%;padding:13px;border:0;border-radius:10px;background:#b08a4e;color:#fff;font-weight:700;cursor:pointer;font-size:15px">Открыть</button>
+  <div id="ge" style="color:#c0392b;font-size:12px;margin-top:8px;min-height:14px"></div>
+ </form>
+</div>
+<script>(function(){var H="8e8db19d90f14ffb5556faba69b9a231e5a2c0739426c89bf14abb22d95cb928";var inIf=false;try{inIf=top!==self}catch(e){inIf=true}var ok=false;try{ok=sessionStorage.getItem('mfc_ok')==='1'}catch(e){}var g=document.getElementById('g');if(inIf||ok){g.remove();return}document.documentElement.style.overflow='hidden';async function sh(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}document.getElementById('gf').addEventListener('submit',async function(e){e.preventDefault();var h=await sh(document.getElementById('gp').value);if(h===H){try{sessionStorage.setItem('mfc_ok','1')}catch(e){}document.documentElement.style.overflow='';g.remove()}else{document.getElementById('ge').textContent='Неверный пароль'}})})();</script>
+
+<div class="top"><div class="wrap"><div class="logo">MFC Clinic</div><a class="back" href="index.html">← К галерее концептов</a></div></div>
+
+<div class="wrap">
+  <div class="head">
+    <span class="eyebrow">Hush Bay · разбор</span>
+    <h1>До и после правок + сами направления</h1>
+    <p>Слева — версия победителя такой, какой её собрал синтезатор (до адверсариальной критики). Справа — финал после исправлений. Ниже — два других направления, чтобы видеть, что у всех шести была одна идея и разные акценты. Превью живые (кликабельны), наведите/откройте.</p>
+  </div>
+
+  <h2 class="sec">1 · До и после критики</h2>
+  <p class="sub">Главное видно сразу: в версии «до» по периферии постоянно «дышат» три анимации (hero, дуга‑эхо, бейдж рейтинга) — это и есть «анти‑чилл», который поймал критик. Плюс бледнее текст, арка повторяется повсюду и более «сочинённые» формулировки.</p>
+  <div class="cmp">
+    <div class="pcard">
+      <div class="plabel"><span>Hush Bay — до правок (v0)</span><span class="pill before">до</span></div>
+      <div class="prev"><iframe src="j-hush-bay-v0.html" scrolling="no" title="Hush Bay до правок" loading="lazy"></iframe><a class="ov" href="j-hush-bay-v0.html"></a></div>
+      <div class="pnote">3 бесконечные пульсации · текст #6F6A60 · арка повсюду · «Здесь не пахнет поликлиникой»</div>
+    </div>
+    <div class="pcard win">
+      <div class="plabel"><span>Hush Bay — финал</span><span class="pill after">после</span></div>
+      <div class="prev"><iframe src="j-hush-bay.html" scrolling="no" title="Hush Bay финал" loading="lazy"></iframe><a class="ov" href="j-hush-bay.html"></a></div>
+      <div class="pnote">спокойный reveal · контраст по WCAG · арка в 3 точках · «Пахнет деревом и чаем»</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Что</th><th>До (v0)</th><th>После (финал)</th></tr>
+    <tr><td>Анимация</td><td class="b">3 бесконечные пульсации — дрожит на периферии</td><td class="a">спокойный reveal при скролле, без вечного движения</td></tr>
+    <tr><td>Текст‑муотед</td><td class="b">#6F6A60 — бледный, провал AA на полосах</td><td class="a">#665F54 — контраст выверен по WCAG</td></tr>
+    <tr><td>Фирменная арка</td><td class="b">повсюду (интерьеры, иконки, аватар) — на грани шаблона</td><td class="a">только 3 опорные точки — остаётся акцентом</td></tr>
+    <tr><td>Заголовок атмосферы</td><td class="b">«Здесь не пахнет поликлиникой» (тройное отрицание)</td><td class="a">«Пахнет деревом и чаем» (образ напрямую)</td></tr>
+    <tr><td>Отзыв</td><td class="b">«с дрожью в коленках… так бывает, оказывается»</td><td class="a">«Боялась идти, а зря…» — проще и правдоподобнее</td></tr>
+  </table>
+
+  <h2 class="sec">2 · Сами направления — одно прочтение, разные акценты</h2>
+  <p class="sub">Все шесть агентов сошлись на одной системе (палитра «тёплый туман», Cormorant + Manrope, «арка‑портал»). Различались акцентами. Два самых непохожих собраны вживую рядом с победителем:</p>
+  <div class="dirs">
+    <div class="dcard win">
+      <div class="dprev"><iframe src="j-hush-bay.html" scrolling="no" title="Hush Bay" loading="lazy"></iframe></div>
+      <div class="dbody"><div class="t">★ победитель · 8.4</div><h3>Hush Bay</h3><p>Самый человечный H1 «Сюда приходят, чтобы выдохнуть», минеральная CTA, строгая дисциплина акцентов.</p><a class="open" href="j-hush-bay.html">Открыть →</a></div>
+    </div>
+    <div class="dcard">
+      <div class="dprev"><iframe src="dir-hinoki.html" scrolling="no" title="Hinoki Mist" loading="lazy"></iframe></div>
+      <div class="dbody"><div class="t">крафт‑лидер · 8.1</div><h3>Hinoki Mist</h3><p>Тёплая <b>глиняная</b> главная кнопка (а не минерал), иконки и интерьеры в арках — японский банный покой.</p><a class="open" href="dir-hinoki.html">Открыть →</a></div>
+    </div>
+    <div class="dcard">
+      <div class="dprev"><iframe src="dir-morning-tide.html" scrolling="no" title="Morning Tide" loading="lazy"></iframe></div>
+      <div class="dbody"><div class="t">прямой крючок · 7.1</div><h3>Morning Tide</h3><p>H1 называет страх в лоб «там, где обычно <b>страшно</b>», вторичная кнопка — подчёркнутая ссылка, крупный адрес.</p><a class="open" href="dir-morning-tide.html">Открыть →</a></div>
+    </div>
+  </div>
+
+  <div class="others">
+    <b>Остальные три направления отличались в основном заголовком</b> (палитра и арка — те же):
+    <div class="row">· <b>Tidewater Calm</b> (7.3) — «Стоматология, где можно выдохнуть»; самый «инженерный»: посчитанные контрасты, правило «макс. 2 акцента в экране».</div>
+    <div class="row">· <b>Misty Morning</b> (7.1) — «…где можно выдохнуть» с курсивным акцентом на одном слове; самый «эстетский», но приглушённые CTA/рейтинг.</div>
+    <div class="row">· <b>Onsen Calm</b> (7.1) — «Стоматология, где не страшно»; без единой собственной детали — судья по крафту назвал «самым взаимозаменяемым».</div>
+  </div>
+
+  <p class="note">Оценки — среднее по трём судьям (эмоция/чилл · крафт · конверсия) из 10. Полный разбор и палитры — в чате.</p>
+</div>
+</body></html>
