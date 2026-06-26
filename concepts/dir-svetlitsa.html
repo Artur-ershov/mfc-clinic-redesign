@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MFC Clinic — Направление · Светлица</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+:root{--bg:#F4F6F1;--surface:#FBFCF8;--ink:#1C2B22;--muted:#586A5C;--accent:#3E7C59;--accent-d:#316348;--lime:#C9D98C;--lime-bg:#E8F0D2;--terra:#C2734A;--line:#DCE5D4;
+--blob1:38% 62% 63% 37% / 41% 44% 56% 59%;--blob2:63% 37% 54% 46% / 55% 48% 52% 45%;--blob3:54% 46% 43% 57% / 56% 54% 46% 44%}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.66;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.cf{font-family:'Comfortaa',cursive}
+.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(20px,5vw,44px)}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+.eyebrow{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;font-family:'Comfortaa';font-weight:700;font-size:15px;cursor:pointer;transition:.3s;border:2px solid transparent}
+.btn-l{background:var(--accent);color:#fff}.btn-l:hover{background:var(--accent-d)}
+.btn-o{border-color:var(--accent);color:var(--accent)}.btn-o:hover{background:var(--accent);color:#fff}
+.btn:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+h1,h2,h3{font-family:'Comfortaa',cursive;font-weight:700;letter-spacing:-.01em}
+nav{position:sticky;top:0;z-index:40;background:rgba(244,246,241,.85);backdrop-filter:blur(8px);transition:.4s}
+nav.scrolled{box-shadow:0 6px 24px rgba(28,43,34,.06)}
+.nav{display:flex;align-items:center;gap:20px;height:74px}
+.logo{font-family:'Comfortaa';font-weight:700;font-size:22px;margin-right:auto;color:var(--ink)}
+.logo .leaf{color:var(--accent)}
+.nav-links{display:flex;gap:22px;font-size:14.5px;color:var(--muted);font-weight:600}.nav-links a:hover{color:var(--accent)}
+.nav .cta{background:var(--accent);color:#fff;padding:10px 20px;border-radius:999px;font-family:'Comfortaa';font-weight:700;font-size:13.5px}
+/* hero */
+.hero{position:relative;padding:clamp(30px,5vh,60px) 0 clamp(50px,8vh,90px)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero h1{font-size:clamp(38px,5.4vw,72px);line-height:1.1;margin:18px 0 20px}
+.hero h1 .g{color:var(--accent)}
+.hero p{font-size:18.5px;color:var(--muted);max-width:480px;margin-bottom:28px}
+.hero .cta-row{display:flex;gap:13px;flex-wrap:wrap;align-items:center}
+.hero .rate{font-size:14px;color:var(--muted)}.hero .rate .s{color:var(--terra)}
+.hero-blob{position:relative}
+.hero-blob .ph{border-radius:var(--blob1);overflow:hidden;aspect-ratio:1/1;box-shadow:0 30px 70px rgba(28,43,34,.16)}
+.hero-blob .ph img{width:100%;height:100%;object-fit:cover}
+.hero-blob .leafcard{position:absolute;right:-10px;bottom:24px;background:var(--lime-bg);border-radius:24px 24px 24px 6px;padding:13px 18px;box-shadow:0 14px 34px rgba(28,43,34,.12)}
+.hero-blob .leafcard b{font-family:'Comfortaa';font-size:15px;display:block;color:var(--accent-d)}
+.hero-blob .leafcard span{font-size:12.5px;color:var(--muted)}
+/* why 3 leaf cards */
+.why{padding:clamp(20px,3vh,40px) 0 clamp(50px,8vh,90px)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.leaf{background:var(--surface);padding:30px 26px;box-shadow:0 14px 40px rgba(28,43,34,.07)}
+.leaf:nth-child(1){border-radius:var(--blob2)}.leaf:nth-child(2){border-radius:var(--blob3)}.leaf:nth-child(3){border-radius:var(--blob1)}
+.leaf .ic{width:44px;height:44px;border-radius:50%;background:var(--lime-bg);display:grid;place-items:center;margin-bottom:14px;color:var(--accent);font-size:22px}
+.leaf h3{font-size:19px;margin-bottom:7px}.leaf p{font-size:14.5px;color:var(--muted)}
+/* flagship stem */
+.flag{padding:clamp(50px,8vh,90px) 0}
+.flag .h{text-align:center;max-width:640px;margin:0 auto clamp(34px,5vh,54px)}
+.flag .h h2{font-size:clamp(30px,4.2vw,52px);line-height:1.08;margin:12px 0}.flag .h p{color:var(--muted);font-size:17px}
+.stem{position:relative;max-width:740px;margin:0 auto;padding-left:clamp(40px,7vw,80px)}
+.stem::before{content:"";position:absolute;left:clamp(13px,2.4vw,26px);top:8px;bottom:80px;width:3px;background:linear-gradient(var(--accent),var(--lime));border-radius:3px}
+.node{position:relative;margin-bottom:30px}
+.node .dot{position:absolute;left:calc(-1 * clamp(40px,7vw,80px));top:0;width:clamp(28px,5vw,54px);display:flex;justify-content:center}
+.node .dot span{width:clamp(28px,5vw,54px);height:clamp(28px,5vw,54px);border-radius:var(--blob2);background:var(--lime);color:var(--accent-d);font-family:'Comfortaa';font-weight:700;display:grid;place-items:center;font-size:clamp(14px,2vw,20px);box-shadow:0 6px 16px rgba(28,43,34,.12)}
+.node .bd{background:var(--surface);border-radius:24px 24px 24px 8px;padding:22px 26px;box-shadow:0 12px 32px rgba(28,43,34,.06)}
+.node h3{font-size:20px;margin-bottom:5px}.node p{font-size:14.5px;color:var(--muted)}.node .when{color:var(--terra);font-size:13px;font-weight:600;margin-top:8px;display:block}
+.price-blob{max-width:740px;margin:8px auto 0;background:var(--lime-bg);border-radius:var(--blob1);padding:34px clamp(28px,5vw,54px);display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.price-blob .big{font-family:'Comfortaa';font-weight:700;font-size:clamp(30px,4vw,42px);color:var(--accent-d)}
+.price-blob .sub{font-size:14px;color:var(--muted);margin-top:4px}
+/* atmosphere masonry */
+.atmo{padding:clamp(50px,8vh,90px) 0}
+.atmo .h{max-width:620px;margin-bottom:30px}
+.atmo .h h2{font-size:clamp(30px,4.2vw,52px);margin:12px 0}.atmo .h p{color:var(--muted);font-size:17px}
+.masonry{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.masonry .m{overflow:hidden;box-shadow:0 16px 40px rgba(28,43,34,.10)}
+.masonry .m img{width:100%;height:100%;object-fit:cover;display:block}
+.masonry .m1{border-radius:var(--blob1);aspect-ratio:4/5}
+.masonry .m2{border-radius:var(--blob3);aspect-ratio:1/1;margin-top:clamp(20px,5vh,60px)}
+.masonry .m3{border-radius:var(--blob2);aspect-ratio:4/5}
+.masonry figcaption{font-size:13px;color:var(--muted);margin-top:10px;padding-left:6px}
+/* doctors blobs */
+.docs{padding:clamp(40px,6vh,80px) 0}
+.docs .h{max-width:620px;margin-bottom:30px}
+.docs .h h2{font-size:clamp(30px,4.2vw,52px);margin:12px 0}.docs .h p{color:var(--muted);font-size:17px}
+.docs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.dr .ph{overflow:hidden;aspect-ratio:1/1;margin-bottom:14px;box-shadow:0 14px 34px rgba(28,43,34,.10)}
+.dr:nth-child(4n+1) .ph{border-radius:var(--blob1)}.dr:nth-child(4n+2) .ph{border-radius:var(--blob2)}.dr:nth-child(4n+3) .ph{border-radius:var(--blob3)}.dr:nth-child(4n) .ph{border-radius:var(--blob1)}
+.dr .ph img{width:100%;height:100%;object-fit:cover;object-position:top}
+.dr h3{font-size:18px;color:var(--terra);margin-bottom:2px}
+.dr .sp{font-size:12.5px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.dr .q{font-size:13.5px;color:var(--muted);font-style:italic;margin-top:8px}
+/* offer + cta */
+.offer{padding:clamp(40px,6vh,80px) 0}
+.offer-blob{background:var(--accent);color:#fff;border-radius:var(--blob1);padding:clamp(48px,7vw,80px);text-align:center;position:relative;overflow:hidden}
+.offer-blob h2{font-size:clamp(30px,4.6vw,52px);line-height:1.08;margin-bottom:14px;color:#fff}
+.offer-blob p{color:rgba(255,255,255,.9);max-width:520px;margin:0 auto 26px}
+.offer-blob .free{background:var(--lime);color:var(--accent-d);border-radius:999px;padding:2px 14px;font-family:'Comfortaa';font-weight:700;display:inline-block}
+.offer-blob .ph{display:block;margin-top:16px;font-size:14.5px;color:rgba(255,255,255,.85)}.offer-blob .ph a{color:#fff;font-weight:700}
+.btn-cream{background:#fff;color:var(--accent-d)}.btn-cream:hover{background:var(--lime)}
+footer{padding:50px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.foot .big{font-family:'Comfortaa';color:var(--ink);font-size:18px}.foot a{color:var(--ink);font-weight:600}
+.tagchip{position:fixed;left:16px;bottom:16px;z-index:50;background:var(--accent);color:#fff;font-size:12px;padding:9px 15px;border-radius:999px;font-family:'Comfortaa';font-weight:700}
+.reveal{transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+html.anim .reveal{opacity:0;transform:translateY(18px)}
+html.anim .reveal.in{opacity:1;transform:none}
+@media(max-width:900px){.nav-links{display:none}.hero-grid{grid-template-columns:1fr;gap:34px}.hero-blob{max-width:420px;margin:0 auto}.why-grid{grid-template-columns:1fr}.masonry{grid-template-columns:1fr 1fr}.masonry .m2{margin-top:0}.docs-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.masonry{grid-template-columns:1fr}.docs-grid{grid-template-columns:1fr}.price-blob{flex-direction:column;text-align:center}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.reveal{opacity:1!important;transform:none!important;transition:none}html{scroll-behavior:auto}}
+</style>
+<script>(function(){try{if(!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.className+=(document.documentElement.className?' ':'')+'anim';}}catch(e){}})();</script>
+</head>
+<body>
+<div id="g" style="position:fixed;inset:0;z-index:9999;background:#1C2B22;display:grid;place-items:center;font-family:Manrope,system-ui">
+ <form id="gf" style="background:#FBFCF8;padding:34px;border-radius:24px;text-align:center;max-width:340px;width:90%">
+  <div style="font-family:'Comfortaa',cursive;font-weight:700;font-size:20px;margin-bottom:4px">MFC Clinic — концепты</div>
+  <div style="color:#888;font-size:13px;margin-bottom:16px">Доступ по паролю</div>
+  <input id="gp" type="password" placeholder="Пароль" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:14px;text-align:center;margin-bottom:10px;font-size:15px">
+  <button style="width:100%;padding:13px;border:0;border-radius:14px;background:#3E7C59;color:#fff;font-family:'Comfortaa';font-weight:700;cursor:pointer;font-size:15px">Открыть</button>
+  <div id="ge" style="color:#c0392b;font-size:12px;margin-top:8px;min-height:14px"></div>
+ </form>
+</div>
+<script>(function(){var H="8e8db19d90f14ffb5556faba69b9a231e5a2c0739426c89bf14abb22d95cb928";var inIf=false;try{inIf=top!==self}catch(e){inIf=true}var ok=false;try{ok=sessionStorage.getItem('mfc_ok')==='1'}catch(e){}var g=document.getElementById('g');if(inIf||ok){g.remove();return}document.documentElement.style.overflow='hidden';async function sh(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}document.getElementById('gf').addEventListener('submit',async function(e){e.preventDefault();var h=await sh(document.getElementById('gp').value);if(h===H){try{sessionStorage.setItem('mfc_ok','1')}catch(e){}document.documentElement.style.overflow='';g.remove()}else{document.getElementById('ge').textContent='Неверный пароль'}})})();</script>
+
+<nav id="nav"><div class="wrap nav">
+  <div class="logo">MFC<span class="leaf">.</span>Clinic</div>
+  <div class="nav-links"><a href="#flag">Зубы за 1 день</a><a href="#atmo">Атмосфера</a><a href="#docs">Врачи</a><a href="#offer">Цены</a></div>
+  <a class="cta" href="#offer">Записаться</a>
+</div></nav>
+
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">Стоматология‑оранжерея · м. Белорусская</span>
+    <h1 class="cf">Лечим зубы там, где хочется <span class="g">дышать</span></h1>
+    <p>Вместо стерильной тишины — дневной свет, живые растения и врачи, которые сначала объясняют, а потом лечат. Новые зубы за 1 день по технологии All‑on‑4.</p>
+    <div class="cta-row">
+      <a class="btn btn-l" href="#offer">Бесплатная консультация + 3D‑снимок</a>
+      <span class="rate"><span class="s">★</span> 4.9 · 95 отзывов</span>
+    </div>
+  </div>
+  <div class="hero-blob">
+    <div class="ph"><img src="assets/gen-s-hero.jpg" alt="Светлая зона ожидания с растениями"></div>
+    <div class="leafcard"><b>12 лет</b><span>возвращаем улыбки</span></div>
+  </div>
+</div></header>
+
+<section class="why"><div class="wrap why-grid">
+  <div class="leaf reveal"><div class="ic">☀</div><h3 class="cf">Светло и живо</h3><p>Дневной свет и зелень физиологически снижают тревогу — тело само понимает, что здесь безопасно.</p></div>
+  <div class="leaf reveal"><div class="ic">✓</div><h3 class="cf">Честно с ценой</h3><p>Озвучиваем стоимость сразу и письменно. Цена в плане = цена на кассе, без «потом доплатите».</p></div>
+  <div class="leaf reveal"><div class="ic">❋</div><h3 class="cf">Не торопят</h3><p>Спокойно отвечаем на все вопросы. Анестезия и седация по желанию — лечим бережно.</p></div>
+</div></section>
+
+<section class="flag" id="flag"><div class="wrap">
+  <div class="h reveal"><span class="eyebrow">Путь к новой улыбке</span><h2 class="cf">Зубы за один день</h2><p>All‑on‑4: четыре импланта и несъёмный протез в день операции. Дальше всё спокойно прорастает.</p></div>
+  <div class="stem">
+    <div class="node reveal"><div class="dot"><span>1</span></div><div class="bd"><h3 class="cf">Диагностика и план</h3><p>КТ и 3D‑снимок, обсуждаем спокойно и фиксируем цену сразу.</p><span class="when">первый визит</span></div></div>
+    <div class="node reveal"><div class="dot"><span>2</span></div><div class="bd"><h3 class="cf">Зубы в день операции</h3><p>Четыре импланта и несъёмный протез — в тот же день. Домой уже с зубами.</p><span class="when">в день операции</span></div></div>
+    <div class="node reveal"><div class="dot"><span>3</span></div><div class="bd"><h3 class="cf">Постоянный цирконий</h3><p>Когда всё прижилось — ставим постоянный протез. Надолго и красиво.</p><span class="when">через 4–6 месяцев</span></div></div>
+  </div>
+  <div class="price-blob reveal">
+    <div><div class="big cf">от 149 900 ₽</div><div class="sub">All‑on‑4 под ключ · рассрочка 0% — от 6 246 ₽/мес</div></div>
+    <a class="btn btn-l" href="#offer">Рассчитать мой план</a>
+  </div>
+</div></section>
+
+<section class="atmo" id="atmo"><div class="wrap">
+  <div class="h reveal"><span class="eyebrow">Атмосфера</span><h2 class="cf">Зашёл с улицы — и выдохнул</h2><p>Светло, тихо, можно прийти заранее, посидеть среди растений и спокойно собраться с мыслями.</p></div>
+  <div class="masonry">
+    <figure class="reveal"><div class="m m1"><img src="assets/gen-s-room.jpg" alt="Кабинет с растениями"></div><figcaption>Кабинет — светлый, с растениями, не «операционная»</figcaption></figure>
+    <figure class="reveal"><div class="m m2"><img src="assets/gen-s-detail.jpg" alt="Зелень у окна"></div><figcaption>Живая зелень в каждом уголке</figcaption></figure>
+    <figure class="reveal"><div class="m m3"><img src="assets/gen-s-lounge.jpg" alt="Зона ожидания"></div><figcaption>Зона ожидания как зимний сад</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="docs" id="docs"><div class="wrap">
+  <div class="h reveal"><span class="eyebrow">Наши люди</span><h2 class="cf">Познакомьтесь заранее</h2><p>Лечиться будете у того, кто понравился. Вот что они сами говорят.</p></div>
+  <div class="docs-grid">
+    <div class="dr reveal"><div class="ph"><img src="../07-concept/assets/doc-implantolog.jpg" alt="Магомедов Магомед"></div><div class="sp">Хирург‑имплантолог</div><h3 class="cf">Магомедов Магомед</h3><p class="q">«Всегда называю цену до начала — так спокойнее обоим».</p></div>
+    <div class="dr reveal"><div class="ph"><img src="../07-concept/assets/doc-1.jpg" alt="Додова Заира"></div><div class="sp">Гл. врач · ортопед</div><h3 class="cf">Додова Заира</h3><p class="q">«Объясняю, пока не станет понятно. Спешка тут лишняя».</p></div>
+    <div class="dr reveal"><div class="ph"><img src="../07-concept/assets/doc-2.jpg" alt="Хасханова Диана"></div><div class="sp">Ортодонт</div><h3 class="cf">Хасханова Диана</h3><p class="q">«Красивый прикус — это про здоровье, а не только эстетику».</p></div>
+    <div class="dr reveal"><div class="ph"><img src="../07-concept/assets/doc-3.jpg" alt="Султыгова Петимат"></div><div class="sp">Терапевт</div><h3 class="cf">Султыгова Петимат</h3><p class="q">«Лечу под микроскопом — вижу то, что не видно глазом».</p></div>
+  </div>
+</div></section>
+
+<section class="offer" id="offer"><div class="wrap">
+  <div class="offer-blob reveal">
+    <span class="eyebrow" style="color:var(--lime)">Первый шаг</span>
+    <h2 class="cf" style="margin-top:12px">Просто прийти и выдохнуть</h2>
+    <p>Консультация, 3D‑снимок и честный план лечения — <span class="free">0 ₽</span>. Без обязательств: дальше решаете вы.</p>
+    <a class="btn btn-cream" href="#">Записаться на консультацию</a>
+    <span class="ph">или позвоните: <a href="tel:+74953200407">+7 (495) 320‑04‑07</a></span>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <div><div class="big cf">MFC<span style="color:var(--accent)">.</span>Clinic</div><div style="margin-top:6px">Стоматология‑оранжерея у Белорусской</div></div>
+  <div><div class="big cf">2‑й Боткинский проезд, 8</div><div style="margin-top:6px">м. Белорусская · ежедневно 9:00–21:00</div></div>
+  <div><a href="tel:+74953200407" style="font-weight:700">+7 (495) 320‑04‑07</a></div>
+</div></footer>
+
+<a class="tagchip" href="index.html">← Направление · Светлица · к галерее</a>
+<script>
+(function(){
+  var nav=document.getElementById('nav');var on=function(){nav.classList.toggle('scrolled',window.scrollY>12)};window.addEventListener('scroll',on,{passive:true});on();
+  var animOn=document.documentElement.classList.contains('anim');var els=[].slice.call(document.querySelectorAll('.reveal'));
+  if(!animOn||!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')});},1600);
+})();
+</script>
+</body></html>

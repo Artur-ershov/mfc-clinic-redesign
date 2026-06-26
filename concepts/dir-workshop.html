@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MFC Clinic — Направление · Тёплая мастерская</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+:root{--bg:#F1F6FB;--surface:#FFFFFF;--ink:#1B2A4A;--muted:#5A6B86;--blue:#2F9BE0;--blue-d:#1E7CC0;--apricot:#FFB36B;--apricot-d:#E8843C;--mint:#BFE3D0;--mint-d:#3E9B74;--line:#E2EAF2}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.66;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.nn{font-family:'Nunito',sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,44px)}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+h1,h2,h3{font-family:'Nunito',sans-serif;font-weight:800;letter-spacing:-.01em}
+.eyebrow{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-d);font-weight:800}
+.mark{background:linear-gradient(transparent 58%, #FFD9AE 58%);padding:0 3px;border-radius:3px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;font-family:'Nunito';font-weight:800;font-size:15.5px;cursor:pointer;transition:.25s;border:2px solid transparent}
+.btn-b{background:var(--blue-d);color:#fff}.btn-b:hover{background:#176aa6;transform:translateY(-2px)}
+.btn-o{border-color:var(--blue-d);color:var(--blue-d)}.btn-o:hover{background:var(--blue-d);color:#fff}
+.btn:focus-visible{outline:3px solid var(--apricot);outline-offset:2px}
+nav{position:sticky;top:0;z-index:40;background:rgba(241,246,251,.86);backdrop-filter:blur(8px);transition:.4s}
+nav.scrolled{box-shadow:0 6px 24px rgba(27,42,74,.07)}
+.nav{display:flex;align-items:center;gap:20px;height:74px}
+.logo{font-family:'Nunito';font-weight:800;font-size:22px;margin-right:auto}.logo b{color:var(--blue)}
+.nav-links{display:flex;gap:22px;font-size:14.5px;color:var(--muted);font-weight:700}.nav-links a:hover{color:var(--blue-d)}
+.nav .cta{background:var(--blue-d);color:#fff;padding:10px 20px;border-radius:999px;font-family:'Nunito';font-weight:800;font-size:13.5px}
+/* hero */
+.hero{padding:clamp(28px,4vh,52px) 0 clamp(46px,7vh,84px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,60px);align-items:center}
+.hero h1{font-size:clamp(38px,5.4vw,70px);line-height:1.08;margin:16px 0 18px}
+.hero p{font-size:18.5px;color:var(--muted);max-width:480px;margin-bottom:26px}
+.hero .cta-row{display:flex;gap:13px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.hero .chips{display:flex;gap:10px;flex-wrap:wrap}
+.hero .chip{background:var(--surface);border-radius:999px;padding:8px 15px;font-size:13.5px;font-weight:700;box-shadow:0 6px 18px rgba(27,42,74,.06)}
+.hero .chip .s{color:var(--apricot-d)}
+.hero-ph{position:relative}
+.hero-ph .main{border-radius:36px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 64px rgba(27,42,74,.16)}
+.hero-ph .main img{width:100%;height:100%;object-fit:cover}
+.hero-ph .bubble{position:absolute;left:-16px;bottom:30px;background:var(--mint);color:var(--mint-d);border-radius:22px 22px 22px 6px;padding:12px 18px;font-family:'Nunito';font-weight:800;font-size:14px;box-shadow:0 14px 30px rgba(27,42,74,.12)}
+/* QA */
+.qa{padding:clamp(40px,6vh,80px) 0}
+.qa .h{max-width:640px;margin-bottom:28px}
+.qa .h h2{font-size:clamp(28px,4vw,46px);line-height:1.1;margin:12px 0}.qa .h p{color:var(--muted);font-size:17px}
+.qa details{background:var(--surface);border-radius:24px;padding:6px 26px;margin-bottom:14px;box-shadow:0 10px 30px rgba(27,42,74,.06);transition:.2s}
+.qa details[open]{box-shadow:0 16px 40px rgba(27,42,74,.10)}
+.qa summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 0;font-family:'Nunito';font-weight:800;font-size:18px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .pl{width:30px;height:30px;flex:none;border-radius:50%;background:var(--bg);color:var(--blue-d);display:grid;place-items:center;font-size:20px;transition:.25s}
+.qa details[open] summary .pl{background:var(--blue-d);color:#fff;transform:rotate(45deg)}
+.qa .ans{padding:0 0 22px 44px;color:var(--muted);font-size:15.5px}
+.qa .ans b{color:var(--ink)}
+/* visit timeline */
+.visit{padding:clamp(40px,6vh,80px) 0}
+.visit .h{text-align:center;max-width:640px;margin:0 auto clamp(30px,5vh,46px)}
+.visit .h h2{font-size:clamp(28px,4vw,46px);margin:12px 0}.visit .h p{color:var(--muted);font-size:17px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.vstep{background:var(--surface);border-radius:26px;padding:26px 22px;text-align:center;box-shadow:0 12px 32px rgba(27,42,74,.06);position:relative}
+.vstep .ic{width:56px;height:56px;border-radius:18px;margin:0 auto 14px;display:grid;place-items:center;font-size:26px}
+.vstep:nth-child(1) .ic{background:#E3F1FB;color:var(--blue-d)}
+.vstep:nth-child(2) .ic{background:#FFEAD3;color:var(--apricot-d)}
+.vstep:nth-child(3) .ic{background:#E0F2E8;color:var(--mint-d)}
+.vstep:nth-child(4) .ic{background:#E3F1FB;color:var(--blue-d)}
+.vstep .no{font-family:'Nunito';font-weight:800;font-size:12px;color:var(--muted);letter-spacing:.1em}
+.vstep h3{font-size:18px;margin:4px 0 6px}.vstep p{font-size:14px;color:var(--muted)}
+/* flagship capsule */
+.flag{padding:clamp(40px,6vh,80px) 0}
+.flag-cap{background:var(--surface);border-radius:36px;padding:clamp(32px,5vw,56px);box-shadow:0 18px 50px rgba(27,42,74,.08);display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,56px);align-items:center}
+.flag-cap .ph{border-radius:28px;overflow:hidden;aspect-ratio:4/3}.flag-cap .ph img{width:100%;height:100%;object-fit:cover}
+.flag-cap h2{font-size:clamp(26px,3.4vw,40px);line-height:1.1;margin:10px 0 8px}
+.flag-cap .intro{color:var(--muted);font-size:15.5px;margin-bottom:18px}
+.flag-cap .s{display:flex;gap:12px;align-items:baseline;padding:11px 0;border-top:1px solid var(--line)}
+.flag-cap .s b{font-family:'Nunito';color:var(--blue-d);font-weight:800;font-size:16px;flex:none;width:22px}
+.flag-cap .s span{font-size:14.5px}.flag-cap .s span i{color:var(--muted);font-style:normal;display:block;font-size:13px}
+.flag-cap .price{margin-top:16px;font-family:'Nunito';font-weight:800;font-size:24px}.flag-cap .price small{font-size:13px;color:var(--muted);font-weight:600;display:block}
+/* doctors */
+.docs{padding:clamp(40px,6vh,80px) 0}
+.docs .h{max-width:640px;margin-bottom:28px}.docs .h h2{font-size:clamp(28px,4vw,46px);margin:12px 0}.docs .h p{color:var(--muted);font-size:17px}
+.docs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.dr{background:var(--surface);border-radius:26px;padding:16px;box-shadow:0 12px 32px rgba(27,42,74,.06);transition:.3s}
+.dr:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(27,42,74,.12)}
+.dr .ph{border-radius:20px;overflow:hidden;aspect-ratio:1/1;margin-bottom:13px}.dr .ph img{width:100%;height:100%;object-fit:cover;object-position:top}
+.dr .sp{font-size:11.5px;color:var(--blue-d);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.dr h3{font-size:17px;margin:4px 0 6px}.dr .q{font-size:13px;color:var(--muted);font-style:italic}
+/* offer */
+.offer{padding:clamp(40px,6vh,80px) 0}
+.offer-cap{background:var(--blue-d);color:#fff;border-radius:40px;padding:clamp(44px,7vw,76px);text-align:center;position:relative;overflow:hidden}
+.offer-cap::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(255,179,107,.22);bottom:-120px;right:-60px}
+.offer-cap .in{position:relative;z-index:2}
+.offer-cap h2{color:#fff;font-size:clamp(28px,4.4vw,50px);line-height:1.08;margin-bottom:14px}
+.offer-cap p{color:rgba(255,255,255,.92);max-width:520px;margin:0 auto 26px;font-size:17px}
+.offer-cap .free{background:var(--apricot);color:#7a3d10;border-radius:999px;padding:2px 14px;font-family:'Nunito';font-weight:800;display:inline-block}
+.btn-w{background:#fff;color:var(--blue-d)}.btn-w:hover{background:var(--mint);color:var(--mint-d)}
+.offer-cap .ph{display:block;margin-top:16px;font-size:14.5px;color:rgba(255,255,255,.88)}.offer-cap .ph a{color:#fff;font-weight:800}
+footer{padding:50px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.foot .big{font-family:'Nunito';color:var(--ink);font-size:18px;font-weight:800}.foot a{color:var(--ink);font-weight:700}
+.tagchip{position:fixed;left:16px;bottom:16px;z-index:50;background:var(--blue-d);color:#fff;font-size:12px;padding:9px 15px;border-radius:999px;font-family:'Nunito';font-weight:800}
+.reveal{transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+html.anim .reveal{opacity:0;transform:translateY(18px)}
+html.anim .reveal.in{opacity:1;transform:none}
+@media(max-width:900px){.nav-links{display:none}.hero-grid{grid-template-columns:1fr;gap:32px}.hero-ph{max-width:400px;margin:0 auto}.steps{grid-template-columns:1fr 1fr}.flag-cap{grid-template-columns:1fr}.docs-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}.docs-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.reveal{opacity:1!important;transform:none!important;transition:none}html{scroll-behavior:auto}}
+</style>
+<script>(function(){try{if(!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.className+=(document.documentElement.className?' ':'')+'anim';}}catch(e){}})();</script>
+</head>
+<body>
+<div id="g" style="position:fixed;inset:0;z-index:9999;background:#1B2A4A;display:grid;place-items:center;font-family:Inter,system-ui">
+ <form id="gf" style="background:#fff;padding:34px;border-radius:26px;text-align:center;max-width:340px;width:90%">
+  <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:20px;margin-bottom:4px">MFC Clinic — концепты</div>
+  <div style="color:#888;font-size:13px;margin-bottom:16px">Доступ по паролю</div>
+  <input id="gp" type="password" placeholder="Пароль" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:14px;text-align:center;margin-bottom:10px;font-size:15px">
+  <button style="width:100%;padding:13px;border:0;border-radius:14px;background:#1E7CC0;color:#fff;font-family:'Nunito';font-weight:800;cursor:pointer;font-size:15px">Открыть</button>
+  <div id="ge" style="color:#c0392b;font-size:12px;margin-top:8px;min-height:14px"></div>
+ </form>
+</div>
+<script>(function(){var H="8e8db19d90f14ffb5556faba69b9a231e5a2c0739426c89bf14abb22d95cb928";var inIf=false;try{inIf=top!==self}catch(e){inIf=true}var ok=false;try{ok=sessionStorage.getItem('mfc_ok')==='1'}catch(e){}var g=document.getElementById('g');if(inIf||ok){g.remove();return}document.documentElement.style.overflow='hidden';async function sh(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}document.getElementById('gf').addEventListener('submit',async function(e){e.preventDefault();var h=await sh(document.getElementById('gp').value);if(h===H){try{sessionStorage.setItem('mfc_ok','1')}catch(e){}document.documentElement.style.overflow='';g.remove()}else{document.getElementById('ge').textContent='Неверный пароль'}})})();</script>
+
+<nav id="nav"><div class="wrap nav">
+  <div class="logo">MFC<b>.</b>Clinic</div>
+  <div class="nav-links"><a href="#qa">Вопросы</a><a href="#visit">Как проходит приём</a><a href="#docs">Врачи</a><a href="#offer">Цены</a></div>
+  <a class="cta" href="#offer">Записаться</a>
+</div></nav>
+
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">Стоматология у м. Белорусская · 12 лет</span>
+    <h1 class="nn">Зубы за один день — и <span class="mark">ни капли страха</span></h1>
+    <p>Объясняем по‑человечески, на пальцах, без «потом доплатите». Сюда не страшно прийти даже с ребёнком.</p>
+    <div class="cta-row">
+      <a class="btn btn-b" href="#offer">Бесплатная консультация + 3D‑снимок</a>
+      <a class="btn btn-o" href="#visit">Как проходит приём</a>
+    </div>
+    <div class="chips"><span class="chip"><span class="s">★</span> 4.9 · 95 отзывов</span><span class="chip">Без боли · седация</span><span class="chip">Рассрочка 0%</span></div>
+  </div>
+  <div class="hero-ph">
+    <div class="main"><img src="assets/gen-w-hero.jpg" alt="Расслабленная пациентка в светлой клинике"></div>
+    <div class="bubble">Тут спокойно 🙂</div>
+  </div>
+</div></header>
+
+<section class="qa" id="qa"><div class="wrap">
+  <div class="h reveal"><span class="eyebrow">Честные ответы</span><h2 class="nn">Вопросы, из‑за которых тянут с визитом</h2><p>То, что обычно стесняются спросить. Отвечаем прямо.</p></div>
+  <details class="reveal" open><summary><span class="pl">+</span>А будет больно?</summary><div class="ans">Нет. Современная анестезия убирает боль, а для тревожных есть <b>седация</b> — вы будто дремлете. Перед любым действием врач предупреждает, что сейчас будет. Больно от неизвестности — мы её убираем.</div></details>
+  <details class="reveal"><summary><span class="pl">+</span>Сколько это стоит на самом деле?</summary><div class="ans">Цену называем <b>сразу и письменно</b> на бесплатной консультации — и она не меняется. «Зубы за 1 день» (All‑on‑4) — <b>от 149 900 ₽</b> под ключ, рассрочка 0% от 6 246 ₽/мес. Никаких «вскрылось по ходу — доплатите».</div></details>
+  <details class="reveal"><summary><span class="pl">+</span>«За один день» — это правда?</summary><div class="ans">Да. В день операции ставим 4 импланта и <b>несъёмный временный протез</b> — домой вы уходите уже с зубами. Постоянный циркониевый ставим через 4–6 месяцев, когда всё прижилось.</div></details>
+  <details class="reveal"><summary><span class="pl">+</span>Я давно не был у стоматолога, будет стыдно?</summary><div class="ans">Не будет. Мы правда видели всё и никого не осуждаем — наша работа помочь, а не пристыдить. Чем раньше придёте, тем проще и дешевле решение.</div></details>
+  <details class="reveal"><summary><span class="pl">+</span>А вдруг мне это вообще не подойдёт?</summary><div class="ans">Тогда так и скажем. Консультация ни к чему не обязывает: вы получаете снимок, план и цену — и спокойно решаете сами, без давления и звонков «ну что надумали».</div></details>
+</div></section>
+
+<section class="visit" id="visit"><div class="wrap">
+  <div class="h reveal"><span class="eyebrow">Без сюрпризов</span><h2 class="nn">Что будет на первом приёме</h2><p>Это просто знакомство. Лечить в этот день никто не будет.</p></div>
+  <div class="steps">
+    <div class="vstep reveal"><div class="ic">☺</div><div class="no">ШАГ 01</div><h3 class="nn">Знакомство</h3><p>Спокойно поговорим, расспросим, что беспокоит.</p></div>
+    <div class="vstep reveal"><div class="ic">◎</div><div class="no">ШАГ 02</div><h3 class="nn">3D‑снимок</h3><p>Делаем КТ — видно реальную картину, а не «на глаз».</p></div>
+    <div class="vstep reveal"><div class="ic">✓</div><div class="no">ШАГ 03</div><h3 class="nn">План и цена</h3><p>Показываем варианты и точную стоимость письменно.</p></div>
+    <div class="vstep reveal"><div class="ic">♡</div><div class="no">ШАГ 04</div><h3 class="nn">Решаете вы</h3><p>Без давления. Хотите подумать — спокойно думайте.</p></div>
+  </div>
+</div></section>
+
+<section class="flag"><div class="wrap"><div class="flag-cap reveal">
+  <div class="ph"><img src="assets/gen-w-room.jpg" alt="Светлый дружелюбный кабинет"></div>
+  <div>
+    <span class="eyebrow">Зубы за 1 день · All‑on‑4</span>
+    <h2 class="nn">Объясняем без медицинского тумана</h2>
+    <p class="intro">Несъёмные зубы вместо съёмного протеза — за три понятных шага.</p>
+    <div class="s"><b>1</b><span>Диагностика и план<i>КТ, 3D‑планирование, фиксированная цена</i></span></div>
+    <div class="s"><b>2</b><span>Зубы в день операции<i>4 импланта и несъёмный протез сразу</i></span></div>
+    <div class="s"><b>3</b><span>Постоянный цирконий<i>через 4–6 месяцев, когда прижилось</i></span></div>
+    <div class="price">от 149 900 ₽ <small>под ключ · рассрочка 0% — от 6 246 ₽/мес</small></div>
+  </div>
+</div></div></section>
+
+<section class="docs" id="docs"><div class="wrap">
+  <div class="h reveal"><span class="eyebrow">Наша команда</span><h2 class="nn">Добрые и нестрашные</h2><p>Познакомьтесь заранее — лечиться будете у того, кто понравился.</p></div>
+  <div class="docs-grid">
+    <div class="dr reveal"><div class="ph"><img src="../07-concept/assets/doc-implantolog.jpg" alt="Магомедов Магомед"></div><div class="sp">Хирург‑имплантолог</div><h3 class="nn">Магомедов Магомед</h3><p class="q">«Объясняю каждый шаг — так не страшно».</p></div>
+    <div class="dr reveal"><div class="ph"><img src="../07-concept/assets/doc-1.jpg" alt="Додова Заира"></div><div class="sp">Гл. врач · ортопед</div><h3 class="nn">Додова Заира</h3><p class="q">«Сделаю красиво и удобно — как для себя».</p></div>
+    <div class="dr reveal"><div class="ph"><img src="../07-concept/assets/doc-2.jpg" alt="Хасханова Диана"></div><div class="sp">Ортодонт</div><h3 class="nn">Хасханова Диана</h3><p class="q">«Ровный прикус в любом возрасте — это реально».</p></div>
+    <div class="dr reveal"><div class="ph"><img src="../07-concept/assets/doc-3.jpg" alt="Султыгова Петимат"></div><div class="sp">Терапевт</div><h3 class="nn">Султыгова Петимат</h3><p class="q">«Сохраняю зубы до последнего — лечу бережно».</p></div>
+  </div>
+</div></section>
+
+<section class="offer" id="offer"><div class="wrap"><div class="offer-cap reveal"><div class="in">
+  <span class="eyebrow" style="color:#fff">Первый шаг</span>
+  <h2 class="nn" style="margin-top:12px">Просто приходите познакомиться</h2>
+  <p>Консультация, 3D‑снимок и честный план — <span class="free">0 ₽</span>. И никаких «потом доплатите».</p>
+  <a class="btn btn-w" href="#">Записаться на консультацию</a>
+  <span class="ph">или позвоните: <a href="tel:+74953200407">+7 (495) 320‑04‑07</a></span>
+</div></div></div></section>
+
+<footer><div class="wrap foot">
+  <div><div class="big nn">MFC<span style="color:var(--blue)">.</span>Clinic</div><div style="margin-top:6px">Дружелюбная стоматология у Белорусской</div></div>
+  <div><div class="big nn">2‑й Боткинский проезд, 8</div><div style="margin-top:6px">м. Белорусская · ежедневно 9:00–21:00</div></div>
+  <div><a href="tel:+74953200407" style="font-weight:800">+7 (495) 320‑04‑07</a></div>
+</div></footer>
+
+<a class="tagchip" href="index.html">← Направление · Тёплая мастерская · к галерее</a>
+<script>
+(function(){
+  var nav=document.getElementById('nav');var on=function(){nav.classList.toggle('scrolled',window.scrollY>12)};window.addEventListener('scroll',on,{passive:true});on();
+  var animOn=document.documentElement.classList.contains('anim');var els=[].slice.call(document.querySelectorAll('.reveal'));
+  if(!animOn||!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')});},1600);
+})();
+</script>
+</body></html>
