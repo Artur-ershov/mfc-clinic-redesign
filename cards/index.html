@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MFC Clinic — Карточки для Яндекс Карт</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+:root{--bg:#F4EFE6;--surface:#FBF8F2;--ink:#2E2A24;--muted:#665F54;--line:#E2DACB;--accent:#8FA6A1;--accentDeep:#6E8782}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+.top{padding:22px 0;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px}
+.logo{font-family:'Cormorant Garamond';font-weight:600;font-size:24px;margin-right:auto}
+.logo b{color:var(--accentDeep);font-weight:600}
+.back{font-size:14px;color:var(--muted)}
+.head{padding:52px 0 28px}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accentDeep);font-weight:700}
+h1{font-family:'Cormorant Garamond';font-weight:600;font-size:clamp(30px,4.6vw,50px);line-height:1.05;margin:12px 0 14px}
+.head p{color:var(--muted);font-size:16.5px;max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:20px 0 24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 46px rgba(46,42,36,.12)}
+.card img{width:100%;aspect-ratio:690/650;object-fit:cover;border-bottom:1px solid var(--line)}
+.card .b{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.card .t{font-weight:700;font-size:14.5px}
+.card .dl{font-size:13px;color:var(--accentDeep);font-weight:700;white-space:nowrap}
+.note{font-size:13.5px;color:var(--muted);padding:10px 0 70px;max-width:800px}
+@media(max-width:980px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div id="g" style="position:fixed;inset:0;z-index:9999;background:#2E2A24;display:grid;place-items:center;font-family:Manrope,system-ui">
+ <form id="gf" style="background:#FBF8F2;padding:34px;border-radius:18px;text-align:center;max-width:340px;width:90%">
+  <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;margin-bottom:4px">MFC Clinic — материалы</div>
+  <div style="color:#888;font-size:13px;margin-bottom:16px">Доступ по паролю</div>
+  <input id="gp" type="password" placeholder="Пароль" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;text-align:center;margin-bottom:10px;font-size:15px">
+  <button style="width:100%;padding:13px;border:0;border-radius:10px;background:#8FA6A1;color:#2E2A24;font-weight:700;cursor:pointer;font-size:15px">Открыть</button>
+  <div id="ge" style="color:#c0392b;font-size:12px;margin-top:8px;min-height:14px"></div>
+ </form>
+</div>
+<script>(function(){var H="8e8db19d90f14ffb5556faba69b9a231e5a2c0739426c89bf14abb22d95cb928";var inIf=false;try{inIf=top!==self}catch(e){inIf=true}var ok=false;try{ok=sessionStorage.getItem('mfc_ok')==='1'}catch(e){}var g=document.getElementById('g');if(inIf||ok){g.remove();return}document.documentElement.style.overflow='hidden';async function sh(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}document.getElementById('gf').addEventListener('submit',async function(e){e.preventDefault();var h=await sh(document.getElementById('gp').value);if(h===H){try{sessionStorage.setItem('mfc_ok','1')}catch(e){}document.documentElement.style.overflow='';g.remove()}else{document.getElementById('ge').textContent='Неверный пароль'}})})();</script>
+
+<div class="top"><div class="wrap"><div class="logo">MFC<b>.</b>Clinic</div><a class="back" href="../concepts/index.html">← К концептам</a></div></div>
+
+<div class="wrap">
+  <div class="head">
+    <span class="eyebrow">Яндекс Карты · Витрина услуг</span>
+    <h1>Карточки услуг и акций</h1>
+    <p>7 карточек 690×650 (рендер 2x — 1380×1300) в фирменном стиле концепта J·Hush Bay: овсяный фон, минеральный шалфей, арка-портал, Cormorant + Manrope. Фото — реальная съёмка клиники (Максим Мотов, 23.06.2026). Клик по карточке — открыть PNG в полном размере.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><a href="01-consult.png" target="_blank"><img src="01-consult.png" alt="Консультация всего 2 500 ₽"></a><div class="b"><span class="t">01 · Консультация 2 500 ₽</span><a class="dl" href="01-consult.png" download>Скачать ↓</a></div></div>
+    <div class="card"><a href="02-allon.png" target="_blank"><img src="02-allon.png" alt="Несъёмные зубы за 3 дня"></a><div class="b"><span class="t">02 · Несъёмные зубы за 3 дня</span><a class="dl" href="02-allon.png" download>Скачать ↓</a></div></div>
+    <div class="card"><a href="03-caries.png" target="_blank"><img src="03-caries.png" alt="Лечение кариеса"></a><div class="b"><span class="t">03 · Лечение кариеса</span><a class="dl" href="03-caries.png" download>Скачать ↓</a></div></div>
+    <div class="card"><a href="04-checkup.png" target="_blank"><img src="04-checkup.png" alt="Стоматологический чек-ап"></a><div class="b"><span class="t">04 · Чек-ап 5 500 ₽</span><a class="dl" href="04-checkup.png" download>Скачать ↓</a></div></div>
+    <div class="card"><a href="05-ortho.png" target="_blank"><img src="05-ortho.png" alt="Расширенный осмотр ортодонта"></a><div class="b"><span class="t">05 · Осмотр ортодонта 6 500 ₽</span><a class="dl" href="05-ortho.png" download>Скачать ↓</a></div></div>
+    <div class="card"><a href="06-implant.png" target="_blank"><img src="06-implant.png" alt="Импланты Osstem по акции"></a><div class="b"><span class="t">06 · Импланты Osstem · акция</span><a class="dl" href="06-implant.png" download>Скачать ↓</a></div></div>
+    <div class="card"><a href="07-hygiene.png" target="_blank"><img src="07-hygiene.png" alt="Гигиена по акции"></a><div class="b"><span class="t">07 · Гигиена · акция</span><a class="dl" href="07-hygiene.png" download>Скачать ↓</a></div></div>
+  </div>
+  <p class="note">Три шаблона: спецпредложение (текст + фото-арка), акция с фото (фото сверху + крупная цена), акция с чек-листом (бейджи «Акция»/«Новый врач», старая цена зачёркнута, тикер-строка). Цены и формулировки — по утверждённым текстам; «без боли» не обещаем, тон спокойный.</p>
+</div>
+</body></html>
