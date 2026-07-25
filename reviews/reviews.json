@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "client": "MFC Clinic / МФЦ Клиника",
+    "legal_entity": "ООО «Стоматология Азбука Здоровья»",
+    "inn": "7714940933",
+    "address": "Москва, 2-й Боткинский проезд, 8",
+    "captured_at": "2026-07-25",
+    "method": "Сбор через WebSearch (6 параллельных агентов по разным срезам: площадки, карты, длинный хвост, негатив, услуги, конкуренты). Прямой доступ к страницам отзывов невозможен: egress-прокси отклоняет все хосты площадок (CONNECT 403), WebFetch возвращает 403 на любой URL. Собирались сниппеты и сводки поисковой выдачи.",
+    "raw_records": 76,
+    "distinct_reviews_identified": 26,
+    "verbatim_count": 3,
+    "coverage_note": "26 различимых отзывов против ~188 заявленных на подтверждённых площадках = ~14% по факту существования, ~1.6% дословно. Это НЕ полный корпус."
+  },
+
+  "platforms": [
+    {"platform": "Яндекс Карты", "url": "https://yandex.ru/maps/org/mfc_clinic/1327781155/", "rating": 4.9, "reviews": 96, "ratings_total": 168, "regime": "открытая, без верификации визита", "badge": "«Хорошее место 2026»", "confirmed": true, "captured_reviews": 2},
+    {"platform": "ПроДокторов", "url": "https://prodoctorov.ru/moskva/lpu/41141-mfc-clinic/", "rating": 3.8, "reviews": 39, "regime": "профильная, верификация визита", "confirmed_count": true, "confirmed_rating": false, "rating_source": "перенесено из отчёта от 19.06.2026, этим прогоном НЕ подтверждено", "captured_reviews": 9, "doctors_listed": 7, "staff_listed": "8 специалистов высшего звена + 2 младшего"},
+    {"platform": "Zoon", "url": "https://zoon.ru/msk/medical/stomatologicheskaya_klinika_mfts_klinik_vo_2-m_botkinskom_proezde/", "rating": 3.3, "rating_range": "3.2–3.3", "reviews": 11, "regime": "открытая", "confirmed": true, "captured_reviews": 2, "duplicate_slug": "https://zoon.ru/msk/medical/stomatologicheskaya_klinika_mfc_clinic_vo_..."},
+    {"platform": "2ГИС", "url": "https://2gis.ru/moscow/firm/70000001022491704", "rating": 5.0, "reviews": 8, "photos": 34, "regime": "открытая", "confirmed": true, "captured_reviews": 1, "note": "URL /branches/70000001022491703 — НЕ дубль, это branch-list-родитель"},
+    {"platform": "TopDent", "url": "https://topdent.ru/clinics/mfts-klinik/otzyvy/", "rating": 4.1, "reviews": 9, "regime": "профильный каталог", "confirmed": true, "captured_reviews": 5},
+    {"platform": "32top", "url": "https://www.32top.ru/clinics/15119/", "rating": 4.6, "reviews": 10, "positive": 9, "regime": "каталог", "confirmed": true, "captured_reviews": 0, "note": "единственная площадка с актуальным телефоном 320-04-07"},
+    {"platform": "kleos.ru", "url": "https://www.kleos.ru/meditsina/stomatologicheskaya-klinika-mfts-klinik/", "rating": 4.6, "reviews": 7, "recommend": 3, "regime": "каталог", "confirmed": true, "captured_reviews": 4, "note": "рейтинг 4.6 и «рекомендуют 3 из 7» противоречат друг другу — 43% рекомендаций"},
+    {"platform": "zubla.ru", "url": "https://zubla.ru/stomatologi/magomedov-magomed-10891/", "rating": null, "reviews": 8, "regime": "врачебный каталог", "confirmed": true, "captured_reviews": 0, "note": "карточка Магомедова М.И.; смешанный тон, единственное во всём хвосте упоминание осложнений после хирургии — приоритет ручной проверки"},
+    {"platform": "1dentist карточка A", "url": "https://1dentist.ru/clinics/clinic/stomatologiya-mfts-klinik/", "rating": 0, "reviews": 0, "regime": "каталог", "confirmed": true, "is_duplicate": true},
+    {"platform": "1dentist карточка B", "url": "https://1dentist.ru/clinics/clinic/stomatologiya-mfc-clinic/", "rating": 0, "reviews": 0, "regime": "каталог", "confirmed": true, "is_duplicate": true},
+    {"platform": "isprav.ru", "url": "https://isprav.ru/company/mfts-klinik_botkinskii-2-i-proezd_8/", "rating": null, "reviews": 13, "confirmed": false},
+    {"platform": "meddoclab.ru", "url": null, "rating": null, "reviews": 26, "confirmed": false},
+    {"platform": "Google Maps", "url": null, "rating": null, "reviews": null, "confirmed": false, "note": "карточка не найдена"}
+  ],
+
+  "reviews": [
+    {"id": "N1", "sentiment": "neg", "theme": ["цена"], "severity": "высокая", "platforms": ["1dentist", "TopDent"], "corroborated_by": ["A", "D", "E"], "fidelity": "paraphrase", "doctor": null, "service": "лечение кариеса / пломба", "date": null,
+     "text": "Администратор назвал 2200 ₽ за пломбу + 450 ₽ за анестезию, по итоговому счёту насчитали 3400 ₽ — при том что никаких дополнительных работ не выполнялось. Пациент утверждает: пломбы по заявленной цене 2200 ₽ не существует."},
+
+    {"id": "N2", "sentiment": "neg", "theme": ["цена", "документы", "ресепшен"], "severity": "высокая", "platforms": ["1dentist", "TopDent", "Zoon"], "corroborated_by": ["A", "D"], "fidelity": "paraphrase", "doctor": null, "service": "консультация", "date": null,
+     "text": "Консультация заявлена бесплатной, но на месте требуют подписать договор на платные услуги и предъявить паспорт. По телефону об этом заранее не предупреждают."},
+
+    {"id": "N3", "sentiment": "neg", "theme": ["ресепшен", "персонал"], "severity": "высокая", "platforms": ["TopDent", "kleos"], "corroborated_by": ["A", "C", "D", "E"], "fidelity": "verbatim", "doctor": null, "service": null, "date": null,
+     "text": "Ужасная клиника и коллектив в том числе, за исключением нескольких человек. Никакой дисциплины и уважения к пациентам."},
+
+    {"id": "N4", "sentiment": "neg", "theme": ["навигация", "приватность", "ресепшен"], "severity": "высокая", "platforms": ["TopDent", "1dentist"], "corroborated_by": ["C", "D"], "fidelity": "paraphrase", "doctor": null, "service": null, "date": null,
+     "text": "Клиника арендует кабинет на этаже другой клиники. Стойка-ресепшн стоит в коридоре между стульями, на которых пациенты ДРУГОЙ клиники ожидают приёма — то есть оплата и обсуждение диагноза происходят при посторонних.",
+     "note": "Единственная жалоба, на которую зафиксирован ответ клиники — и это оправдание: «мы здесь 5 лет, появились раньше других»."},
+
+    {"id": "N5", "sentiment": "neg", "theme": ["документы", "юридическое", "цена"], "severity": "критическая", "platforms": ["kleos"], "corroborated_by": ["C", "D", "E"], "fidelity": "paraphrase", "doctor": null, "service": "документы / налоговый вычет", "date": null,
+     "text": "Справки для налогового вычета оформлены неправильно — налоговая (в другом городе) их не приняла. Документы выданы без печатей и подписей организации, юридической силы такие бумаги не имеют. Деньги взяли, а план лечения не выдали.",
+     "note": "Новая тема — в разборе отзывов от 19.06.2026 её не было. Это не сервисный сбой, а дефект медицинского и финансового документооборота."},
+
+    {"id": "N6", "sentiment": "neg", "theme": ["деградация", "врач"], "severity": "средняя", "platforms": ["kleos"], "corroborated_by": ["D", "E"], "fidelity": "paraphrase", "doctor": "Мурзабеков А.И.", "service": null, "date": "2016–2018 как точка отсчёта",
+     "text": "В 2016–2018 годах клиника была хорошая, потом стало хуже. К врачу Мурзабекову не рекомендую обращаться."},
+
+    {"id": "N7", "sentiment": "neg", "theme": ["качество лечения"], "severity": "высокая", "platforms": ["ПроДокторов"], "corroborated_by": ["A"], "fidelity": "paraphrase", "doctor": "Мурзабеков А.И.", "service": "удаление зуба", "date": null,
+     "text": "Оставленные осколки зубов после удаления и последующее воспаление.",
+     "note": "Единственная во всём корпусе претензия к клиническому результату, поднятая с профильной площадки."},
+
+    {"id": "N8", "sentiment": "neg", "theme": ["документы", "цена", "врач"], "severity": "высокая", "platforms": ["kleos"], "corroborated_by": ["D", "E"], "fidelity": "paraphrase", "doctor": "Мурзабеков А.И.", "service": null, "date": null,
+     "text": "Не советую обращаться к Мурзабекову: берёт деньги, но не даёт план лечения."},
+
+    {"id": "N9", "sentiment": "neg", "theme": ["ресепшен", "персонал"], "severity": "средняя", "platforms": ["TopDent"], "corroborated_by": ["C"], "fidelity": "paraphrase", "doctor": null, "service": null, "date": null,
+     "text": "На ресепшене — молодой человек, который месяцем ранее вёл в клинике ремонтные работы."},
+
+    {"id": "N10", "sentiment": "neg", "theme": ["качество лечения", "навязывание"], "severity": "не подтверждена", "platforms": ["не установлена"], "corroborated_by": ["D"], "fidelity": "paraphrase", "doctor": null, "service": "гигиена / лечение дёсен", "date": null, "suspect": true,
+     "text": "Поцарапали язык, порвали десну; уговорили на лечение дёсен препаратом за 15 000 ₽.",
+     "note": "При двух перепроверках источник не подтвердился. НЕ засчитывать как факт."},
+
+    {"id": "P1", "sentiment": "pos", "theme": ["боль", "анестезия", "качество лечения"], "platforms": ["TopDent"], "corroborated_by": ["A", "C", "E"], "fidelity": "paraphrase", "doctor": "Магомедов М.И. («хирург Магомед»)", "service": "удаление зубов мудрости", "date": null,
+     "text": "Удаление восьмёрок перед установкой брекетов по рекомендации знакомой. Анестезия подействовала, пациентка ничего не чувствовала, после удаления боли не было, рана зажила очень быстро."},
+
+    {"id": "P2", "sentiment": "pos", "theme": ["качество лечения", "боль", "врач"], "platforms": ["ПроДокторов"], "corroborated_by": ["E"], "fidelity": "paraphrase", "doctor": "Магомедов М.И.", "service": "имплантация", "date": null,
+     "text": "Ставит импланты быстро и без боли, примерно за 30 минут; заранее рассказывает о ходе операции, выписывает нужные препараты. Отмечают чёткость в каждом движении."},
+
+    {"id": "P3", "sentiment": "pos", "theme": ["качество лечения", "врач"], "platforms": ["ПроДокторов", "TopDent", "kleos"], "corroborated_by": ["A", "E"], "fidelity": "paraphrase", "doctor": "Мурзабеков А.И.", "service": "хирургия / костная пластика / имплантация", "date": null,
+     "text": "Удаление зубов, костная пластика челюстно-лицевой области и внутрикостная имплантация проведены без осложнений. Врач «заслуживает только слов благодарности»."},
+
+    {"id": "P4", "sentiment": "pos", "theme": ["врач", "сопровождение"], "platforms": ["kleos", "ПроДокторов"], "corroborated_by": ["A"], "fidelity": "paraphrase", "doctor": "Мурзабеков А.И.", "service": null, "date": null,
+     "text": "Профессионализм, доброта, вежливость и внимательность. Пациенты наблюдаются у него несколько лет; работает кропотливо и качественно, вызывает доверие."},
+
+    {"id": "P5", "sentiment": "pos", "theme": ["врач"], "platforms": ["ПроДокторов"], "corroborated_by": ["A", "E"], "fidelity": "verbatim", "doctor": "Додова З.И.", "service": null, "date": null,
+     "text": "Заира Исаевна — прекрасный врач!",
+     "note": "Пациент приятно удивлён, что такой молодой специалист — профессионал своего дела. Отзыв всплывает и в контексте МЦ «Медстоун» — привязка к MFC не гарантирована."},
+
+    {"id": "P6", "sentiment": "pos", "theme": ["результат", "качество лечения"], "platforms": ["ПроДокторов", "kleos"], "corroborated_by": ["A", "E"], "fidelity": "paraphrase", "doctor": "Додова З.И.", "service": "протезирование", "date": null,
+     "text": "Пациент доволен результатом: «красивые, ровные зубы»; теперь полноценный набор функционирующих зубов."},
+
+    {"id": "P7", "sentiment": "pos", "theme": ["качество лечения", "врач"], "platforms": ["ПроДокторов"], "corroborated_by": ["A"], "fidelity": "paraphrase", "doctor": "Султыгова П.А.", "service": "лечение кариеса / гигиена / лечение дёсен", "date": "2024-03",
+     "text": "Пришёл в марте 2024 по рекомендации подруги. Врач вылечила 9 зубов: сначала чистка, затем лечение дёсен. Большая благодарность.",
+     "note": "Единственный отзыв во всём корпусе с установленной датой."},
+
+    {"id": "P8", "sentiment": "pos", "theme": ["врач", "ресепшен", "персонал"], "platforms": ["Яндекс Карты"], "corroborated_by": ["B"], "fidelity": "paraphrase", "doctor": "Додова З.И.", "service": null, "date": null,
+     "text": "«Прекрасная стоматология», «замечательный коллектив», «вежливые внимательные сотрудники». Отдельно выделены главврач Додова — «спокойная, собранная, дотошная, постоянно внедряет новейшие научно-технические разработки» — и поимённо администраторы Валерия и Лилия: «внимательные, вежливые, уравновешенные».",
+     "note": "Прямо противоречит N3/N9 по ресепшену. Расхождение проходит по линии площадок: похвала — на Яндексе, критика — в каталогах."},
+
+    {"id": "P9", "sentiment": "pos", "theme": ["результат", "цена"], "platforms": ["Zoon"], "corroborated_by": ["B"], "fidelity": "paraphrase", "doctor": null, "service": "реставрация передних зубов", "date": null,
+     "text": "Делал реставрацию передних зубов, результатом доволен; отмечает адекватные цены и внимательное отношение врачей."},
+
+    {"id": "P10", "sentiment": "pos", "theme": ["качество лечения"], "platforms": ["1dentist", "ПроДокторов"], "corroborated_by": ["A", "E"], "fidelity": "paraphrase", "doctor": null, "service": null, "date": null,
+     "text": "Благодарность коллективу за добросовестное и качественное лечение; отмечены комплексный подход врачей и внимательность."},
+
+    {"id": "P11", "sentiment": "pos", "theme": ["консультация", "прозрачность"], "platforms": ["ПроДокторов"], "corroborated_by": ["main"], "fidelity": "paraphrase", "doctor": null, "service": "консультация", "date": null,
+     "text": "На первой консультации сделали фотографии зубов и наглядно показали все болячки. Пациенты рекомендуют клинику.",
+     "note": "Важно: фотопротокол — это ровно тот инструмент прозрачности, которого не хватает в ценовой части."},
+
+    {"id": "P12", "sentiment": "pos", "theme": ["качество лечения"], "platforms": ["Startsmile"], "corroborated_by": ["E"], "fidelity": "paraphrase", "doctor": null, "service": "имплантация + костная пластика", "date": null,
+     "text": "Провели установку импланта и компенсировали недостаток костной ткани специальной накладкой."},
+
+    {"id": "P13", "sentiment": "pos", "theme": ["качество лечения", "запись", "сопровождение", "цена"], "platforms": ["не установлена"], "corroborated_by": ["E"], "fidelity": "paraphrase", "doctor": null, "service": "терапия", "date": null,
+     "text": "После других клиник с долгим ожиданием и поверхностным лечением пациент перешёл сюда и остался доволен: тщательный осмотр, аккуратное лечение, исправили дефекты старых пломб, современные материалы, умеренные цены, общение через мессенджер без лишних звонков, короткое ожидание записи, экстренный приём в тот же день."},
+
+    {"id": "P14", "sentiment": "pos", "theme": ["врач"], "platforms": ["kleos", "Zoon"], "corroborated_by": ["E"], "fidelity": "paraphrase", "doctor": "ортодонт «Илиза» — НЕ в текущем составе", "service": "ортодонтия", "date": null,
+     "text": "Ортодонт Илиза — отличный доктор, рекомендую."},
+
+    {"id": "P15", "sentiment": "pos", "theme": ["анестезия", "врач"], "platforms": ["TopDent"], "corroborated_by": ["E"], "fidelity": "paraphrase", "doctor": "«Амирхан Измирович» — НЕ в текущем составе", "service": "анестезия / хирургия", "date": null,
+     "text": "Профессионализм врача и внимание к обезболиванию при анестезии."},
+
+    {"id": "P16", "sentiment": "pos", "theme": ["качество лечения", "боль"], "platforms": ["TopDent"], "corroborated_by": ["E"], "fidelity": "paraphrase", "doctor": "Магомедгаджиев — НЕ в текущем составе", "service": "удаление зуба / хирургия", "date": null,
+     "text": "Успешно проведённая операция удаления зуба — анестезия подействовала хорошо, после удаления боли не было, рана быстро зажила."}
+  ],
+
+  "doctors": [
+    {"name": "Додова Заира Иссаевна", "role_site": "главный врач, стоматолог-ортопед", "on_site": true, "prodoctorov": true, "reviews_prodoctorov": 22, "reviews_kleos": 6, "rating": 4.9, "also_listed_at": "МЦ «Медстоун» (Ленинский)", "sentiment": "положительный"},
+    {"name": "Магомедов Магомед Ильясович", "role_site": "хирург-имплантолог", "on_site": true, "prodoctorov": false, "reviews_zubla": 8, "also_listed_at": null, "sentiment": "положительный", "note": "Профиль на ПроДокторов не найден. На zubla.ru 8 отзывов со смешанным тоном."},
+    {"name": "Хасханова Диана Ширваниевна", "role_site": "врач-ортодонт", "on_site": true, "prodoctorov": false, "also_listed_at": "«Д-Медико»", "sentiment": "нет отзывов", "note": "Подтверждается только сайтом клиники. Отзывов не найдено ни на одной площадке."},
+    {"name": "Султыгова Петимат Амерхановна", "role_site": "стоматолог-терапевт", "on_site": true, "prodoctorov": true, "also_listed_at": "«Нормодент» (8 Марта)", "sentiment": "положительный", "note": "Её отзывы на ПроДокторов привязаны к другому юрлицу."},
+    {"name": "Мурзабеков Ахмед Исропилович", "role_site": null, "on_site": false, "prodoctorov": true, "experience_years": 17, "also": "начальник центра стоматологии ЦКБ УДП РФ", "sentiment": "СМЕШАННЫЙ", "note": "На ПроДокторов подан как фактический лидер команды («возглавляет команду профессионалов»). На сайте клиники ОТСУТСТВУЕТ. Единственный врач со смешанными отзывами и единственный адресат негатива."},
+    {"name": "Валерия Николаевна", "role_site": "старший администратор", "on_site": true, "sentiment": "положительный", "note": "Названа поимённо в позитивном отзыве на Яндексе вместе с администратором Лилией."}
+  ],
+
+  "ghost_doctors": ["Шендяпин", "Ахмедов", "Магомедгаджиев", "ортодонт «Илиза»", "«Амирхан Измирович»"],
+
+  "competitors_prodoctorov": [
+    {"name": "Дантистофф на Беговой", "reviews": 175, "rating": null},
+    {"name": "ИмплантЛив (Ленинградский 28)", "reviews": 117, "rating": null},
+    {"name": "ПрезиДЕНТ на Беговой", "reviews": 79, "rating": null, "badge": "премия ПроДокторов 2025"},
+    {"name": "«Лёгкая стоматология» на Беговой", "reviews": 79, "rating": 4.3, "badge": "премия ПроДокторов 2024"},
+    {"name": "«Бего»", "reviews": 74, "rating": null},
+    {"name": "MFC Clinic", "reviews": 39, "rating": 3.8, "is_client": true},
+    {"name": "Smile Symphony на Беговой", "reviews": 11, "rating": null},
+    {"name": "Дентал Арт Центр", "reviews": 11, "rating": null},
+    {"name": "Новостом (Петровско-Разумовская)", "reviews": 7, "rating": null}
+  ],
+
+  "contact_fragmentation": {
+    "phones_in_wild": ["+7 495 320-04-07 (актуальный, только на 32top)", "+7 495 585-97-77", "+7 925 585-97-77", "+7 495 518-94-02", "+7 967 297-10-97 (на ПроДокторов)"],
+    "name_variants": ["МФЦ Клиник", "МФЦ Клиника", "MFC Clinic", "Мфц Клиник"],
+    "doctors_count_in_cards": [1, 4, 7],
+    "hours_variants": "расходятся втрое, включая «круглосуточно»",
+    "profile_distortion": "mrt-v-msk.ru и 36go индексируют стоматологию как МРТ/КТ-центр с томографом Hitachi Aperto",
+    "twin_domains": ["mrt-v-msk.ru", "mrt-vmsk.ru"],
+    "unresolved": "Отдельный объект «MFC CLINIC» на Ленинском пр-те, 123 (м. Тропарёво) — тёзка или филиал, не установлено"
+  },
+
+  "legal_check": {
+    "arbitration": "не найдено",
+    "general_jurisdiction": "не найдено",
+    "rospotrebnadzor_roszdravnadzor": "не найдено",
+    "license": "ЛО-77-01-009398 — сходится с юрлицом и адресом, подлога нет",
+    "fssp": "3 исполнительных производства, часть зарегистрирована в октябре 2024; предмет и суммы установить нечем",
+    "director": "Петров Р.Н. (не главврач)",
+    "charter_capital": "10 000 ₽"
+  },
+
+  "not_found": {
+    "zero_reviews_services": ["All-on-4 / All-on-6", "виниры", "отбеливание ZOOM", "лечение под микроскопом Карл Цейсс", "профгигиена", "эндодонтия", "элайнеры", "КТ"],
+    "zero_presence": ["Otzovik", "iRecommend", "VK", "Telegram", "форумы", "чёрные списки", "Google Maps"],
+    "unverified_claims": [
+      "«Свежие 5★ из Красноярска» на Яндексе — тезис из отчёта от 19.06.2026 НЕ подтверждён и НЕ опровергнут; тела и авторы яндексовских отзывов поиском не индексируются. Публиковать в текущем виде нельзя.",
+      "Рейтинг ПроДокторов 3.8 — этим прогоном не подтверждён, перенесён из июньского отчёта.",
+      "Отвечает ли клиника на отзывы системно — не установлено. Косвенно: страница ПроДокторов содержит «ответы администрации клиники», зафиксирован 1 ответ (оправдание на жалобу о ресепшене)."
+    ]
+  }
+}

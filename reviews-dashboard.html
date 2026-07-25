@@ -1,0 +1,797 @@
+<title>MFC Clinic — разбор отзывов</title>
+<style>
+:root{
+  --ground:#F4F6F7; --surface:#FFFFFF; --surface-2:#EDF1F2; --line:#D7DEE1; --line-soft:#E5EBEC;
+  --ink:#0F1719; --ink-2:#3C4B50; --ink-3:#68797F;
+  --cat-a:#0089A8; --cat-b:#BE7A15;
+  --neg:#BE3B22; --pos:#12855A; --warn:#C2871A;
+  --neg-bg:#FBEDEA; --pos-bg:#E9F4EF; --warn-bg:#FBF2E2;
+  --shadow:0 1px 2px rgba(15,23,25,.06),0 6px 16px -8px rgba(15,23,25,.12);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --ground:#0E1214; --surface:#161C1F; --surface-2:#1E262A; --line:#2C373C; --line-soft:#232D31;
+    --ink:#E9EEEF; --ink-2:#A8B7BC; --ink-3:#7A8A90;
+    --cat-a:#19A5C6; --cat-b:#B8821F;
+    --neg:#E06E56; --pos:#35A87C; --warn:#D2A03F;
+    --neg-bg:#2A1712; --pos-bg:#10241C; --warn-bg:#261D0D;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px -8px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1214; --surface:#161C1F; --surface-2:#1E262A; --line:#2C373C; --line-soft:#232D31;
+  --ink:#E9EEEF; --ink-2:#A8B7BC; --ink-3:#7A8A90;
+  --cat-a:#19A5C6; --cat-b:#B8821F;
+  --neg:#E06E56; --pos:#35A87C; --warn:#D2A03F;
+  --neg-bg:#2A1712; --pos-bg:#10241C; --warn-bg:#261D0D;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px -8px rgba(0,0,0,.6);
+}
+:root[data-theme="light"]{
+  --ground:#F4F6F7; --surface:#FFFFFF; --surface-2:#EDF1F2; --line:#D7DEE1; --line-soft:#E5EBEC;
+  --ink:#0F1719; --ink-2:#3C4B50; --ink-3:#68797F;
+  --cat-a:#0089A8; --cat-b:#BE7A15;
+  --neg:#BE3B22; --pos:#12855A; --warn:#C2871A;
+  --neg-bg:#FBEDEA; --pos-bg:#E9F4EF; --warn-bg:#FBF2E2;
+  --shadow:0 1px 2px rgba(15,23,25,.06),0 6px 16px -8px rgba(15,23,25,.12);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 96px}
+h1,h2,h3{text-wrap:balance;margin:0}
+a{color:inherit}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+.mast{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.kicker b{color:var(--cat-a);font-weight:600}
+h1{font-family:var(--serif);font-size:clamp(34px,5.4vw,54px);line-height:1.08;
+  letter-spacing:-.015em;font-weight:600;margin:18px 0 0;max-width:19ch}
+.dek{font-size:19px;line-height:1.55;color:var(--ink-2);max-width:62ch;margin:20px 0 0}
+.dek strong{color:var(--ink);font-weight:600}
+
+/* ---------- generic section ---------- */
+section{padding-top:56px;scroll-margin-top:70px}
+.sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.sec-n{font-family:var(--mono);font-size:12px;color:var(--cat-a);letter-spacing:.1em;font-weight:600}
+h2{font-family:var(--serif);font-size:clamp(23px,3vw,31px);line-height:1.2;letter-spacing:-.01em;font-weight:600}
+.sub{color:var(--ink-2);max-width:70ch;margin:8px 0 26px;font-size:16.5px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:24px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}
+.grid>*{min-width:0}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:820px){.g3,.g2{grid-template-columns:1fr}}
+
+/* ---------- stat tiles ---------- */
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 22px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px}
+.stat .v{font-family:var(--mono);font-size:38px;line-height:1;font-weight:600;letter-spacing:-.02em}
+.stat .l{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.stat .n{font-size:12px;color:var(--ink-3);line-height:1.45}
+
+/* ---------- bar chart ---------- */
+.chart{display:flex;flex-direction:column;gap:2px}
+.row{display:grid;grid-template-columns:158px 1fr 90px;align-items:center;gap:12px;
+  padding:5px 8px;border-radius:6px;position:relative}
+.row:hover{background:var(--surface-2)}
+.row .nm{font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track{height:20px;background:var(--surface-2);border-radius:3px;position:relative;overflow:hidden}
+.bar{height:100%;border-radius:0 4px 4px 0;position:relative}
+.row .val{font-family:var(--mono);font-size:14px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.row .val small{color:var(--ink-3);font-size:12px}
+@media(max-width:640px){.row{grid-template-columns:120px 1fr 78px;gap:8px}.row .nm{font-size:13px}}
+
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 18px;font-size:13px;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:7px}
+.sw{width:12px;height:12px;border-radius:3px;flex:none}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:600px}
+th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;padding:13px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:12px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--surface-2)}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- chips ---------- */
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-family:var(--mono);
+  letter-spacing:.03em;padding:2.5px 8px;border-radius:20px;white-space:nowrap;font-weight:500}
+.c-neg{background:var(--neg-bg);color:var(--neg)}
+.c-pos{background:var(--pos-bg);color:var(--pos)}
+.c-warn{background:var(--warn-bg);color:var(--warn)}
+.c-mute{background:var(--surface-2);color:var(--ink-3)}
+
+/* ---------- quotes ---------- */
+.q{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--ink-3);
+  border-radius:0 8px 8px 0;padding:18px 20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.q.neg{border-left-color:var(--neg)} .q.pos{border-left-color:var(--pos)}
+.q p{margin:0;font-family:var(--serif);font-size:16.5px;line-height:1.55;color:var(--ink)}
+.q .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--ink-3)}
+
+/* ---------- callout ---------- */
+.callout{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:30px 32px;
+  box-shadow:var(--shadow);border-top:3px solid var(--cat-a)}
+.callout h3{font-family:var(--serif);font-size:24px;line-height:1.25;margin-bottom:14px;font-weight:600}
+.callout p{margin:0 0 14px;color:var(--ink-2);max-width:68ch}
+.callout p:last-child{margin-bottom:0}
+.callout strong{color:var(--ink);font-weight:600}
+.chain{display:flex;flex-direction:column;gap:0;margin:20px 0 6px;border-left:2px solid var(--line);padding-left:0}
+.chain div{padding:9px 0 9px 18px;position:relative;font-size:14.5px;color:var(--ink-2)}
+.chain div::before{content:"";position:absolute;left:-5px;top:17px;width:8px;height:8px;border-radius:50%;
+  background:var(--neg);border:2px solid var(--surface)}
+.chain b{color:var(--ink);font-weight:600}
+
+/* ---------- coverage meter ---------- */
+.cov{display:grid;grid-template-columns:150px 1fr 118px;gap:12px;align-items:center;padding:5px 8px;border-radius:6px}
+.cov:hover{background:var(--surface-2)}
+.cov .nm{font-size:14px}
+.cov .m{height:16px;background:var(--surface-2);border-radius:3px;overflow:hidden;position:relative}
+.cov .f{height:100%;background:var(--cat-a);border-radius:0 3px 3px 0}
+.cov .t{font-family:var(--mono);font-size:12.5px;text-align:right;color:var(--ink-2);font-variant-numeric:tabular-nums}
+@media(max-width:640px){.cov{grid-template-columns:110px 1fr 100px;gap:8px}}
+
+ul.clean{margin:0;padding-left:20px;color:var(--ink-2)}
+ul.clean li{margin:7px 0}
+ul.clean strong{color:var(--ink);font-weight:600}
+
+.note{font-size:13.5px;color:var(--ink-2);line-height:1.6;margin-top:14px;max-width:72ch}
+.note b{color:var(--ink);font-weight:600}
+.row>*,.cov>*,.legend>*{min-width:0}
+.q{min-width:0}
+.q p{overflow-wrap:break-word}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--ground) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-bottom:0}
+nav .in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;gap:2px;overflow-x:auto}
+nav a{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-3);text-decoration:none;padding:13px 11px;white-space:nowrap;border-bottom:2px solid transparent}
+nav a:hover{color:var(--ink);border-bottom-color:var(--line)}
+nav a:focus-visible,a:focus-visible{outline:2px solid var(--cat-a);outline-offset:2px;border-radius:3px}
+
+.foot{margin-top:64px;padding-top:26px;border-top:1px solid var(--line);color:var(--ink-3);font-size:13px;line-height:1.6}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<nav><div class="in">
+  <a href="#razryv">Разрыв</a>
+  <a href="#diagnoz">Диагноз</a>
+  <a href="#zhaloby">Жалобы</a>
+  <a href="#vrachi">Врачи</a>
+  <a href="#uslugi">Услуги</a>
+  <a href="#rynok">Рынок</a>
+  <a href="#karto4ki">Карточки</a>
+  <a href="#citaty">Цитаты</a>
+  <a href="#pokrytie">Покрытие</a>
+  <a href="#delat">Что делать</a>
+</div></nav>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">
+    <span>MFC Clinic · 2-й Боткинский проезд, 8</span>
+    <span>·</span>
+    <span>снято <b>25.07.2026</b></span>
+    <span>·</span>
+    <span>13 площадок · 26 различимых отзывов</span>
+  </div>
+  <h1>Клинику ругают не за лечение</h1>
+  <p class="dek">Во всём собранном корпусе <strong>нет ни одной подтверждённой претензии к результату лечения.</strong>
+  Хирургию, анестезию и протезирование хвалят на всех площадках без исключения. Весь негатив —
+  административный: цена, документы, ресепшен. И у всех четырёх претензий один общий корень.</p>
+</header>
+
+<!-- ============ 01 РАЗРЫВ ============ -->
+<section id="razryv">
+  <div class="sec-head"><span class="sec-n">01</span><h2>Разрыв в рейтингах — 1,7 балла</h2></div>
+  <p class="sub">Одна и та же клиника имеет 5,0 на одной площадке и 3,3 на другой. Усреднять эти
+  числа бессмысленно: они измеряют разное. Размер выборки подписан у каждой — на нём всё и держится.</p>
+
+  <div class="grid g3" style="margin-bottom:26px">
+    <div class="stat"><div class="v" style="color:var(--cat-b)">5,0</div>
+      <div class="l">максимум — 2ГИС</div><div class="n">выборка 8 отзывов</div></div>
+    <div class="stat"><div class="v" style="color:var(--neg)">3,3</div>
+      <div class="l">минимум — Zoon</div><div class="n">выборка 11 отзывов</div></div>
+    <div class="stat"><div class="v" style="color:var(--cat-a)">3,8</div>
+      <div class="l">ПроДокторов — единственная площадка с проверкой факта визита</div>
+      <div class="n">выборка 39 — вторая по величине</div></div>
+  </div>
+
+  <div class="card">
+    <div class="legend">
+      <span><i class="sw" style="background:var(--cat-a)"></i> профильная медицинская площадка</span>
+      <span><i class="sw" style="background:var(--cat-b)"></i> открытый каталог / карты</span>
+    </div>
+    <div class="chart">
+      <div class="row" title="2ГИС — 5,0 по 8 отзывам"><div class="nm">2ГИС</div>
+        <div class="track"><div class="bar" style="width:100%;background:var(--cat-b)"></div></div>
+        <div class="val">5,0 <small>n=8</small></div></div>
+      <div class="row" title="Яндекс Карты — 4,9 по 96 отзывам, 168 оценок"><div class="nm">Яндекс Карты</div>
+        <div class="track"><div class="bar" style="width:98%;background:var(--cat-b)"></div></div>
+        <div class="val">4,9 <small>n=96</small></div></div>
+      <div class="row" title="32top — 4,6 по 10 отзывам"><div class="nm">32top</div>
+        <div class="track"><div class="bar" style="width:92%;background:var(--cat-b)"></div></div>
+        <div class="val">4,6 <small>n=10</small></div></div>
+      <div class="row" title="kleos.ru — 4,6 по 7 отзывам, но рекомендуют лишь 3 из 7"><div class="nm">kleos.ru</div>
+        <div class="track"><div class="bar" style="width:92%;background:var(--cat-b)"></div></div>
+        <div class="val">4,6 <small>n=7</small></div></div>
+      <div class="row" title="TopDent — 4,1 по 9 отзывам"><div class="nm">TopDent</div>
+        <div class="track"><div class="bar" style="width:82%;background:var(--cat-a)"></div></div>
+        <div class="val">4,1 <small>n=9</small></div></div>
+      <div class="row" title="ПроДокторов — 3,8 по 39 отзывам, верификация визита"><div class="nm">ПроДокторов</div>
+        <div class="track"><div class="bar" style="width:76%;background:var(--cat-a)"></div></div>
+        <div class="val">3,8 <small>n=39</small></div></div>
+      <div class="row" title="Zoon — 3,3 по 11 отзывам"><div class="nm">Zoon</div>
+        <div class="track"><div class="bar" style="width:66%;background:var(--cat-b)"></div></div>
+        <div class="val">3,3 <small>n=11</small></div></div>
+    </div>
+    <p class="note"><b>Как это читать честно.</b> Простой закономерности «где просят — там 5» здесь нет:
+    Zoon тоже открытый каталог, а даёт минимум. Твёрдых фактов два. Первый: единственная площадка,
+    где отзыв принимается только с подтверждённым визитом, даёт самую низкую оценку среди крупных выборок.
+    Второй: kleos при среднем 4,6 показывает собственную метрику «рекомендуют 3 из 7» — <b>43%</b>,
+    что противоречит его же звёздам. Витрина 4,9 на Яндексе — не ложь, но и не то, что видит
+    пациент, пришедший читать отзывы осознанно.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3 style="font-family:var(--serif);font-size:20px;margin-bottom:10px">Что 3,8 означает арифметически</h3>
+    <p style="margin:0 0 16px;color:var(--ink-2);max-width:68ch">Средняя 3,8 при 39 отзывах — не «чуть ниже
+    хорошего». Это жёсткое ограничение на распределение. Мы перебрали все целочисленные распределения
+    оценок, дающие среднее в диапазоне 3,75–3,85 при n=39.</p>
+    <div class="grid g3">
+      <div class="stat" style="box-shadow:none;background:var(--surface-2)">
+        <div class="v" style="font-size:30px;color:var(--neg)">8–14</div>
+        <div class="l">отзывов на 1–2★ при реалистичном J-образном распределении</div></div>
+      <div class="stat" style="box-shadow:none;background:var(--surface-2)">
+        <div class="v" style="font-size:30px;color:var(--neg)">21–36%</div>
+        <div class="l">доля пула с минимальной оценкой</div></div>
+      <div class="stat" style="box-shadow:none;background:var(--surface-2)">
+        <div class="v" style="font-size:30px">~28%</div>
+        <div class="l">медианный сценарий: примерно каждый четвёртый</div></div>
+    </div>
+    <p class="note">Иначе говоря: на профильной площадке <b>примерно каждый четвёртый пациент, который
+    дошёл до того, чтобы написать отзыв, поставил минимальный балл.</b> Это расчёт по заявленному
+    среднему, а не подсчёт реальных звёзд — распределение оценок площадка в поиске не отдаёт.</p>
+  </div>
+</section>
+
+<!-- ============ 02 ДИАГНОЗ ============ -->
+<section id="diagnoz">
+  <div class="sec-head"><span class="sec-n">02</span><h2>Главный вывод: это одна проблема, а не четыре</h2></div>
+  <p class="sub">Жалобы выглядят как разные — про деньги, про бумаги, про стойку, про план лечения.
+  Но если выстроить их по времени визита, они складываются в одну линию.</p>
+
+  <div class="callout">
+    <h3>Клиника ничего не фиксирует письменно до того, как взять деньги</h3>
+    <p>Каждая претензия — это момент, где пациент ожидал документ и не получил его. Не грубость
+    и не халатность: <strong>отсутствие письменной фиксации на каждом шаге воронки.</strong></p>
+    <div class="chain">
+      <div><b>До визита.</b> По телефону не предупреждают, что на «бесплатную» консультацию нужен
+        паспорт и придётся подписать договор на платные услуги. → эффект засады</div>
+      <div><b>На консультации.</b> Цена называется устно администратором: «2200 ₽ + 450 ₽ за анестезию».
+        → нечего предъявить на кассе</div>
+      <div><b>После консультации.</b> План лечения на руки не выдаётся. → «взяли деньги, плана нет»</div>
+      <div><b>На кассе.</b> В счёте 3400 ₽ при тех же работах. Расхождение <b>+28%</b> к устно
+        названной сумме. → «пломбы за 2200 просто нет»</div>
+      <div><b>После лечения.</b> Справки для налогового вычета выданы без печатей и подписей
+        организации — налоговая их не приняла. → прямой финансовый ущерб пациенту</div>
+    </div>
+    <p style="margin-top:20px">Отсюда следует нетривиальный вывод для редизайна. Раздел «честные цены»
+    на сайте эту проблему <strong>не решает</strong> — она возникает не на сайте, а в кабинете и на
+    кассе. Сайт может лишь пообещать процедуру: смета до начала лечения, письменный план на руки,
+    цена в плане = цена в чеке. <strong>Обещание без внедрённой процедуры на ПроДокторов обернётся
+    против клиники</strong> — там оно немедленно попадёт в отзывы как новая ложь.</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3 style="font-family:var(--serif);font-size:19px;margin-bottom:10px;color:var(--pos)">Что подтвердилось</h3>
+      <ul class="clean">
+        <li><strong>Хирургия и анестезия — реальная сила.</strong> «Анестезия подействовала, после
+          удаления боли не было, рана зажила быстро» повторяется у разных врачей и на разных площадках.</li>
+        <li><strong>Непрозрачная цена — жалоба-лидер по частоте</strong> (4 из 10 негативных записей).</li>
+        <li><strong>Ресепшен — слабое звено</strong> (тоже 4 из 10).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="font-family:var(--serif);font-size:19px;margin-bottom:10px;color:var(--warn)">Что пришлось пересмотреть</h3>
+      <ul class="clean">
+        <li><strong>«Свежие 5★ из Красноярска» — снять из отчёта.</strong> Тезис не подтверждён и не
+          опровергнут: тела и авторы отзывов Яндекса поиском не индексируются. Публиковать нельзя.</li>
+        <li><strong>Жалоба №1 — не только цена.</strong> Ресепшен идёт вровень, а по тяжести
+          документооборот их обгоняет.</li>
+        <li><strong>Появилась новая критическая тема</strong> — налоговый вычет. В июньском разборе её не было.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 ЖАЛОБЫ ============ -->
+<section id="zhaloby">
+  <div class="sec-head"><span class="sec-n">03</span><h2>Таксономия жалоб</h2></div>
+  <p class="sub">Частота — по 10 различимым негативным отзывам, один отзыв может нести несколько тем.
+  Это частота в собранной выборке, а не в генеральной совокупности: поиск охотнее показывает крайние отзывы.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Тема</th><th>Частота</th><th>Тяжесть</th><th>Что именно</th><th>Кто чинит</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Цена: озвучено ≠ в счёте</strong></td><td class="n">4 / 10</td>
+          <td><span class="chip c-neg">высокая</span></td>
+          <td>2200 + 450 устно → 3400 в счёте без доп. работ. «Пломбы за 2200 не существует»</td>
+          <td>процесс + касса</td></tr>
+        <tr><td><strong>Ресепшен и администрирование</strong></td><td class="n">4 / 10</td>
+          <td><span class="chip c-neg">высокая</span></td>
+          <td>«Никакой дисциплины и уважения». На стойке — человек, месяцем ранее делавший здесь ремонт</td>
+          <td>найм + регламент</td></tr>
+        <tr><td><strong>Документы и юр. оформление</strong></td><td class="n">3 / 10</td>
+          <td><span class="chip c-neg">критическая</span></td>
+          <td>Справки для вычета без печатей и подписей — налоговая не приняла. План лечения не выдан</td>
+          <td>документооборот</td></tr>
+        <tr><td><strong>Адресная претензия к врачу</strong></td><td class="n">3 / 10</td>
+          <td><span class="chip c-warn">средняя</span></td>
+          <td>Все три — про Мурзабекова А.И. Осколки после удаления; «берёт деньги, не даёт план»</td>
+          <td>врач + контроль</td></tr>
+        <tr><td><strong>Навигация и приватность</strong></td><td class="n">1 / 10</td>
+          <td><span class="chip c-neg">высокая</span></td>
+          <td>Стойка стоит в общем коридоре: оплата и диагноз обсуждаются при пациентах чужой клиники</td>
+          <td>помещение</td></tr>
+        <tr><td>Деградация во времени</td><td class="n">1 / 10</td>
+          <td><span class="chip c-warn">средняя</span></td>
+          <td>«В 2016–2018 клиника была хорошая, потом стало хуже»</td><td>—</td></tr>
+        <tr><td>Клинический результат</td><td class="n">1 / 10</td>
+          <td><span class="chip c-mute">единичная</span></td>
+          <td>Осколки зубов после удаления и воспаление — единственный случай во всём корпусе</td>
+          <td>врач</td></tr>
+        <tr><td style="color:var(--ink-3)">Навязывание, боль, грязь, ожидание</td><td class="n">0 / 10</td>
+          <td><span class="chip c-mute">не найдено</span></td>
+          <td style="color:var(--ink-3)">Ни одной подтверждённой жалобы по этим темам</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note"><b>Отдельно про приватность.</b> Стойка ресепшена в общем коридоре — это не только
+  неудобство. Обсуждение диагноза и оплаты при посторонних касается врачебной тайны.
+  Это единственная жалоба, на которую зафиксирован ответ клиники, — и это <b>оправдание</b>
+  («мы здесь 5 лет, появились раньше других»), а не признание проблемы.</p>
+</section>
+
+<!-- ============ 04 ВРАЧИ ============ -->
+<section id="vrachi">
+  <div class="sec-head"><span class="sec-n">04</span><h2>Врачи на сайте и врачи в отзывах — разные люди</h2></div>
+  <p class="sub">Это, пожалуй, самая недооценённая находка. Пациент, выбирающий врача, читает одно,
+  а на сайте видит другое.</p>
+
+  <div class="tw" style="margin-bottom:16px">
+    <table>
+      <thead><tr><th>Врач</th><th>На сайте</th><th>Отзывы</th><th>Тональность</th><th>Где ещё числится</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Мурзабеков Ахмед Исропилович</strong><br><span style="color:var(--ink-3);font-size:13px">хирург-имплантолог, стаж 17 лет</span></td>
+          <td><span class="chip c-neg">НЕТ</span></td><td class="n">есть</td>
+          <td><span class="chip c-warn">смешанная</span></td>
+          <td>ЦКБ УДП РФ — начальник центра стоматологии</td></tr>
+        <tr><td><strong>Додова Заира Иссаевна</strong><br><span style="color:var(--ink-3);font-size:13px">главврач, ортопед</span></td>
+          <td><span class="chip c-pos">да</span></td><td class="n">22 ПД + 6 kleos</td>
+          <td><span class="chip c-pos">положительная</span></td>
+          <td>МЦ «Медстоун», Ленинский</td></tr>
+        <tr><td><strong>Магомедов Магомед Ильясович</strong><br><span style="color:var(--ink-3);font-size:13px">хирург-имплантолог</span></td>
+          <td><span class="chip c-pos">да</span></td><td class="n">8 на zubla</td>
+          <td><span class="chip c-pos">положительная</span></td>
+          <td>профиля на ПроДокторов нет</td></tr>
+        <tr><td><strong>Султыгова Петимат Амерхановна</strong><br><span style="color:var(--ink-3);font-size:13px">терапевт</span></td>
+          <td><span class="chip c-pos">да</span></td><td class="n">есть</td>
+          <td><span class="chip c-pos">положительная</span></td>
+          <td>«Нормодент» — отзывы уходят туда</td></tr>
+        <tr><td><strong>Хасханова Диана Ширваниевна</strong><br><span style="color:var(--ink-3);font-size:13px">ортодонт</span></td>
+          <td><span class="chip c-pos">да</span></td><td class="n">0</td>
+          <td><span class="chip c-mute">нет отзывов</span></td>
+          <td>«Д-Медико»</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid g3">
+    <div class="card">
+      <h3 style="font-family:var(--serif);font-size:18px;margin-bottom:8px">Лидер-невидимка</h3>
+      <p style="margin:0;color:var(--ink-2);font-size:14.5px">На ПроДокторов Мурзабеков подан как
+      человек, который <strong>«возглавляет команду профессионалов»</strong>. На сайте клиники его нет
+      вообще. Он же — единственный адресат всего негатива по врачам и единственный со смешанной
+      тональностью. Либо карточка устарела и пациенты записываются к тому, кого нет, либо он есть,
+      но не показан. Оба варианта — дефект доверия.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-family:var(--serif);font-size:18px;margin-bottom:8px">Репутация утекает</h3>
+      <p style="margin:0;color:var(--ink-2);font-size:14.5px">Трое из пяти врачей параллельно
+      привязаны на площадках к другим юрлицам — «Медстоун», «Нормодент», «Д-Медико». Пациент находит
+      врача, читает хорошие отзывы — и <strong>записывается в чужую клинику.</strong>
+      Отзыв о Додовой «Заира Исаевна — прекрасный врач!» всплывает в контексте «Медстоуна».</p>
+    </div>
+    <div class="card">
+      <h3 style="font-family:var(--serif);font-size:18px;margin-bottom:8px">Врачи-призраки</h3>
+      <p style="margin:0;color:var(--ink-2);font-size:14.5px">В карточках агрегаторов живут врачи,
+      которых нет в текущем составе: <span class="num">Шендяпин, Ахмедов, Магомедгаджиев,
+      ортодонт «Илиза», «Амирхан Измирович»</span>. Часть хороших отзывов адресована людям, которых
+      пациент в клинике не встретит. Число врачей в карточках гуляет: <strong>1, 4 и 7</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 УСЛУГИ ============ -->
+<section id="uslugi">
+  <div class="sec-head"><span class="sec-n">05</span><h2>У флагмана нулевая социальная доказательность</h2></div>
+  <p class="sub">Тональность по услугам в собранной выборке. Отдельно — услуги, по которым не нашлось
+  ни одного отзыва ни на одной площадке.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="legend"><span><i class="sw" style="background:var(--pos)"></i> положительные</span>
+        <span><i class="sw" style="background:var(--neg)"></i> отрицательные</span></div>
+      <div class="chart">
+        <div class="row"><div class="nm">Имплантация</div>
+          <div class="track"><div class="bar" style="width:80%;background:var(--pos)"></div></div>
+          <div class="val">4 <small>/ 1</small></div></div>
+        <div class="row"><div class="nm">Удаление, анестезия</div>
+          <div class="track"><div class="bar" style="width:60%;background:var(--pos)"></div></div>
+          <div class="val">3 <small>/ 0</small></div></div>
+        <div class="row"><div class="nm">Протезирование</div>
+          <div class="track"><div class="bar" style="width:60%;background:var(--pos)"></div></div>
+          <div class="val">3 <small>/ 0</small></div></div>
+        <div class="row"><div class="nm">Костная пластика</div>
+          <div class="track"><div class="bar" style="width:40%;background:var(--pos)"></div></div>
+          <div class="val">2 <small>/ 0</small></div></div>
+        <div class="row"><div class="nm">Терапия, кариес</div>
+          <div class="track"><div class="bar" style="width:20%;background:var(--pos)"></div></div>
+          <div class="val">1 <small>/ 1</small></div></div>
+        <div class="row"><div class="nm">Ортодонтия</div>
+          <div class="track"><div class="bar" style="width:20%;background:var(--pos)"></div></div>
+          <div class="val">1 <small>/ 0</small></div></div>
+        <div class="row"><div class="nm">Ресепшен, документы</div>
+          <div class="track"><div class="bar" style="width:60%;background:var(--neg)"></div></div>
+          <div class="val">0 <small>/ 3</small></div></div>
+      </div>
+    </div>
+
+    <div class="card" style="border-top:3px solid var(--neg)">
+      <h3 style="font-family:var(--serif);font-size:21px;margin-bottom:12px">Ноль отзывов</h3>
+      <p style="margin:0 0 16px;color:var(--ink-2);font-size:15px">Три отдельных запроса по каждой
+      позиции не дали ничего. Вся выдача по «зубам за 1 день» у MFC — собственные лендинги клиники
+      и отзывы конкурентов.</p>
+      <div class="tw" style="box-shadow:none">
+        <table style="min-width:0">
+          <tbody>
+            <tr><td><strong>All-on-4 / All-on-6</strong></td><td class="n" style="color:var(--neg)">от 220 000 ₽</td></tr>
+            <tr><td>Виниры</td><td class="n">от 28 000 ₽</td></tr>
+            <tr><td>Лечение под микроскопом Карл Цейсс</td><td class="n">—</td></tr>
+            <tr><td>Отбеливание ZOOM</td><td class="n">—</td></tr>
+            <tr><td>Элайнеры</td><td class="n">—</td></tr>
+            <tr><td>Профгигиена, эндодонтия, КТ</td><td class="n">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:16px"><b>Что это значит.</b> Вся стратегия редизайна построена
+      вокруг флагмана «зубы за 1 день» за 220–290 тысяч. За этим предложением <b>не стоит ни одного
+      отзыва пациента.</b> Человек, выбирающий процедуру такой цены, ищет именно чужой опыт — и не
+      находит его. Это не косметическая дыра: это отсутствие доказательства ровно там, где цена
+      требует его сильнее всего.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 РЫНОК ============ -->
+<section id="rynok">
+  <div class="sec-head"><span class="sec-n">06</span><h2>На фоне района</h2></div>
+  <p class="sub">Число отзывов на ПроДокторов у клиник Беговой и окрестностей. Рейтинги площадка
+  в поиске почти не отдаёт — сравнивать по звёздам было бы подгонкой, поэтому сравниваем по объёму.</p>
+
+  <div class="card">
+    <div class="chart">
+      <div class="row"><div class="nm">Дантистофф</div>
+        <div class="track"><div class="bar" style="width:100%;background:var(--cat-b)"></div></div>
+        <div class="val">175</div></div>
+      <div class="row"><div class="nm">ИмплантЛив</div>
+        <div class="track"><div class="bar" style="width:67%;background:var(--cat-b)"></div></div>
+        <div class="val">117</div></div>
+      <div class="row"><div class="nm">ПрезиДЕНТ</div>
+        <div class="track"><div class="bar" style="width:45%;background:var(--cat-b)"></div></div>
+        <div class="val">79</div></div>
+      <div class="row"><div class="nm">Лёгкая стоматология</div>
+        <div class="track"><div class="bar" style="width:45%;background:var(--cat-b)"></div></div>
+        <div class="val">79 <small>4,3★</small></div></div>
+      <div class="row"><div class="nm">Бего</div>
+        <div class="track"><div class="bar" style="width:42%;background:var(--cat-b)"></div></div>
+        <div class="val">74</div></div>
+      <div class="row" style="background:var(--surface-2)"><div class="nm"><strong>MFC Clinic</strong></div>
+        <div class="track"><div class="bar" style="width:22%;background:var(--cat-a)"></div></div>
+        <div class="val"><strong>39</strong> <small>3,8★</small></div></div>
+      <div class="row"><div class="nm">Smile Symphony</div>
+        <div class="track"><div class="bar" style="width:6%;background:var(--cat-b)"></div></div>
+        <div class="val">11</div></div>
+      <div class="row"><div class="nm">Дентал Арт Центр</div>
+        <div class="track"><div class="bar" style="width:6%;background:var(--cat-b)"></div></div>
+        <div class="val">11</div></div>
+      <div class="row"><div class="nm">Новостом</div>
+        <div class="track"><div class="bar" style="width:4%;background:var(--cat-b)"></div></div>
+        <div class="val">7</div></div>
+    </div>
+    <p class="note"><b>Единственная точка отсчёта по рейтингу.</b> «Лёгкая стоматология» на Беговой —
+    4,3 при 79 отзывах, и при этом победитель премии ПроДокторов 2024. То есть 4,3 на этой площадке
+    уже считается наградным уровнем, а MFC с 3,8 отстаёт от успешного соседа примерно на полбалла
+    при вдвое меньшей выборке. Значок премии ПроДокторов есть у ИмплантЛив, ПрезиДЕНТ, Дантистофф
+    и «Лёгкой». <b>У MFC не обнаружен.</b></p>
+  </div>
+
+  <div class="card" style="margin-top:16px;border-top:3px solid var(--cat-a)">
+    <h3 style="font-family:var(--serif);font-size:20px;margin-bottom:10px">Непрозрачные цены — болезнь отрасли. Это и есть шанс</h3>
+    <p style="margin:0 0 12px;color:var(--ink-2);max-width:70ch">У Дантистофф — расхождение цен сайта
+    и кассы, дословно «обычный дешёвый развод». У Новостом — «развод на платные услуги». Отраслевые
+    источники называют рост итоговой суммы до 30% штатной ситуацией. MFC здесь не хуже рынка.</p>
+    <p style="margin:0;color:var(--ink-2);max-width:70ch">Но вот что важнее: отсутствие навязывания
+    конкуренты получают <strong>как похвалу</strong> — ROOTT хвалят за «не навязывают допуслуг»,
+    ИмплантЛив за то, что врач «помог избежать дополнительных расходов», Дантистофф ввёл роль
+    куратора плана лечения. <strong>При этом никто не сделал прозрачную цену ядром позиционирования.</strong>
+    Ниша свободна — ровно та, в которую MFC сейчас проваливается.</p>
+  </div>
+</section>
+
+<!-- ============ 07 КАРТОЧКИ ============ -->
+<section id="karto4ki">
+  <div class="sec-head"><span class="sec-n">07</span><h2>Репутация размазана по 13 карточкам</h2></div>
+  <p class="sub">Ни одна площадка не набирает и десятка отзывов, кроме Яндекса и ПроДокторов.
+  Часть карточек описывает клинику неправильно.</p>
+
+  <div class="grid g3">
+    <div class="stat"><div class="v" style="color:var(--neg)">5</div>
+      <div class="l">разных телефонов гуляет по каталогам</div>
+      <div class="n">актуальный 320-04-07 — только на 32top. На ПроДокторов указан 967 297-10-97</div></div>
+    <div class="stat"><div class="v" style="color:var(--neg)">4</div>
+      <div class="l">написания названия в дикой природе</div>
+      <div class="n">МФЦ Клиник · МФЦ Клиника · MFC Clinic · Мфц Клиник</div></div>
+    <div class="stat"><div class="v" style="color:var(--neg)">2×0</div>
+      <div class="l">две карточки-дубля на 1dentist</div>
+      <div class="n">обе с нулём отзывов и нулевым рейтингом — работают против клиники в выдаче</div></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <ul class="clean">
+      <li><strong>Стоматологию индексируют как МРТ-центр.</strong> Ресурсы mrt-v-msk.ru и 36go
+        описывают клинику как центр МРТ/КТ с томографом Hitachi Aperto. Это приводит нецелевой трафик
+        и путает пациента.</li>
+      <li><strong>Дубль на Zoon.</strong> Два слага по одному адресу — отзывы, вероятно, расщеплены
+        между ними.</li>
+      <li><strong>Режим работы расходится втрое</strong>, вплоть до «круглосуточно».</li>
+      <li><strong>Не установлено:</strong> отдельный объект «MFC CLINIC» на Ленинском проспекте, 123
+        (м. Тропарёво) — тёзка или филиал. Требует проверки: если филиал, часть отзывов уходит не туда.</li>
+      <li><strong>2ГИС <span class="num">/branches/</span> — не дубль,</strong> это родительская
+        страница списка филиалов. Проверено, ложная тревога снята.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3 style="font-family:var(--serif);font-size:19px;margin-bottom:8px">Юридический след — чисто</h3>
+    <p style="margin:0;color:var(--ink-2);max-width:72ch">Арбитража нет. Судов общей юрисдикции не
+    найдено. Росздравнадзор и Роспотребнадзор — ноль. Лицензия ЛО-77-01-009398 сходится с юрлицом и
+    адресом. Единственная зацепка — <strong>3 исполнительных производства ФССП</strong>, часть
+    зарегистрирована в октябре 2024; предмет и суммы установить доступными средствами не удалось.
+    Гендиректор — Петров Р.Н. (не главврач), уставный капитал 10 000 ₽.</p>
+  </div>
+</section>
+
+<!-- ============ 08 ЦИТАТЫ ============ -->
+<section id="citaty">
+  <div class="sec-head"><span class="sec-n">08</span><h2>Что пишут</h2></div>
+  <p class="sub">Строго разделено: <span class="chip c-pos">дословно</span> — текст, приведённый
+  в источнике буквально; <span class="chip c-mute">пересказ</span> — содержание, изложенное поисковой
+  выдачей своими словами. Пересказ нельзя цитировать как прямую речь пациента, и на сайт клиники
+  он не годится.</p>
+
+  <div class="grid g2">
+    <div class="q neg">
+      <p>«Ужасная клиника и коллектив в том числе, за исключением нескольких человек.
+      Никакой дисциплины и уважения к пациентам.»</p>
+      <div class="meta"><span class="chip c-pos">дословно</span><span class="chip c-neg">жалоба</span>
+        <span>TopDent · kleos · подтверждено 4 сборщиками независимо</span></div>
+    </div>
+    <div class="q pos">
+      <p>«Заира Исаевна — прекрасный врач!»</p>
+      <div class="meta"><span class="chip c-pos">дословно</span><span class="chip c-pos">похвала</span>
+        <span>ПроДокторов · но всплывает и в контексте «Медстоуна» — привязка к MFC не гарантирована</span></div>
+    </div>
+    <div class="q neg">
+      <p>Администратор назвал 2200 ₽ за пломбу плюс 450 ₽ за анестезию, а в итоговом счёте
+      насчитали 3400 ₽ — при том, что никаких дополнительных работ не выполнялось.
+      «Пломбы за 2200 просто нет.»</p>
+      <div class="meta"><span class="chip c-mute">пересказ</span><span class="chip c-neg">жалоба</span>
+        <span>1dentist · TopDent · жалоба-лидер по частоте</span></div>
+    </div>
+    <div class="q neg">
+      <p>Справки для налогового вычета оформлены неправильно — налоговая их не приняла. Документы
+      выдали без печатей и подписей организации, юридической силы такие бумаги не имеют.
+      Деньги взяли, а план лечения не выдали.</p>
+      <div class="meta"><span class="chip c-mute">пересказ</span><span class="chip c-neg">критическая</span>
+        <span>kleos · новая тема, в июньском разборе её не было</span></div>
+    </div>
+    <div class="q pos">
+      <p>Удаление восьмёрок перед установкой брекетов. Анестезия подействовала, пациентка ничего
+      не чувствовала, после удаления боли не было, рана зажила очень быстро.</p>
+      <div class="meta"><span class="chip c-mute">пересказ</span><span class="chip c-pos">похвала</span>
+        <span>TopDent · хирург Магомед · сильнейшая повторяющаяся тема</span></div>
+    </div>
+    <div class="q neg">
+      <p>Клиника арендует кабинет на этаже другой клиники. Стойка-ресепшн стоит в коридоре между
+      стульями, на которых пациенты ДРУГОЙ клиники ожидают приёма.</p>
+      <div class="meta"><span class="chip c-mute">пересказ</span><span class="chip c-neg">жалоба</span>
+        <span>TopDent · 1dentist · единственная, на которую клиника ответила — оправданием</span></div>
+    </div>
+    <div class="q pos">
+      <p>На первой консультации сделали фотографии зубов и наглядно показали все болячки.</p>
+      <div class="meta"><span class="chip c-mute">пересказ</span><span class="chip c-pos">похвала</span>
+        <span>ПроДокторов · фотопротокол уже работает как инструмент доверия</span></div>
+    </div>
+    <div class="q neg">
+      <p>В 2016–2018 годах клиника была хорошая, потом стало хуже. К врачу Мурзабекову
+      не рекомендую обращаться.</p>
+      <div class="meta"><span class="chip c-mute">пересказ</span><span class="chip c-neg">жалоба</span>
+        <span>kleos · единственная адресная претензия к врачу — и это врач, которого нет на сайте</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 ПОКРЫТИЕ ============ -->
+<section id="pokrytie">
+  <div class="sec-head"><span class="sec-n">09</span><h2>Покрытие и чего этот метод не может</h2></div>
+  <p class="sub">Это не полный корпус отзывов, и называть его так было бы неправдой.
+  Ниже — ровно то, что удалось поднять, против того, что заявлено на карточках.</p>
+
+  <div class="grid g3" style="margin-bottom:20px">
+    <div class="stat"><div class="v">26</div><div class="l">различимых отзывов восстановлено</div>
+      <div class="n">из 76 сырых записей после сведения дублей между сборщиками</div></div>
+    <div class="stat"><div class="v" style="color:var(--warn)">~14%</div>
+      <div class="l">покрытие по факту существования отзыва</div>
+      <div class="n">26 из ~188 заявленных на подтверждённых площадках</div></div>
+    <div class="stat"><div class="v" style="color:var(--neg)">3</div>
+      <div class="l">дословные цитаты</div><div class="n">остальное — пересказ поисковой выдачи</div></div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-family:var(--serif);font-size:18px;margin-bottom:14px">Поднято против заявленного</h3>
+    <div class="cov"><div class="nm">Яндекс Карты</div><div class="m"><div class="f" style="width:2%"></div></div>
+      <div class="t">2 из 96</div></div>
+    <div class="cov"><div class="nm">ПроДокторов</div><div class="m"><div class="f" style="width:23%"></div></div>
+      <div class="t">9 из 39</div></div>
+    <div class="cov"><div class="nm">Zoon</div><div class="m"><div class="f" style="width:18%"></div></div>
+      <div class="t">2 из 11</div></div>
+    <div class="cov"><div class="nm">32top</div><div class="m"><div class="f" style="width:0%"></div></div>
+      <div class="t">0 из 10</div></div>
+    <div class="cov"><div class="nm">TopDent</div><div class="m"><div class="f" style="width:56%"></div></div>
+      <div class="t">5 из 9</div></div>
+    <div class="cov"><div class="nm">2ГИС</div><div class="m"><div class="f" style="width:13%"></div></div>
+      <div class="t">1 из 8</div></div>
+    <div class="cov"><div class="nm">kleos.ru</div><div class="m"><div class="f" style="width:57%"></div></div>
+      <div class="t">4 из 7</div></div>
+    <div class="cov"><div class="nm">zubla.ru</div><div class="m"><div class="f" style="width:0%"></div></div>
+      <div class="t">0 из 8</div></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3 style="font-family:var(--serif);font-size:18px;margin-bottom:10px">Почему так</h3>
+      <ul class="clean">
+        <li><strong>Ни одна страница отзывов не была открыта.</strong> Сетевая политика среды
+          отклоняет обращения ко всем хостам площадок, инструмент прямой загрузки страниц отдаёт
+          отказ на любой адрес. Работал только поиск.</li>
+        <li><strong>Поиск отдаёт сводку, а не текст.</strong> Отсюда 3 дословные цитаты на 26 отзывов.
+          Часть выдачи приходила вообще в английском переводе — обратный перевод цитатой не является.</li>
+        <li><strong>Хуже всего покрыт самый большой пул.</strong> Яндекс с 96 отзывами
+          не индексирует тела отзывов. Главный репутационный актив клиники — тот, который этот метод
+          проверить может меньше всего.</li>
+        <li><strong>Даты почти не восстановились</strong> — установлена ровно одна (март 2024).
+          Динамику репутации по годам построить не на чем.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--pos)">
+      <h3 style="font-family:var(--serif);font-size:18px;margin-bottom:10px">Полный корпус — в одном логине</h3>
+      <p style="margin:0 0 12px;color:var(--ink-2)">Всё, чего здесь не хватает, у клиники уже есть.
+      Кабинеты <strong>Яндекс Бизнес</strong>, <strong>2ГИС</strong> и <strong>ПроДокторов</strong>
+      выгружают полные списки отзывов с датами, оценками, авторами и ответами — за минуты и бесплатно.</p>
+      <p style="margin:0;color:var(--ink-2)">С этой выгрузкой становится доступно то, что сейчас
+      недоступно: реальное распределение оценок вместо расчётного, динамика по годам, доля
+      неотвеченных отзывов, проверка гипотезы о географии авторов. Разбор на полных данных —
+      следующий логичный шаг, и он дешевле любого дальнейшего поиска снаружи.</p>
+    </div>
+  </div>
+
+  <p class="note"><b>Что снято как непроверенное.</b> Тезис «свежие 5★ из Красноярска для московской
+  клиники» из отчёта от 19.06.2026 не подтверждён и не опровергнут — публиковать его в текущем виде
+  нельзя. Рейтинг ПроДокторов 3,8 перенесён из того же отчёта и этим прогоном не переподтверждён.
+  Отвечает ли клиника на отзывы системно — не установлено; зафиксирован ровно один ответ.
+  Одна жалоба (царапина языка, порванная десна, препарат за 15 000 ₽) при перепроверках не
+  подтвердилась и <b>в выводы не засчитана.</b> Ноль присутствия на Otzovik, iRecommend, VK,
+  в Telegram, на форумах и в чёрных списках — это, скорее, хороший знак.</p>
+</section>
+
+<!-- ============ 10 ЧТО ДЕЛАТЬ ============ -->
+<section id="delat">
+  <div class="sec-head"><span class="sec-n">10</span><h2>Что делать</h2></div>
+  <p class="sub">По убыванию отношения эффекта к затратам. Первые три не требуют редизайна вообще.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:34px">#</th><th>Действие</th><th>Почему именно это</th><th>Срок</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td>
+          <td><strong>Смета и план лечения на бумаге до начала работ</strong></td>
+          <td>Чинит одним движением четыре жалобы из пяти: цену на кассе, «нет плана», эффект засады
+            на консультации и часть претензий к врачу. Это процесс, а не текст на сайте</td>
+          <td class="n">2 недели</td></tr>
+        <tr><td class="n">2</td>
+          <td><strong>Починить справки для налогового вычета</strong></td>
+          <td>Самая тяжёлая претензия. Документы без печатей и подписей — это уже не сервис,
+            а риск. Стоит одного регламента</td>
+          <td class="n">1 неделя</td></tr>
+        <tr><td class="n">3</td>
+          <td><strong>Собирать новые отзывы на ПроДокторов, а не на Яндексе</strong></td>
+          <td>Контринтуитивно, но: 4,9 на Яндексе уже насыщен и не убеждает, а 3,8 на верифицированной
+            площадке — то, что читает осознанный пациент. Там же значок премии, который есть у всех
+            четырёх сильных соседей и нет у MFC</td>
+          <td class="n">постоянно</td></tr>
+        <tr><td class="n">4</td>
+          <td><strong>Забрать и вычистить карточки</strong></td>
+          <td>5 телефонов, 4 написания названия, 13 карточек, два нулевых дубля на 1dentist,
+            индексация как МРТ-центра. Проверить объект на Ленинском, 123</td>
+          <td class="n">2–3 недели</td></tr>
+        <tr><td class="n">5</td>
+          <td><strong>Разобраться с составом врачей</strong></td>
+          <td>Мурзабеков — на ПроДокторов лидер команды, на сайте отсутствует. Трое врачей отдают
+            репутацию другим клиникам. Хасханова — без единого отзыва. Решить и синхронизировать</td>
+          <td class="n">1 неделя</td></tr>
+        <tr><td class="n">6</td>
+          <td><strong>Начать отвечать на негатив</strong></td>
+          <td>Зафиксирован один ответ клиники — и тот оправдание. Ответ по существу виден всем
+            будущим читателям и стоит только времени</td>
+          <td class="n">постоянно</td></tr>
+        <tr><td class="n">7</td>
+          <td><strong>Набрать отзывы под All-on-4 адресно</strong></td>
+          <td>Флагман за 220–290 тысяч не имеет ни одного отзыва. Пока их нет, любой лендинг
+            под «зубы за 1 день» упирается в отсутствие доказательства</td>
+          <td class="n">1–2 месяца</td></tr>
+        <tr><td class="n">8</td>
+          <td><strong>Перенести стойку из общего коридора</strong></td>
+          <td>Обсуждение диагноза и оплаты при пациентах чужой клиники — вопрос врачебной тайны,
+            а не только удобства. Если перенести нельзя — вынести оплату в кабинет</td>
+          <td class="n">по возможности</td></tr>
+        <tr><td class="n">9</td>
+          <td><strong>На сайт: страницы «как устроен приём» и «что взять с собой»</strong></td>
+          <td>Снимает эффект засады с паспортом и договором и путаницу с этажом чужой клиники.
+            Дёшево и закрывает две повторяющиеся жалобы</td>
+          <td class="n">с редизайном</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="note" style="margin-top:18px"><b>Главное предостережение.</b> Пункты 1 и 2 обязаны опередить
+  любые обещания на сайте. Если клиника заявит «цена в плане = цена в чеке» раньше, чем внедрит
+  процедуру, следующий же отзыв на ПроДокторов процитирует это обещание как доказательство обмана —
+  и обойдётся дороже, чем нынешние 3,8.</p>
+</section>
+
+<div class="foot">
+  <p style="margin:0 0 6px"><strong>Метод.</strong> Шесть параллельных сборщиков по независимым срезам
+  (площадки · карты · длинный хвост агрегаторов · негатив и юрлицо · услуги · конкуренты), суммарно
+  около 200 поисковых запросов. Сведение дублей между сборщиками — вручную: 76 сырых записей
+  свелись к 26 различимым отзывам. Данные сняты 25 июля 2026 года; рейтинги динамические.</p>
+  <p style="margin:0">Корпус и исходные выгрузки сборщиков — в репозитории проекта:
+  <span class="num">reviews/reviews.json</span>, <span class="num">reviews/raw/</span>.</p>
+</div>
+
+</div>
