@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Канон Next Move Theory</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../">← весь набор</a> · <a href="../">next-move/</a></p>
+<h1>Канон Next Move Theory</h1>
+<p>Полные тексты канона — 23 файла. Это <strong>чужие тексты</strong>, приведённые здесь целиком,
+чтобы папка была самодостаточной.</p>
+<ul>
+<li><strong>Автор:</strong> Иван Замесин</li>
+<li><strong>Сайт:</strong> <a href="http://nextmovetheory.com/?utm_source=bundle&utm_medium=canon">nextmovetheory.com</a></li>
+<li><strong>Исходник:</strong> <a href="https://github.com/zamesin/Next-Move-Theory-Canon-and-Skills">github.com/zamesin/Next-Move-Theory-Canon-and-Skills</a></li>
+<li><strong>Лицензия:</strong> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> —
+распространение с указанием авторства, <strong>без коммерческого использования</strong>, производные
+на тех же условиях.</li>
+</ul>
+<p>Оговорка по лицензии: условие NC означает, что эту папку нельзя размещать так, чтобы она
+работала как коммерческий материал (например, внутри продающего сайта клиники или как
+часть платного продукта). Отдельная страница со ссылкой на первоисточник и указанием
+авторства — в порядке. Если сомневаетесь — публикуйте только ссылки на исходный
+репозиторий, а не копии файлов; порядок чтения от этого не пострадает, он весь в
+<a href="../index.html"><code>../index.html</code></a>.</p>
+<p>Файлы обновляются командой <code>/nmt-upgrade</code> — она тянет свежую версию из репозитория выше.
+Дата этой копии: 5 августа 2026.</p>
+<h2>Что где</h2>
+<p>Файлы лежат в той же структуре папок, что и в исходном репозитории, — так внутренние
+перекрёстные ссылки канона работают без правок.</p>
+<table>
+<thead>
+<tr>
+<th>Файл</th>
+<th>Открывать, когда</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html"><code>Advanced-Jobs-To-Be-Done/ajtbd-key-theses.md</code></a></td>
+<td>нужна вся методология тезисами и карта к остальным файлам</td>
+</tr>
+<tr>
+<td><a href="Next-Move-Theory/nmt-key-theses.html"><code>Next-Move-Theory/nmt-key-theses.md</code></a></td>
+<td>задача шире одного столпа; нужна цепочка причин к прибыли</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/job-structure.html"><code>Advanced-Jobs-To-Be-Done/job-structure.md</code></a></td>
+<td>пишете или проверяете формулировку задачи</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/job-graph.html"><code>Advanced-Jobs-To-Be-Done/job-graph.md</code></a></td>
+<td>картируете задачи; ищете рост через соседние</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/job-types-and-properties.html"><code>Advanced-Jobs-To-Be-Done/job-types-and-properties.md</code></a></td>
+<td>классифицируете задачу; подозреваете фейковую или налоговую</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/scientific-foundations.html"><code>Advanced-Jobs-To-Be-Done/scientific-foundations.md</code></a></td>
+<td>нужно обосновать, почему ценность — это энергоэффективность</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/value-creation.html"><code>Advanced-Jobs-To-Be-Done/value-creation.md</code></a></td>
+<td>проектируете ценность и критерии успеха</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/value-creation-mechanics.html"><code>Advanced-Jobs-To-Be-Done/value-creation-mechanics.md</code></a></td>
+<td>нужны ходы, а не «добавить фичу»</td>
+</tr>
+<tr>
+<td><a href="Next-Move-Theory/subtraction.html"><code>Next-Move-Theory/subtraction.md</code></a></td>
+<td>решаете, что убрать</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/critical-chain.html"><code>Advanced-Jobs-To-Be-Done/critical-chain.md</code></a></td>
+<td>проектируете поток, онбординг, активацию; ищете, где отваливаются</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/behaviour-change.html"><code>Advanced-Jobs-To-Be-Done/behaviour-change.md</code></a></td>
+<td>явно лучший продукт не берут</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/consideration-activators.html"><code>Advanced-Jobs-To-Be-Done/consideration-activators.md</code></a></td>
+<td>пишете позиционирование, которое должно изменить выбор</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/barrier-removal.html"><code>Advanced-Jobs-To-Be-Done/barrier-removal.md</code></a></td>
+<td>сегмент не может перейти по объективной причине</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/customers-attention-management.html"><code>Advanced-Jobs-To-Be-Done/customers-attention-management.md</code></a></td>
+<td>ценность есть, её не замечают</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/communication.html"><code>Advanced-Jobs-To-Be-Done/communication.md</code></a></td>
+<td>пишете лендинг, объявление, письмо, скрипт</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/segmentation.html"><code>Advanced-Jobs-To-Be-Done/segmentation.md</code></a></td>
+<td>определяете или проверяете сегмент</td>
+</tr>
+<tr>
+<td><a href="ABCDX-Segmentation/abcdx-segmentation-key-theses.html"><code>ABCDX-Segmentation/abcdx-segmentation-key-theses.md</code></a></td>
+<td>есть платящая база, надо сфокусироваться</td>
+</tr>
+<tr>
+<td><a href="Riskiest-Assumption-Test/rat-key-theses.html"><code>Riskiest-Assumption-Test/rat-key-theses.md</code></a></td>
+<td>решаете — начинать, продолжать, разворачивать, убивать</td>
+</tr>
+<tr>
+<td><a href="Next-Move-Theory/focus-as-company-attention-management.html"><code>Next-Move-Theory/focus-as-company-attention-management.md</code></a></td>
+<td>команда размазана по сегментам и задачам</td>
+</tr>
+<tr>
+<td><a href="Next-Move-Theory/local-vs-global-optimum.html"><code>Next-Move-Theory/local-vs-global-optimum.md</code></a></td>
+<td>улучшение текущего мешает увидеть ход уровнем выше</td>
+</tr>
+<tr>
+<td><a href="Advanced-Jobs-To-Be-Done/b2b.html"><code>Advanced-Jobs-To-Be-Done/b2b.md</code></a></td>
+<td>сделки застревают без внятной причины</td>
+</tr>
+<tr>
+<td><a href="HowTos/basic-ajtbd-interview-guide-and-principles.html"><code>HowTos/basic-ajtbd-interview-guide-and-principles.md</code></a></td>
+<td>планируете или проводите интервью</td>
+</tr>
+<tr>
+<td><a href="Algorithms/the-algorithm.html"><code>Algorithms/the-algorithm.md</code></a></td>
+<td>непонятно, что делать дальше</td>
+</tr>
+</tbody></table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Algorithm: How to Know What to Do</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>The Algorithm: How to Know What to Do</h1>
+<h2>1. Context: Next Move Theory, the meta-framework</h2>
+<blockquote>
+<p>See <a href="../Next-Move-Theory/nmt-key-theses.html">Next Move Theory key theses</a> for the root treatment.</p>
+</blockquote>
+<p>Next Move Theory is the integrative meta-framework. It combines Advanced Jobs To Be Done, Unit Economics, Riskiest Assumption Test, ABCDX segmentation, and Theory of Constraints. OKR (Objectives &amp; Key Results) is a supporting methodology.</p>
+<p>The unit of analysis is the Chosen Company Strategy. That is a sequence of cross-function actions toward an expected outcome, across Discovery, Delivery, Marketing, Sales, Support, R&amp;D, and Finance. It is anchored on the choice of Jobs of segments: which Jobs of which people will we compete for, why these, and why will we win?</p>
+<p><strong>The goal is to align every function around one Chosen Company Strategy, in one shared language: the language of Jobs.</strong> The product is a single organism, so you can&#39;t change marketing in isolation from the product and the segment.</p>
+<p>Subtraction is the meta-operator running through every step. The highest-leverage move is usually to remove, not to add. You remove a Job from the customer&#39;s graph, a non-target segment, a risky assumption, or a feature (see <a href="../Next-Move-Theory/subtraction.html">Subtraction</a>).</p>
+<p>The algorithm is a loop, not a one-shot run. Every action produces new data for the next pass.</p>
+<h2>2. The cause-and-effect chain to profit — the diagnostic spine</h2>
+<blockquote>
+<p>Full treatment in <a href="../Next-Move-Theory/nmt-key-theses.html">Next Move Theory key theses §4</a> and <a href="../Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html">AJTBD key theses §14</a>.</p>
+</blockquote>
+<p>The chain is sequential up to value. Then it branches into three conditions that must hold at the same time. Then it converges into conversion, retention, and profit. Every step inherits the quality of the step above it. So the diagnostic runs top-down: investigate the upstream node first.</p>
+<pre><code>Market with money
+  → Segment + Job          (one analytical entity, not two steps)
+  → Added Value
+  → ┌─ Business model &amp; Unit Economics — positive per-unit math
+    ├─ Ability to create demand &amp; acquire customers — at target CAC and lead quality
+    └─ Ability to scale, incl. customer service — without quality decay
+  → Unit Economics keeps closing at scale — conversion + retention + repeat
+  → Target Profit
+</code></pre>
+<ul>
+<li>Market with money is defined in Job terms. Not <em>&quot;the EdTech market&quot;</em> but <em>&quot;the sum people spend to learn a skill in order to switch careers.&quot;</em></li>
+<li>Segment + Job is one entity. A segment is defined by its Job Graph: similar Core Jobs with similar success criteria. The Big Job above is motivational context, not the segmentation cut (see <a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation</a>).</li>
+<li>The three conditions after value are tested in parallel, not in sequence. This is why RAT (Step 8) treats its baseline risks as simultaneous tests.</li>
+<li><strong>A broken metric almost never means a problem at that metric.</strong> Low conversion, high CAC, and high churn are usually upstream. The cause is a wrong Segment+Job, value that doesn&#39;t beat the alternatives, or one of the three parallel conditions failing.</li>
+</ul>
+<h2>3. Architecture — ten steps, three phases, one loop</h2>
+<pre><code>  ┌─►  I.  FRAME &amp; HYPOTHESIZE — in your head / expert / LLM (fast, cheap)
+  │       1  Challenge the business goal — 5 Whys + &quot;is this even the right goal?&quot;
+  │       2  Diagnose the current state — segments, Job Graphs, decisions, owners, data
+  │       3  Assemble the layer — Map of Segments · Job Graph · Consideration Sets
+  │       4  Shortlist candidate mechanics — where the solutions could in theory live
+  │
+  │       II. RESEARCH &amp; GENERATE — in the field (real time and money)
+  │       5  Field research, scoped by the shortlisted mechanics
+  │       6  Apply the surviving mechanics to the REAL Job Graph
+  │       7  Rank by RICE — unit-economics gate · opportunity cost
+  │
+  │       III. DE-RISK &amp; SHIP — the biggest spend, only after value is proven
+  │       8  RAT — kill the riskiest assumptions cheaply (or pivot)
+  │       9  Validate value — sales first, then UX 4/4
+  └────── 10 Ship the top bet  →  new market data  →  back to 1
+</code></pre>
+<p>Gate logic:</p>
+<ul>
+<li><strong>Challenge the goal before anything else.</strong> The goal you were handed is very often the wrong one. Analyzing how to hit a mis-set goal is the most expensive early waste. Steps 1–2 frame the right goal, then diagnose the state.</li>
+<li>Every step is a gate. If it doesn&#39;t hold up, pivot, which means swapping the set of risky assumptions. Don&#39;t move forward.</li>
+<li>If at step N you find that an assumption from step N−K was false, go back and rebuild from the point of error. Don&#39;t fake progress on a broken upstream node.</li>
+<li>Cost rises by phase. Phase I is fast and cheap: head, expert, or an LLM drafts the layer in an hour. Phase II costs real research time and money for recruiting, interviews, and surveys. The big build spend comes only in Phase III, after the riskiest assumptions are killed and value is proven.</li>
+</ul>
+<h2>4. The ten steps</h2>
+<h3>Step 1. Challenge the business goal</h3>
+<blockquote>
+<p>See <a href="../Next-Move-Theory/local-vs-global-optimum.html">Local vs Global Optimum</a>, <a href="../Next-Move-Theory/focus-as-company-attention-management.html">Focus &amp; Attention Management §7</a>.</p>
+</blockquote>
+<p><strong>Start here, because the goal you were handed is very often the wrong one.</strong> <em>&quot;Lift this metric&quot;</em> or <em>&quot;ship this feature&quot;</em> is frequently not the goal worth pursuing. Analyzing how to hit a mis-set goal is the most expensive early waste.</p>
+<p>Run 5 Whys up the goal. Ask why we are doing this, and why that matters, and what the real outcome is. Climb 3–5 levels, from feature to conversion to sales to margin to profit to the strategic goal. At each level, look for a more effective way to hit the higher goal than the one you were just handed.</p>
+<p>Local vs. global optimum is an explicit gate. Local means improving the current product, segment, or model: low risk, low ceiling, delegable, additive. Global means changing the segment, business model, market, or Core Job: high risk, multiplicative upside, subtractive. Only the founder or C-level has the authority to override the team&#39;s addition bias and call it (see <a href="../Next-Move-Theory/subtraction.html">Subtraction §4</a>). The two are not opposites. They are two parallel investment tracks, funded together. Full treatment in <a href="../Next-Move-Theory/local-vs-global-optimum.html">Local vs Global Optimum</a>.</p>
+<p>Artifact: a Focus Goal at the right level, an explicit local-vs-global choice, and the alternatives you cut, with reasons.</p>
+<h3>Step 2. Diagnose the current state</h3>
+<p><strong>Don&#39;t jump to solutions before you understand the situation.</strong> This is the strategist&#39;s main mistake (Rumelt, <em>Good Strategy, Bad Strategy</em>).</p>
+<p>Pull together everything that bears on this business goal:</p>
+<ul>
+<li>the Map of Segments and the Job Graphs of the target segments;</li>
+<li>the decisions already taken against this goal, and how they played out;</li>
+<li>ownership and constraints. Is there a directly responsible person? Are there resources? Are there conflicting goals? Are there stakeholders backing the initiative?</li>
+<li>the research already run, and the customer feedback, analytics, cohorts, and unit economics, gathered, structured, and read for what they say.</li>
+</ul>
+<p>Define the context: new product vs. existing, and PMF stage (none, weak, strong, or ripped-out-of-customers&#39;-hands). This sets how you walk the rest of the algorithm.</p>
+<p>For an existing product, run ABCDX on the paying base. Find the 20% of customers giving 80% of margin. Run switch interviews with churned users. Ask <em>&quot;why do they stay?&quot;</em> before <em>&quot;why do they leave?&quot;</em></p>
+<p>Artifact: a structured picture of the current state, plus an explicit context (PMF stage, new vs. existing).</p>
+<h3>Step 3. Assemble the layer — data first, then hypothesis</h3>
+<blockquote>
+<p>See <a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation</a>, <a href="../Advanced-Jobs-To-Be-Done/job-graph.html">Job Graph</a>.</p>
+</blockquote>
+<p><strong>Don&#39;t just hypothesize. Start from the structured data you already have — analytics, prior research, customer reviews — and hypothesize only the gaps.</strong> An LLM drafts the hypothesis parts fast. It&#39;s still a hypothesis to test in the field, so aim for enough material to scope the research, not for accuracy.</p>
+<ul>
+<li>3.1. Map of Segments. Extract it from your existing structured data and customer reviews first. Where it&#39;s missing or incomplete, hypothesize. The root is similar Core Jobs with similar success criteria. The Big Job above is motivational context, not the cut, and demographics are a secondary correlate.</li>
+<li>3.2. Job Graph for the target segment. Same rule: from existing data and reviews first, then hypothesize the gaps. It runs Big Job → Core Jobs → Small / Micro Jobs plus the Critical Chain of Jobs.</li>
+<li>3.3. Consideration Set per Core Job. List 3–5 current Solutions, including DIY and <em>&quot;do nothing&quot;</em> (both are Job Graphs), and how our Graph differs.</li>
+</ul>
+<h3>Step 4. Shortlist candidate mechanics</h3>
+<blockquote>
+<p>Catalog: <a href="../Advanced-Jobs-To-Be-Done/value-creation-mechanics.html">Value-Creation Mechanics</a>.</p>
+</blockquote>
+<p>Walk the catalog and flag the mechanics that could in theory solve this business goal on the layer. This is where the ways to solve it might live.</p>
+<p>Keep the handful you most strongly believe in. That is your expert call.</p>
+<p>Artifact: a shortlist of mechanics, each with the unknowns you must learn in the field to judge whether it applies.</p>
+<h3>Step 5. Field research, scoped by the mechanics</h3>
+<blockquote>
+<p>See <a href="../HowTos/basic-ajtbd-interview-guide-and-principles.html">AJTBD interview guide</a>.</p>
+</blockquote>
+<p><strong>The shortlisted mechanics are the spec on the research. They tell you exactly what to learn and where to look.</strong> <em>&quot;Move to the Previous Job&quot;</em> becomes <em>&quot;walk me step by step through everything you did from the moment the Big Job appeared up to buying your current Solution.&quot;</em> <em>&quot;Kill a Job&quot;</em> becomes <em>&quot;what in the current process do you hate or always put off?&quot;</em> <em>&quot;Lower fears and barriers&quot;</em> becomes <em>&quot;when did you last almost buy but didn&#39;t, and what stopped you?&quot;</em> Without the mechanics in hand, you interview blind.</p>
+<p>Tools: AJTBD interviews, switch interviews with churned or migrated users, expert interviews, product analytics (if the product exists), and a quantitative survey to size the segments. Recruit only past-payers. That is the cheapest filter against Fake Jobs.</p>
+<p>Research exists to get the raw material for the mechanics you&#39;ll actually apply. That material is the real Job Graphs, success criteria, Critical Chains of Jobs and their breaks, barriers, habits, fears, Consideration Activators, and Aha Moments.</p>
+<h3>Step 6. Apply the surviving mechanics to the real Job Graph</h3>
+<blockquote>
+<p>See <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §17</a>.</p>
+</blockquote>
+<p>Run the surviving mechanics against the Map of Segments, the real Job Graph, and the Critical Chains of Jobs.</p>
+<p><strong>The real value usually sits outside the current Core Jobs.</strong> It sits in the Previous and Next Jobs, the Big Jobs, an adjacent segment&#39;s Small Jobs, emotional and Orientation Jobs, and Critical Chain of Jobs repairs.</p>
+<p>Each hypothesis is <code>segment × Job × mechanic → a concrete action</code>. For example:</p>
+<ul>
+<li><em>Kill a Job</em> × the onboarding Critical Chain of Jobs → <em>&quot;auto-import the customer&#39;s existing data so they never re-enter it — the setup Job disappears.&quot;</em></li>
+<li><em>Move to the Previous Job</em> × the lead-gen segment → <em>&quot;build the free estimator they use before they&#39;re ready to buy — we capture them earlier than competitors.&quot;</em></li>
+<li><em>Take the Job off the customer</em> × the done-for-me segment → <em>&quot;run the whole workflow as a service; the customer only approves.&quot;</em></li>
+<li><em>Create a link to a new Big Job</em> × the status-first segment → <em>&quot;tie the Core Job to &#39;signal who I am,&#39; raising willingness-to-pay without changing the product.&quot;</em></li>
+<li><em>Repair a Critical Chain of Jobs break</em> × a new sub-segment → <em>&quot;the chain breaks at compliance review for enterprise; own that Job and the segment unlocks.&quot;</em></li>
+</ul>
+<p><strong>A hypothesis only counts if it makes the Big Job land better by the segment&#39;s own success criteria</strong> (see <a href="../Advanced-Jobs-To-Be-Done/behaviour-change.html">Behaviour Change §4</a>). A Core-Job criterion that doesn&#39;t ladder up to a Big-Job criterion the customer cares about won&#39;t carry the switch, however true it is.</p>
+<h3>Step 7. Rank by RICE</h3>
+<p>Score each hypothesis on RICE:</p>
+<ul>
+<li>R — Reach: the share of the target segment the hypothesis creates value for.</li>
+<li>I — Impact: an expert estimate of the value added, defined separately for each business goal. What <em>&quot;impact&quot;</em> means differs for a conversion goal, a retention goal, an AOV goal, and an exit-competition goal.</li>
+<li>C — Confidence: the evidence hierarchy, from opinion to analytics to survey to interview to MVP to sales. The higher the level behind the estimate, the higher the Confidence.</li>
+<li>E — Effort.</li>
+</ul>
+<p>Apply the unit-economics gate. Can the hypothesis in principle deliver the target margin per paying customer on the target segment? If not, bin it, however beautiful.</p>
+<p>Write down the opportunity cost: what you give up by picking this over the next few hypotheses.</p>
+<p>Artifact: a ranked list, plus the top few to test next.</p>
+<h3>Step 8. RAT — Riskiest Assumption Test</h3>
+<blockquote>
+<p>See <a href="../Riskiest-Assumption-Test/rat-key-theses.html">Riskiest Assumption Test</a>, <a href="../Next-Move-Theory/subtraction.html">Subtraction</a>.</p>
+</blockquote>
+<p>Write a list of positively-stated risky assumptions under each top hypothesis. It is a cause-and-effect chain rooted in Segments and Jobs, each item falsifiable by a single experiment. Use the positive form: <em>&quot;the segment pays at our price,&quot;</em> not <em>&quot;customers might not pay.&quot;</em></p>
+<p>The five baseline risks (a real RAT has many more, and the killing one usually hides in product-specific custom risks):</p>
+<ol>
+<li>Market — a market exists, is large enough, is growing, and is free of regulation that would block us.</li>
+<li>Segments and Jobs — segments performing similar Core Jobs exist, are large enough and reachable, and the Core Jobs we chose to compete on are the most attractive (economically viable, and we can create substantial value for them). This is the root. More product cycles die here than anywhere else, because a wrong choice cascades down the whole chain.</li>
+<li>Value — customers from those segments buy our product to perform those Core Jobs.</li>
+<li>Unit economics — average margin per paying customer hits target.</li>
+<li>Acquisition channels — repeatable channels exist that fit inside the unit-econ budget and scale.</li>
+</ol>
+<p>Add product-specific custom risks. This is usually where products actually die. Talk to a competitor&#39;s salesperson. Walk the operating model actor by actor.</p>
+<p>The priority formula is <code>(P(risk hits) × cost if it hits) / cost of validation</code>. The formula orders the risks. Go validate whatever sits at the top right now.</p>
+<p><strong>The goal of a new initiative is to kill it or pivot it, not to launch it.</strong> The work is buying knowledge cheaply. A run that kills the initiative before the build is a successful RAT.</p>
+<p>The MVP is a probe, not a product. Its success criterion is <em>&quot;did the risk reveal itself,&quot;</em> not <em>&quot;did it sell.&quot;</em> Name every assumption the probe is built to test.</p>
+<p><strong>Survival is multiplicative.</strong> Seven risks at 40% each give roughly 3% joint survival. The highest-leverage move is the drop-it exercise: remove a risky assumption so it no longer needs to be true. Loading a product with risks is the guaranteed way to kill it.</p>
+<p>A pivot is a change in the set of risky assumptions. Change the highest-priority un-validated one first, and keep what&#39;s already validated. The segment-Job pivot is usually the highest-leverage.</p>
+<p>Gate: a key assumption falsified means stop and pivot.</p>
+<h3>Step 9. Validate value — sales, then UX 4/4</h3>
+<blockquote>
+<p>See <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §12</a>.</p>
+</blockquote>
+<p><strong>The best validation of value is sales.</strong> The more live sales, the cleaner the signal. Communicate at the Big-Job level, where motivation lives, but promise only what the chain actually delivers. Over-promising manufactures a Problem.</p>
+<p>Run solution interviews in iterations of 6. If about 5 iterations produce no sales, there&#39;s a fundamental error in segment, Job, or value, so pivot rather than run <em>&quot;one more round.&quot;</em> The segment is the highest-leverage pivot.</p>
+<p>Once sales start, run UX tests on the 4-of-4 rule (RITE). Four of four users must complete the Core Job without critical errors. If even one fails, fix it, then run another four, and repeat until 4/4. Ask four questions at every step: what do you see, what are you thinking, what are you feeling, what do you want to do.</p>
+<p>Place the first Aha Moment as far left in the Critical Chain of Jobs as possible. Every step before it is an abandonment window.</p>
+<p>Only after 4/4 sales and 4/4 UX should you invest in full-scale development.</p>
+<h3>Step 10. Execute + loop</h3>
+<blockquote>
+<p>See <a href="../Advanced-Jobs-To-Be-Done/job-graph.html">Job Graph §13</a>, <a href="../Next-Move-Theory/focus-as-company-attention-management.html">Focus &amp; Attention Management §7</a>.</p>
+</blockquote>
+<p>Ship the top hypothesis and get data from the market.</p>
+<p>Return to Step 1 with what you learned. Re-challenge the goal, update the diagnosis, then rebuild or continue.</p>
+<p>A pivot swaps the set of risky assumptions, not just one. Change the most leveraged thing, most often the segment, not everything at once.</p>
+<p><strong>Value is simplification of the Job Graph over time.</strong> Keep the Graph as a time series: which Jobs died, which appeared, and where the market is moving.</p>
+<p>Hold focus on the current segment and also fund a second track for the global-optimum move. A team that funds no second track drifts into the Innovator&#39;s Dilemma in 3–5 years.</p>
+<h2>5. Contextual branches</h2>
+<h3>By PMF stage</h3>
+<ul>
+<li>PMF = 0. The main business goal is Go-to-Market: first find the paying segments, then prove the value. Don&#39;t scale a product that doesn&#39;t exist yet.</li>
+<li>PMF weak. Grow value, position and differentiate from competitors, and bring margin up to target.</li>
+<li>PMF strong. A wide field opens: scale, launch new products, retention, grow average order value, scale further inside the current segments, and fund new high-risk initiatives.</li>
+</ul>
+<h3>By product type</h3>
+<ul>
+<li>New product. Full cycle from Step 1. The main risk is picking a rare or low-frequency Job for a small audience, or a Fake Job (a future-tense fantasy no one paid for).</li>
+<li>Existing product. The fundamental risks (segment, value) are already reduced, so focus shifts to efficiency and scaling. The field is still wide: you can launch new products and sub-products, enter adjacent segments, or change the business model. Start with ABCDX plus switch interviews. The constraints are customer expectations and habits, internal politics, and a PM&#39;s limited zone of responsibility. Big changes are possible but must be argued: a bigger segment, materially more value, or a suboptimal model. The <em>&quot;if it ain&#39;t broke, don&#39;t fix it&quot;</em> trap is the Innovator&#39;s Dilemma, escaped through the Job Graph.</li>
+</ul>
+<h2>6. The broken vs. the right value-creation process</h2>
+<p><strong>The broken process: came up with a feature, ran customer interviews to check whether it has value, then decided to build or not.</strong> It fails for three reasons. First, cognitive bias: you go looking for confirmation the feature is needed. Second, you start from the feature, not the Job, so you are blind to the rest of the Graph. Third, of 100+ mechanics you guessed your way to one, so you don&#39;t see the whole graph or the other ways to create value.</p>
+<p><strong>The right process: challenge the goal (5 Whys), diagnose the state, assemble the layer, shortlist mechanics, research, build the real graph, apply mechanics, rank, RAT, validate by sales and UX 4/4, execute, loop.</strong> The planning unit is the value hypothesis, not the feature (see <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §1</a>). When you see the graph, do the research, apply the mechanics, and rank them, the probability that an investment creates value rises by orders of magnitude.</p>
+<h2>7. Fractality of strategies</h2>
+<p>The same mechanic works at every level. <em>Move to the Next Job</em> is a button in the UI or a company strategy (design → design + renovation). <strong>Level of application equals scale: at the Big Job it&#39;s strategy, at the Micro Job it&#39;s micro-optimization.</strong> Once you understand the mechanics, you apply them everywhere, from copywriting to picking a market.</p>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Job Structure — Under the Microscope</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Job Structure — Under the Microscope</h1>
+<p>This page is the per-element deep-dive on the structure of a single Job. The canonical framing lives in <a href="ajtbd-key-theses.html">AJTBD key theses §2</a> and <a href="ajtbd-key-theses.html">AJTBD key theses §3</a>: what a Job is (the specification of a desired transition — the person&#39;s situation, State A; the transition process; and the expected outcome, State B), why it is the right unit of analysis, and how the Critical Chain of Jobs delivers it. This page does not restate that. It adds a worked walkthrough of all four phases of one US Job, an extended treatment of each of the eight elements that fully specify it (with interview questions, anti-patterns, and operational consequences per element), the analytical pair <code>Job + chosen Solution</code>, and the practitioner discipline (abstract→concrete, fidelity levels, interview moves) needed to produce Jobs accurate enough to design against.</p>
+<p>Cross-page boundaries:</p>
+<ul>
+<li>Job <em>Graph</em> (how Jobs relate at multiple levels, Critical Chains of Jobs, cycles) → <a href="job-graph.html">Job Graph</a>.</li>
+<li>Interview mechanics → <a href="../HowTos/basic-ajtbd-interview-guide-and-principles.html">AJTBD interview guide</a>.</li>
+</ul>
+<hr>
+<h2>1. Why <em>the Job</em> — and not the <em>need</em> — is the right unit of analysis</h2>
+<p><a href="ajtbd-key-theses.html">AJTBD key theses §2</a> carries the canonical antitheses (<em>Job ≠ need, ≠ problem, ≠ feature</em>) and the operational consequences. This page adds the scientific grounding — the part that explains why the Job sits at the right level for design and research.</p>
+<p>Need theories make the case. Maslow, Self-Determination Theory, Grawe, Dweck, belongingness research, and adjacent social-motive work converge on a stable applied point. Humans carry durable needs: physiological integrity, safety and predictability, relatedness, competence, autonomy, plus recurring market-relevant extensions like status, growth, and coherence (see <a href="scientific-foundations.html">Scientific Foundations §5</a>). Those needs fail as a working unit on two grounds. They are too abstract to design against — a banner cannot be written from <em>&quot;this segment has a need for safety and autonomy.&quot;</em> And direct questioning about them returns confabulation rather than data (see <a href="scientific-foundations.html">Scientific Foundations §10</a>).</p>
+<p><strong>The brain bridges from needs to action by forming concrete goals in concrete contexts, and those concrete goals are Jobs.</strong> Working under metabolic constraints (allostasis — see <a href="scientific-foundations.html">Scientific Foundations §1</a>), the brain produces <em>&quot;buy round-trip tickets to Cabo before the PTO date is locked,&quot;</em> <em>&quot;open a Wealthfront account this weekend,&quot;</em> <em>&quot;get the AC installed before the next heat wave.&quot;</em> These formulations are specific enough that a researcher can interview against them, a designer can target them, a marketer can communicate to them, and a pricing team can anchor on them.</p>
+<p><strong>AJTBD is not invented vocabulary — it operates on the structure of motivation that already exists in the human brain.</strong> The methodology&#39;s contribution is not the invention of Jobs. The brain forms them either way. The contribution is the discipline of extracting them accurately and the operating logic built on top.</p>
+<p>Operational consequence: researching needs directly is a category error — the wrong grain, with no reliable customer report. Research the Jobs and the emotions instead. The customer can name both when interviewed against a concrete past performance.</p>
+<hr>
+<h2>2. The four phases of a Job&#39;s transition — walked on one concrete US example</h2>
+<p><a href="ajtbd-key-theses.html">AJTBD key theses §10</a> places the Critical Chain of Jobs as the operational core of AJTBD — the time-projection of the Job Graph at a chosen Solution, where predictions, prediction errors, interruptions, and the lived walk happen. This section walks all four phases through one fully-fleshed US Job. It is dense enough that the operational shape becomes visible, so the per-element sections below (§§3–10) can refer back without re-introducing the example.</p>
+<p>The Job: a parent of two in Austin wants to fly the family to Cabo for spring break. <em>&quot;Buy round-trip tickets for four — under $1,800 total, layovers no longer than 2 hours and no overnight stays, all four seats together, checked-bag fees included in the displayed price.&quot;</em></p>
+<ul>
+<li>State A — the current situation. The parent&#39;s <em>context</em> (two kids 6 and 9, work-from-home flexibility, Austin → Cabo route, holiday-week pricing pressure). Their <em>past experience</em> (a prior overnight stuck in Mexico City — <em>&quot;never again&quot;</em> — which drove the <em>no overnight stays</em> criterion). The <em>Consideration Set</em> they hold (Google Flights, Kayak, Costco Travel, the Chase Sapphire portal — each candidate Solution carries predicted costs, benefits, fears, and the Job Graph it would install; a friend&#39;s recommendation that bundling through one site beats DIY has already been loaded into the Set). And the <em>negative emotions</em> while the result isn&#39;t yet in hand (anxiety the seats won&#39;t be together, mild frustration about holiday surcharges). State A also holds the <em>prediction</em>: before acting, the brain has a forecast of how the booking will go and how it will feel once it lands. The prediction is brain-side mechanism — the predict-and-compare engine (<a href="value-creation.html">Value Creation §4</a>) — not a ninth element of the Job. We don&#39;t ask for it in interviews and don&#39;t record it in the Job, because it already lives implicitly in the success criteria (§8) and the Consideration Set (§5) the customer carries.</li>
+<li>Trigger — the event that kicks off action. Internal (<em>&quot;I&#39;m anxious enough now to handle this tonight&quot;</em>) or external (<em>&quot;my manager just approved the PTO dates&quot;</em>). Before the trigger, the parent is contemplating the Job. After the trigger, they are performing it.</li>
+<li>Action — the path toward State B. The customer picks a specific Solution from the Consideration Set. That pick installs a Critical Chain of Jobs of lower-level Jobs (the chain the chosen Solution proposes for the Big Job above). The customer walks the chain — open Kayak, search dates, compare itineraries, hold seats, pay, receive confirmation. During the walk, the brain compares each step&#39;s reality to its prediction. Full operational dynamics of the walk — predictions, prediction errors, interruptions, drop-offs, Solution switches — live in <a href="critical-chain.html">Critical Chain of Jobs</a>.</li>
+<li>State B — the desired result. The expected outcome with its success criteria, the <em>positive emotions</em> once it lands (relief, anticipation of the trip, quiet pride at having handled it cleanly), and the <em>higher-level Job</em> this Job was performed <em>in order to</em> perform (<em>&quot;give the family a great spring break&quot;</em>).</li>
+</ul>
+<p>The eight elements of this Job are unpacked one section at a time below: context (§3), negative emotions (§4), Consideration Set (§5), trigger (§6), expected outcome (§7), success criteria (§8), higher-level Job (§9), positive emotions (§10). The canonical eight-element list, and the worked Uber Comfort SF example, lives in <a href="ajtbd-key-theses.html">AJTBD key theses §3</a>.</p>
+<hr>
+<h2>3. Element 1 — Context: features of the person and situation that produce exactly these criteria</h2>
+<p><strong>Context is the features of the person and the situation that make this person want exactly this outcome with exactly these criteria.</strong> It is the upstream variable that explains the criteria. Change the context meaningfully and the criteria can shift, and therefore the Job, and therefore the segment.</p>
+<p>The diagnostic test is whether it influences the outcome and the criteria. If yes, it is context. If no, discard it. <em>&quot;It was Friday&quot;</em> is not context unless Friday-ness changes a criterion. Context is not background information. It is the <em>cause</em> of the criteria.</p>
+<p>B2C examples:</p>
+<ul>
+<li>psychological features (anxious vs. calm)</li>
+<li>past experience that conditioned a specific criterion (the Mexico-City overnight that produced <em>no overnight stays</em> in §2)</li>
+<li>life-stage features (parent of young kids, recent transplant, no car)</li>
+<li>current situation (holiday-week pricing pressure, recently confirmed PTO)</li>
+</ul>
+<p>B2B examples:</p>
+<ul>
+<li>role features (Director of Engineering at a 50–200-engineer SaaS company hiring against a Q4 ship deadline)</li>
+<li>past role experience (<em>&quot;the last vendor fell over at 100k req/sec&quot;</em> drives <em>must hold at production load</em>)</li>
+<li>company features (Series-B, ARR $10–30M, no in-house security team)</li>
+<li>industry features (HIPAA-regulated healthcare, requires BAA)</li>
+<li>situational features (audit in 30 days, board pressure, Q4 budget freeze)</li>
+</ul>
+<p>Same expected outcome (<em>&quot;book a hotel&quot;</em>), two contexts, two Jobs. <em>Vacation</em> (close to attractions, on-site pool, search speed doesn&#39;t matter) vs. <em>business trip</em> (fast Wi-Fi, gym, quiet room, search speed <em>does</em> matter). Different criteria sets, two different Jobs. If the <em>same</em> person performs both on different days, that&#39;s two Jobs in one person&#39;s graph — one segment, not two (<a href="ajtbd-key-theses.html">AJTBD key theses §12</a>). Two <em>segments</em> would mean different <em>people</em> performing the surface verb under different criteria.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>Use context as a segmentation criterion only when it changes criteria. If a context feature produces different success criteria, it can separate Jobs and segments. If it doesn&#39;t, it is background noise.</li>
+<li>A respondent who states a Job without context is incomplete data. Dig it with the context question — <em>&quot;What situations did you find yourself in when you decided to use {solution} to get {expected outcome}?&quot;</em> — not with a trigger question (the triggering event is a separate element, §6). Without context you cannot tell whether this is one Job or several.</li>
+</ul>
+<p>Interview question: <em>&quot;What situations did you find yourself in when you decided to use {solution} to get {expected outcome}?&quot;</em> — regular-Job variant: <em>&quot;What situations do you usually find yourself in when you decide to use {solution} to get {expected outcome}?&quot;</em></p>
+<hr>
+<h2>4. Element 2 — Negative emotions in State A: what the customer feels while the result is not yet reached</h2>
+<p><strong>Negative emotions are the brain&#39;s signal that the customer is not where they need to be.</strong> Anxiety, irritation, doubt, shame, frustration, fear — they are the brain&#39;s affect-and-appraisal signal. They fire <em>before</em> the conscious thoughts and rationalizations that sit on top of them (see <a href="scientific-foundations.html">Scientific Foundations §9, §10</a>). The emotion is what motivates the customer to act.</p>
+<p>Avoiding the State-A negative emotions is itself motivation — the <em>avoid</em> direction running alongside the <em>approach</em> toward State B (§10). The two don&#39;t simply add. They integrate into one net valuation, and the avoid term weighs heavier (negativity bias — <a href="scientific-foundations.html">Scientific Foundations §13</a>).</p>
+<p><strong>Eliminating a negative emotion is one of the highest-leverage value-creation mechanics</strong> (see the <em>Remove negative emotions</em> mechanic — <a href="value-creation-mechanics.html">Value-Creation Mechanics</a>). Square&#39;s tipping screen removed the negative emotion of choosing a tip while the barista watched. TurboTax removed <em>&quot;am I doing this wrong; will the IRS catch a mistake?&quot;</em> Insurance sells <em>&quot;I sleep at night,&quot;</em> not <em>fewer break-ins</em>. Each engineers the same operation — drop a unit of anxiety from State A.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>A Job record missing its emotions is incomplete. Without the State-A negative emotions, and the State-B positive ones (§10), you don&#39;t know the <em>pressure</em> the customer is under or the <em>destination</em> they&#39;re moving toward, and your messaging misses both.</li>
+<li>Communication in the customer&#39;s emotional language increases ad and funnel conversion. <em>&quot;Stop worrying about whether your IRS return is right&quot;</em> moves the State-A-anxious customer. <em>&quot;File your taxes accurately&quot;</em> doesn&#39;t.</li>
+</ul>
+<p>Interview question: <em>&quot;Until you got {expected outcome}, did you feel any negative emotions?&quot;</em> — the reply must surface emotions felt <em>before</em> using the Solution, not problems that arose during use.</p>
+<p><strong>A respondent not naming a negative emotion is not evidence there isn&#39;t one.</strong> Most people under-report here, for predictable reasons. The emotion is <em>weak</em> and was never consciously registered. Or you haven&#39;t built enough rapport and emotional safety for them to be vulnerable with you. Or they don&#39;t realize you&#39;re asking about <em>emotions</em> specifically and need an example to model the answer. Or they simply aren&#39;t fluent in the language of emotions, which is normal, not a signal of absence. Treat a flat <em>&quot;no, nothing&quot;</em> as a cue to build safety and offer an example, not as a finding.</p>
+<hr>
+<h2>5. Element 3 — Consideration Set: what the customer&#39;s brain compares at the moment of choice</h2>
+<p><strong>The Consideration Set is the customer&#39;s existing knowledge of how to perform the higher-level Job efficiently — held in State A as four slots the brain compares when the trigger fires.</strong> It is what the customer carries into the choice moment. It is not a separate unit of analysis. It lives inside the Job (<a href="ajtbd-key-theses.html">AJTBD key theses §1, §2, §3</a>).</p>
+<p><strong>Loading Consideration Activators is the operation that writes into this Set.</strong> <em>Consideration Activators</em> names the <em>content</em> we inject (five pieces — see <a href="consideration-activators.html">Consideration Activators</a> and <a href="ajtbd-key-theses.html">AJTBD key theses §18</a>). <em>Loading Consideration Activators</em> names the <em>act</em> of putting that content into the customer&#39;s head through communication, content, peer story, demo, or first-hand trial. Each Solution awakens its own Job in the customer&#39;s head. Load Consideration Activators about Wealthfront and the customer&#39;s <em>&quot;manage my retirement&quot;</em> Job acquires Wealthfront-shaped success criteria. Load Consideration Activators about Belong (turnkey rental management) and <em>&quot;rent out my duplex&quot;</em> acquires Belong-shaped criteria. Same higher-level motivation, different loads, different awakened Jobs.</p>
+<p>The four slots of the Consideration Set are the canonical model. The <em>five</em> Consideration Activators components write into these <em>four</em> slots — the two fear-related components both land in slot 4 (see <a href="consideration-activators.html">Consideration Activators §1</a>).</p>
+<ol>
+<li>Awareness of available Job Graphs for the higher-level Job — which ways exist to perform the Big Jobs, and which Core, Small, and Micro Jobs each candidate Solution would have you perform.</li>
+<li>Comparative energy-efficiency of the Big Jobs across Solutions — how efficiently each candidate Solution&#39;s Core Jobs (each a different graph) perform the Big Jobs, by which concrete success criteria each graph is better or worse.</li>
+<li>Named products with entry paths — brand plus first concrete step (download, sign up, book a call, ask the bank teller).</li>
+<li>Fears about the alternatives, and what reduces them. For each way (ours <em>and</em> competitors&#39;), the customer&#39;s prediction that the Big Jobs won&#39;t be performed well — a Critical Chain of Jobs break, Problem, Tax Job, personal risk, or irreversible loss — together with whatever prevents, absorbs, reverses, insures, or makes it irrelevant. In Consideration Activators this is two acts (reduce the fear about our way, fire the fear about the competing way), but in the customer&#39;s head it is one slot.</li>
+</ol>
+<p>A compact Job record can store a compressed version, but the underlying four slots are the canonical model. In practice the full four-slot Set is usually left out of the Job record. Digging it in detail is slow and attention-expensive, so teams reconstruct it fully only when a specific task demands it — most often <em>choosing which segments to compete for,</em> also win/loss analysis and competitive positioning. It is always present in State A. It just isn&#39;t always worth surfacing or showing. The full mechanism — how Loading Consideration Activators populates the Set, fires alternatives out, and updates predictions across multiple touches — lives in <a href="consideration-activators.html">Consideration Activators §8</a>.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>Loading Consideration Activators is how a team awakens the <em>specific</em> Job they want the customer to perform — ours, not a competitor&#39;s. Without Consideration Activators loaded into the Consideration Set, the customer either doesn&#39;t know our Job exists or has it framed in some other Solution&#39;s shape. The trigger (§6) then fires in the wrong direction.</li>
+<li>Loading Consideration Activators is what makes radically unfamiliar products sellable at all. Without it, an innovative product fails not because the value isn&#39;t there but because the customer never learns the new Big-Job-and-Graph pairing exists at all (see <a href="ajtbd-key-theses.html">AJTBD key theses §18</a>).</li>
+</ul>
+<p>Questions to reconstruct the full Consideration Set:</p>
+<ul>
+<li>Awareness: <em>&quot;Between which ways of getting {Big Job&#39;s expected outcome} were you choosing?&quot;</em></li>
+<li>Comparative value: <em>&quot;Comparing those ways for {Big Job&#39;s expected outcome} — what did each do better or worse, and which came out ahead for you?&quot;</em></li>
+<li>Named product plus door: <em>&quot;Which exact products did you have in mind, and did you know how to start with each?&quot;</em></li>
+<li>Fears plus reductions: <em>&quot;What fears did you have that these ways wouldn&#39;t perform {Big Job&#39;s expected outcome} well — and did anything reduce those fears?&quot;</em></li>
+</ul>
+<hr>
+<h2>6. Element 4 — Trigger: the event that flips the customer from contemplation to action</h2>
+<p><strong>The trigger is the internal or external event that flips the customer from <em>thinking about</em> the Job to <em>spending energy on it.</em></strong> Even external triggers register through an internal psychological process. The mechanism is at the brain level. The <em>cause</em> of that switch can sit outside (a manager&#39;s approval, a price drop, a heat wave) or inside (an accumulated anxiety crossing a threshold).</p>
+<p>The defining feature is that the customer can be in context, with the Job in their head, for a long time without acting. The Austin parent of §2 has been thinking about the Cabo trip for months. The booking happens the day the manager approves the PTO dates. The Phoenix homeowner has been thinking about installing AC for a year. The call happens the first day temperatures cross 105°F. The CTO has known about the security gap for two quarters. Procurement starts the week the legal team forwards a fresh data-breach industry report.</p>
+<p>A useful taxonomy — two axes, four cells:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>External</strong></th>
+<th><strong>Internal</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Planned</strong></td>
+<td>A scheduled SOC-2 audit deadline; a renewal date; quarter-end budget cycle</td>
+<td>A scheduled review of personal goals; a planned re-evaluation of one&#39;s tooling stack</td>
+</tr>
+<tr>
+<td><strong>Unexpected</strong></td>
+<td>A breach announcement; a sudden price hike; a friend&#39;s recommendation; a manager&#39;s approval</td>
+<td>An accumulated frustration crossing a threshold; an anxiety spike; a flash of curiosity</td>
+</tr>
+</tbody></table>
+<p>Operational consequences — the trigger is one of the few elements where a team can act before, at, <em>and</em> after the event:</p>
+<ul>
+<li>You can <em>be</em> the trigger. Loading Consideration Activators (§5) into the customer&#39;s head awakens the Job in the first place, and the moment of Consideration Activators-load itself functions as a trigger for the new way (see <a href="behaviour-change.html">Behaviour Change §8</a> for the trigger-as-receptivity-window framing).</li>
+<li>You can <em>time</em> outreach to triggers already firing. The same message at the moment of contextual pressure (the heat wave, the breach headline, the manager&#39;s approval) lands ~10× harder than in a steady-state habit moment.</li>
+<li>You can <em>embed</em> in triggers via partners. Place the rental-car kiosk at the airport baggage claim. Place the kid-sized car-seat promo on the route a parent&#39;s GPS shows after landing. Place the Wealthfront ad on the Robinhood account-export page. The partner&#39;s surface owns the trigger; you position your Solution where the customer is already in motion.</li>
+<li>You can <em>build</em> trigger-to-brand associations through advertising. This is the Coca-Cola mechanic: heat → Coca-Cola; popcorn at a movie → Pepsi; drive-thru hunger → McDonald&#39;s. Repeated pairing of a trigger with a brand re-trains the customer&#39;s brain to reach for that brand the moment the trigger fires next. Slow and expensive, but it compounds over decades.</li>
+</ul>
+<p>Two further distinctions:</p>
+<ul>
+<li>For regular Jobs (a weekly cleaning, a daily commute, a monthly bill-pay), the trigger can be non-obvious or absent — the Job runs on a recurring schedule. The <em>schedule itself</em> substitutes for a trigger. Surface it as <em>&quot;how often does it happen and on what cadence?&quot;</em></li>
+<li>Necessary conditions are not triggers. <em>&quot;Being home&quot;</em> is necessary for the cleaner to clean, but it is not what triggered today&#39;s clean. The trigger is the scheduled day arriving, the houseguest announcement, the spilled coffee. Necessary conditions sit in the context; triggers sit in time.</li>
+</ul>
+<p>Interview question: <em>&quot;At what point did you start doing something to get the {expected outcome}? What was the trigger?&quot;</em> The answer is a concrete moment in time, not a vague <em>&quot;when I felt ready.&quot;</em></p>
+<hr>
+<h2>7. Element 5 — Expected outcome: <code>I want to + infinitive verb (+ object when the verb takes one)</code></h2>
+<p><strong>The expected outcome is the primary element of the Job — the part that begins with <code>I want to + infinitive verb</code> (with its object, when the verb takes one).</strong> Everything else in the eight-element structure (§§3–10) is grouped around this one phrase. The full Job can be shortened to it in conversation, on a slide, in ad copy, but never in the source-of-truth record.</p>
+<p>A Job&#39;s outcome is <code>I want to</code> plus a verb, plus an object when the verb needs one. Add the object when the bare verb leaves <em>&quot;verb what?&quot;</em> open: <em>learn → learn how to code; hire → hire a senior engineer; file → file my tax return.</em> Drop it when the verb is already complete on its own: <em>I want to sleep, to rest, to relax.</em> For a feeling it&#39;s <em>feel + a state:</em> <em>I want to feel safe, to feel calm.</em> What pins down <em>&quot;good enough&quot;</em> is not the noun. It&#39;s the success criteria (§8). <em>&quot;I want to sleep&quot;</em> is a Job. <em>&quot;Sleep 8 hours uninterrupted, asleep within 15 minutes&quot;</em> is one you can build against. Each verb is a different Job. The same verb with different criteria is also a different Job (§8, §11). Several verbs in one statement are a stack — parse them (§13).</p>
+<p>Three operational rules on outcome formulation:</p>
+<ul>
+<li>A Job statement is a verb-phrase, not a noun-phrase. <em>&quot;Rental management,&quot;</em> <em>&quot;retirement management,&quot;</em> <em>&quot;tax filing&quot;</em> are not Jobs — they are category labels that collapse the verb out. The verb is what carries the motivation. Lose the verb and the Job disappears.</li>
+<li>A Job looks from the present into the future. Wrong: <em>&quot;I want to have figured it out&quot;</em> (one-shot past result). Right: <em>&quot;I want to understand&quot;</em> (a future state). The infinitive form encodes the future-orientation.</li>
+<li>The Job-grammar rule applies at every invocation, not just at first definition — canon, skill outputs, design briefs, landing copy. Everywhere the Job appears, the verb form is preserved.</li>
+</ul>
+<p><strong>The minimum-viable Job description is <code>I want to {expected outcome} with {main success criteria}</code> (§8).</strong> Compress further and the actionable specification of <em>good enough</em> is lost; the Job becomes unusable for design. Anything else (context, emotions, Consideration Set, trigger, higher-level Job) can in principle be reconstructed from interviews. Criteria cannot.</p>
+<p>Interview question: <em>&quot;What outcome did you want to get from using {solution}?&quot;</em> The answer is a verb-phrase with a noun. Push for the verb if the respondent gives a noun.</p>
+<hr>
+<h2>8. Element 6 — Success criteria: concrete, measurable, with two components — direction and level</h2>
+<p><strong>Success criteria are the operational specification of &quot;good enough&quot; for the expected outcome.</strong> Not adjectives the team finds appealing — the <em>measurable conditions</em> the customer uses to decide the outcome was reached well enough. Without criteria, &quot;value&quot; is a wish. With criteria, it&#39;s a spec the team can engineer against (see <a href="value-creation.html">Value Creation §9</a>).</p>
+<p>The rule is concreteness, not numerical-ness. Qualitative criteria are fine as long as they are concrete:</p>
+<ul>
+<li>❌ <em>&quot;fast&quot;</em> → ✅ <em>&quot;the car arrived in under 4 minutes.&quot;</em></li>
+<li>❌ <em>&quot;reliable&quot;</em> → ✅ <em>&quot;the payment cleared on the first attempt, every time this month.&quot;</em></li>
+<li>❌ <em>&quot;high-quality&quot;</em> → ✅ <em>&quot;the cabin was clean — no food smell, no sticky seats&quot;</em> (qualitative, but concrete).</li>
+<li>❌ <em>&quot;safe&quot;</em> → ✅ <em>&quot;door-to-door drop-off, no walking alone at night.&quot;</em></li>
+<li>❌ <em>&quot;good UX&quot;</em> → ✅ <em>&quot;booked in three taps, no form to fill in.&quot;</em></li>
+</ul>
+<p>Every criterion has two components, direction and level, and the team needs both to operate on it:</p>
+<ul>
+<li>Direction — <em>what axis</em> the value is being created on. Price? Layover comfort? Seat layout? Bag policy? Each named direction tells the team <em>which axis to invest engineering, design, or ops effort on,</em> and which axes to ignore.</li>
+<li>Level — <em>the threshold above which the customer feels value, below which they feel a problem.</em> <em>&quot;Under $1,800&quot;</em> — at $1,750 the customer feels value, at $1,850 they feel a problem. The level produces the <em>sign</em> of the prediction error in the customer&#39;s brain (see <a href="value-creation.html">Value Creation §5</a>). The direction tells you which axis the sign is being read off.</li>
+</ul>
+<p>Operational consequences:</p>
+<ul>
+<li>Criteria are downstream of the expected outcome, never floating. They are <em>the criteria of this particular outcome,</em> not generic preferences. Anchor every interview question to the named outcome.</li>
+<li>Criteria translate directly into activation and value-delivery metrics. <em>&quot;Booked round-trip under $1,800 with no overnight layover&quot;</em> is a Job criterion <em>and</em> an activation metric for the booking flow. The team that writes down the segment&#39;s criteria has, in the same act, written the metric set the product should be measured on. The reverse is a quality check: if the segment&#39;s criteria can&#39;t be cleanly translated into measurable outcomes, they aren&#39;t concrete enough yet, so go back to interviews.</li>
+<li>The Aha Moment is engineered against the criteria the customer arrived with (see <a href="value-creation.html">Value Creation §12</a>). Without criteria, you cannot design value that beats the customer&#39;s prediction. The product lands as <em>&quot;another one of those,&quot;</em> not as a wow.</li>
+</ul>
+<p>Interview question: <em>&quot;Thinking about {expected outcome}, what specific criteria tell you you&#39;ve achieved it well enough?&quot;</em></p>
+<hr>
+<h2>9. Element 7 — Higher-level Job: where motivation and meaning live</h2>
+<p><strong>The Higher-level Job is the Job for the performance of which the current Job is being performed.</strong> It is the <em>motivation</em> and <em>meaning</em> layer — the level above which the customer&#39;s reasons live, and the level below which the actions sit. The Job-Graph hierarchy that organizes higher-level Jobs into a structure lives in <a href="job-graph.html">Job Graph</a>. This section covers the operational uses of <em>one</em> Higher-level Job for the Job under analysis.</p>
+<p><strong>The recurring trap to avoid is confusing a Higher-level Job with the Job your product performs.</strong> Your product performs the Core Job (the four levels — Core, Big, Small, Micro — are defined in <a href="job-graph.html">Job Graph §2, §5</a>). The Higher-level Job is one or more levels above. Wealthfront performs <em>&quot;manage my retirement portfolio&quot;</em> (Core); the Higher-level Job is <em>&quot;have enough money at 65 to retire how I want to.&quot;</em> DoorDash performs <em>&quot;deliver prepared food to my apartment&quot;</em> (Core); the Higher-level Job is <em>&quot;feed my family well tonight without cooking.&quot;</em> Don&#39;t claim the Higher-level Job as your deliverable. That sets up inflated expectations and manufactured Problems (see <a href="value-creation.html">Value Creation §6</a>).</p>
+<p>Interview question: <em>&quot;Why did you want to {expected outcome}?&quot;</em> — then keep laddering up (<em>&quot;and that, in order to do what?&quot;</em>). Usually you stop once the answers reach the Big Jobs and Super Big Jobs. That&#39;s where motivation lives and where the answers become useful for positioning and value design. You <em>can</em> keep climbing toward the underlying needs; just know the ceiling signal. The respondent stops adding anything new and <em>repeats the previous answer</em>. The repetition means you&#39;ve reached the need — it sits below conscious access (see <a href="scientific-foundations.html">Scientific Foundations §10</a>), so there&#39;s nothing higher they can articulate.</p>
+<hr>
+<h2>10. Element 8 — Positive emotions in State B: what the customer expects to feel after</h2>
+<p><strong>Positive emotions are the brain&#39;s signal that the result has been reached.</strong> Calm, satisfaction, pride, relief, joy. The brain&#39;s message: <em>&quot;you arrived; remember the path that got you here and repeat it.&quot;</em></p>
+<p>The positive emotion expected at State B carries motivational weight, but it isn&#39;t a channel added on top of a &quot;rational&quot; pull. Anticipated emotion <em>is</em> how the brain represents the value of reaching State B. Functional, emotional, and social value are scored on one common register (<a href="scientific-foundations.html">Scientific Foundations §2–§3</a>), and affect is part of that valuation, not an add-on (somatic-marker hypothesis, appraisal theory — <a href="scientific-foundations.html">Scientific Foundations §9</a>). Two directions operate at once: <em>approach</em> the desired State B (and the higher-level Job whose payoff this emotion anticipates), <em>avoid</em> the State-A negative emotion (§4). They integrate into one <em>net</em> value, asymmetrically — the avoidance term weighs harder than an equal-sized approach term (loss aversion — <a href="scientific-foundations.html">Scientific Foundations §13</a>). They don&#39;t simply &quot;stack.&quot;</p>
+<p>The State-B emotion is also the <em>image</em> the team loads in advertising. When a Wealthfront ad shows the customer calm at their kitchen table reviewing a one-page statement, the image is the State-B emotion <em>(calm)</em> visually rendered against the Higher-level Job <em>(retirement set)</em>. When a Belong ad shows the homeowner getting a guaranteed payment notification on the 1st of the month, the image is <em>relief</em> against <em>predictable monthly income.</em> Loading State B with the matching positive emotion raises conversion because the customer&#39;s brain prefers transitions toward emotions it has already imagined feeling.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>The State-B emotion is the headline-craft anchor in landing copy. Name the destination feeling explicitly and the headline lands harder than feature descriptions. <em>&quot;Sleep well at night knowing your data is safe&quot;</em> beats <em>&quot;end-to-end encryption.&quot;</em> (Record-completeness for the State-B emotion is covered in §4.)</li>
+<li>Don&#39;t promise State-B emotions you can&#39;t deliver — same risk as overpromising the Higher-level Job (§9). Inflated expectations lead to under-delivery, a manufactured Problem, then trust collapse (see <a href="value-creation.html">Value Creation §7</a>).</li>
+</ul>
+<p>Interview question: <em>&quot;How did you want to feel after getting {expected outcome}?&quot;</em> Most respondents return facts or metaphors first. Dig past them to the actual named emotion.</p>
+<hr>
+<h2>11. Same expected outcome + different criteria = different Jobs</h2>
+<p><strong>The same surface verb-and-noun (<em>&quot;get from A to B&quot;</em>) with different success criteria is not the same Job — the criteria split it into different Jobs</strong> (see <a href="ajtbd-key-theses.html">AJTBD key theses §12</a>, <a href="segmentation.html">Segmentation</a>). Whether those different Jobs are also different <em>segments</em> depends on <em>who</em> performs them. Different <em>populations</em> means different segments. The <em>same</em> person across different contexts means one segment with several Jobs in its graph. The Uber tariffs — <em>cheap</em> vs <em>Comfort</em> vs <em>6+ seats with luggage</em> vs <em>luxury with formal driver</em> — are four criteria sets and four Jobs. They split into four <em>segments</em> only insofar as different people hire different tiers. One affluent rider may take UberX to commute and Black to a client dinner — four Jobs, one person.</p>
+<hr>
+<h2>12. The three confusables — Trigger ≠ Consideration Set ≠ Aha Moment</h2>
+<p>These three elements get confused with each other constantly because all three are <em>learning-or-event-shaped</em>. The distinctions are sharp once named.</p>
+<ul>
+<li>Consideration Set (§5) is the customer&#39;s existing knowledge held in State A — what their brain compares at the moment of choice. <em>Loading Consideration Activators</em> is the <em>operation</em> that writes into it before action begins.</li>
+<li>Trigger (§6) is the <em>event in time</em> that flips the customer from contemplation to action. It is the boundary between State A and Action.</li>
+<li>Aha Moment is a positive prediction error during <em>first-hand experience</em> of our product. The brain registers <em>&quot;this beat my prediction&quot;</em> and installs a new association (see <a href="value-creation.html">Value Creation §12</a>, <a href="behaviour-change.html">Behaviour Change §7</a>). It is an event during Action, after the trigger, with a Solution already in hand.</li>
+</ul>
+<p><strong>The temporal order ties all three together.</strong> Consideration Activators load first, sometimes years before the trigger fires — writing into the Consideration Set. The trigger fires. The customer acts. The Aha fires the <em>first</em> time the product beats the prediction. The trigger is downstream of a loaded Consideration Set. The Aha is downstream of both, plus the Solution being in the customer&#39;s hands.</p>
+<p>The operational rule that falls out: a trigger without loaded Consideration Activators is noise. A <em>&quot;book your cleaning now&quot;</em> push converts nothing if the customer doesn&#39;t yet know a better way exists. Worked examples of both classic confusions (paper-map frustration vs the Google Maps Aha; the manufactured trigger that doesn&#39;t convert) live in <a href="consideration-activators.html">Consideration Activators §3</a>.</p>
+<hr>
+<h2>13. Each <code>I want to + verb</code> is a separate Job — parsing multi-verb statements</h2>
+<p>§7 established that each infinitive verb names a different Job. <strong>When a Job statement chains multiple infinitive verbs with <em>&quot;and,&quot; &quot;in order to,&quot; &quot;so that,&quot;</em> or any connector, it names a <em>stack</em> of Jobs — parse it into the level hierarchy before using it.</strong></p>
+<p>A concrete parse:</p>
+<ul>
+<li>❌ <em>&quot;Rent out my duplex and generate predictable monthly income.&quot;</em> — two infinitive verbs (<em>rent out · generate</em>); not one Job.</li>
+<li>✅ Parsed:<ul>
+<li><strong>Super Big Job:</strong> <em>&quot;Generate predictable monthly income from my real estate.&quot;</em></li>
+<li><strong>Big Job:</strong> <em>&quot;Rent out my duplex,&quot;</em> performed <em>in order to</em> perform the Super Big Job.</li>
+<li>Constraints that survive across the hierarchy (<em>&quot;without consuming my evenings&quot;</em>) belong in success criteria, not inside the Job statement.</li>
+</ul>
+</li>
+</ul>
+<p>The parse prevents three downstream errors at once. Segmentation-by-Job-Graph-similarity collapses if you treat <em>&quot;rent out my duplex AND generate income&quot;</em> as one Job. Consideration Activators targeting at the Big-Job level fails because you don&#39;t know which is the Big Job. The <em>&quot;in order to do what?&quot;</em> check returns garbage because the answer is already in the original sentence. Multi-verb statements quietly mis-shape the entire methodology.</p>
+<p>The parse rule applies at every invocation, not just at first definition — canon, skill outputs, design briefs, landing copy. Everywhere a Job appears, parse multi-verbs first.</p>
+<hr>
+<h2>14. An abstract Job becomes concrete once a Solution is hired</h2>
+<p><strong>Before a customer commits to a specific Solution, their Job is abstract.</strong> <em>&quot;I want to buy a 2-bedroom condo&quot;</em> is abstract — no neighborhood, no building, no developer, no agent. Once the customer commits to a specific Solution, the Job becomes concrete, and a new set of lower-level Jobs appears underneath it.</p>
+<p><em>&quot;I want to buy a 2-bedroom condo at The Rise in Austin&quot;</em> is concrete. Underneath it: <em>&quot;meet with The Rise&#39;s sales agent&quot;; &quot;tour unit 3B on Saturday&quot;; &quot;review the HOA documents&quot;; &quot;secure a 7% mortgage pre-approval&quot;; &quot;wire the earnest-money deposit.&quot;</em> These Micro Jobs did not exist while the Job was abstract. They appeared the moment the customer locked in on the Solution.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>A Job in interview is usually abstract; a Job in funnel analytics is usually concrete. This explains why the same customer&#39;s &quot;Job&quot; looks different in interview transcripts versus product analytics — they are different stages of the same Job, before and after Solution-commitment.</li>
+<li>The concrete-Job stage is where most product UX work lives. <em>&quot;Buy a 2-bedroom condo at The Rise&quot;</em> is the abstract framing; the product team designs against the concrete <em>&quot;tour unit 3B on Saturday at 11 AM with agent Mark&quot;</em> — context, time, role, and Solution-specific Micro Jobs all bound.</li>
+<li>Different Solutions for the same abstract Job produce different concrete Job Graphs. <em>&quot;Buy a 2BR at The Rise&quot;</em> and <em>&quot;buy a 2BR at The Independent&quot;</em> share the abstract Job but have different concrete Micro Jobs (different agents, different document sets, different walkthrough schedules). Treating them as one Job collapses two operating realities into one.</li>
+</ul>
+<hr>
+<h2>15. Three levels of fidelity for archiving a Job — pick by downstream use</h2>
+<p>Once captured, a Job can be archived at three levels of detail. Pick the level the downstream use actually needs. Don&#39;t compress past what the use demands, but don&#39;t carry the full eight-element record into a slide deck either. Canonical treatment in <a href="ajtbd-key-theses.html">AJTBD key theses §4</a>. The levels are:</p>
+<ul>
+<li>Level 1 — full. All eight elements with every field fleshed out, plus Job Frequency, Budget, and Importance. Use for: research notes, value-prop design, Job-Graph mapping, RAT cards. Loses nothing.</li>
+<li>Level 2 — intermediate (one prose sentence in the template <code>When {context} + {trigger}, I want to {expected outcome} with {main success criteria}, in order to {expected outcome of the higher-level Job}</code>). Compresses the full Job into one sentence preserving context, expected outcome with main criteria, and the higher-level Job. Use for: design briefs, side-by-side comparison across segments, sales-playbook one-liners.</li>
+<li>Level 3 — minimal (<code>I want to {expected outcome} with {main success criteria}</code>). Just the primary element with the most distinctive criteria — the minimum-viable Job description (§7). Use for: landing-page headlines, ad copy, internal labels.</li>
+</ul>
+<p>The three levels worked end-to-end on one Job (Uber Comfort) live in <a href="ajtbd-key-theses.html">AJTBD key theses §4</a>.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>The source-of-truth record is Level 1. Levels 2 and 3 are derived artifacts. They should reference the Level-1 record and re-derive on demand, not float independently. When Levels 2 and 3 stop matching Level 1, the artifact has drifted and is no longer trustworthy.</li>
+<li>Headlines, ad copy, and sales scripts written <em>from</em> a Level-1 record consistently outperform those written without one. The Level-1 record is what supplies the concrete criteria, the context, and the Big-Job framing the headline needs to land for the segment.</li>
+</ul>
+<hr>
+<h2>16. B2B — every role carries two graphs of Jobs: business and personal</h2>
+<p>In B2B, the Job structure of every role in the deal has two parallel graphs. A graph of <em>business Jobs</em> (what&#39;s in the role&#39;s KPIs — hit the plan, reduce cost, deliver on time, pass audit). And a graph of <em>personal Jobs</em> (what the person gets out of the deal — job security, bonus, recognition, career growth, avoiding blame).</p>
+<p><strong>B2B motivation is usually dominated by personal Jobs, not business Jobs.</strong> This is the single most counter-intuitive finding for teams trained on B2C. Business Jobs are the <em>frame</em> in which the deal happens. Personal Jobs are <em>why</em> the human in the seat actually moves. (Detailed canon: <a href="b2b.html">B2B</a>, <a href="ajtbd-key-theses.html">AJTBD key theses §25</a>.)</p>
+<p>Operational consequences:</p>
+<ul>
+<li>Every Job-structure write-up for a B2B role contains <em>both</em> graphs. A record that names only the business Jobs is incomplete, and the missing personal-Job side is exactly where the deal stalls.</li>
+<li>Two interview questions actually surface the personal Job. Direct <em>&quot;what are your personal motivations?&quot;</em> almost never works, because the respondent doesn&#39;t have ready language for it. Two questions reliably do:<ul>
+<li><em>&quot;And personally, why do you need this?&quot;</em> — strips the business-Job framing and forces the respondent to answer as a human, not as a role-holder. The answer is usually a sentence the respondent has never said out loud before.</li>
+<li><em>&quot;What personal result, as a human, will you get from performing this business Job?&quot;</em> — anchors the personal Job to the business Job they&#39;re already explaining, so the respondent can ladder up from familiar ground into the unspoken layer (<em>&quot;I&#39;ll get a promotion,&quot; &quot;I won&#39;t get fired,&quot; &quot;I&#39;ll get to tell that story at the next conference,&quot; &quot;I&#39;ll finally feel competent&quot;</em>).</li>
+</ul>
+</li>
+<li>Personal Jobs are also surfaced through <em>&quot;what could go wrong?&quot;</em> questions, and through indirect probes (<em>&quot;how will this be perceived by your CEO?&quot;</em>).</li>
+</ul>
+<p>The five recurring Decision-Maker personal Jobs — a starter checklist of hypotheses, not universal truths — live in <a href="b2b.html">B2B §6</a>.</p>
+<hr>
+<h2>17. The analytical pair: Job + chosen Solution</h2>
+<p>When analyzing a real customer (an interview, a churn analysis, a win/loss review), the Job specification travels with one companion — the chosen Solution. Two artifacts together capture the customer&#39;s choice:</p>
+<ul>
+<li>Card 1 — the Job. The eight-element spec from §§3–10, including the Consideration Set in State A (§5): the candidate Solutions the customer&#39;s brain compared at the moment of choice, each with predicted costs, benefits, fears, and the Job Graph it would install. <em>What</em> the customer wanted, <em>in what context</em>, <em>with what criteria</em>, <em>against which alternatives</em>, <em>for what higher-level Job</em>.</li>
+<li>Card 2 — the chosen Solution. <em>Which</em> candidate the customer actually hired out of that Consideration Set.</li>
+</ul>
+<p><strong>The Job without the chosen Solution names the destination but not which path through the Job Graph was selected; the Solution without the Job names a brand pick without the motivation that drove it.</strong> The Consideration Set is not a third artifact. It lives inside Card 1, in State A (per §5), as the operational consequence of Consideration Activators. Once the customer picks, the chosen Solution installs the Critical Chain of Jobs they then walk (<a href="critical-chain.html">Critical Chain of Jobs</a>). The pair <code>Job + chosen Solution</code> is the static analytical artifact; the Critical Chain of Jobs is the dynamic execution.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>Every customer interview reconstructs both — the eight-element Job (with the Consideration Set at the moment of choice) and the chosen Solution. Asking only about the Job misses where you sat in the customer&#39;s competitive comparison.</li>
+<li>Win/loss analysis runs on the Consideration Set and the pick. <em>Why did this Solution beat ours at the moment of choice? What was in the customer&#39;s Consideration Set we didn&#39;t know about? Which criterion did the winning Solution hit that we missed?</em></li>
+<li>Acquisition strategy targets the Consideration Set at the State-A stage. Inserting our Solution into the Consideration Set (Consideration Activators loading) is upstream of every funnel metric. If we&#39;re not in the set when the trigger fires, no amount of in-funnel optimization recovers the customer.</li>
+</ul>
+<hr>
+<h2>Cross-references</h2>
+<ul>
+<li><a href="ajtbd-key-theses.html">AJTBD key theses §2</a> — canonical Job definition, antitheses, operational consequences, and the State A → trigger → action → State B framing.</li>
+<li><a href="ajtbd-key-theses.html">AJTBD key theses §3</a> — the canonical eight-element list with the worked Uber Comfort SF example and the interview-question table.</li>
+<li><a href="ajtbd-key-theses.html">AJTBD key theses §8</a> — the Job Graph as the surface where Value, Problem, Solution, behavior change, and Consideration Activators all live.</li>
+<li><a href="ajtbd-key-theses.html">AJTBD key theses §10</a> — the Critical Chain of Jobs as operational delivery.</li>
+<li><a href="critical-chain.html">Critical Chain of Jobs</a> — detailed canon on the Critical Chain of Jobs: chain pathologies (breaks, cycles, hand-offs), predictions during the walk, interruptions, drop-offs, Solution switches, per-step emotions, knows-how vs first-time path.</li>
+<li><a href="ajtbd-key-theses.html">AJTBD key theses §5</a> — Success Criteria as the segmentation root.</li>
+<li><a href="ajtbd-key-theses.html">AJTBD key theses §18</a> — Consideration Activators in canonical five-component form.</li>
+<li><a href="job-graph.html">Job Graph</a> — how Jobs at different levels relate; the Job Graph as a unit of analysis.</li>
+<li><a href="value-creation.html">Value Creation</a> — the predict-and-compare mechanism, success-criteria-as-design-spec, the Aha Moment, the 20 foundational value-creation mechanics.</li>
+<li><a href="behaviour-change.html">Behaviour Change</a> — triggers as moments of receptivity; Consideration Activators as the loading mechanism; Aha Moment/Problem neurobiology.</li>
+<li><a href="consideration-activators.html">Consideration Activators</a> — what Consideration Activators is, how it loads, the five components.</li>
+<li><a href="barrier-removal.html">Barrier Removal</a> — Barrier Removal as the work that makes the new Job Graph executable in reality.</li>
+<li><a href="segmentation.html">Segmentation</a> — segments defined as sets of similar Core Jobs with similar success criteria.</li>
+<li><a href="b2b.html">B2B</a> — full treatment of B2B Job analysis (role-by-role business + personal Jobs, the integrator model, common B2B mistakes).</li>
+<li><a href="../HowTos/basic-ajtbd-interview-guide-and-principles.html">AJTBD interview guide</a> — interview mechanics for surfacing each element.</li>
+<li><a href="scientific-foundations.html">Scientific Foundations</a> — the neuroscience underneath emotions, needs, and the brain-as-investor framework (allostasis, RPE, Jobs as need-serving goal representations, status as rank-position motivation).</li>
+</ul>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

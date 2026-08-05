@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Segmentation by Customer Jobs</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Segmentation by Customer Jobs</h1>
+<p>This is the canon page on segmentation in AJTBD: how to build the Map of Segments, separate causal criteria from fake criteria, choose a target segment, and scale from one segment into sub-segments and adjacent segments. It builds on <a href="job-graph.html">Job Graph</a> (the segmentation surface) and feeds value design, positioning, acquisition, pricing, retention, and unit economics.</p>
+<p>The short form: strategy starts by deciding which Core Jobs of which segment we will compete for, and why we can win. Everything downstream follows.</p>
+<p>Where to start depends on your situation. Building a new product or entering a new market → §4 and §13 (discover the Map before you narrow). An existing product with paying customers → §12 (ABCDX on the paying base, then AJTBD inside A and B). Scaling a segment that already works → §10–§11 (sub-segments first, then adjacent segments). Selling B2B → §14. Running an internal tool → §15.</p>
+<hr>
+<h2>1. Every product decision decides which Core Jobs of which segment we compete for</h2>
+<p>A product exists by performing Jobs for people; a business thrives when that performance also performs the business&#39;s Jobs — repeatable demand, retention, margin, and ultimately predictable profit. That happens only when specific people repeatedly hire the product for specific Core Jobs and pay enough to capture margin.</p>
+<p><strong>So every product decision contains a segment-and-Job decision.</strong> A feature says: <em>for this segment, improving this Core Job by this criterion matters enough to build.</em> A landing page says: <em>this segment will recognize itself in this context, value this Big Job, and believe this proof.</em> A pricing tier says: <em>this segment&#39;s Job budget and willingness-to-pay support this package.</em> A sales script says: <em>this buyer will fire these competing Solutions for this reason.</em> The segment is already inside the decision.</p>
+<p><strong>Skip segmentation — or cut by non-Job criteria first, or fail to name which Core Jobs of which people pay best — and you&#39;re still making the segment-and-Job decision, just implicitly and worse.</strong> The product then optimizes for the loudest customers, the current base, the easiest channel, the founder&#39;s imagined user, or the metric in front of it. That is a lower-quality strategic choice made by default.</p>
+<h2>2. Strategic segmentation starts with Core Jobs and success criteria</h2>
+<p>Customer segmentation is grouping customers by a criterion — age, income, ZIP code, job title, revenue, product usage, churn state, industry, channel, satisfaction, margin, or Job Graph. Most are legitimate for <em>some</em> task. The question is never <em>&quot;is this a segmentation?&quot;</em> It is: does this segmentation let the team make the product-strategy decision it is trying to make?</p>
+<p><strong>For product strategy, value creation, positioning, and differentiation, the first causal segmentation criterion is Job-Graph similarity around similar Core Jobs with similar success criteria.</strong> A segment is a set of customers who perform similar Core Jobs with similar success criteria — that pair is the segmentation root. The Big Jobs above carry motivation and refine the segment, but are not a co-equal segmentation criterion (same Big Job does not mean same segment). The Core Job is what the product competes to perform; the criteria make the Job concrete enough to build, sell, and price.</p>
+<p><strong>Same surface verb does not mean same segment.</strong> UberX performs <em>&quot;get from A to B cheaply enough&quot;</em>; Uber Comfort performs <em>&quot;get from A to B in a quiet recent-model car&quot;</em>; TurboTax performs <em>&quot;file my return through guided software&quot;</em>; H&amp;R Block Assisted performs <em>&quot;hand off my return to a tax pro.&quot;</em> Same broad territory, different Core Jobs, different criteria, different segments.</p>
+<p><strong>The same criteria in a different priority order are also different segments.</strong> Two groups can perform the same Core Job and name the same criteria, yet rank them differently. <em>Speed-first</em> vs <em>no-stress-first</em>, <em>control-first</em> vs <em>done-for-me-first</em> (see <a href="value-creation.html">Value Creation §10</a>): same Job, same criteria list, inverted priority order, different segments, requiring different products. The priority order over the criteria, not just the presence of a criterion, is part of the segmentation root.</p>
+<p>Operational consequence:</p>
+<ul>
+<li><strong>Demographics and firmographics can become causal segmentation criteria, but never first.</strong> They turn causal only when they change Core Jobs, success criteria, margin, or demand (a HIPAA-regulated buyer, a 200-engineer org that triggers a security review). As the <em>first</em> cut, they hide the Core-Job clusters the team needs to see.</li>
+</ul>
+<h2>3. The Map of Segments is the strategic unit — the Job Graph is the surface that makes it visible</h2>
+<p><strong>The Map of Segments is the set of Job-based segments that exist around the Big Jobs we might compete for, with their economic attractiveness attached.</strong> It is the third AJTBD unit of analysis: the Job is atomic, the Job Graph is structural, and the Map of Segments is strategic (see <a href="ajtbd-key-theses.html">AJTBD key theses §1</a>).</p>
+<p>The Map answers the strategy question: which Core Jobs of which people will we compete for, why these and not others, and why will we win? Without it, the segment-and-Job choice defaults to the implicit bets of §1, any of which can be false.</p>
+<h2>4. Define the broad market first — then discover segments</h2>
+<p><strong>Strategic segmentation starts by defining the broadest market the team is willing to compete for.</strong> If the team is not ready to change the product&#39;s shape, the market is everyone who has paid money, time, or energy for the current Core Jobs across all success-criteria variants. If the team is ready to change the product&#39;s shape, the market widens to everyone who has paid for the Big Jobs above those Core Jobs. If the team wants to compete for another market entirely, the initial sample is rebuilt from that market&#39;s Big Jobs and the candidate Core Jobs the product could fully perform. The initial market sample defines what the team allows itself to discover.</p>
+<p><strong>Inside that broad market, run qualitative and quantitative research to discover which customers perform which Core Jobs.</strong> Qualitative research surfaces Core Jobs, Big Jobs, success criteria, current Solutions, competitors, Consideration Activators, and Critical Chain of Jobs breaks. Quantitative research estimates how many customers fit each Job cluster, how often the Jobs occur, how much budget exists, which Solutions they hire and at what share, what their Consideration Sets hold, how satisfied they are with the main competing Solutions and those Solutions&#39; top Problems, and which criteria predict margin or demand. The output is the Map of Segments, not a preselected cohort with Jobs attached after the fact.</p>
+<h2>5. Sequential segmentation filters can remove the large segment before research starts</h2>
+<p><strong>Segmentation criteria become dangerous when each later criterion is applied only inside the slice produced by earlier criteria, not to the whole market.</strong> If criterion A cuts the market, criterion B is no longer tested against the full market — it is tested only inside A. The team can remove a large, attractive segment before it ever sees that segment&#39;s Core Jobs, success criteria, budget, competitors, or demand path.</p>
+<p>This is the hidden error in many sensible-looking moves. <em>&quot;Let&#39;s interview churned customers and find their Core Jobs&quot;</em> first cuts the world into paid-and-stayed, paid-and-churned, and never-paid. Job research inside paid-and-churned returns that cohort&#39;s Core Jobs, while attractive segments outside it were removed by the first cut. The sample is suboptimal by construction.</p>
+<p>Operational consequences:</p>
+<ul>
+<li><strong>Before applying a filter, write down what it removes.</strong> If the removed slice might contain people who paid for the relevant Core Jobs or Big Jobs, the filter is too early.</li>
+<li><strong>Treat diagnostic cohorts as diagnostic cohorts, not as the market.</strong> Churners, non-buyers, support-ticket writers, and survey respondents explain a local condition; they do not define the Map of Segments.</li>
+</ul>
+<h2>6. Segment information exists to answer the compete / do-not-compete decision</h2>
+<p><strong>The information we need about a segment comes from one decision: should we compete for these Core Jobs of these people?</strong> A segment description is useful only if it lets the team answer four questions, with the minimum evidence attached:</p>
+<ul>
+<li>Can we create added value for these Core Jobs of these people? Minimum evidence: Core Jobs; success criteria; current Solutions; dominant competitors in the consideration set.</li>
+<li>Can we earn target per-unit margin while competing for them? Minimum evidence: Job budget; willingness-to-pay; cost-to-serve; acquisition cost.</li>
+<li>Can we create or capture demand for them? Minimum evidence: Consideration Activators; channel proxies; sales motion.</li>
+<li>Is the opportunity large enough to scale? Minimum evidence: reachable customer or account count; Job frequency; aggregate segment budget.</li>
+</ul>
+<p>The concrete measurable properties inside those answers are causal segmentation criteria (§7). A single criterion answers one part of the decision; the set must answer all four.</p>
+<h2>7. Causal segmentation criteria change decisions — fake segmentation criteria only name slices</h2>
+<p><strong>A causal segmentation criterion is a property of the customer, company, context, or situation thanks to which we know how to create added value, earn target per-unit margin, or create demand.</strong> It is <em>causal</em> because it changes the compete / do-not-compete answer: it tells the team what value to create, which competitors matter, how to communicate, where to find customers, what to refuse, and where unit economics will or will not close.</p>
+<p><strong>A fake segmentation criterion names a slice but leaves all three decisions blank.</strong> The team can point at the segment yet still can&#39;t say what value to create, why the margin closes, or how demand gets made. It buys a false feeling of understanding and nothing else.</p>
+<p>This is why <em>&quot;enterprise,&quot; &quot;premium,&quot; &quot;parents,&quot; &quot;churned,&quot; &quot;high intent,&quot;</em> and <em>&quot;uses competitor X&quot;</em> are not automatically causal. They become causal only when they explain one of the three decisions: <em>&quot;enterprise&quot;</em> when it means SSO/SAML, audit logs, procurement, security review, and a budget large enough to pay for the chain; <em>&quot;parents&quot;</em> when children under five create a different success criterion, frequency, channel, or willingness-to-pay; <em>&quot;churned&quot;</em> only after the team knows the churn is inside the target segment and tied to a fixable Core Job or Critical Chain of Jobs break.</p>
+<p><strong>Causal segmentation criteria are cause-level, not symptoms or value restatements.</strong> <em>&quot;They will save $2,000&quot;</em> is value, not a criterion. Ask: <em>what is going on in this customer&#39;s situation that turns $2,000 in savings into a reason to buy?</em> <em>&quot;They run 40 field technicians, each missed appointment creates overtime, and the dispatcher is already overloaded&quot;</em> is a causal criterion; so is <em>&quot;they deploy 20+ times a day, every failed release blocks the whole eng team, and on-call is already saturated&quot;</em> for a CI/CD product.</p>
+<p>Segment size is the scale check layered on top. A causal segmentation criterion can identify a segment where value, margin, and demand all work — and the segment can still be too small to deserve focus.</p>
+<h2>8. Causal segmentation criteria become lead qualification questions</h2>
+<p><strong>Every causal segmentation criterion should become observable before the team spends expensive effort on the lead.</strong> If the criterion explains added value, target per-unit margin, or demand, then sales, marketing, onboarding, or product-led qualification must be able to detect it. The signal can be an interview answer, a form field, a CRM field, a usage event, or a firmographic proxy — but it must exist before the team scales acquisition.</p>
+<p><strong>Qualification is where causal segmentation stops being research language and becomes operating infrastructure.</strong> A segment definition that cannot be translated into qualification cannot route leads, reject bad-fit demand, or protect the target segment from dilution.</p>
+<h2>9. A target segment is the segment whose Core Jobs we deliberately choose to compete for</h2>
+<p><strong>The target segment is the answer to the compete / do-not-compete decision in §6.</strong> It is not the segment the team likes, understands, or already has most of. It is the segment whose Core Jobs the company deliberately chooses to compete for after comparing the Map of Segments — the one whose §6 evidence answers all four questions in the affirmative (value, margin, demand, with size as the scale check; short form in <a href="ajtbd-key-theses.html">AJTBD key theses §13</a> and <a href="ajtbd-key-theses.html">§14</a>).</p>
+<p>Operational consequence:</p>
+<ul>
+<li><strong>Treat focus as segment-level subtraction.</strong> Choosing a target segment subtracts non-focus Core Jobs from the investment zone until the target segment is won — the AJTBD form of <a href="../Next-Move-Theory/subtraction.html">Subtraction</a>.</li>
+</ul>
+<h2>10. A sub-segment is the same Core Job under a sharper context — a new segment is a different Core Job or a materially different criteria set</h2>
+<p><strong>A sub-segment keeps the same Core Job and the same main success criteria, but a sharper context adds extra success criteria on top.</strong> Context is what produces criteria (<a href="job-structure.html">Job Structure §3</a>): a narrower context produces additional ones the broader segment doesn&#39;t carry. A US payroll tool performing <em>run payroll on time and correctly</em> has a single-state sub-segment and a multi-state sub-segment whose context adds a criterion the first never has — <em>taxes registered, withheld, and remitted correctly in every state where I employ someone.</em> A DoorDash customer in a doorman building and one in a walk-up without a buzzer share the same Core Job, but the walk-up&#39;s context adds the criterion <em>the order reaches me, not a locked lobby door.</em></p>
+<p><strong>A new segment appears when the Core Job, the success criteria, or their priority order change materially</strong> (§2). <em>&quot;Publish a simple marketing site&quot;</em> and <em>&quot;run a headless storefront for 10,000 SKUs&quot;</em> are different Jobs, not sub-segments. <em>&quot;Track my team&#39;s tasks&quot;</em> and <em>&quot;plan a 30-person cross-functional roadmap&quot;</em> are different Jobs. <em>&quot;Clean everyday cotton shirts&quot;</em> and <em>&quot;restore a delicate wedding dress&quot;</em> are different Jobs.</p>
+<p><strong>Do not confuse sub-segments with Small Jobs.</strong> A Small Job is a sibling Job at the same level as our Core Job that our product does not perform (see <a href="job-graph.html">Job Graph §2</a>). A sub-segment is a sharper slice of customers performing the same Core Job in a different context.</p>
+<p>Operational consequence:</p>
+<ul>
+<li>Scaling to an adjacent segment means accepting a different Core Job or materially different criteria. The team must rerun value design, communication, acquisition, and unit economics instead of treating the adjacent segment as a larger version of the current one. (Scaling <em>inside</em> a segment — same Core Job, sharper context — is §11.)</li>
+</ul>
+<h2>11. The base scaling path is focus → win the segment sub-segment by sub-segment → add adjacent segments</h2>
+<p><strong>The default growth strategy is narrow first, then expand deliberately — and a segment is won <em>sub-segment by sub-segment</em>, not in one move.</strong> Focus on one segment; land its first sub-segment to the criteria; build the acquisition funnel; scale demand; then win the next sub-segment (usually a chain repair). Winning the segment <em>is</em> winning its sub-segments one by one, not a separate milestone reached before them. Only once the segment is won does the team add adjacent segments with different Core Jobs or materially different criteria.</p>
+<p>The pattern is visible across categories. Uber expanded from one ride-hailing segment into adjacent tariff segments. Notion moved from individual knowledge work into team wikis and enterprise governance. Shopify expanded from small online stores into mid-market and enterprise commerce. The move is never <em>&quot;serve everyone.&quot;</em> It is controlled expansion across the Map of Segments and the Job Graph.</p>
+<p><strong>Profit from the target segment funds expansion.</strong> Expansion before a profitable base usually spreads resources across several partially served segments; expansion after focus turns existing margin, knowledge, and channel learning into the next segment bet.</p>
+<p><strong>Critical Chain of Jobs repair is usually the first scaling move inside a sub-segment</strong> (see <a href="critical-chain.html">Critical Chain of Jobs §9.4</a>). The product may already create value, but one link breaks for the new sub-segment — building access, data format, compliance review, payment method, installation constraint. Repair the break before declaring the segment unattractive.</p>
+<h2>12. ABCDX is the fastest local-optimum move for an existing product with enough paying customers</h2>
+<p><strong>For an existing product, start with the customers who already validated several assumptions by paying.</strong> ABCDX splits the paying base by per-unit margin × satisfaction: A and B are profitable enough to deserve more resources; C and D consume resources without closing the economic loop; X points outside the current product&#39;s Core Jobs (see <a href="../ABCDX-Segmentation/abcdx-segmentation-key-theses.html">ABCDX segmentation</a>).</p>
+<p><strong>ABCDX is not a substitute for Job segmentation — it is a sequencing move.</strong> First identify A and B by margin and satisfaction. Then run AJTBD interviews inside A and B to cluster them by Core Jobs and success criteria. Then refocus product, acquisition, sales, support, and pricing on the A-and-B Job clusters.</p>
+<p>Operational consequence:</p>
+<ul>
+<li>Do not run Job-based scaling without economics attached. Jobs explain value; per-unit margin decides whether the business can afford to win the segment.</li>
+</ul>
+<h2>13. New products and global-optimum moves usually search outside the current paying base — but a global optimum can also be a new Core Job of a segment you already serve</h2>
+<p><strong>When the product is new, when the current base is too small, or when the team is looking for a global optimum, the search usually starts outside current customers.</strong> The target is the market around a broad Big Job: who already pays money, time, or energy to perform it; which Core Jobs they currently perform; which criteria matter; which Solutions install which Job Graphs; which segments are economically attractive. But &quot;outside the base&quot; is not the only road to a global optimum. The segments you already serve perform many Core Jobs you don&#39;t yet touch — unique value usually lives <em>outside</em> your current Core Jobs (a Previous Job, a Next Job, a sibling Small Job, or one level up), and capturing one can be a larger prize than a new audience (see <a href="value-creation.html">Value Creation §17</a>). Compare both before assuming the optimum lives elsewhere.</p>
+<p><strong>Do not validate a narrow fantasy segment first.</strong> <em>&quot;AI assistant for PRDs in US seed-stage SaaS startups&quot;</em> is often too narrow as the first research frame. Widen to the broad-market territory of §4 (<em>&quot;employees who produce complex documents under deadline and review pressure&quot;</em>) so the Map can reveal segments the team did not imagine, then narrow after the Map appears.</p>
+<h2>14. B2B segmentation uses the same root — plus role chain, approval process, and budget structure</h2>
+<p><strong>B2B segmentation is still rooted in Core Jobs and success criteria.</strong> Industry, employee count, revenue, ACV, and company stage are refinements unless they change Jobs, criteria, margin, or the Critical Chain of Jobs.</p>
+<p>B2B adds three fields to the segment record (see <a href="b2b.html">B2B §10</a>):</p>
+<ul>
+<li>Deal Critical Chain of Jobs. The same surface Core Job runs through different role maps — founder-led SMB, mid-market functional buyer, enterprise buying committee — each demanding different stakeholders, different evidence, and a different deal chain.</li>
+<li>Approval process. Credit-card swipe, procurement, RFP, security review, legal review, CFO approval — each creates a different chain-break risk.</li>
+<li>Budget structure. Calendar-year budget, project-based budget, department budget, emergency budget, and renewal budget produce different timing and channel economics.</li>
+</ul>
+<p>Operational consequences:</p>
+<ul>
+<li><strong>Recruit the Decision Maker for purchase segmentation.</strong> End users reveal end-user Jobs; Decision Makers reveal budget, role chain, objections, and personal Jobs.</li>
+<li>Map business and personal Jobs per role. The business Job frames the deal; the personal Job often decides whether the human moves (see <a href="b2b.html">B2B §5</a>).</li>
+</ul>
+<h2>15. Internal-product segmentation follows the same logic — the budget-holder&#39;s Job decides investment, the employee&#39;s Job decides use</h2>
+<p><strong>Internal tools still have customers, Jobs, segments, and unit economics — only the currency changes.</strong> The business decides whether to fund the tool; employees decide whether the tool makes their work more energy-efficient, unless adoption is administratively forced.</p>
+<p>Three internal-product segments recur:</p>
+<ul>
+<li>Expensive employees. Engineers, analysts, clinicians, attorneys — saving one hour can carry high business value.</li>
+<li>High-volume employees. Sales reps, support agents, warehouse workers — small efficiency gains compound across many people.</li>
+<li>Profit-critical services. Functions that drive the company&#39;s main margin engine — payments, fulfillment, claims, scheduling, clinical throughput.</li>
+</ul>
+<p>Operational consequences:</p>
+<ul>
+<li>Interview the budget-holder and the user separately. The budget-holder has business and personal Jobs; the employee has usage Jobs and adoption barriers.</li>
+<li><strong>Forced adoption corrupts satisfaction signals.</strong> If employees cannot switch, the minimum success criterion is not <em>&quot;they chose us&quot;</em> but <em>&quot;the product does not create avoidable Tax Jobs.&quot;</em></li>
+</ul>
+<h2>16. Segment maps expire — the faster the market changes, the faster Core Jobs and criteria drift</h2>
+<p><strong>A Map of Segments is empirical knowledge with a shelf life.</strong> Pre-pandemic, many markets refreshed segment knowledge every 18–36 months; by 2023, annual was a better default; in AI-, regulation-, or channel-exposed 2026 markets it can drift in 3–6 months. Treat the numbers as a planning heuristic, not a law — the real trigger is visible change in Solutions, budgets, channels, regulation, customer workflows, or the Job Graph itself.</p>
+<p><strong>Segments drift because Core Jobs, success criteria, current Solutions, Consideration Activators, budgets, and channel proxies drift.</strong> The person looks the same while the Job they hire, the criteria they apply, or the competitor they weigh has changed. Lower-level Jobs and Micro Jobs change fastest; Big Jobs usually move slower (see <a href="job-graph.html">Job Graph §6</a>).</p>
+<h2>17. The recurring segmentation failures are predictable — and all start upstream</h2>
+<p><strong>Most expensive segmentation errors happen before product work begins.</strong> The team chooses the wrong Core Jobs of the wrong people, then optimizes downstream until the budget is gone.</p>
+<p>The common failure modes:</p>
+<ul>
+<li>Nonexistent Core Jobs of nonexistent people. The team builds for a future-tense fantasy rather than past-payment evidence (Fake Jobs — see <a href="job-types-and-properties.html">Job Types and Properties §8</a>).</li>
+<li>Real Jobs in an unattractive segment. Customers exist and value exists, but budget, frequency, margin, or reachability fail.</li>
+<li>Wrong order of criteria. Starting with churners, non-buyers, demography, or support tickets and treating the resulting slice as the market (§5).</li>
+<li>Resource dilution. The team keeps adding features for different Core Jobs of different segments and never creates a strong enough Aha Moment for one.</li>
+<li>Local-optimum blindness. The current A-and-B segment is improved while a larger adjacent segment, a move up a level to a Big Job, or a business-model shift remains unexplored.</li>
+</ul>
+<p>Operational consequences:</p>
+<ul>
+<li><strong>Before fixing a metric, ask whether the metric belongs to the target segment.</strong> Churn, conversion, support load, and activation are actionable only after segment membership is known.</li>
+<li><strong>Before building a feature, ask which target-segment Core Job it improves.</strong> If the answer is <em>&quot;several segments&quot;</em> or <em>&quot;all users,&quot;</em> the work needs decomposition.</li>
+<li><strong>Before declaring PMF weak, check segment choice.</strong> The product may be wrong; the Job may be wrong; or the segment may be economically wrong even with a working product.</li>
+</ul>
+<hr>
+<h2>Cross-references</h2>
+<ul>
+<li><a href="ajtbd-key-theses.html">AJTBD key theses §12</a> — short-form segmentation thesis; <a href="ajtbd-key-theses.html">§13</a> — strategy = choosing Jobs and segments; <a href="ajtbd-key-theses.html">§14</a> — cause-and-effect chain to profit.</li>
+<li><a href="job-graph.html">Job Graph §11</a> — Job Graph as the segmentation surface.</li>
+<li><a href="job-structure.html">Job Structure §8 and §11</a> — success criteria and same-outcome-different-criteria discipline.</li>
+<li><a href="value-creation.html">Value Creation §9–§10</a> — success criteria as the operational location of value; different segments value different criteria and rank them in different priority orders.</li>
+<li><a href="critical-chain.html">Critical Chain of Jobs §9.4</a> — scaling to sub-segments by discovering and repairing chain-breaks.</li>
+<li><a href="behaviour-change.html">Behaviour Change §10–§11</a> — behavior-change classes and durable-switching mechanics by segment.</li>
+<li><a href="b2b.html">B2B §10</a> — B2B segmentation additions: role chain, approval process, budget cycle.</li>
+<li><a href="../ABCDX-Segmentation/abcdx-segmentation-key-theses.html">ABCDX segmentation</a> — existing-product local-optimum segmentation by margin × satisfaction before AJTBD-on-A-and-B.</li>
+<li><a href="../HowTos/basic-ajtbd-interview-guide-and-principles.html">AJTBD interview guide</a> — interview mechanics for surfacing Jobs, criteria, Consideration Activators, and Critical Chains of Jobs.</li>
+</ul>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

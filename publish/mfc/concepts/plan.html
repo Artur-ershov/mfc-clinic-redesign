@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>МФЦ Клиника — восстановление зубов по плану с фиксированной ценой</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4EFE6;--surface:#FBF8F2;--surface2:#EFE7D8;--ink:#2E2A24;--muted:#665F54;
+  --line:#E2DACB;--sage:#8FA6A1;--sageDeep:#6E8782;--clay:#C9A98C;--amber:#D8B27E;
+  --gold:#8F6D3C;--goldSoft:#ECDCC0;--sageText:#3F5A54;
+  --arch:45% 45% 8% 8% / 55% 55% 10% 10%;--arch-soft:30px 30px 10px 10px;--soft:20px;
+  --shadow:0 24px 60px rgba(46,42,36,.10);--shadow-sm:0 10px 30px rgba(46,42,36,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:-.01em}
+h1{font-size:clamp(40px,5.2vw,72px);line-height:1.05;margin:16px 0 20px}
+h1 em,h2 em{font-style:italic;color:var(--sageDeep)}
+h2{font-size:clamp(30px,3.4vw,48px);line-height:1.1;margin-bottom:14px}
+h3{font-size:clamp(21px,2vw,26px);line-height:1.18;font-weight:600;margin-bottom:9px}
+a{color:var(--sageDeep);text-decoration:none}
+strong{font-weight:700}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.blk{padding:72px 0}
+.blk--surface{background:var(--surface)}
+.blk--deep{background:var(--surface2)}
+.kick{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--sageDeep);margin-bottom:10px}
+.lead{font-size:20px;line-height:1.55;color:var(--muted);max-width:46rem}
+.proto{background:#FBEFD6;border-bottom:2px solid var(--amber);padding:12px 22px;font-size:15px;color:#7A5A16;text-align:center}
+.vf{background:#FBEFD6;border:1px dashed var(--amber);border-radius:8px;color:#7A5A16;font-size:13px;font-weight:600;padding:.05em .5em;white-space:nowrap}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;letter-spacing:.02em}
+.tel{font-weight:800;font-size:20px;color:var(--ink);white-space:nowrap}
+.tel small{display:block;font-weight:500;font-size:12.5px;color:var(--muted);text-align:right}
+.btn{display:inline-block;background:var(--sageDeep);color:#fff;font-weight:700;font-size:18px;border:0;border-radius:999px;padding:16px 30px;cursor:pointer;box-shadow:var(--shadow-sm)}
+.btn:hover{background:var(--sageText)}
+.btn--ghost{background:transparent;color:var(--sageText);border:2px solid var(--sage)}
+.hero{padding:84px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center}
+.hero-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--arch);box-shadow:var(--shadow);padding:44px 36px;text-align:center}
+.hero-card .price{font-family:'Cormorant Garamond',serif;font-size:56px;line-height:1;color:var(--sageText);margin:6px 0 2px}
+.hero-card ul{list-style:none;text-align:left;margin:18px 0;font-size:17px}
+.hero-card li{padding:7px 0 7px 30px;position:relative;border-bottom:1px dashed var(--line)}
+.hero-card li:last-child{border-bottom:0}
+.hero-card li::before{content:"✓";position:absolute;left:4px;color:var(--sageDeep);font-weight:800}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--arch-soft);box-shadow:var(--shadow-sm);padding:26px 26px}
+.card .n{font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1;color:var(--clay)}
+.quote{background:var(--surface);border-left:4px solid var(--sage);border-radius:0 var(--soft) var(--soft) 0;padding:20px 26px;font-size:19px;font-style:italic;color:var(--sageText);max-width:46rem}
+.steps{counter-reset:st;display:grid;gap:16px;max-width:52rem}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--soft);padding:20px 24px 20px 74px;position:relative}
+.step::before{counter-increment:st;content:counter(st);position:absolute;left:22px;top:18px;font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--sageDeep)}
+.ptable{width:100%;border-collapse:collapse;background:var(--surface);border-radius:var(--soft);overflow:hidden;box-shadow:var(--shadow-sm);font-size:17.5px}
+.ptable th{background:var(--surface2);text-align:left;padding:14px 18px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ptable td{padding:14px 18px;border-top:1px solid var(--line)}
+.ptable td:last-child{text-align:right;font-weight:800;white-space:nowrap}
+.fear{background:var(--surface);border:1px solid var(--line);border-radius:var(--soft);padding:20px 24px;margin-bottom:14px}
+.fear b{display:block;font-size:19px;margin-bottom:4px;color:var(--sageText)}
+.second{background:var(--surface2);border:1px solid var(--line);border-radius:var(--arch-soft);padding:30px 32px;display:flex;gap:26px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.docs{display:flex;gap:22px;flex-wrap:wrap}
+.doc{flex:1;min-width:230px;background:var(--surface);border:1px solid var(--line);border-radius:var(--arch-soft);box-shadow:var(--shadow-sm);padding:24px;text-align:center}
+.doc .ava{width:92px;height:110px;margin:0 auto 12px;background:var(--surface2);border:1px solid var(--line);border-radius:var(--arch);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
+faq-x{display:none}
+details.faq{background:var(--surface);border:1px solid var(--line);border-radius:var(--soft);margin-bottom:12px}
+details.faq summary{cursor:pointer;list-style:none;font-weight:700;font-size:19px;padding:18px 22px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq div{padding:0 22px 18px;color:var(--muted)}
+.form{background:var(--surface);border:1px solid var(--line);border-radius:var(--arch-soft);box-shadow:var(--shadow);padding:34px;max-width:34rem}
+.form label{display:block;font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.form input,.form select{width:100%;font:inherit;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.legal{background:var(--surface2);border-top:1px solid var(--line);padding:16px 0;font-size:15px;text-align:center;color:var(--muted)}
+.legal b{color:var(--ink)}
+.foot{padding:36px 0 60px;font-size:15px;color:var(--muted)}
+.fab{position:fixed;right:18px;bottom:18px;z-index:60;display:none}
+.fab a{display:block;background:var(--sageDeep);color:#fff;font-weight:800;font-size:18px;border-radius:999px;padding:16px 24px;box-shadow:var(--shadow)}
+@media(max-width:880px){
+  .hero .wrap,.grid2,.grid3{grid-template-columns:1fr}
+  .hero{padding:48px 0 40px}
+  .blk{padding:52px 0}
+  .fab{display:block}
+  .topbar .tel small{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="proto"><strong>Прототип, не публиковать.</strong> Фаза 1б по PRD от 04.08. До публикации: снять жёлтые метки [ПРОВЕРИТЬ], сверить цены с действующим прайсом, юр-заключение по фиксации цены и рекламе медуслуг, подключить форму и цели с ценностью.</div>
+
+<div class="topbar"><div class="wrap">
+  <div class="logo">МФЦ Клиника</div>
+  <a class="tel" href="tel:+74953200407">+7 (495) 320-04-07<small>2-й Боткинский пр., 8 · у «Динамо» · ежедневно <span class="vf">[ПРОВЕРИТЬ график]</span></small></a>
+</div></div>
+
+<!-- 1 · Первый экран -->
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="kick">Имплантация · Коронки · Протезирование</div>
+    <h1>Восстановите зубы по плану, в котором <em>цена не растёт</em></h1>
+    <p class="lead">Приём-план за 5 500 ₽: осмотр, компьютерная томография и фотопротокол — и вы уходите с письменным планом лечения. Три варианта, полная цена каждого по этапам, сроки. <strong>В этот день мы ничего не лечим.</strong></p>
+    <p style="margin-top:26px;display:flex;gap:14px;flex-wrap:wrap">
+      <a class="btn" href="#zapis">Записаться на приём-план</a>
+      <a class="btn btn--ghost" href="#cena">Как устроена цена</a>
+    </p>
+  </div>
+  <div class="hero-card">
+    <div class="kick">Приём-план</div>
+    <div class="price">5 500 ₽</div>
+    <div style="color:var(--muted);font-size:15px">60 минут · существующая услуга «чек-ап»</div>
+    <ul>
+      <li>осмотр + КТ + фотопротокол</li>
+      <li>письменный план: три варианта с ценами</li>
+      <li>КТ и снимки — вам на руки</li>
+      <li>в день диагностики не лечим</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- 2+3 · Для чего / узнаёте себя -->
+<section class="blk blk--surface"><div class="wrap">
+  <div class="grid2">
+    <div>
+      <div class="kick">Для чего это</div>
+      <h2>Чтобы снова <em>нормально жевать</em> и спокойно улыбаться</h2>
+      <p class="lead">Есть что хочется, не прикрывать рот рукой и не думать о зубах между визитами.</p>
+    </div>
+    <div>
+      <div class="kick">Узнаёте себя?</div>
+      <p style="margin-bottom:10px">Удалили зуб — и «потом решу» тянется уже полгода. Мост шатается, протез натирает, жуёте на одной стороне. В другой клинике назвали сумму, от которой вы ушли «подумать» — и не вернулись.</p>
+      <p><strong>Вы не откладываете лечение — вы откладываете неопределённость:</strong> непонятно, сколько это будет стоить на самом деле и не уговорят ли на лишнее.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 4 · Цена -->
+<section class="blk" id="cena"><div class="wrap">
+  <div class="kick">Как у нас устроена цена</div>
+  <h2>Полная сумма — <em>письменно, до начала</em></h2>
+  <div class="grid3" style="margin:26px 0">
+    <div class="card"><div class="n">01</div><h3>Не «от»</h3><p>Полная цена лечения — на бумаге, до старта. Ключевые работы считаем парой этапов, а не половиной.</p></div>
+    <div class="card"><div class="n">02</div><h3>Три варианта</h3><p>Минимальный, оптимальный, максимальный — с ценой каждого. Выбираете вы, дома, без кресла.</p></div>
+    <div class="card"><div class="n">03</div><h3>Цена этапа не меняется</h3><p>После утверждения плана цена этапа фиксируется письменно. Исключения перечислены в самом плане. <span class="vf">[ПРОВЕРИТЬ юр-формулировку]</span></p></div>
+  </div>
+  <table class="ptable">
+    <tr><th>Примеры полной цены — парой этапов</th><th style="text-align:right">итого <span class="vf">[сверить с прайсом]</span></th></tr>
+    <tr><td>Имплантация Osstem 26 500 ₽ + коронка на импланте 39 000 ₽</td><td>65 500 ₽</td></tr>
+    <tr><td>Имплантация Astra Tech 62 500 ₽ + коронка на импланте 42 000 ₽</td><td>104 500 ₽</td></tr>
+    <tr><td>«Все зубы за 3 дня»: All-on-4 хирургия 106 000 ₽ + условно-съёмный протез 400 000 ₽</td><td>506 000 ₽</td></tr>
+    <tr><td>Коронка из диоксида циркония — за работу целиком</td><td>37 800 ₽</td></tr>
+  </table>
+  <p style="margin-top:14px;color:var(--muted)">Оплата — <strong>за этап</strong>, а не вся сумма вперёд. Налоговый вычет 13% — поможем оформить справку <span class="vf">[ПРОВЕРИТЬ процесс]</span>. Полный прайс — <a href="#">на странице «Цены»</a>.</p>
+</div></section>
+
+<!-- 5 · Как проходит -->
+<section class="blk blk--deep"><div class="wrap">
+  <div class="kick">Как проходит приём-план</div>
+  <h2>Один визит — и у вас <em>план на руках</em></h2>
+  <div class="steps" style="margin-top:22px">
+    <div class="step"><strong>60 минут диагностики.</strong> Осмотр, КТ, фотопротокол. Врач показывает всё на экране и объясняет словами, что происходит с вашими зубами.</div>
+    <div class="step"><strong>Письменный план в тот же день.</strong> Варианты, этапы, цены, сроки, подпись врача. КТ и снимки — вам на руки.</div>
+    <div class="step"><strong>Вы уходите думать.</strong> В день диагностики мы не лечим — решение вы принимаете дома, без кресла и уговоров.</div>
+    <div class="step"><strong>Через 2–3 дня врач позвонит.</strong> Ответить на вопросы. Не уговаривать.</div>
+    <div class="step"><strong>Лечение этапами у одного врача.</strong> От КТ до коронки вас ведёт один человек, клиника сама напоминает о каждом шаге.</div>
+  </div>
+</div></section>
+
+<!-- 6 · Посмотрите сами -->
+<section class="blk"><div class="wrap">
+  <div class="grid2" style="align-items:center">
+    <div>
+      <div class="kick">Посмотрите сами</div>
+      <h2>Так выглядит <em>документ плана</em></h2>
+      <p class="lead">Три варианта на одном листе: этапы, цена каждого, сроки, число визитов, правило фиксации цены и подпись врача.</p>
+      <p style="margin-top:14px"><a class="btn btn--ghost" href="#">Открыть образец (PDF) <span class="vf">[приложить обезличенный]</span></a></p>
+    </div>
+    <div class="card" style="font-size:15.5px">
+      <div style="border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:10px"><strong>План лечения · образец</strong> · МФЦ Клиника</div>
+      <p>Вариант А «минимальный» — 65 500 ₽ · 2 этапа · 4 визита · 4 мес</p>
+      <p>Вариант Б «оптимальный» — 104 500 ₽ · 2 этапа · 5 визитов · 4–5 мес</p>
+      <p>Вариант В «максимальный» — … ₽ · … </p>
+      <p style="margin-top:10px;color:var(--muted)">Цена утверждённого этапа не меняется. Срок действия предложения — 90 дней. Подпись врача ______</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 7 · Почему так почти никто не делает -->
+<section class="blk blk--surface"><div class="wrap">
+  <div class="kick">Почему так почти никто не делает</div>
+  <h2>Бесплатная консультация <em>не бесплатна</em></h2>
+  <p class="lead">Она окупается, только если вам в этот же день продали лечение. Поэтому там торопят, пугают и считают «от». Платный приём-план окупает сам себя — поэтому мы можем позволить себе ничего вам не продавать в день диагностики.</p>
+</div></section>
+
+<!-- 8 · Страхи -->
+<section class="blk"><div class="wrap">
+  <div class="kick">Честные ответы</div>
+  <h2>То, чего <em>боятся</em> на самом деле</h2>
+  <div style="margin-top:22px;max-width:52rem">
+    <div class="fear"><b>«Будет больно?»</b> Современная анестезия; врач рассказывает каждый шаг до того, как его сделать; перерыв — по вашему знаку. Большинство пациентов говорят, что боялись зря. <span class="vf">[седацию не обещать до подтверждения]</span></div>
+    <div class="fear"><b>«Насчитают лишнего?»</b> В день диагностики не лечим. План — вариантами, минимальный есть всегда. Цена этапа фиксируется письменно.</div>
+    <div class="fear"><b>«Это надолго?»</b> В плане — сроки и число визитов по каждому варианту. Вы знаете календарь до старта.</div>
+    <div class="fear"><b>«А если врач уйдёт?»</b> План — документ клиники: этапы, цены и материалы записаны, лечение продолжится на тех же условиях.</div>
+    <div class="fear"><b>«Отклеилась коронка — это к вам?»</b> Да, это обычный короткий визит, чаще всего 5–15 минут.</div>
+  </div>
+</div></section>
+
+<!-- 9 · После + врачи -->
+<section class="blk blk--deep"><div class="wrap">
+  <div class="grid2" style="align-items:center;margin-bottom:40px">
+    <div>
+      <div class="kick">Что будет после</div>
+      <h2>Через полгода вы <em>забудете, где имплант</em></h2>
+      <p class="lead">Жуёте на обеих сторонах, едите что хотите, улыбаетесь не думая. Раз в полгода — осмотр и гигиена у своего врача, чтобы так и оставалось.</p>
+    </div>
+    <div class="quote">«Один врач ведёт вас от КТ до коронки. Запись — только через клинику: телефон один, и он всегда отвечает».</div>
+  </div>
+  <div class="kick">Кто ведёт</div>
+  <div class="docs">
+    <div class="doc"><div class="ava">фото<br>[фотосессия]</div><h3>Додова З. И.</h3><p style="color:var(--muted);font-size:15.5px">главный врач, ортопед</p><p style="margin-top:8px"><a href="#">Записаться к Додовой →</a></p></div>
+    <div class="doc"><div class="ava">фото<br>[фотосессия]</div><h3>Магомедов М. И.</h3><p style="color:var(--muted);font-size:15.5px">хирург-имплантолог</p><p style="margin-top:8px"><a href="#">Записаться к Магомедову →</a></p></div>
+    <div class="doc"><div class="ava">фото<br>[фотосессия]</div><h3>Керимов У. К.</h3><p style="color:var(--muted);font-size:15.5px">стоматолог-терапевт</p><p style="margin-top:8px"><a href="#">Записаться к Керимову →</a></p></div>
+  </div>
+</div></section>
+
+<!-- Вход второго мнения -->
+<section class="blk"><div class="wrap">
+  <div class="second">
+    <div style="max-width:38rem">
+      <h3>Вам уже составили план лечения в другой клинике?</h3>
+      <p style="color:var(--muted)">Принесите его на «Второе мнение» — 5 500 ₽, ничего не лечим, отвечаем по каждой строке чужой сметы, КТ и запись разбора отдаём вам. Цена не зачитывается в лечение — поэтому нам незачем «насчитывать».</p>
+    </div>
+    <a class="btn btn--ghost" href="razbor.html">Как устроено второе мнение →</a>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="blk blk--surface"><div class="wrap">
+  <div class="kick">Вопросы</div>
+  <h2>Коротко о <em>частом</em></h2>
+  <div style="margin-top:20px;max-width:52rem">
+    <details class="faq"><summary>Сколько стоит имплант «под ключ»?</summary><div>Честно — парой: имплантация + коронка. Например, Osstem: 26 500 ₽ + 39 000 ₽ = 65 500 ₽ <span class="vf">[сверить]</span>. Точную цену для вашего случая считает врач на приёме-плане — письменно, тремя вариантами.</div></details>
+    <details class="faq"><summary>Можно ли уложиться «за один заход»?</summary><div>Диагностика и план — один визит. Само лечение идёт этапами (у имплантации есть срок приживления), но число визитов и календарь вы видите в плане до старта.</div></details>
+    <details class="faq"><summary>Мне удалили зуб — когда решать с имплантацией?</summary><div>У кости есть срок: обычно до полугода после удаления место сохраняет объём, дальше может понадобиться костная пластика. Придите на осмотр окна с КТ — посмотрим, сколько времени у вас есть. <span class="vf">[формулировку подписать у врача]</span></div></details>
+    <details class="faq"><summary>Есть ли рассрочка?</summary><div>Оплата за этап: платите за текущий этап лечения, а не всю сумму вперёд. Банковских кредитных программ не предлагаем <span class="vf">[ПРОВЕРИТЬ]</span>.</div></details>
+    <details class="faq"><summary>Можно вернуть 13% налоговым вычетом?</summary><div>Да, стоматология входит в вычет за лечение. Справку для налоговой оформим — попросите администратора. <span class="vf">[ПРОВЕРИТЬ процесс]</span></div></details>
+  </div>
+</div></section>
+
+<!-- 10 · Запись -->
+<section class="blk" id="zapis"><div class="wrap">
+  <div class="grid2" style="align-items:center">
+    <div>
+      <div class="kick">Первый шаг</div>
+      <h2>Запишитесь на <em>приём-план</em></h2>
+      <p class="lead">5 500 ₽ · 60 минут · КТ и письменный план с ценами в тот же день.</p>
+      <p style="margin-top:20px;font-size:26px;font-weight:800"><a class="tel" href="tel:+74953200407">+7 (495) 320-04-07</a></p>
+      <p style="color:var(--muted)">Позвонить проще всего — администратор подберёт время за один разговор.</p>
+    </div>
+    <form class="form" onsubmit="return false">
+      <label>Имя</label><input type="text" name="name" autocomplete="name">
+      <label>Телефон</label><input type="tel" name="phone" autocomplete="tel">
+      <label>Когда удобно</label>
+      <select name="time"><option>В ближайшие дни</option><option>На этой неделе</option><option>В выходные</option><option>Перезвоните — обсудим</option></select>
+      <p style="margin-top:18px"><button class="btn" type="submit">Жду звонка <span class="vf">[форма-заглушка: подключить + цель с ценностью]</span></button></p>
+      <p style="margin-top:10px;font-size:13px;color:var(--muted)">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Перезвоним в течение рабочего дня <span class="vf">[обещание — только после включения регламента перезвона]</span>.</p>
+    </form>
+  </div>
+</div></section>
+
+<div class="legal"><b>Имеются противопоказания. Необходима консультация специалиста.</b> ООО «Стоматология Азбука Здоровья» · лицензия № <span class="vf">[номер лицензии]</span></div>
+
+<footer class="foot"><div class="wrap">
+  МФЦ Клиника · 2-й Боткинский проезд, 8 · м. «Динамо» / «Беговая» · <a href="tel:+74953200407">+7 (495) 320-04-07</a><br>
+  Прототип страницы Фазы 1 по PRD 04.08.2026 · тексты — GTM v2, часть 1 · публикация только после юр-проверки и сверки цен
+</div></footer>
+
+<div class="fab"><a href="tel:+74953200407">Позвонить</a></div>
+
+</body>
+</html>

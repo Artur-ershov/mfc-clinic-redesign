@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Next Move Theory · МФЦ Клиника — материалы</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb; --good:#2f6b45; --good-soft:#e9f3ec;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a; --good:#7fb98f; --good-soft:#182619;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:50rem;margin:0 auto;padding:3rem 1.25rem 6rem}
+h1{font-size:2.1rem;line-height:1.15;margin:.2em 0 .35em;letter-spacing:-.015em}
+h2{font-size:1.25rem;margin:2.6em 0 .8em;letter-spacing:-.01em}
+p{margin:0 0 1em}
+a{color:var(--accent)}
+.kicker{color:var(--muted);font-size:.9rem;margin:0 0 1.6rem}
+.sub{color:var(--muted);font-size:.95rem}
+.danger{background:var(--bad-soft);border:1px solid var(--bad);border-radius:8px;padding:.9rem 1.1rem;margin:1.6rem 0;font-size:.92rem}
+.note{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.92rem}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:1.15rem 1.3rem;margin:.75rem 0;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.card .n{font:700 .72rem/1 var(--mono);color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+.card h3{margin:.5rem 0 .35rem;font-size:1.1rem;letter-spacing:-.01em}
+.card p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.55}
+.card .meta{margin-top:.6rem;font-size:.78rem;color:var(--muted);font-family:var(--mono)}
+.pill{display:inline-block;font-size:.7rem;padding:.15em .6em;border-radius:99px;font-weight:600;margin-left:.4em;vertical-align:middle}
+.p-open{background:var(--good-soft);color:var(--good);border:1px solid var(--good)}
+.p-closed{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad)}
+ul.tight{margin:.5em 0;padding-left:1.3em} ul.tight li{margin:.3em 0}
+hr{border:0;border-top:1px solid var(--line);margin:2.6rem 0}
+@media (max-width:640px){.wrap{padding:2rem 1rem 4rem}h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">Собрано 5 августа 2026 · статичный набор, разворачивается как есть</p>
+
+<h1>Next Move Theory · МФЦ Клиника</h1>
+<p class="sub">Две папки. В первой — методология, по которой шла работа: правила для агента, канон Ивана Замесина, восемь скиллов и операционный цикл. Во второй — всё, что этот цикл выдал по клинике: диагноз, рынок, ценностное предложение, требования к продукту, go-to-market, два лендинга и гайд обзвона.</p>
+
+<a class="card" href="next-move/">
+  <span class="n">Папка 1 · методология</span>
+  <h3>Next Move Theory / AJTBD<span class="pill p-open">можно публиковать</span></h3>
+  <p>Правила, которыми агент заменяет обобщённый JTBD из обучающих данных; 23 файла канона; описание восьми скиллов и контрактов к ним; порядок операций и анти-паттерны. Ничего клиентского — только методология.</p>
+  <p class="meta">CC BY-NC-SA 4.0 · автор методологии Иван Замесин</p>
+</a>
+
+<a class="card" href="mfc/">
+  <span class="n">Папка 2 · прогон</span>
+  <h3>МФЦ Клиника — стратегия<span class="pill p-closed">закрыть доступом</span></h3>
+  <p>Два прогона цепочки (до выгрузки CRM и после), поправки скептического аудита, шесть документов, два прототипа страниц и гайд обзвона. Внутри — выручка клиники, фамилии врачей с оборотами, разбор оттока и реальные цены.</p>
+  <p class="meta">не выкладывать в открытый доступ · см. mfc/NOTICE.md</p>
+</a>
+
+<div class="danger">
+<p style="margin:.2em 0"><strong>⚠️ Папка <code>mfc/</code> — коммерческая тайна клиники.</strong> Если хостинг публичный, закройте её паролем или basic-auth, либо разворачивайте только <code>next-move/</code>. Отдельно: все выводы внутри — гипотезы языковой модели, а правовые разделы — разбор норм, не юридическое заключение.</p>
+</div>
+
+<h2>Как этим пользоваться</h2>
+<ul class="tight">
+<li><strong>Читать по порядку</strong> — начните с <a href="mfc/">МФЦ</a>, документы v2 (04.08) актуальны, v1 (31.07) лежит в архиве для истории решений.</li>
+<li><strong>Проверять, а не исполнять</strong> — вердикт цепочки <em>GO к проверке</em>: сначала обзвон 61 пациента из окна имплантации (~0 ₽), потом стройка.</li>
+<li><strong>Возвращаться к методологии</strong> — когда непонятно, что делать дальше, открывается <a href="next-move/canon/Algorithms/the-algorithm.html">the-algorithm.md</a>, а не список задач.</li>
+<li><strong>Прогонять цикл заново</strong> — каждое действие даёт новые данные рынка; при ошибке наверху пересборка идёт от сломанного узла, а не от текущего места.</li>
+</ul>
+
+<hr>
+
+<p class="sub">Методология и тексты канона — <strong>Иван Замесин</strong>, <a href="http://nextmovetheory.com/?utm_source=bundle&amp;utm_medium=index">nextmovetheory.com</a>, лицензия <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>. Документы по клинике сгенерированы языковой моделью и требуют проверки перед применением.</p>
+
+</div>
+</body>
+</html>

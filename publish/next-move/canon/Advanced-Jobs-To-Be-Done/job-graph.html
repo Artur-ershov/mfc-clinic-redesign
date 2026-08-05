@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Job Graph</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Job Graph</h1>
+<p>This file is the canon page on the Job Graph in AJTBD. The Job Graph is the <em>structure</em>-type unit of analysis. It organizes individual Jobs into the hierarchy a segment performs to land its higher-level Jobs.</p>
+<p>The Job Graph is one of the three units of analysis in AJTBD (see <a href="ajtbd-key-theses.html">AJTBD key theses §1</a>). Each is a different lens on the same Job substrate:</p>
+<ul>
+<li>The Job — the atomic unit. It is the structure of a single Job, paired with the chosen Solution when you analyze a real customer. Use <a href="job-structure.html">Job Structure</a>.</li>
+<li>The Job Graph — the structure unit. It shows how Jobs relate in a hierarchy of motivation. This file. It contains the Critical Chain of Jobs as a sub-concept: the Graph projected onto a time axis at a chosen Solution, where the operational dynamics live (predictions, prediction errors, drop-offs, Solution switches, per-step emotions). Use <a href="critical-chain.html">Critical Chain of Jobs</a> when sequence in time matters. Use this file when relationships among Jobs matter (parent-child, sibling, many-to-many).</li>
+<li>The Map of Segments — the strategic unit. It tells you which segments to compete for. Use <a href="segmentation.html">Segmentation</a>.</li>
+</ul>
+<p>This page owns what is uniquely the Graph&#39;s: the level vocabulary (§2), the two-choice formation rule (§4), the three gradients along the levels (§5–§7), the many-to-many edges that make it a <em>graph</em> (§9–§10), the segmentation surface (§11), value-creation-as-simplification (§13–§14), the competitive set (§15), and how to study and validate a Graph (§17–§18). Adjacent mechanics are cross-referenced, not restated.</p>
+<hr>
+<h2>1. Modify the Graph and you modify what the customer performs</h2>
+<p><strong>The Job Graph is the hierarchy of Jobs a specific segment performs to land its higher-level Jobs, and most strategic moves a product can make are changes to this Graph.</strong> Move up a level, kill a Job, capture a Previous or Next Job, link to a new Big Job. Each is a change in the Graph the customer walks (catalogued in §19). The better the team understands how the Graph forms and how it can be modified, the more strategic moves are available. A handful of moves act on the Map of Segments instead, such as up-market, down-market, adjacent-segment expansion, and B2B↔B2C. For those the Graph isn&#39;t the lens (see <a href="segmentation.html">Segmentation</a>).</p>
+<p>Each node in the Graph is a Job (<a href="job-structure.html">Job Structure</a>). Edges come in two kinds:</p>
+<ul>
+<li>Vertical edges, between levels, are <em>&quot;in order to&quot;</em> edges. The lower-level Job is performed in order to land the higher-level Job. Motivation rides the vertical edge upward. In research you walk the edge with two questions. Up with <em>&quot;Why do you want this? In order to do what?&quot;</em> surfaces the Big Job above. Down with <em>&quot;Step by step, which tasks did you do to get this one done?&quot;</em> surfaces the lower-level Jobs beneath. The full six-direction question set is in §17.</li>
+<li>Horizontal edges, within a level, connect siblings under the same higher-level Job. They are sequence connectors. Some are positional (Previous → Next in a Critical Chain of Jobs, when siblings must be performed in order, see <a href="critical-chain.html">Critical Chain of Jobs</a>). Others are alongside (parallel siblings, each independently contributing to the same parent).</li>
+</ul>
+<p><strong>It is a <em>graph</em>, not a <em>tree</em>, because the edges are many-to-many.</strong> One lower-level Job can serve several higher-level Jobs at once (§9). One Solution can be hired for several Jobs of the same person and of different people (§10). Trees enforce one parent per node. The real motivational structure does not. Call it a tree and the many-to-many mechanics behind most strategic moves collapse. The Solution the customer hired sits downstream of the Graph. Per <a href="behaviour-change.html">Behaviour Change §2</a>, a Solution is a label for a Job Graph.</p>
+<hr>
+<h2>2. The four levels — Big, Core, Small, Micro, defined relative to your product</h2>
+<p><strong>The level names attach to Jobs by their position relative to your product&#39;s Core Job. They are not absolute positions on the customer&#39;s life-Graph.</strong> Two products competing for adjacent territory will label different Graph levels as their Core, and both are correct.</p>
+<ul>
+<li>Core Job — the highest-level Job your product performs fully, and that you cannot climb above with the product&#39;s current shape. The operational test is whether most of the Micro Jobs underneath are performed inside your product, by your team, or by automation you own. Customer-side association rules can stretch this. The brain may treat a Job as fully performed even when a few low-level Micro Jobs sit outside the product, but that is out of scope here. The placement procedure is §3.</li>
+<li>Big Job — one level above your Core Job. It carries the motivation. Your product contributes to it but doesn&#39;t fully perform it. A single set of Core Jobs typically serves several Big Jobs at once.</li>
+<li>Small Job — a sibling of your Core Job, at the same level, under the same Big Job, that your product doesn&#39;t perform. It is performer-agnostic. The customer does it, another product does it as <em>its</em> Core Job, a partner does it, or no one does yet. The only test is whether <em>our</em> product performs it. Small Jobs are siblings of Core, not below it. The level one below Core is Micro. They are the primary source of growth moves (§19).</li>
+<li>Micro Job — one level below your Core Job and Small Jobs. The fine grain where customer experience lives.</li>
+<li>Super Big Job — one level above Big. It is often near the customer&#39;s life-level motivation, but not guaranteed. It depends on how broad your product is.</li>
+</ul>
+<p><strong>A product normally has several Core Jobs at the same level — the plural is normal.</strong> They come from one surface verb splitting under different success criteria (§11). Uber&#39;s <em>get from A to B</em> splits into distinct Core Jobs by context: <em>get there fast when I&#39;m in a hurry</em>, <em>get there with my dog</em>, <em>get there with room for four suitcases</em>. Uber performs each one fully. TurboTax&#39;s <em>file my return correctly</em> splits the same way: <em>file a simple W-2 return</em>, <em>file with a side business (Schedule C, 1099s)</em>, <em>file as an LLC owner (K-1, Schedule E)</em>. Each passes the placement test (§3). The steps beneath them — <em>request the ride</em>, <em>pay the fare</em>, <em>import the W-2</em>, <em>e-file the return</em> — are Micro Jobs one level down, not Core.</p>
+<p><strong>The levels are relative because the customer&#39;s full Graph runs 10+ levels deep.</strong> It runs from the deepest Micro (<em>hit the right key at this moment</em>) up to life-level Super Big Jobs (<em>live a life I&#39;m proud of</em>). Your Core Job sits somewhere on it. You never need the whole thing. You need only the slice around your Core: the Big Job or Jobs above, the sibling Small Jobs, the Micro Jobs below (how much to map is §12). A consultant who delivers <em>&quot;build your personal brand&quot;</em> turnkey has that as a Core Job. An agency that only <em>&quot;writes your LinkedIn posts&quot;</em> has the same Job two levels lower. Both placements are correct for their actual reach, because the vocabulary is product-relative, not universal.</p>
+<p><strong>The recurring error is putting Small Jobs below Core Jobs.</strong> They are siblings, at the same level, under the same Big Job. Confusing a Small Job with a Micro Job collapses two distinct moves. One is cross-sell into a sibling Core Job, the growth move. The other is improve fine-grain UX, the activation and retention move.</p>
+<hr>
+<h2>3. Placing the Core Job at the right level — the climb test</h2>
+<p><strong>Placing the Core Job at the right level is the prerequisite for every Graph-based decision</strong> — segmentation, positioning, mechanic selection, communication, retention, growth. Place it too high and the product can&#39;t actually perform the Job it claims, which manufactures a Problem in communication. Place it too low and the segments, mechanics, and growth moves all come out wrong.</p>
+<p>The procedure:</p>
+<ol>
+<li>Ask paying customers: <em>&quot;What tasks do you solve with our product?&quot;</em> Their answers are candidate Core Jobs. Recruit only customers who have actually paid for and used the product.</li>
+<li>Run the climb test on each candidate. First ask: <em>&quot;Does our product fully perform this Job, every sub-Job inside our product, end-to-end?&quot;</em> If no, it is too high. Drop one level and retry. If yes, ask: <em>&quot;Can we climb one level higher and still fully perform that higher Job?&quot;</em> If yes, climb and retry from the first question. Stop when the first answer is yes and the second is no. That level is the Core Job.</li>
+<li>Climb as high as you can. Every level higher pulls closer to where motivation lives (§5), where communication leverage lives (§7), and where the value-creation surface widens (§13). The right level is the highest you can reach right now, not a fixed position to defend. As the product covers more sibling Small Jobs or kills more Micro Jobs, the Core Job climbs. Squarespace&#39;s Core Job today (<em>publish a website turnkey</em>) was a Big Job a decade ago.</li>
+</ol>
+<p>Run the procedure whenever a Core Job claim anchors a decision or leaves the team. That includes choosing the strategy, choosing the segment and Jobs to compete for, mapping the competitive set, a positioning or value-prop session, a design brief, landing copy, and a sales script.</p>
+<hr>
+<h2>4. The Graph is formed by two choices — the maker proposes, the customer accepts or refuses</h2>
+<p><strong>Two parties produce every Job Graph the customer walks.</strong> The maker decides, in the Solution&#39;s design, which Job Graph the customer must traverse to land the higher-level Job. That covers what gets onboarded, which Jobs the product performs end-to-end, which Jobs the customer is left to perform, which roles get involved, and how long each step takes. The customer looks at the proposed Graph, usually implicitly, through marketing, reviews, peer stories, or a free trial. The customer then either accepts it or refuses and picks a Solution whose Graph reads better. The acceptance is rarely conscious. The refusal usually shows up as <em>they didn&#39;t buy</em>.</p>
+<p><strong>Treat the Graph the team designed as a hypothesis about which Graph the segment will accept, not as a fact.</strong> We can raise the probability of acceptance but can&#39;t control it until the customer buys. The veto is invisible until conversion data comes in.</p>
+<p>Worked example: <em>&quot;file my federal return on time and accurately&quot;</em> for a US W-2 earner with a side business. Same Big Job, three Solutions, three Graphs offered.</p>
+<ul>
+<li>DIY on paper or IRS Free File — a 10+ Micro-Job Graph the filer walks alone: <em>gather W-2s and 1099s → read the instructions → pick forms → enter line by line → compute Schedule C and SE → check arithmetic → print → sign → mail.</em> Cost: $0 and an evening.</li>
+<li>TurboTax self-service — a 4-Job Graph: <em>log in → answer guided questions while it auto-imports forms → review → e-file.</em> Cost: ~$100 and 1–2 hours.</li>
+<li>Hire a CPA — a 2-Job Graph: <em>send the documents → sign the return.</em> Cost: $300–1,500 and 30 minutes.</li>
+</ul>
+<p>Three different segments accept different proposals. The control-first filer accepts the paper return. The speed-and-accuracy-first filer picks TurboTax. The done-for-me filer hires the CPA. The Graph each filer walks is the maker&#39;s proposal that this filer accepted. The total value each experiences is the time, money, effort, and cognitive load spent across every node, weighted against the benefit at the top (formalized in <a href="value-creation.html">Value Creation §2–§4</a>).</p>
+<hr>
+<h2>5. Three gradients run along the levels — the first is motivation vs. mechanism</h2>
+<p><strong>Three properties shift as you move up or down the Graph&#39;s levels, all relative to your product&#39;s Core Job.</strong> They are motivation vs. mechanism (this section), stability over time (§6), and emotion vs. product-specificity (§7). Read together, they tell the team where to climb, what to expect to change underfoot, and where communication work versus UX work belongs.</p>
+<p><strong>Higher-level Jobs carry the motivation. Lower-level Jobs are the mechanism that delivers it.</strong> Above your Core Job sits the result the customer actually wants, the need at the edge of consciousness that pulls them through the whole sequence. Below it sits the concrete how-it-gets-done that the customer tolerates only because no more efficient route to the higher Job exists yet.</p>
+<p><strong>The lower-level Jobs are a necessary evil.</strong> Nobody wants to <em>untangle my headphones</em>, <em>type my password</em>, <em>search the IRS instructions</em>, <em>refuel a gas car</em>, or <em>hail a taxi by waving at the street</em>. Each is endured only until a more energy-efficient way to land the higher Job appears. The customer replaces the mechanism the moment a more efficient Graph reaches their awareness and the forces blocking the switch are overcome: habit of the current Graph, fears of the new one, switching costs (full treatment in <a href="behaviour-change.html">Behaviour Change §8–§9</a>). AirPods, Face ID, TurboTax, Squarespace, and Uber each displaced a whole layer of necessary-evil Jobs once enough of the segment crossed that threshold.</p>
+<hr>
+<h2>6. The second gradient — higher Jobs are stable across decades; lower Jobs change fast and disappear</h2>
+<p><strong>The higher up the Graph, the more stable the Job.</strong> <em>&quot;Get from where I live to where I need to be&quot;</em> has been a Job for millennia. <em>&quot;Have a safe home&quot;</em>, <em>&quot;feed my family&quot;</em>, and <em>&quot;earn a living from my craft&quot;</em> are Big Jobs unchanged for centuries. The success criteria evolve, toward faster, cheaper, and lower-carbon, but the Job itself holds.</p>
+<p><strong>The lower down, the faster Jobs change, and they routinely disappear as a class.</strong> <em>Untangle my headphones</em> was a daily Job for two decades until AirPods deleted it. <em>Type my password</em> held until Face ID. <em>Carry a folded paper map</em> held until smartphone navigation. <em>Find the right printer driver</em> is gone.</p>
+<p><strong>The gradient is a strategic indicator.</strong> A team competing on a high-level Big Job inherits decades of customer-mind stability. A team competing on a Micro Job lives on borrowed time until the next deletion event. Why the deletion engine matters is §13. Why the Graph never empties even as deletion runs is §14.</p>
+<hr>
+<h2>7. The third gradient — emotion intensifies upward; product-specificity intensifies downward</h2>
+<p><strong>Emotion intensifies upward.</strong> Emotions are the brain&#39;s signal for how Jobs are being performed. The closer to the need, the stronger the signal (see <a href="scientific-foundations.html">Scientific Foundations §9</a>). A poorly-styled settings button doesn&#39;t move the customer. <em>&quot;The tax return I owe Monday didn&#39;t file&quot;</em> does. The higher-level the Job you own end-to-end, the more emotion every break and every success carries. TurboTax owns <em>&quot;file my federal return on time,&quot;</em> so a rejected e-file at 11 PM on April 15 lands as panic, not annoyance.</p>
+<p><strong>Product-specificity intensifies downward.</strong> Higher-level Jobs are spoken in customer language, free of your product&#39;s particulars: <em>&quot;settle into life in San Francisco,&quot;</em> <em>&quot;file an accurate return on time.&quot;</em> Lower-level Jobs absorb product-specific verbs and nouns: <em>&quot;when OBS reset my camera profile, recover it without re-recording the intro,&quot;</em> <em>&quot;when Stripe declines my card with no reason code, retry through a different rail.&quot;</em> The verb binds to the Solution. The criteria reference the Solution&#39;s mechanics.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>Communication lives at high-level Jobs. UX detail lives at low-level Jobs. Landing copy that names the Big Job (<em>&quot;sleep at night knowing your data is safe&quot;</em>) outperforms copy that names the Core Job (<em>&quot;encrypt customer data with AES-256&quot;</em>). A fix for <em>&quot;when OBS resets my profile…&quot;</em> belongs in the next release, not in marketing.</li>
+<li>In research, the Job&#39;s level is readable off the language. <em>&quot;I want my CRM to stop losing the email thread when I forward it&quot;</em> is a low-level product-saturated Job. <em>&quot;I want to feel on top of my pipeline&quot;</em> is the Big Job above it. Catch both, and file each at its level.</li>
+</ul>
+<hr>
+<h2>8. The Graph is fractal — the same patterns recur at every level</h2>
+<p><strong>From the deepest Micro Job to the highest Super Big Job, the same structural properties hold.</strong></p>
+<ul>
+<li>The same eight-element internal structure holds at every level: context, expected outcome, success criteria, trigger, Consideration Set, emotions before, emotions after, higher-level Job (<a href="job-structure.html">Job Structure §1</a>). A Big Job has the same anatomy as a Micro Job. Only the criteria, emotions, and time-scale differ. The one exception is the terminal Emotional Job. It has no higher-level Job, because the underlying need sits above it and a need is not a Job (see <a href="job-types-and-properties.html">Job Types and Properties §10</a>). Every other Job has a higher-level Job.</li>
+<li>The motivation-vs-mechanism gradient (§5) runs at every level. Every Job has Jobs above it (its motivation) and below it (its mechanism). The Job that is mechanism from one level is motivation from the level below.</li>
+<li>The many-to-many edge property (§9, §10) holds at every level.</li>
+<li>A Solution is a label for a sub-Graph at every level. Any cluster of Jobs in service of a higher-level Job is itself a Job Graph, and a Solution for that Job is a label for it (per <a href="behaviour-change.html">Behaviour Change §2</a>).</li>
+</ul>
+<hr>
+<h2>9. One lower Job can serve many higher Jobs — and motivation rises with each Big Job above it</h2>
+<p><strong>The first many-to-many direction: when a single Job serves several higher-level Jobs at once, the customer&#39;s motivation to perform it rises with each additional Big Job above.</strong> <em>Learn vibecoding</em> serves <em>ship the side project nights and weekends</em>, <em>hand off boilerplate at work to an AI assistant</em>, <em>prototype ideas in hours instead of weeks</em>, and <em>qualify for higher-paying roles where AI fluency is becoming table stakes</em>. One Core Job, four Big Jobs above it. The brain weighs the combined upside, and the verdict on whether to invest comes back stronger than if only one Big Job were served.</p>
+<p><strong>The strategic move is to load Consideration Activators for the Big Jobs the customer didn&#39;t realize were served.</strong> The person who showed up to <em>learn vibecoding to ship the side project</em> discovers, through the team&#39;s messaging, that the same Job also helps them ship faster at work and qualify for better roles. The Job didn&#39;t change. The count of Big Jobs above it did. This is the <em>create a new link to a higher-level Big Job</em> mechanic (<a href="value-creation.html">Value Creation §16</a>).</p>
+<hr>
+<h2>10. One Solution can be hired for many Jobs — same person (retention) and different people (scaling)</h2>
+<p><strong>The second many-to-many direction: a Solution can be hired for several Jobs of one person (retention, repeat purchase, AOV) and for several Jobs of different people (segment scaling).</strong> The same edge produces both growth paths.</p>
+<ul>
+<li>Jobs inside one person grow LTV, AOV, and frequency. A customer hires DoorDash to get a restaurant dinner delivered, then groceries, then convenience-store items. Three different Core Jobs, one Solution, rising frequency and spend.</li>
+<li>Jobs across different people grow market size. The same added Job is also held by people who were never our customers. <em>Get groceries delivered</em> belongs to households that never ordered a restaurant meal from us. The moment we start performing that Job, we begin competing for them: people who already had the Job but whom we weren&#39;t serving. Performing the new Job pulls in new people, not just more spend from the ones we already have.</li>
+</ul>
+<p>Concrete one-Solution-many-Jobs cases: Notion (<em>organize my thinking</em> → docs → databases → tasks → wikis → AI), Square (<em>accept a card payment in person</em> → invoicing → online checkout → banking → payroll), Stripe (<em>accept payments on my website</em> → subscription billing → fraud → tax → corporate card). Each earned more frequency from existing customers and opened adjacent segments. The two scaling directions read off the same many-to-many edge.</p>
+<hr>
+<h2>11. The Job Graph is the segmentation surface</h2>
+<p><strong>Segments in AJTBD are sets of customers performing similar Core Jobs, with the same expected outcomes and similar main success criteria.</strong> Those two are the segmentation root. The Big Jobs above are motivational context, not a segmentation criterion. The Job Graph is the surface where the root and that context become visible together. Demographics and firmographics describe the outside of segment members, not the inside. The root — similar Core Jobs with similar success criteria, Big Job as motivational context only — is owned by <a href="ajtbd-key-theses.html">AJTBD key theses §12</a> and <a href="segmentation.html">Segmentation</a>. This section is the <em>why it lives on the Graph</em> angle.</p>
+<hr>
+<h2>12. Don&#39;t map the whole Graph — map the slice the business task needs</h2>
+<p><strong>The full Graph for one customer runs hundreds of Jobs, and across a market, millions. Never enumerate it.</strong> The methodology asks only for the slice that matches the business task, and the slice has two tiers of need.</p>
+<p>Graph mandatory, where the task can&#39;t be done well without it:</p>
+<ul>
+<li>Segment search and strategy. The researcher walks the Core Jobs, the Big Jobs above, and the sibling Small Jobs, and sometimes a Super Big Job too. That is the slice that surfaces segment-vs-segment differentiation (§11).</li>
+<li>Creating value. The mechanics catalog (<a href="value-creation.html">Value Creation §18</a>) operates on the Graph. Without it in front of you the mechanics have no surface to apply to.</li>
+</ul>
+<p>Graph highly useful, doable without it but with measurably worse outcomes:</p>
+<ul>
+<li>Retention, repeat purchase, conversion. These are the sequences the customer actually walks. For their operational dynamics — predictions, interruptions, drop-offs, Solution switches — zoom into the Critical Chain of Jobs, the Graph&#39;s time-projection at a chosen Solution (<a href="critical-chain.html">Critical Chain of Jobs</a>).</li>
+<li>Onboarding and activation. Only the first 5–10 Jobs matter, the ones through which the customer hits the first Aha Moment (<a href="value-creation.html">Value Creation §12</a>). Downstream Jobs matter for retention, not activation.</li>
+</ul>
+<p><strong>Pick the depth by the task, not the Job&#39;s absolute height.</strong> Strategy needs Core, Big, and Small. Activation needs the first 5–10 Micro Jobs, in order. UX and engineering need a Micro-Job zoom: <em>why does the shoehorn live in this hotel room?</em> → <em>put my shoes on without bending → leave the room → go to dinner → enjoy my vacation</em>. Many levels sit between the shoehorn and <em>&quot;have a great trip.&quot;</em></p>
+<hr>
+<h2>13. Value creation <em>is</em> simplification of the Graph over time — products climb, lower Jobs disappear</h2>
+<p><strong>The deepest engine of value creation is Graph simplification.</strong> A Solution that delivers the same Big Job through fewer lower-level Jobs is, by definition, more energy-efficient. The brain registers the simplification as an Aha Moment (<a href="value-creation.html">Value Creation §5</a>). The two dominant mechanics, move-up-a-level and kill-a-Job, are both simplification operators (<a href="value-creation.html">Value Creation §14</a>). The meta-mechanic is the subtraction principle (<a href="../Next-Move-Theory/subtraction.html">Subtraction</a>).</p>
+<p><strong>Across every product generation, the team that lands the same Big Job through fewer lower-level Jobs captures the segment.</strong> The old product&#39;s Core Jobs collapse into Micro Jobs, or vanish, inside the new Solution. The old Big Job becomes the new Solution&#39;s Core Job. The Big Job stays. The Graph underneath simplifies.</p>
+<ul>
+<li>Elevator vs. stairs. Big Job <em>get to the upper floor</em>: walk up several flights → press a button. <em>Climb the stairs</em> disappeared as a Core Job.</li>
+<li>Google Maps vs. paper map. <em>Get from where I am to where I&#39;m going</em>: buy a map, unfold, locate, plan, refold, drive-while-checking → open the app, accept the route, drive.</li>
+<li>Squarespace vs. hire-a-developer. <em>Have a website live for my business</em>: find a developer → brief → quote → buy hosting → install → maintain plugins and SSL → <em>pick a template, drag, publish.</em></li>
+<li>ChatGPT vs. write the first draft yourself. <em>Produce a finished document</em>: outline → research → write → edit → iterate → <em>prompt, review, polish.</em></li>
+</ul>
+<p>The counterweight is §14: the Graph never fully empties. New Big Jobs keep appearing at the top even as old Jobs disappear at the bottom. Hold both halves together.</p>
+<hr>
+<h2>14. But the Graph never empties — new Big Jobs appear at the top as old Jobs disappear at the bottom</h2>
+<p><strong>§13&#39;s engine runs at the bottom, where Jobs get deleted. At the top, new Jobs continually appear.</strong> As people develop psychologically, technologically, and culturally, context expands and Big Jobs become legible that weren&#39;t a generation ago.</p>
+<ul>
+<li><em>&quot;Manage my digital identity across dozens of accounts&quot;</em> — not a Big Job in 1990.</li>
+<li><em>&quot;Protect my data from being used to train AI&quot;</em> — not a Big Job in 2020.</li>
+<li><em>&quot;Save for retirement with an algorithm instead of an advisor&quot;</em> — not a Big Job in 2000.</li>
+<li><em>&quot;Replace routine knowledge work with AI automation&quot;</em> — emerging now.</li>
+</ul>
+<p>Each new Big Job grows its own subtree of Core, Small, and Micro Jobs. <strong>The bottom is being deleted (§13); the top is being extended upward.</strong> Yesterday&#39;s effortful Micro gets deleted. Tomorrow&#39;s Big Job becomes routine. The day after, a Big Job not yet articulated becomes the strategic horizon.</p>
+<hr>
+<h2>15. The real competitive set is at the Big Job — direct vs. indirect competition</h2>
+<p><strong>Direct competitors share your Core Job. Indirect competitors share one or more of your Big Jobs.</strong></p>
+<ul>
+<li>Direct competition is the same Core Job, head-to-head on the same verb-and-noun, with the same success criteria. <em>Lyft vs. Uber</em> on <em>&quot;get a ride across the city now.&quot;</em> <em>Slack vs. Teams</em> on <em>&quot;keep my team&#39;s chat in one place.&quot;</em> <em>Notion vs. Confluence</em> on <em>&quot;keep our docs accessible.&quot;</em></li>
+<li>Indirect competition is overlap on one or more Big Jobs, with different Core Jobs. The customer solves the same higher-level Job with a different Core-Job class. It can be on a single Big Job (a mattress vs. coffee for <em>&quot;function on insufficient sleep&quot;</em>) or on several at once (Notion vs. Google Docs plus Slack plus email plus Asana, overlapping each on a different Big Job).</li>
+</ul>
+<p><strong>Your real competitive set is the union of both, and most teams underestimate the indirect side by an order of magnitude.</strong> The same surface verb produces a small direct set, such as other mattress brands or other CRMs. The same Big Job produces a much larger one, and that is the set the customer&#39;s brain actually evaluates against.</p>
+<p>Indirect sets teams usually miss:</p>
+<ul>
+<li>A mattress competes with coffee, melatonin, white-noise machines, and quitting the job, all under the Big Job <em>&quot;keep functioning on insufficient sleep.&quot;</em> The mattress is the last candidate the burnt-out customer considers. The campaign that surfaces it: <em>&quot;a better mattress for the price of a cup of coffee a day.&quot;</em></li>
+<li>A warehouse-management SaaS competes with Excel, a paper notebook, and a whiteboard, all under the Big Job <em>&quot;know what we have on hand so we don&#39;t ship empty boxes.&quot;</em> The real set is dominated by the customer&#39;s existing improvisation, not other inventory tools.</li>
+<li>A weekend-getaway booking competes with Netflix under the Big Job <em>&quot;escape my weekly routine.&quot;</em> The customer prices the trip against staying home with three new releases, not against another trip.</li>
+<li>Notion competes with Google Docs plus Slack plus email plus Asana across multiple Big Jobs at once, consolidating <em>&quot;keep shared knowledge accessible,&quot;</em> <em>&quot;track who&#39;s doing what,&quot;</em> and <em>&quot;communicate decisions.&quot;</em> Its competitive set is the union of all four at the Big-Job level, even though each is a stronger direct competitor on its own narrow Core Job.</li>
+</ul>
+<hr>
+<h2>16. The Solution is sometimes the customer&#39;s own action — DIY is a Job Graph too</h2>
+<p><strong>Often the Solution hired for a Job is no product at all. It is the customer&#39;s own activity.</strong> <em>I&#39;ll figure it out myself, google it, watch a YouTube video, improvise, fail and retry.</em> This DIY Graph is structurally identical to a vendor-hired Graph: same nodes, same edges, different label. Three reasons it shows up as the hired Solution. The customer&#39;s budget is small. The customer doesn&#39;t know an alternative exists (Consideration Activators never landed, see <a href="consideration-activators.html">Consideration Activators</a>). Or the customer knows it exists but doesn&#39;t credit its value, seeing the price but unable to predict the energy efficiency.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>In research, count DIY as a competitor, because it is one. <em>&quot;I just do it myself&quot;</em> is a Graph competing for the same time, money, and attention as your product. Map it the way you&#39;d map a competitor&#39;s.</li>
+<li>Against DIY, work in order: segment the DIY users by Core Jobs and success criteria, create value that beats DIY on those criteria, then load Consideration Activators. Some users DIY only because the alternative never landed. For them, loading the <em>more energy-efficient way exists</em> component (<a href="consideration-activators.html">Consideration Activators</a>) is the move. Others DIY because, against their success criteria, no Solution beats doing it themselves, ours included. There the move is to create real value that clears their criteria first, then communicate it. Price cuts dislodge neither.</li>
+</ul>
+<hr>
+<h2>17. How to study a Graph — every question anchors on the expected outcome of the higher-level Job</h2>
+<p><strong>Study Jobs by studying what the customer has actually done</strong> — paid money, spent time, invested energy. Future intent is not data. Asking <em>&quot;would you ever do X?&quot;</em> and treating the answer as evidence is a category error (<a href="job-structure.html">Job Structure §15</a>, <a href="job-types-and-properties.html">Job Types and Properties §8</a> on Fake Jobs).</p>
+<p><strong>The single anchoring principle: every Graph-research question anchors on the expected outcome of the higher-level Job.</strong> <em>&quot;For what?&quot;</em> (upward) is the only direction whose anchor sits at the current node. Every other direction, sideways and downward, carries the parent&#39;s expected outcome already in the frame. That anchor is what keeps the answer inside the Graph instead of drifting into unrelated Jobs of the respondent&#39;s day.</p>
+<p>Six question forms, one per Graph direction. Substitute <code>{curly braces}</code> with the respondent&#39;s own outcome wording. The running example is a PM who set up a feature-flag and experimentation platform for their team.</p>
+<ul>
+<li>Up, to the parent: <em>&quot;For what? In order to do what?&quot;</em> <em>&quot;I set up the experimentation platform → in order to ship features without breaking production → in order to hit the quarter&#39;s roadmap commitments → in order to get promoted to Group PM.&quot;</em> Four upward edges in a minute of interviewing.</li>
+<li>Sideways, Previous Job in the chain: <em>&quot;Step by step, what did you do for {expected outcome of higher-level Job} before you got {expected outcome of the current Job}?&quot;</em> <em>&quot;…to ship safely before the platform? Hand-rolled config flags → shipped a bad one that took down checkout → started evaluating platforms.&quot;</em></li>
+<li>Sideways, Next Job in the chain: <em>&quot;Step by step, what did you do for {expected outcome of higher-level Job} after you got {expected outcome of the current Job}?&quot;</em> <em>&quot;…after the platform cut incidents in the pilot squad? Rolled it to all squads → added gradual rollouts → wired flags into the analytics pipeline.&quot;</em></li>
+<li>Sideways, siblings not in the chain: <em>&quot;What other tasks do you do for {expected outcome of higher-level Job}, besides {expected outcome of the current Job}?&quot;</em> <em>&quot;…to ship without breaking prod, besides the platform? Code review, a staging environment, canary deploys, on-call runbooks.&quot;</em></li>
+<li>Down, sequential: <em>&quot;Step by step, what did you do to get {expected outcome of the Job we&#39;re zooming into}?&quot;</em> <em>&quot;…to roll the platform out across squads? Vendor eval → security review → SDK integration → migrate existing flags → train the squads.&quot;</em></li>
+<li>Down, parallel: <em>&quot;What are your usual usage scenarios with {Solution}?&quot;</em> <em>&quot;…with the platform? Gradual rollouts, kill-switches during incidents, A/B experiments, permission-gating beta features.&quot;</em></li>
+</ul>
+<p><strong>The recurring failure mode is asking sideways or downward without the expected outcome in the frame.</strong> <em>&quot;What did you do before the platform?&quot;</em> — unanchored — invites drift, such as <em>&quot;I joined the company two years ago.&quot;</em> The anchored version, <em>&quot;…to ship safely before the platform?&quot;</em>, keeps the answer inside the Graph.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>Recruit by past-performance proof, not self-reported intent. Ask at the screener: <em>&quot;when did you last pay for X? what did you pay? what did you do as a result?&quot;</em> This filters Fake Jobs and low-motivation respondents in one pass.</li>
+<li>A single respondent&#39;s past action can reconstruct an entire Graph by cycling through the six forms from one anchor point. Interview methodology is in the <a href="../HowTos/basic-ajtbd-interview-guide-and-principles.html">AJTBD interview guide</a>. This section names only the Graph-specific moves.</li>
+</ul>
+<hr>
+<h2>18. Validate the Graph by asking <em>&quot;For what?&quot;</em> at every node</h2>
+<p><strong>The highest-leverage quality check on a composed Graph is to apply <em>&quot;for what? / in order to do what?&quot;</em> to every node in succession</strong> — not just the suspect ones. The question forces the formulator to name the next-higher Job out loud. The answer, or its absence, exposes whatever is wrong with the node&#39;s level, edge, or existence.</p>
+<p>Four failure modes the sweep surfaces, in declining frequency:</p>
+<ul>
+<li>Skip-a-level, the most common. <em>&quot;For what?&quot;</em> returns an answer that doesn&#39;t connect, and the formulator invents an intermediate Job mid-sentence to bridge the gap. That invention is the missing level. Insert it and re-ask both nodes.</li>
+<li>Wrong parent. The <em>&quot;in order to&quot;</em> line, under questioning, doesn&#39;t actually motivate the Job for this segment. The parent was inferred, not heard from interviews. Rewire the edge to the honest parent.</li>
+<li>Multi-verb Job. The <em>&quot;for what?&quot;</em> answer is already inside the original statement. <em>&quot;Rent out my duplex and generate predictable monthly income&quot;</em> → &quot;for what?&quot; → &quot;to generate predictable monthly income.&quot; The Job is two stacked Jobs. Parse into the hierarchy (<a href="job-structure.html">Job Structure §14</a>).</li>
+<li>Fake Job. The answer is a fantasy, <em>&quot;to do X someday,&quot;</em> with no past-performance anchor (<a href="job-types-and-properties.html">Job Types and Properties §8</a>). Cut it or move it to a future-hypothesis bucket. Never leave it in the operational Graph.</li>
+</ul>
+<p>The question is productive because it can only be answered by naming a real, level-correct, motivating parent, or by admitting one of the four errors. There is no third option.</p>
+<hr>
+<h2>19. Most strategic moves are movements in the Graph — but not all</h2>
+<p><strong>Most strategic moves are movements in the Graph, but not all.</strong> The exceptions are moves on the Map of Segments: which Big Jobs and segments we compete for in the first place (the closing block below). Every Graph move is either directional (where to go relative to your current Core Job) or non-directional (transform the Graph&#39;s structure without moving the Core Job). Each is treated in full elsewhere. This is the index.</p>
+<p>Directional moves:</p>
+<ul>
+<li>Up, move up a level. Turn the Big Job above your Core Job into your new Core Job. Uber climbed above <em>own a car</em>. Squarespace climbed above <em>buy hosting → install WordPress → renew SSL</em>. The most powerful move when applicable (<a href="value-creation.html">Value Creation §14.1</a>).</li>
+<li>Sideways, capture a sibling Small Job. The Previous Job in the chain is acquisition and lead-gen, like Zillow&#39;s Zestimate upstream of <em>list for sale</em>. The Next Job is retention and AOV, like Figma → Dev Mode. A parallel sibling not in a chain is a third option, like Notion&#39;s <em>organize docs</em> → <em>manage tasks</em> → <em>run wikis</em>. See <a href="critical-chain.html">Critical Chain of Jobs §9</a>.</li>
+<li>Outside, link to a new Big Job. Create a Big-Job edge that didn&#39;t exist. Premium water links <em>&quot;hydrate&quot;</em> to <em>&quot;create aesthetics at my table.&quot;</em> Apple links <em>&quot;do my creative work&quot;</em> to <em>&quot;signal taste.&quot;</em> (<a href="value-creation.html">Value Creation §16</a>).</li>
+</ul>
+<p>Non-directional moves, where you transform the structure and the Core Job stays put:</p>
+<ul>
+<li>Kill a Job, delete it as a class (AirPods killed <em>untangle my headphones</em>). <a href="value-creation.html">Value Creation §14.2</a>.</li>
+<li>Take a Job off the customer, where the Job stays but you perform it (Wealthfront rebalances; DoorDash cooks). <a href="value-creation-mechanics.html">Value-Creation Mechanics</a>.</li>
+<li>Start performing a Job no one performs well, introducing a new Core Job (Bench: <em>do my bookkeeping for me as a small-business owner</em>, into a previously DIY-or-CPA-only Graph). <a href="value-creation-mechanics.html">Value-Creation Mechanics</a>.</li>
+<li>Add Orientation Jobs, guiding the decision process (Stripe&#39;s docs, HubSpot Academy). <a href="job-types-and-properties.html">Job Types and Properties §6</a>.</li>
+<li>Route a Job to a partner, when a chain-critical Job isn&#39;t yours (Apple&#39;s App Store; a realtor&#39;s preferred-vendor network). <a href="critical-chain.html">Critical Chain of Jobs §11</a>.</li>
+<li>Repair the Critical Chain of Jobs, unblocking break-points, reducing hand-offs, killing cycles, compressing time-gaps. <a href="critical-chain.html">Critical Chain of Jobs §6–§11</a>.</li>
+<li>Consolidate, performing more of the customer&#39;s Jobs in one Solution. <a href="value-creation-mechanics.html">Value-Creation Mechanics</a>.</li>
+</ul>
+<p><strong>Many moves don&#39;t operate on the Graph at all.</strong> The diagnostic when stuck is: which Graph move, or which off-Graph move, has the team not yet considered? Most teams default to tuning the existing Core Job, improving it and adding features, when a step-change lives elsewhere.</p>
+<ul>
+<li>Change how the Core Job is performed without changing the Graph: lower the price, raise one quality dimension, remove a negative emotion, lower cognitive cost, guarantee the result. <a href="value-creation.html">Value Creation §18</a>.</li>
+<li>Move on the Map of Segments: up-market, down-market, adjacent segment, B2B↔B2C, opinion-leader segments. <a href="segmentation.html">Segmentation</a>.</li>
+<li>Moves from the other three NMT pillars: Unit Economics, RAT, ABCDX. <a href="../Next-Move-Theory/nmt-key-theses.html">Next Move Theory key theses</a>. The subtraction meta-operator runs across all four (<a href="../Next-Move-Theory/subtraction.html">Subtraction</a>).</li>
+</ul>
+<hr>
+<h2>Cross-references</h2>
+<ul>
+<li><a href="ajtbd-key-theses.html">AJTBD key theses §1</a> — the three units of analysis; Graph as the <em>structure</em> unit.</li>
+<li><a href="job-structure.html">Job Structure §11</a> — the four-level hierarchy and Job-level placement.</li>
+<li><a href="critical-chain.html">Critical Chain of Jobs</a> — the Graph projected onto a time axis at a chosen Solution: where the operational dynamics of chain-walking live (predictions, prediction errors, interruptions, drop-offs, Solution switches, per-step emotions); chain pathologies (cycles, hand-offs, time-gaps, breaks); Previous-Job / Next-Job strategy.</li>
+<li><a href="job-types-and-properties.html">Job Types and Properties</a> — types (Regular, Orientation, Tax, Fake, Emotional, Viral) and properties every Job can carry. The Tax Job framing covers Jobs that spawn mid-execution.</li>
+<li><a href="value-creation.html">Value Creation §14</a> — move-up-a-level and kill-a-Job as Graph-simplification operators; §16 — link to a new Big Job; §18 — the mechanics catalog.</li>
+<li><a href="../Next-Move-Theory/subtraction.html">Subtraction</a> — the subtraction meta-mechanic behind Graph simplification (§13).</li>
+<li><a href="behaviour-change.html">Behaviour Change §2</a> — Solution as a label for a Job Graph; §5 — Consideration Activators as the upstream loader of new Graphs; §9 — Forces of Behavior Change.</li>
+<li><a href="segmentation.html">Segmentation</a> — segments as sets of similar Core Jobs with similar success criteria; Graph similarity as the segmentation root (§11 here).</li>
+<li><a href="consideration-activators.html">Consideration Activators</a> — how a new Graph gets installed in the customer&#39;s head.</li>
+<li><a href="../HowTos/basic-ajtbd-interview-guide-and-principles.html">AJTBD interview guide</a> — interview methodology for reconstructing a Graph from past-performance anchors.</li>
+<li><a href="../Riskiest-Assumption-Test/rat-key-theses.html">Riskiest Assumption Test</a> — past-performance recruiting discipline.</li>
+</ul>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

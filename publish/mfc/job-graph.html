@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>МФЦ Клиника — граф задач</title>
+<style>
+body{margin:0;background:#faf8f4;color:#1c1a17;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:80rem;margin:0 auto;padding:2.5rem 1.25rem 5rem}
+h1{font-size:1.8rem;letter-spacing:-.015em;margin:.2em 0 .3em}
+.sub{color:#6b6660;font-size:.95rem;margin-bottom:2rem}
+a{color:#3f706a}
+.legend{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.5rem 0}
+.lg{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;border:1px solid #e0dbd2;background:#fff;border-radius:99px;padding:.3rem .75rem}
+.sw{width:.85rem;height:.85rem;border-radius:3px;flex:none}
+.diagram{background:#fff;border:1px solid #e0dbd2;border-radius:12px;padding:1.5rem;overflow-x:auto}
+.note{background:#fff;border:1px solid #e0dbd2;border-radius:8px;padding:.9rem 1.1rem;margin:1.6rem 0;font-size:.92rem;color:#6b6660}
+</style></head><body><div class="wrap">
+<p class="sub" style="margin-bottom:.8rem"><a href="index.html">&larr; ко всем документам</a></p>
+<h1>Граф задач МФЦ Клиники</h1>
+<p class="sub">Уровни задач относительны продукту: большие — мотивация, главные — то, что клиника выполняет целиком, соседние — того же уровня, но клиника их не делает, мелкие — под главными.</p>
+<div class="legend">
+<span class="lg"><span class="sw" style="background:#eaf1ef;border:1px solid #3f706a"></span>большие — мотивация</span>
+<span class="lg"><span class="sw" style="background:#e9f3ec;border:1px solid #2f6b45"></span>главные — выполняет целиком</span>
+<span class="lg"><span class="sw" style="background:#fbf3e2;border:1px solid #8a6d3b"></span>соседние — здесь рост</span>
+<span class="lg"><span class="sw" style="background:#fbeceb;border:1px solid #8c3a34"></span>мелкие — здесь всё рвётся</span>
+<span class="lg"><span class="sw" style="background:#8c3a34"></span>разрывы</span>
+<span class="lg"><span class="sw" style="background:#2f6b45"></span>активы</span>
+</div>
+<div class="diagram"><pre class="mermaid">
+flowchart TB
+
+subgraph BIG["БОЛЬШИЕ ЗАДАЧИ · мотивация · клиника выполняет только частично"]
+  direction LR
+  B1("хочу есть и говорить,<br/>не думая о зубах")
+  B2("хочу перестать закрывать<br/>рот рукой, когда смеюсь")
+  B3("хочу не потерять то,<br/>за что уже заплатил")
+  B4("хочу принять решение о своих зубах,<br/>о котором через 5 лет не пожалею")
+  B5("хочу дожить до старости<br/>со своими зубами")
+end
+
+subgraph CORE["ГЛАВНЫЕ ЗАДАЧИ · клиника выполняет целиком · ✅ ни одной претензии к результату"]
+  direction LR
+  C1("хочу восстановить<br/>жевание несъёмно")
+  C2("хочу сохранить зуб,<br/>который приговорили")
+  C3("хочу снять острую<br/>боль сегодня")
+  C4("хочу изменить внешний<br/>вид зубов")
+  C5("хочу привести рот<br/>в порядок планово")
+end
+
+subgraph SMALL["СОСЕДНИЕ ЗАДАЧИ · тот же уровень · клиника их НЕ делает · 💰 здесь рост"]
+  direction LR
+  S1("хочу понять, нужно ли мне<br/>вообще то, что назначили")
+  S2("хочу узнать цену всего<br/>случая до визита")
+  S3("хочу закрыть санацию до операции<br/>и получить справку")
+  S4("хочу не помнить про профилактику,<br/>но не пропускать её")
+  S5("хочу разложить оплату")
+end
+
+subgraph MICRO["МЕЛКИЕ ЗАДАЧИ · под главными · здесь живёт опыт — и здесь всё рвётся"]
+  direction LR
+  M1("хочу дозвониться")
+  M2("хочу записаться,<br/>не звоня")
+  M3("хочу попасть в удобное<br/>время")
+  M4("хочу дойти и<br/>не заблудиться")
+  M5("хочу заплатить ровно ту сумму,<br/>что назвали")
+  M6("хочу получить справку,<br/>которую примет налоговая")
+end
+
+C1 --> B1
+C1 --> B3
+C2 --> B5
+C2 --> B3
+C3 --> B1
+C4 --> B2
+C5 --> B5
+
+S1 --> B4
+S2 --> B4
+S3 --> B1
+S4 --> B5
+S5 --> B1
+
+M1 --> C1
+M1 --> C2
+M1 --> C3
+M1 --> C5
+M2 --> C3
+M3 --> C5
+M4 --> C1
+M5 --> C1
+M6 --> C1
+
+BRK1["55,7% не могут дозвониться<br/>первые 15 секунд не звонит ни один телефон"]
+BRK2["онлайн-записи нет<br/>каждое уточнение = новый звонок"]
+BRK3["клиника 7/7, а врачи<br/>по воскресеньям не все"]
+
+BRK1 -.-> M1
+BRK2 -.-> M2
+BRK3 -.-> M3
+
+GRW1["микроскоп с видеозаписью<br/>+ умеем и удалить, и сохранить"]
+GRW2["соседство с Боткинской<br/>единственный некопируемый актив"]
+GRW3["база пациентов<br/>+ режим 7/7"]
+
+GRW1 -.-> S1
+GRW2 -.-> S3
+GRW3 -.-> S4
+
+classDef big fill:#eaf1ef,stroke:#3f706a,stroke-width:1px,color:#1c1a17
+classDef core fill:#e9f3ec,stroke:#2f6b45,stroke-width:2px,color:#1c1a17
+classDef small fill:#fbf3e2,stroke:#8a6d3b,stroke-width:2px,color:#1c1a17
+classDef micro fill:#fbeceb,stroke:#8c3a34,stroke-width:2px,color:#1c1a17
+classDef brk fill:#8c3a34,stroke:#8c3a34,color:#ffffff
+classDef grw fill:#2f6b45,stroke:#2f6b45,color:#ffffff
+
+class B1,B2,B3,B4,B5 big
+class C1,C2,C3,C4,C5 core
+class S1,S2,S3,S4,S5 small
+class M1,M2,M3,M4,M5,M6 micro
+class BRK1,BRK2,BRK3 brk
+class GRW1,GRW2,GRW3 grw
+</pre></div>
+<div class="note">Соседние задачи — <strong>того же уровня, что главные</strong>, а не под ними: клиника их просто не выполняет. Именно там сидит рост. Мелкие задачи лежат под главными — и там же живут все три разрыва.</div>
+</div>
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+mermaid.initialize({startOnLoad:true,theme:"base",themeVariables:{fontFamily:"-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif",fontSize:"14px"}});
+</script>
+</body></html>

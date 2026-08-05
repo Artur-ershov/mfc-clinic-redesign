@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Subtraction — the meta-operator that runs across all four Next Move Theory pillars</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Subtraction — the meta-operator that runs across all four Next Move Theory pillars</h1>
+<p>The four Next Move Theory pillars (AJTBD, Unit Economics, RAT, ABCDX) are usually described as separate disciplines with separate vocabularies. They are. But underneath the vocabularies, all four pillars run the same operation. <strong>The shared operation is subtraction — removing something from the system that, at first glance, looked like it had to stay.</strong> AJTBD subtracts Jobs from the target segment&#39;s Job Graph, and entire non-target segments from the team&#39;s strategic investment landscape. Unit Economics subtracts negative-margin units, channels, and transactions. RAT subtracts risky assumptions before they get built into a product. ABCDX subtracts C/D customers from the business&#39;s existing customer base.</p>
+<p>This page promotes subtraction from <em>&quot;one of many mechanics inside a pillar&quot;</em> to <em>&quot;the meta-operator the four pillars share.&quot;</em> The promotion changes what the practitioner is looking at. Not four toolboxes with overlapping moves, but one operator that takes four pillar-specific forms.</p>
+<p>The deeper structural identity goes further. Subtraction is not only the meta-operator across the four pillars. <strong>It is also the mechanism through which focus and attention management work</strong> (see <a href="focus-as-company-attention-management.html">Focus &amp; Attention Management §2</a>). Attention is already spent somewhere in every moment. To direct it at a chosen target, the brain (customer&#39;s or team&#39;s) must stop directing it at non-target. So <code>direct(X)</code> = <code>subtract(claims-on-non-X)</code>. The same operator runs at the cognitive level over attention, at the AJTBD level over Jobs, at the UE level over capital, at the RAT level over certainty, and at the ABCDX level over customer-base composition. <strong>Subtraction is what makes any rationing of a constrained resource possible, focus included.</strong></p>
+<p>The four sections below state the four meta-theses about subtraction. What it is across the pillars (§1), why its ROI structurally beats addition (§2), what the limit case looks like (§3), and why teams almost never run it without explicit discipline (§4).</p>
+<hr>
+<h2>1. Subtraction is the operation each Next Move Theory pillar performs — under different names</h2>
+<p><strong>Each pillar subtracts something specific, with a specific operational instrument, and a specific party who feels the pain when the subtraction lands.</strong> What looks like four separate disciplines is four projections of the same operator into four problem domains. Naming the operator across the pillars is what lets a practitioner skilled in one transfer skill to the others. The underlying move is the same; only the object changes.</p>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>What gets subtracted</th>
+<th>Operational instrument</th>
+<th>Who feels the pain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>A</strong>JTBD</td>
+<td>Jobs from the target segment&#39;s Job Graph (Tax Jobs, lower-level Jobs collapsed by a level-jump, sibling Small Jobs the segment no longer needs); and whole non-target segments from the team&#39;s strategic investment landscape — once a target segment is named, every other segment&#39;s Jobs stop receiving resource</td>
+<td>Kill a Job; Move up a level; Done-for-you (Take the Job off the customer); target-segment choice via the four-gate screen</td>
+<td>Competitors (their product stops being a way to perform the target segment&#39;s Job); team members who were designing features for non-target segments&#39; Jobs (their work loses its target); team members who keep adding more lower-level Jobs to the graph when the right move was to kill them (their additive instinct gets overridden)</td>
+</tr>
+<tr>
+<td><strong>U</strong>nit Economics</td>
+<td>Negative-contribution-margin units, customers, transactions, channels, SKUs</td>
+<td>LTV/CAC threshold; payback-period cutoff; channel-shutdown; SKU-rationalization</td>
+<td>Internal teams attached to the subtracted volume (sales whose territory shrinks, ops whose throughput drops)</td>
+</tr>
+<tr>
+<td><strong>R</strong>AT</td>
+<td>Risky assumptions still in the stack; whole product hypotheses that fail the riskiest test</td>
+<td>Drop-it exercise; &quot;kill the product, don&#39;t launch it&quot;; pivot as assumption-swap</td>
+<td>Authors of the assumption, feature, or product idea — identity-level pain</td>
+</tr>
+<tr>
+<td><strong>A</strong>BCDX</td>
+<td>C/D customers, their feedback, their feature requests, their share of support load</td>
+<td>Lead qualification at the funnel mouth; automate C/D service to near-zero cost; price-out</td>
+<td>Sales (their commission), support (their customers), and the team&#39;s instinct to <em>&quot;help everyone&quot;</em></td>
+</tr>
+</tbody></table>
+<p>A few notes on the table the practitioner should carry forward:</p>
+<ul>
+<li>The instruments are not interchangeable across pillars, but the operator behind them is. A team that runs Kill a Job well in AJTBD and refuses to run lead qualification in ABCDX has internalized the operator only partially. The instinct that drives one drives the other.</li>
+<li>The &quot;who feels the pain&quot; column matters operationally. Subtraction in every pillar is resisted by a specific party. That resistance is what blocks the operation in practice, not the analysis. §4 unpacks the team-level resistance.</li>
+<li>All four pillars feed the same downstream output — target profit. Subtraction protects that output by keeping the system from accumulating unprofitable, unproductive, or unconverting elements that look like they&#39;re working but aren&#39;t (see <a href="nmt-key-theses.html">Next Move Theory key theses §4 — the cause-and-effect chain</a>).</li>
+<li><strong>AJTBD performs subtraction at two levels, not one — and the segment level is the higher-leverage of the two.</strong> Inside the target segment, the team subtracts Jobs from the customer&#39;s graph (Kill a Job, Move up a level, Done-for-you). At the strategic level, the team subtracts every other segment from the investment zone. The moment a target segment is named, every non-target segment&#39;s Jobs stop receiving resource, even segments with valid Jobs we could in principle perform. <strong>Focus is the byproduct of this segment-level subtraction, not an independent property of the team&#39;s work.</strong> Without the explicit subtraction of non-target segments, focus collapses back into <em>&quot;everything for everyone, for no one&quot;</em> (see <a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation §8</a>). The pain of this subtraction is felt most acutely inside the team. It falls on designers, PMs, and engineers who were building for non-target segments. It also falls on team members whose default instinct is to add more lower-level Jobs to the graph instead of killing them (see §4 for the structural reasons those team members exist by default in any team).</li>
+</ul>
+<p>Operational consequences:</p>
+<ul>
+<li>Diagnosis question that travels across pillars: <em>&quot;In each pillar, what has this team explicitly subtracted in the last quarter, and why?&quot;</em> A team that can answer in all four pillars is running the meta-operation. A team that can answer in one and not the others has a pillar-specific gap, and the gap is almost always in subtraction, not in addition.</li>
+<li>Skill transfer is real and usable. A founder who has internalized Kill a Job in AJTBD has already done most of the cognitive work for RAT&#39;s drop-it exercise and ABCDX&#39;s fire-the-C/D move. The vocabularies differ; the operation does not.</li>
+<li>Avoid the trap of treating the four pillars as separate workstreams. When a team treats AJTBD as research, Unit Economics as finance, RAT as PM discipline, and ABCDX as customer-success operations, subtraction has no owner. Naming the operator gives it an owner — the founder or C-level whose authority crosses functions (see §4).</li>
+</ul>
+<hr>
+<h2>2. Subtraction is asymmetric with addition — the ROI of removing almost always beats the ROI of adding</h2>
+<p><strong>The default mental model treats addition and subtraction as symmetric — both are moves, both have costs, both have effects.</strong> They are not symmetric. Four structural asymmetries push the ROI of subtraction above the ROI of addition, almost regardless of the specific move. The practitioner who internalizes the asymmetry stops asking <em>&quot;add or remove?&quot;</em> as a neutral question. They start asking <em>&quot;is there anything I can remove first?&quot;</em>, because the math says yes more often than no.</p>
+<h3>(a) The brain prefers &quot;less spent&quot; — and subtraction gives that for free</h3>
+<p>For the customer&#39;s brain, every interaction with a product is an investment of attention, time, and energy that must return more than it cost. <strong>The brain rewards anything that reduces this spend.</strong> Adding a feature asks the customer to spend more for a benefit that lands only later. They have to learn the new thing, hold one more option in mind, and make one more decision. Subtraction hands back what the customer was already spending, immediately, before any learning.</p>
+<p>AirPods did not <em>&quot;add wireless audio&quot;</em> — they killed <em>untangling headphones</em>. Face ID did not <em>&quot;add biometric login&quot;</em> — it killed <em>typing the password</em>. Apple Pay did not <em>&quot;add NFC payment&quot;</em> — it killed <em>reaching for the card</em>. ChatGPT did not <em>&quot;add AI writing&quot;</em> — it killed <em>find a template → format headings → draft from blank → restructure later</em>.</p>
+<p>The science of why the brain rewards &quot;less spent&quot; — allostasis (the brain as energy investor) and prediction-error neuroscience — lives in <a href="../Advanced-Jobs-To-Be-Done/scientific-foundations.html">Scientific Foundations §1 and §11</a>. The methodology&#39;s central definition of value as energy efficiency in performing a Job (outcome over cost) sits in <a href="../Advanced-Jobs-To-Be-Done/scientific-foundations.html">Scientific Foundations §2</a>.</p>
+<h3>(b) Risk multiplies — every extra assumption makes the product <em>less</em> likely to ship</h3>
+<p>Risky assumptions compound multiplicatively, not additively (see <a href="../Riskiest-Assumption-Test/rat-key-theses.html">Riskiest Assumption Test §1</a>). Seven assumptions at 60% confidence each give a joint survival probability of <code>0.6^7 ≈ 3%</code>. Removing one assumption multiplies that probability by <code>1.67×</code>. Adding one more, even at 80% confidence, multiplies it by <code>0.8</code>. <strong>So the addition makes the product <em>less</em> likely to ship, not more.</strong></p>
+<p>This is arithmetic, not preference. The instinct to <em>&quot;add one more thing to be safe&quot;</em> is exactly backwards. <strong>The cheapest way to raise a product&#39;s chance of working is to remove a risky assumption from its stack.</strong> Not validate it, not mitigate it, but remove the dependency so the assumption no longer needs to be true.</p>
+<h3>(c) Focus doesn&#39;t sum — every addition steals from every prior commitment</h3>
+<p>Team resources are finite. Every new segment, Big Job, feature, channel, or hire pulls time and attention from every commitment that came before. Addition is never <em>&quot;and also X.&quot;</em> It is always <em>&quot;and also X, at the cost of every previously chosen Y.&quot;</em> The cost is real and almost always invisible at the moment of decision.</p>
+<p>Subtraction runs in reverse. Removing a segment, Job, feature, or channel hands time and attention back to everything that remains. Focus reads as higher, not lower. This is why <em>&quot;everything for everyone = for no one&quot;</em> (see <a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation §8</a>). Without removing the <em>everything for everyone</em>, focus cannot exist.</p>
+<h3>(d) The brain weights removal of a negative ~2× more than addition of an equivalent positive</h3>
+<p>The largest class of subtraction targets in Next Move Theory includes Tax Jobs, friction, anxiety, chain-breaks, cycles, switching costs, and every negative-emotion line in the cost structure (<a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §8</a>). <strong>For these targets, the customer&#39;s brain registers the removal at roughly twice the strength of an equivalent feature addition.</strong> This is a measurable property of how customers evaluate products, not a stylistic preference. The science is in <a href="../Advanced-Jobs-To-Be-Done/scientific-foundations.html">Scientific Foundations §13</a>.</p>
+<p>Four AJTBD value-creation mechanics route through this directly: eliminate a negative emotion (<a href="../Advanced-Jobs-To-Be-Done/value-creation.html">mechanic #17</a>); fix the Problem (#3, especially inside the Critical Chain of Jobs); kill a Job that was itself a Tax Job (#15; §14.2); and reduce time-gaps that produce anxiety while waiting (#5). Same operation in four shapes.</p>
+<p>Square&#39;s tip screen did not <em>&quot;add delight to leaving a tip&quot;</em> — it removed the awkwardness of choosing while the barista watches. Insurance does not <em>&quot;add safety&quot;</em> — it removes the present-tense anxiety of a future loss. TurboTax did not <em>&quot;add tax-filing convenience&quot;</em> — it removed the anxiety of <em>&quot;am I doing this wrong; will the IRS catch a mistake.&quot;</em> Each brand collected ~2× the value-signal of an additive competitor at the same build cost.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>When choosing between adding feature X with expected impact Y, and subtracting cause-of-Problem with expected impact Y/2, default to the subtraction. The <code>λ ≈ 2</code> asymmetry will close the gap. The cognitive economics will close it further. The focus arithmetic will close it more. The subtraction almost always wins on net.</li>
+<li>Before approving any feature or initiative, run the subtraction-first question: <em>&quot;What can I remove from this product, segment, channel mix, or assumption stack that would produce a comparable or larger effect for less cost?&quot;</em> If the question has an answer, that answer is the right move. The addition is the default; the subtraction is the leverage.</li>
+<li>Stop treating subtraction as a cost to be minimized. It is a move with positive expected value in the four ways above. The cost-framing of subtraction — the &quot;we&#39;d have to give something up&quot; framing — is the byproduct of the structural team bias against subtraction (see §4).</li>
+</ul>
+<hr>
+<h2>3. The invisible product is the asymptote of subtraction — the limit case all 100+ mechanics approach</h2>
+<p><strong>The most valuable product is the one the customer does not have to use at all.</strong> The Job is performed; no product mediates the performance. You wake up in the morning, the house is clean. There is no <em>&quot;cleaning product&quot;</em> you interacted with the night before. You arrive in another city without a trip. There was a Zoom call where there used to be airfare and a hotel. Your taxes are filed without a tax product. The relevant numbers were pulled, computed, and submitted on your behalf, and you only saw the confirmation.</p>
+<p>This idea independently converges with TRIZ — Genrikh Altshuller&#39;s <em>Ideal Final Result</em>, where the function is performed without a system to perform it (see <a href="../Advanced-Jobs-To-Be-Done/scientific-foundations.html">Scientific Foundations §21</a>). Altshuller framed it for engineering inventions. AJTBD arrives at the same limit case from Job and value logic. The function lands and the artifact disappears.</p>
+<h3>3.1 The asymptote is what every value-creation mechanic moves toward</h3>
+<p>Every mechanic in the 100+ catalog (see <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §18</a>) is a partial step toward the invisible-product limit. Some examples that show the gradient:</p>
+<ul>
+<li>Robot vacuum — closer to the invisible product than a better mop is. The customer still buys an object, but the object performs the Job without ongoing customer attention. Move further: a cleaning robot the customer never sees because it lives in a building service. Further still: dust that doesn&#39;t accumulate.</li>
+<li>Wealthfront, Belong, DoorDash — turnkey services that take the Job off the customer entirely (mechanic #4 — <em>Done-for-you</em>). Closer to the asymptote than DIY products in the same category, because the customer&#39;s Job Graph contains fewer artifacts and fewer steps.</li>
+<li>Apple Pay, Face ID — Jobs killed at the Micro level. The artifact still exists (the phone), but the Job the artifact used to require (insert card; type password) has disappeared from the graph as a class.</li>
+<li>Zoom, Slack, asynchronous tooling — for a large class of meetings and check-ins, the trip-and-room version disappeared. The customer still uses a product, but the product replaced a much larger graph (book a flight, get to the airport, fly, find a hotel, take a cab to the office). The subtraction is at the graph level, not the Job level.</li>
+</ul>
+<p><strong>The more of the customer&#39;s Job Graph the product subtracts, the closer to the asymptote it lives.</strong> That is the pattern across the gradient. And the larger the Aha Moment the customer&#39;s brain registers on first use (see <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §14.1</a> on why Move-up-a-level produces the largest possible Aha Moment).</p>
+<h3>3.2 Why this is an asymptote and not a destination</h3>
+<p>Two reasons the invisible product is a limit case rather than a goal a product can reach and stop at:</p>
+<ul>
+<li><strong>Higher-level Jobs always exist.</strong> When a product subtracts the entire chain of lower-level Jobs underneath some Big Job, a new Big Job at the next level up enters the customer&#39;s attention. Underneath that new Big Job is a new set of lower-level Jobs the customer must now perform. The graph reorganizes upward, not downward. Asymptote, not endpoint.</li>
+<li><strong>The customer&#39;s prediction bar keeps rising.</strong> Yesterday&#39;s invisible product is today&#39;s baseline (see <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §6 — the Red Queen mechanic</a>). What was <em>&quot;the magical experience of an Uber arriving in 5 minutes&quot;</em> in 2014 is <em>&quot;a normal Tuesday&quot;</em> in 2026. Holding the same subtraction level over time produces a falling perceived-value curve. To stay at the asymptote requires subtracting more, continuously.</li>
+</ul>
+<p>The asymptote works precisely because it is unreachable. It gives the practitioner a direction without a stopping rule.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>For every mechanic the team considers, ask the asymptote question: <em>&quot;What would it look like for the customer to get the result of this Job with no product to interact with at all?&quot;</em> The answer is rarely shippable as it stands. But it surfaces the subtraction the mechanic is actually moving toward. It lets the team check whether the mechanic moves in that direction, stays in place, or moves the wrong way (toward more artifacts and more attention).</li>
+<li>When picking between two value hypotheses, prefer the one closer to the asymptote. Two hypotheses can both be valuable. The one that subtracts more of the customer&#39;s graph compounds harder under the Red Queen (the rising prediction bar erodes weaker subtractions first) and produces a larger Aha Moment on first use.</li>
+<li><strong>Treat a competitor moving toward the asymptote as an existential threat, not a feature competitor.</strong> A competitor adding features in the same category is a known shape of competition. A competitor subtracting whole branches of the customer&#39;s Job Graph is moving toward the limit. Squarespace climbing above the <em>hire-a-developer-to-build-a-small-business-site</em> model, ChatGPT climbing above Word for first drafts, Claude Code climbing above hand-written code. On a multi-year horizon, that competitor will dissolve the category from underneath. The diagnostic question is not <em>&quot;how do their features compare to ours?&quot;</em> but <em>&quot;how much of the customer&#39;s Job Graph have they subtracted that we still require?&quot;</em></li>
+</ul>
+<hr>
+<h2>4. Teams are structurally biased against subtraction — addition is rewarded, subtraction is invisible</h2>
+<p><strong>A team that does not deliberately install the discipline of subtraction will not run it.</strong> The structural defaults of how teams are organized, evaluated, and promoted all favor addition. None of them favor subtraction. This is not a story about lazy teams or weak founders. It is about how the institutional machinery is wired, and how it sits on top of a cognitive substrate that is itself already tilted toward addition. The substrate runs first; the four institutional sources below amplify it.</p>
+<h3>4.1 The cognitive substrate — addition is the default reflex before any organisation runs</h3>
+<p>Three lines of converging evidence show the bias is pre-institutional. It exists in the individual cognition of every team member, in the language the team uses to talk about its own work, and in the AI tools the team builds with every day. The institutional pressures in (a)–(d) below stack on top of this floor; they do not create it.</p>
+<ul>
+<li>Cognition. <a href="https://pubmed.ncbi.nlm.nih.gov/33828317/">Adams and colleagues (2021, <em>Nature</em>)</a> ran eight experiments — LEGO structures, miniature golf courses, written essays, travel itineraries. Asked to improve each artifact, sixty to eighty percent of participants reached for an addition. The smaller fraction that subtracted produced stronger outcomes. The bias is reversible by a single line of priming. Appending <em>&quot;but removing pieces is free and costs nothing&quot;</em> to the LEGO instructions raised removal-rates from forty-one to sixty-one percent. Half the gap closed by naming the option that was already on the table. That makes the practical move concrete. Subtraction has to be explicitly invited at the moment of decision, or the default reflex eats it.</li>
+<li>Language. <a href="https://onlinelibrary.wiley.com/doi/10.1111/cogs.13254">Winter and colleagues (2023, <em>Cognitive Science</em>)</a> document the same bias in English word statistics across five dimensions. <em>Add</em> outnumbers <em>subtract</em> in everyday usage. The binomial <em>add and subtract</em> almost never reverses to <em>subtract and add</em>. Verbs like <em>improve</em> and <em>transform</em> cluster closer in semantic embeddings to addition than to removal. Addition-related vocabulary carries warmer connotation. And GPT-class models reproduce the same skew in their sequence probabilities. The reflex is encoded in the vocabulary the team uses to describe its own work. <em>Improve, transform, grow, expand, scale, build, add, ship more</em> — every load-bearing verb in the product lexicon tilts toward addition before the speaker has chosen a side.</li>
+<li>AI tools. <a href="https://arxiv.org/abs/2409.02569">Santagata and De Nobili (2024)</a> ran subtraction tasks through GPT-3.5 Turbo, Claude 3.5 Sonnet, Llama 3.1, and Mistral. Every model added by default. Llama added letters to a palindrome ninety-eight percent of the time when removal would have worked. GPT-3.5 added a LEGO brick seventy-six percent of the time when one was already in the way. Mistral produced longer summaries in sixty to seventy-five percent of cases when asked to improve writing. A team building with Claude Code or designing with ChatGPT is collaborating with an addition-biased partner. Every default suggestion tilts toward another module, another section, another option, never toward removing one. <strong>The amplification compounds: a cognitively-biased operator using a cognitively-biased tool produces a doubled drift toward the additive default.</strong></li>
+</ul>
+<p>The four institutional sources below sit on top of this floor. They are not the origin of the bias against subtraction. They are amplifiers of a default that was already there before the org chart was drawn.</p>
+<h3>(a) Addition is visible; subtraction is not</h3>
+<p>Adding a feature produces a demo, a screenshot, a press release, a slide for the all-hands. Removing a feature produces a smaller surface, a paragraph in the changelog, and a small thank-you note for the engineers. At the next performance review, the added thing is visible and remembered; the removed thing is not. Repeat this cycle quarterly for two years and the team has built a portfolio of additions and no portfolio of subtractions, even if the subtractions were higher-leverage.</p>
+<p>This asymmetry is the same one that drives feature creep in successful products. Every quarter has a <em>&quot;what did we add?&quot;</em> slide. No quarter has a <em>&quot;what did we remove, and what did it free up?&quot;</em> slide as standard practice. <strong>The institution literally cannot see subtraction the way it sees addition.</strong></p>
+<h3>(b) Emotional attachment to one&#39;s own decision</h3>
+<p>Once a team member proposes a feature, an architecture, or a hire, and the proposal is approved, identity attaches to the decision. Subtracting it later is no longer a neutral resource decision. It is a personal acknowledgement that the earlier decision was wrong. The deeper the attachment, the higher the cost of subtraction (see <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §1, Problem 2</a> on falling in love with features).</p>
+<p>The asymmetric attachment is one-sided. Additions get the love; subtractions get treated as criticism. A team member who proposed shipping a feature defends it on review. A team member who proposed subtracting a feature is rarely defending anything, because there is nothing left to defend. The emotional weight is structurally on the side of addition.</p>
+<h3>(c) KPIs reward deliverables, not subtraction</h3>
+<p><em>&quot;Shipped N features this quarter&quot;</em> is measurable, comparable across teams, and benchmarkable across companies. <em>&quot;Removed M features this quarter and freed up X hours of engineering and Y hours of support load&quot;</em> is also measurable, but virtually no organization measures it as a primary KPI. The OKR templates do not have a <em>&quot;subtractive&quot;</em> column. The performance frameworks do not have a <em>&quot;removed scope&quot;</em> line.</p>
+<p>What gets measured gets done. What does not get measured does not get done. Addition gets measured everywhere; subtraction gets measured almost nowhere. The behavioral output follows the measurement structure deterministically.</p>
+<h3>(d) Career risk on subtraction is privatized; career risk on addition is socialized</h3>
+<p>If you subtract a feature and a metric falls, you are personally accountable — <em>&quot;you removed the thing that was working.&quot;</em> If you add a feature and a metric falls, accountability gets distributed across the team, the market, the competition, the A/B-test methodology, and the quarter&#39;s economic conditions. Subtraction is owned by an individual; addition is owned by the system.</p>
+<p>A rational team member, sensing this asymmetry, will pick addition as the safer career move almost every time. This is not cowardice. It is correct local optimization under the incentive structure. The structure is what is broken, not the individual.</p>
+<h3>4.2 What follows from this — and why subtraction needs founder-level authority</h3>
+<p>The four biases compound. Visibility favors addition; emotional attachment favors addition; KPI structure favors addition; career risk favors addition. <strong>A team optimizing locally under these four pressures will, without explicit counterforce, accumulate scope, features, customer segments, risky assumptions, and unprofitable products — and call the result <em>&quot;growth.&quot;</em></strong></p>
+<p>This explains a pattern visible across the Next Move Theory canon:</p>
+<ul>
+<li>The local optimum is delegable to junior staff, because the local optimum is additive (add a Job below; fix a problem; lift conversion; add a channel). See <a href="local-vs-global-optimum.html">Local vs Global Optimum</a>.</li>
+<li>The global optimum is not delegable, because the global optimum is subtractive (change the segment, kill the business model, drop the country, abandon the Core Job). Only the founder or C-level has the authority to do the subtraction against the four-bias headwind.</li>
+<li>Corporate product portfolios accumulate zombie products faster than startup portfolios, for the same structural reason. The startup founder has skin in the game; the corporate PM does not, and the four biases run unchecked. Aggressive killing of zombie products is the highest-leverage capital allocation move available at the corporate-portfolio level (see <a href="../Riskiest-Assumption-Test/rat-key-theses.html">Riskiest Assumption Test §15</a>).</li>
+</ul>
+<p>Operational consequences:</p>
+<ul>
+<li><strong>Install subtraction as an explicit artifact the team must produce.</strong> Each quarterly review answers, in writing: <em>&quot;What did we subtract this quarter — which Jobs from the customer&#39;s graph, which features, which segments, which channels, which assumptions, which products? And what did the subtraction free up?&quot;</em> A team with no answer has, by default, drifted away from focus and toward feature creep. The founder should treat the absence of an answer as a diagnostic signal, not a stylistic preference.</li>
+<li>Prime subtraction at the moment of every decision, not only the quarterly review. The LEGO cue experiment showed half the addition-bias gap closing on the strength of a single appended line, <em>&quot;but removing pieces is free and costs nothing.&quot;</em> The team-level analog is to voice the question <em>&quot;what could we remove here to reach a comparable or larger effect?&quot;</em> before any additive proposal is evaluated. Voice it at every feature-prioritization, segment-strategy review, roadmap kickoff, and architecture meeting. The reflex needs an explicit invitation at the decision moment; the quarterly artifact alone is too coarse to catch the daily decisions where the bias plays out.</li>
+<li>Make subtraction an explicit responsibility of the most authoritative role available, not a delegable practice. Because the four biases run against subtraction at every level below the authority required to override them, the practice has to live with someone whose authority crosses functions. In a startup that is the founder. In a larger company it is the C-level executive who owns the cause-and-effect chain end-to-end (see <a href="nmt-key-theses.html">Next Move Theory key theses §4</a>). Delegating subtraction downward is delegating it to people whose career incentives make them avoid it.</li>
+<li>When hiring for roles that require subtraction (founder, head of product, head of strategy, chief of staff), test the candidate&#39;s capacity to subtract, not only their capacity to build. The two skills are different; the second is much more common. A candidate who can show concrete examples of features, segments, products, or assumptions they actively removed — and the reasoning, and the outcome — is rarer and more valuable than a candidate who can show what they added.</li>
+</ul>
+<hr>
+<h2>Cross-references</h2>
+<p>Subtraction shows up across the canon in its pillar-specific forms. The most relevant pages:</p>
+<ul>
+<li><a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation</a> — Kill a Job (§14.2), Move up a level (§14.1), Done-for-you (the <em>Take the Job off the customer</em> mechanic), Eliminate a negative emotion (the <em>Remove negative emotions</em> mechanic), feature creep as the default failure mode (§1).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html">AJTBD key theses</a> — Move-up-a-level as the most powerful mechanic and the invisible-product limit (§22).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/job-graph.html">Job Graph</a> — the Job Graph simplifies over time; lower-level Jobs disappear faster than higher-level ones.</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/critical-chain.html">Critical Chain of Jobs</a> — kill cycles, reduce handoffs, reduce time-gaps as subtraction within the critical chain of jobs.</li>
+<li><a href="../Riskiest-Assumption-Test/rat-key-theses.html">Riskiest Assumption Test</a> — drop-it exercise (§10); the assumption stack is multiplicative (§1); kill zombie products at the portfolio level (§15).</li>
+<li><a href="../ABCDX-Segmentation/abcdx-segmentation-key-theses.html">ABCDX Segmentation</a> — fire C/D customers; lead qualification at the funnel mouth.</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation</a> — focus as the subtraction of all non-target segments.</li>
+<li><a href="local-vs-global-optimum.html">Local vs Global Optimum</a> — the global optimum is subtractive; the local optimum is additive.</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/scientific-foundations.html">Scientific Foundations</a> — allostasis (§1), reward prediction error (§11), habit physiology (§15), loss aversion (§13), TRIZ parallel (§21).</li>
+</ul>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

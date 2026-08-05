@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Next Move Theory — методология, канон, скиллы</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb; --good:#2f6b45; --good-soft:#e9f3ec;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a; --good:#7fb98f; --good-soft:#182619;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:50rem;margin:0 auto;padding:3rem 1.25rem 6rem}
+h1{font-size:2.1rem;line-height:1.15;margin:.2em 0 .35em;letter-spacing:-.015em}
+h2{font-size:1.25rem;margin:2.6em 0 .8em;letter-spacing:-.01em}
+h3.grp{font-size:.8rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);margin:2em 0 .6em;font-weight:700}
+p{margin:0 0 1em}
+a{color:var(--accent)}
+.kicker{color:var(--muted);font-size:.9rem;margin:0 0 1.6rem}
+.sub{color:var(--muted);font-size:.95rem}
+.note{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.92rem}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:1.15rem 1.3rem;margin:.75rem 0;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.card .n{font:700 .72rem/1 var(--mono);color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+.card h3{margin:.5rem 0 .35rem;font-size:1.1rem;letter-spacing:-.01em}
+.card p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.55}
+.card .meta{margin-top:.6rem;font-size:.78rem;color:var(--muted);font-family:var(--mono)}
+ul.files{list-style:none;margin:.4em 0;padding:0}
+ul.files li{border-bottom:1px solid var(--line);padding:.55rem 0}
+ul.files li:last-child{border-bottom:0}
+ul.files a{font-family:var(--mono);font-size:.86rem;text-decoration:none;font-weight:600}
+ul.files a:hover{text-decoration:underline}
+ul.files span{display:block;color:var(--muted);font-size:.88rem;line-height:1.5;margin-top:.15rem}
+ol.loop{margin:.6em 0 1.4em;padding-left:1.4em}
+ol.loop li{margin:.35em 0}
+ul.tight{margin:.5em 0;padding-left:1.3em} ul.tight li{margin:.3em 0}
+hr{border:0;border-top:1px solid var(--line);margin:2.6rem 0}
+@media (max-width:640px){.wrap{padding:2rem 1rem 4rem}h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker"><a href="../">← весь набор</a> · <a href="../mfc/">МФЦ Клиника</a></p>
+
+<h1>Next Move Theory</h1>
+<p class="sub">Методология Ивана Замесина: Advanced Jobs To Be Done, юнит-экономика, Riskiest Assumption Test и ABCDX-сегментация, собранные в одну систему. Здесь — то, чем работал агент: правила, канон, скиллы и порядок операций. Клиентских данных в этой папке нет.</p>
+
+<h2>Что важно понять до чтения</h2>
+<div class="note">
+<p style="margin:.2em 0"><strong>Задача (Job) — это спецификация желаемого перехода</strong>, а не «стремление клиента к прогрессу». Ситуация (состояние A) → переход → ожидаемый результат (состояние B), выполняемый <em>для того чтобы</em> сделать задачу уровнем выше. Это единица мотивации, а не потребность, не проблема и не фича.</p>
+<p style="margin:.6em 0 .2em"><strong>Ценность — это большая энергоэффективность мозга при выполнении задачи, измеренная против его же прогноза.</strong> Результат (по критериям успеха) делённый на стоимость, где стоимость шестимерна: деньги, время, усилия, когнитивная нагрузка, негативные эмоции и налоговые задачи. Отсюда следует главное: базовые механики создания ценности <strong>вычитающие</strong>, а не добавляющие.</p>
+<p style="margin:.6em 0 .2em"><strong>Определения AJTBD расходятся с Christensen / Ulwick / Moesta.</strong> Если сомневаетесь — открывайте файл канона, а не память.</p>
+</div>
+
+<h2>Материалы</h2>
+
+<a class="card" href="method.html">
+  <span class="n">01 · Правила</span>
+  <h3>Файл для агента (CLAUDE.md / AGENTS.md)</h3>
+  <p>Рабочие тезисы в пяти разделах: единица-задача, ценность и её проверка, сегментация и её ошибки, RAT, операционный цикл. Плюс таблица маршрутизации: какой файл канона открыть под какую ситуацию. Кладётся в корень проекта — и агент перестаёт отвечать обобщённым JTBD.</p>
+  <p class="meta">method.md · 28 КБ</p>
+</a>
+
+<a class="card" href="skills.html">
+  <span class="n">02 · Скиллы</span>
+  <h3>Восемь скиллов и два контракта</h3>
+  <p>Чем именно прогонялась работа: диагностика, исследование рынка, ценностное предложение, требования к продукту, go-to-market, разбор интервью, режим диалога и апгрейд. Плюс контракт продюсера (три слоя чтения, дисклеймеры, трассировка методологии) и контракт читаемости.</p>
+  <p class="meta">skills.md · описание, а не сами файлы скиллов</p>
+</a>
+
+<h2>Порядок операций</h2>
+<p>Сломанный порядок — <code>фича → интервью → проверка ценности</code>: он даёт предвзятость подтверждения, стартует от решения вместо задачи и угадывает одну механику из сотни. Правильный:</p>
+<ol class="loop">
+<li><strong>Цель</strong> — в деньгах и сроке, иначе диагностировать нечего.</li>
+<li><strong>Диагноз</strong> сверху вниз по цепочке к прибыли: рынок → сегмент + задача → добавленная ценность → юнит-экономика, спрос, масштабируемость → конверсия, удержание, повторные → прибыль. По каждому узлу честно: <em>знаю</em> (с доказательством) / <em>предполагаю</em> / <em>не знаю</em>.</li>
+<li><strong>Гипотетический граф задач</strong> — до исследования, чтобы было что опровергать.</li>
+<li><strong>Шорт-лист механик</strong> — из каталога, а не из головы.</li>
+<li><strong>Исследование</strong> — интервью с теми, кто <em>платил</em>.</li>
+<li><strong>Реальный граф задач</strong> — и разница с гипотетическим и есть находка.</li>
+<li><strong>Применение механик</strong> → <strong>RAT</strong> → <strong>проверка</strong> → <strong>релиз</strong> → и цикл заново.</li>
+</ol>
+<p class="sub">Каждый шаг наследует качество шага выше. Низкая конверсия почти никогда не значит «проблема воронки» — обычно это неверный сегмент+задача или слабая ценность. Дорогой CAC — обычно рассинхрон сегмента и задачи, а не тактика канала. Высокий отток — обычно ценность или не тот сегмент, а не механика удержания.</p>
+
+<h2>Канон — 23 файла</h2>
+<p class="sub">Полные тексты. Открывать целевым образом: под задачу, а не подряд.</p>
+
+<h3 class="grp">Начать здесь / вся модель</h3>
+<ul class="files">
+<li><a href="canon/Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html">ajtbd-key-theses.md</a><span>Вся методология пронумерованными тезисами и карта ко всем остальным файлам. Когда начинаете любую продуктовую задачу или нужно каноническое определение задачи, ценности, сегмента, графа, Aha-момента.</span></li>
+<li><a href="canon/Next-Move-Theory/nmt-key-theses.html">nmt-key-theses.md</a><span>Интегративный корень: как AJTBD, юнит-экономика, RAT и ABCDX соединяются в одну систему. Когда задача шире одного столпа или нужна цепочка причин к прибыли.</span></li>
+</ul>
+
+<h3 class="grp">Задача и граф задач</h3>
+<ul class="files">
+<li><a href="canon/Advanced-Jobs-To-Be-Done/job-structure.html">job-structure.md</a><span>Восемь элементов одной задачи по элементам, с вопросом интервью к каждому. Когда пишете или проверяете формулировку задачи.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/job-graph.html">job-graph.md</a><span>Граф задач и четыре уровня относительно продукта (большие / главные / соседние / мелкие). Когда картируете задачи или ищете рост через соседние.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/job-types-and-properties.html">job-types-and-properties.md</a><span>Таксономия: обычные, ориентационные, налоговые, фейковые, эмоциональные, вирусные. Когда подозреваете фейковую задачу или видите налоговую.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/scientific-foundations.html">scientific-foundations.md</a><span>Нейронаука под методологией: аллостаз, прогнозирование, ошибка предсказания вознаграждения, эмоции, привычка, неприятие потерь. Когда нужно обосновать <em>почему</em> ценность — это энергоэффективность.</span></li>
+</ul>
+
+<h3 class="grp">Создание ценности</h3>
+<ul class="files">
+<li><a href="canon/Advanced-Jobs-To-Be-Done/value-creation.html">value-creation.md</a><span>Глубокий канон по ценности. Когда проектируете или проверяете ценность, задаёте критерии успеха, ищете место Aha-момента.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/value-creation-mechanics.html">value-creation-mechanics.md</a><span>Каталог конкретных механик. Когда сегмент и главная задача зафиксированы и нужны <em>ходы</em>, а не «добавить фичу».</span></li>
+<li><a href="canon/Next-Move-Theory/subtraction.html">subtraction.md</a><span>Вычитание как мета-оператор всех четырёх столпов. Когда рефлекс — добавить, и нужно понять, что убрать.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/critical-chain.html">critical-chain.md</a><span>Граф задач, спроецированный на время: где ценность реально доставляется. Когда проектируете поток, онбординг, активацию или ищете, где отваливаются.</span></li>
+</ul>
+
+<h3 class="grp">Дотянуться, convert-нуть, удержать</h3>
+<ul class="files">
+<li><a href="canon/Advanced-Jobs-To-Be-Done/behaviour-change.html">behaviour-change.md</a><span>Переключение как смена одного графа задач на другой. Когда явно лучший продукт не берут.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/consideration-activators.html">consideration-activators.md</a><span>Пять активаторов рассмотрения и как их загружать. Когда пишете позиционирование, которое должно изменить выбор.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/barrier-removal.html">barrier-removal.md</a><span>Объективные барьеры, делающие лучший граф невыполнимым для сегмента. Когда сегмент <em>не может</em> перейти — регуляторика, недостающая предпосылка, риск невозвратной потери.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/customers-attention-management.html">customers-attention-management.md</a><span>Внимание как метаболический ресурс, через который проходит любая механика. Когда ценность есть, а её не замечают.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/communication.html">communication.md</a><span>Коммуникация на языке задач: формула ценностного предложения и 9-блочная структура лендинга. Когда пишете страницу, объявление, письмо или скрипт продаж.</span></li>
+</ul>
+
+<h3 class="grp">Где играть и что проверить до стройки</h3>
+<ul class="files">
+<li><a href="canon/Advanced-Jobs-To-Be-Done/segmentation.html">segmentation.md</a><span>Сегментация по похожести графов задач и её ошибки. Когда тянет резать по демографии, ICP или «поговорить с ушедшими».</span></li>
+<li><a href="canon/ABCDX-Segmentation/abcdx-segmentation-key-theses.html">abcdx-segmentation-key-theses.md</a><span>ABCDX по платящей базе: маржа на единицу × удовлетворённость. Когда клиенты уже есть и надо сфокусироваться, кого держать и кого уволить.</span></li>
+<li><a href="canon/Riskiest-Assumption-Test/rat-key-theses.html">rat-key-theses.md</a><span>Проверка самых рискованных допущений до траты на стройку. Когда решаете — начинать, продолжать, разворачивать или убивать.</span></li>
+</ul>
+
+<h3 class="grp">Фокус компании, B2B, интервью, цикл</h3>
+<ul class="files">
+<li><a href="canon/Next-Move-Theory/focus-as-company-attention-management.html">focus-as-company-attention-management.md</a><span>Фокус как управление вниманием компании. Когда команда размазана по сегментам и задачам.</span></li>
+<li><a href="canon/Next-Move-Theory/local-vs-global-optimum.html">local-vs-global-optimum.md</a><span>Локальный против глобального оптимума. Когда улучшение текущего мешает увидеть ход уровнем выше.</span></li>
+<li><a href="canon/Advanced-Jobs-To-Be-Done/b2b.html">b2b.md</a><span>B2B-сделка как граф задач по ролям; личные задачи против бизнесовых. Когда сделки застревают без внятной причины.</span></li>
+<li><a href="canon/HowTos/basic-ajtbd-interview-guide-and-principles.html">basic-ajtbd-interview-guide-and-principles.md</a><span>Практический гайд интервью: принципы плюс банк вопросов. Когда планируете или проводите интервью — набирать тех, кто <em>платил</em>.</span></li>
+<li><a href="canon/Algorithms/the-algorithm.html">the-algorithm.md</a><span>Интегративный операционный цикл и его анти-паттерны. Когда непонятно, что делать дальше.</span></li>
+</ul>
+
+<h2>Анти-паттерны, которые отклоняются сразу</h2>
+<ul class="tight">
+<li>Влюблённость в идею — «я эксперт, я всё знаю».</li>
+<li>«Клиент увидит продукт, и потребность появится».</li>
+<li>Погоня за редкой низкочастотной задачей маленькой аудитории — или за фейковой, за которую никто никогда не платил.</li>
+<li>Забыть про юнит-экономику при поиске сегмента и выбрать сегмент, в котором нельзя быть прибыльным.</li>
+<li>Сползание в локальный оптимум без явного решения.</li>
+<li>Сегментация первым срезом по демографии, персонам или ICP — самая дорогая и самая частая ошибка.</li>
+</ul>
+
+<hr>
+
+<p class="sub">Автор методологии и текстов канона — <strong>Иван Замесин</strong>, <a href="http://nextmovetheory.com/?utm_source=bundle&amp;utm_medium=next-move">nextmovetheory.com</a>. Исходный репозиторий: <a href="https://github.com/zamesin/Next-Move-Theory-Canon-and-Skills">github.com/zamesin/Next-Move-Theory-Canon-and-Skills</a>. Лицензия <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> — распространение с указанием авторства, без коммерческого использования, на тех же условиях.</p>
+
+</div>
+</body>
+</html>

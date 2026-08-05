@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Barrier Removal</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Barrier Removal</h1>
+<p>This is the canon page on Barrier Removal in AJTBD: the work of making a new Job Graph executable in reality for a specific segment. It connects <a href="value-creation.html">Value Creation</a>, <a href="critical-chain.html">Critical Chain of Jobs</a>, <a href="consideration-activators.html">Consideration Activators</a>, <a href="communication.html">Communication</a>, and <a href="behaviour-change.html">Behaviour Change</a>.</p>
+<hr>
+<h2>1. A Barrier is a fact that makes the new Job Graph non-executable for a segment</h2>
+<p><strong>A Barrier is an objective condition that prevents the customer from performing the new Job Graph or Critical Chain of Jobs.</strong> The condition can live before the chain starts, inside a chain node, at a hand-off, or inside a cycle. It can also live at the point where the chain has to prove the Big Jobs landed. If a missing prerequisite sits before the first visible action, treat it as node zero of the chain.</p>
+<p>The customer usually knows the Barrier exists. They use it as the reason not to enter the new Job Graph with our Solution. Fears are predictions about a break that may or may not happen. Consideration Activators gaps are things the customer doesn&#39;t know to look for. A Barrier is different: it is a fact the customer can name the moment we ask — <em>&quot;my state isn&#39;t supported,&quot; &quot;you don&#39;t have SSO yet,&quot; &quot;you don&#39;t deliver to my ZIP code,&quot; &quot;the import failed on my data.&quot;</em> The customer hits the fact, recognizes it as a blocker, and routes around our Solution. Most of them do this silently, without ever telling us.</p>
+<p>Every Barrier maps to a broken, impossible, too-costly, or too-risky Job. TurboTax without K-1 support blocks <em>&quot;file my federal and state return correctly&quot;</em> for LLC owners. DoorDash outside a ZIP code blocks <em>&quot;receive dinner at my address.&quot;</em> A B2B SaaS without SAML blocks <em>&quot;pass IT security review.&quot;</em></p>
+<p><strong>A Barrier is segment-specific.</strong> The same product can be executable for one segment and blocked for another. Stripe&#39;s API worked for YC-stage startups with engineers, but local merchants needed no-code checkout. Zoom worked for corporate meetings, but K-12 schools needed FERPA, waiting rooms, locked meetings, and classroom controls. The product did not become bad. The segment&#39;s Critical Chain of Jobs changed.</p>
+<h2>2. Barrier Removal creates the possibility to switch Job Graphs</h2>
+<p><strong>Value Creation creates the reason to switch Job Graphs. Barrier Removal creates the possibility.</strong> The customer does not merely switch a vendor label. They stop performing the old Core Jobs, Small Jobs, and Micro Jobs in one graph. They begin performing a new graph with our Core Jobs inside their Big Jobs. The Solution label changes because the graph changed.</p>
+<p><strong>Barrier Removal is the work of changing reality so the new Job Graph can be performed — not persuasion.</strong> It changes prerequisites, hand-offs, integrations, permissions, payment paths, logistics, legal paths, data formats, geography, role coverage, and broken chain links. If a migration path does not exist, a testimonial is not the fix. If a state is unsupported, a guarantee is not the fix. Communication can reduce a fear only after the feared break is no longer true.</p>
+<p>Examples: Stripe Checkout made <em>&quot;charge customers online&quot;</em> executable for non-engineering merchants. Notion Enterprise made <em>&quot;adopt Notion org-wide&quot;</em> executable inside IT and security review. Belong made <em>&quot;rent out my duplex&quot;</em> executable for out-of-state owners. TurboTax K-1 support made <em>&quot;file my return correctly&quot;</em> executable for LLC owners.</p>
+<h2>3. Fears are predictions about Barriers, Problems, Tax Jobs, personal risks, or losses</h2>
+<p><strong>A fear is not a Barrier. It is the customer&#39;s prediction that a Barrier, Problem, Tax Job, personal risk, or irreversible loss will happen.</strong> The customer may fear the Solution, the Core Jobs, the Big Jobs, a role hand-off, a downstream consequence, or their own ability to recover if something goes wrong.</p>
+<p><strong>When the fear is accurate, it is not a communication problem.</strong> If the customer says <em>&quot;IT will block this because there is no SSO&quot;</em> and there is no SSO, the team has found a Barrier. If the customer says <em>&quot;I won&#39;t be able to migrate my data&quot;</em> and no migration path exists, the team has found a Barrier. Calling it a fear produces false reassurance where reality work is required.</p>
+<p>When the fear is inaccurate or no longer true, it becomes Consideration Activators work. The message names the concrete feared break and shows why it is prevented, absorbed, reversible, insured, or irrelevant for this Solution. Airbnb&#39;s AirCover reduces <em>&quot;the host will cancel and I&#39;ll be stranded.&quot;</em> CarMax returns reduce <em>&quot;I&#39;ll be stuck with a lemon.&quot;</em> DocuSign audit trails reduce <em>&quot;this signature won&#39;t hold up.&quot;</em></p>
+<h2>4. Barrier Removal comes before truthful fear reduction</h2>
+<p><strong>The sequence is reality first, Consideration Activators second.</strong> Barrier Removal makes the claim true. Consideration Activators makes the truth usable in the customer&#39;s head. Reversing the order creates over-promise: the customer enters a chain that still breaks and registers a Problem against the whole Solution.</p>
+<p>The conversion diagnostic is strict. If the chain cannot run, fix the Barrier. If the chain can run but the customer predicts a break, reduce the fear. If the chain ran and still delivered below prediction, improve value or repair the chain break that produced the Problem. These are different failures with different fixes.</p>
+<p>Concrete Consideration-Activators-loading acts that reduce specific fears — live import previews, $1 test payments, ZIP and state support checks, same-segment case studies that name the feared break — are unpacked in <a href="consideration-activators.html">Consideration Activators</a>.</p>
+<h2>5. Barriers cluster into six recurring classes</h2>
+<ul>
+<li>Missing prerequisite. The customer lacks a required document, license, role approval, payment method, device, data format, budget path, physical access, or legal permission. IRS identity PIN, driver&#39;s license, ACH authorization, healthcare data agreement, landlord access, vendor approval.</li>
+<li>Unsupported context. The product works generally but not in this state, ZIP code, country, school district, enterprise role, data environment, compliance regime, or physical setting. DoorDash coverage, state tax support, K-12 FERPA, Epic write-back, local repair network.</li>
+<li>Broken chain link. A necessary Job fails in reality: form validation loops, payment declines, app unlock fails, import loses data, checkout crashes, calendar link is dead, delivery hand-off misses the buzzer.</li>
+<li>Hand-off failure. Work passes between roles, vendors, systems, or institutions and loses ownership, context, or timing. Champion to IT; marketplace to seller; CRM to billing; doctor to lab to patient.</li>
+<li>Cycle or return-for-rework. The customer reaches a step, gets sent back, and pays the same Job again as a Tax Job: mortgage document cycles, prior-authorization denials, insurance-claim resubmissions, tax-prep missing-form loops.</li>
+<li>Irreversible-loss exposure. The chain may technically run, but the downside is too hard to recover from for this segment: losing money, missing a deadline, looking incompetent, damaging a customer relationship, being stranded, being unable to undo the purchase. Returns, insurance, guarantees, escrow, backups, audit trails, and human support can remove the exposure.</li>
+</ul>
+<h2>6. Barrier Removal mechanics are a non-exhaustive operator set on blocked Jobs</h2>
+<p><strong>The list below is not a closed taxonomy of every possible Barrier Removal move.</strong> It is a compact operator set for asking what happened to the blocked Job. Did we repair it, delete it, take it off the customer, route it elsewhere, change the entry path, or make the downside reversible? New mechanics can be added when practice finds them. The test is whether the move changes reality so the new Job Graph becomes executable for the segment.</p>
+<ul>
+<li>Repair the broken Job in place. Fix the form, support the payment method, add K-1 handling, build SAML, support the data schema, make app unlock reliable.</li>
+<li>Kill the Job. Face ID killed <em>&quot;type my password.&quot;</em> AirPods killed <em>&quot;untangle my headphones.&quot;</em> One-click checkout killed repeated address entry. The Barrier disappears because the Job disappears.</li>
+<li>Take the Job off the customer. Belong takes showings, repairs, leasing, and rent collection off the out-of-state landlord. Wealthfront takes rebalancing off the investor. Bench takes tax filing off the small-business owner.</li>
+<li>Route the Job to a reliable partner. A real-estate agent routes mortgage, inspection, title, and moving Jobs to trusted vendors. Salesforce AppExchange routes adjacent revenue-stack Jobs to partner products. Apple&#39;s App Store routes thousands of phone Jobs to third-party apps.</li>
+<li>Change the entry path. Stripe Checkout gave merchants a no-code door instead of an API key. TurboTax interview flow gives non-experts questions instead of tax forms. BetterHelp&#39;s intake quiz performs earlier Orientation Jobs before therapist choice.</li>
+<li>Make loss reversible or absorbed. CarMax and Carvana reduce used-car downside with return windows. Airbnb reduces travel downside with AirCover. Costco reduces purchase regret with returns. B2B vendors reduce career risk with pilots, rollback paths, SLAs, and named support.</li>
+</ul>
+<h2>7. Barrier Removal is researched through motivated customers who hit the Barrier — mid-chain or before entering</h2>
+<p><strong>The first source is motivated customers who tried and could not complete the chain.</strong> Existing customers already passed the hidden blocker, and non-motivated prospects are noise. The signal is the customer who wanted the Big Jobs, accepted the value, entered the transition, and got stuck.</p>
+<p><strong>The second source is motivated customers who saw the Barrier up front and chose not to try.</strong> This pool is invisible to standard funnel analytics, because they never entered. Find them by recruiting on motivation (right Big Jobs, right segment) without filtering on whether they used the product. Interview question: <em>&quot;Was there anything you saw or heard about {studied Solution} that made you not even try it?&quot;</em> The pre-entry opt-out cohort is harder to source than the failed-attempt cohort. It surfaces the largest single class of Barrier: the one the customer can name before walking the chain.</p>
+<p>The research object is the exact Job where the chain became non-executable. Not <em>&quot;they didn&#39;t convert,&quot;</em> but <em>&quot;payment method failed.&quot;</em> Not <em>&quot;enterprise didn&#39;t buy,&quot;</em> but <em>&quot;security review blocked because user-provisioning integration was missing.&quot;</em> Not <em>&quot;landlords don&#39;t trust us,&quot;</em> but <em>&quot;out-of-state access, repairs, and lease handoff had no runnable path.&quot;</em></p>
+<p>Interview question: <em>&quot;Was there anything that stopped you from starting to use {studied Solution} to perform these Core Jobs?&quot;</em> Follow with: <em>&quot;What exactly stopped you? At which step? What had to be true for you to continue? Did you solve it another way?&quot;</em></p>
+<p><strong>The output is a Barrier backlog.</strong> Each item names the segment, Big Jobs, Core Jobs, Critical Chain of Jobs node, real blocker, evidence that it blocks execution, and mechanic selected to remove it. Fear-reduction copy is downstream of this backlog, not a substitute for it.</p>
+<h2>Cross-references</h2>
+<ul>
+<li><a href="value-creation.html">Value Creation</a> — value as energy efficiency (outcome over cost), value mechanics, the <em>Aha Moment</em> and <em>Problem</em> as drivers of behaviour change.</li>
+<li><a href="critical-chain.html">Critical Chain of Jobs</a> — chain-breaks, Tax Jobs, preemptive avoidance, and mechanics for fixing broken chains.</li>
+<li><a href="consideration-activators.html">Consideration Activators</a> — Consideration Activators components and why real blockers are not Consideration Activators.</li>
+<li><a href="communication.html">Communication</a> — how Barrier reality and fear-reduction claims show up in messages, landing pages, and sales.</li>
+<li><a href="behaviour-change.html">Behaviour Change</a> — forces that drive and block behavior change.</li>
+</ul>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

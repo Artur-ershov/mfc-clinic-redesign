@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Behavior change</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Behavior change</h1>
+<p>The single most important question in product, marketing, and sales is the same: how do we get the customer to behave the way our product needs them to? That runs from a single funnel action — click the ad, register, link a card, complete the target action — up to the deepest change of all. In that deepest change the customer starts performing <em>our</em> Core Jobs on the way to their Big Jobs, and keeps performing them rather than leaving for a competitor. <strong>This document is about all of it — every type of behavior change, not only the switch to our product.</strong></p>
+<p>Every purchase, activation, retention event, churn event, and up-sell is a behavior-change event. Underneath each one, the customer either:</p>
+<ul>
+<li>adopted a new Job Graph (with our Core Jobs in it), and changed their behavior; or</li>
+<li>didn&#39;t adopt it, and stayed with their existing Job Graph and existing solution.</li>
+</ul>
+<p>If we can engineer behavior change deliberately — at the level of a single funnel action, an individual customer, a segment, or a market — we can build, grow, and defend a product.</p>
+<p>This document collects everything the methodology says about behavior change. It covers what it is in mechanism (psychology, neurobiology), what makes it happen, what blocks it, and how to design product, communication, and acquisition around it.</p>
+<blockquote>
+<p>About the Four Forces of Progress. I used the Four Forces for a while as an intermediate tool inherited from the original JTBD literature. About a year ago the methodology moved past it. There are more than four forces, and the process itself is different. A Problem with the current Solution is not really a force. It is often the trigger that launches evaluation. The Four Forces influenced the early formulation, but they are preserved here only as an archive. <strong>AJTBD recommends anchoring your behavior-change practice on the theses below rather than on the Four Forces.</strong> In this canon I call the extended set of forces the forces of behavior change (§9), to mark the move past the legacy four.</p>
+</blockquote>
+<hr>
+<h2>1. What behavior change actually is</h2>
+<p><strong>Behavior change is the customer swapping one Job Graph for another.</strong> It is not, fundamentally, &quot;switching solutions&quot; — solutions are downstream. What changes upstream is the way the customer performs their Big Jobs: which set of lower-level Core Jobs they pursue, with which success criteria, in service of those Big Jobs.</p>
+<ul>
+<li>Before: the customer reaches their Big Job through one set of Core Jobs, at certain success criteria, using whatever solution they hired for it today.</li>
+<li>After: the customer reaches the <em>same</em> Big Job through a <em>different</em> set of Core Jobs, at different success criteria, using a different solution — ours.</li>
+</ul>
+<p>The customer didn&#39;t simply &quot;switch products&quot; the way the surface story tells it. <strong>The customer changed the set of Core Jobs they perform on the way to their Big Jobs.</strong> Our product got hired <em>because</em> it performs those new Core Jobs at the new criteria. The solution is the consequence, not the cause.</p>
+<h3>Concrete example: Zillow Rental Manager → Belong</h3>
+<p>A Bay Area homeowner who moved into a bigger place is renting out the original Oakland duplex. The Job hierarchy:</p>
+<ul>
+<li>Super Big Job: <em>&quot;Generate predictable monthly income from my real estate.&quot;</em></li>
+<li>Big Job, performed <em>in order to</em> perform the Super Big Job: <em>&quot;Rent out my duplex.&quot;</em></li>
+<li>Baseline success criterion that survives across every Core Job in the graph below: <em>the work must not consume my evenings or my weekends.</em></li>
+</ul>
+<p>Before, the owner performs the Big Job via Zillow Rental Manager, a listings site. The owner&#39;s Core Job is <em>&quot;Manage my own rental.&quot;</em> Underneath sit ten Micro Jobs, one level below the Core Job, that the owner performs themselves:</p>
+<ul>
+<li><em>post the listing</em> — multi-platform distribution to Zillow, Trulia, and HotPads, Fair-Housing-safe copy, photos that convert clicks to inquiries;</li>
+<li><em>screen incoming inquiries</em> — filter time-wasters in one message;</li>
+<li><em>run credit, eviction, and income checks</em> on shortlisted applicants via RentSafe or TransUnion SmartMove;</li>
+<li><em>show the unit</em> on Saturday batches;</li>
+<li><em>negotiate the lease</em> against California enforceability at target rent;</li>
+<li><em>collect first month, last month, and security deposit</em>;</li>
+<li><em>hand over keys</em> in under an hour;</li>
+<li><em>chase rent on the 1st</em> via Zelle or ACH;</li>
+<li><em>dispatch emergency repairs</em> through a pre-agreed plumber or electrician so the tenant doesn&#39;t escalate trivia;</li>
+<li><em>track expenses</em> year-round for Schedule E.</li>
+</ul>
+<p>After, the owner performs the same Big Job via Belong, a turnkey rental service. The chain collapses to two Core Jobs:</p>
+<ul>
+<li><em>&quot;Onboard the property to Belong once.&quot;</em> Criteria: done in a single 2-hour walkthrough; Belong handles listing, screening, and tenant placement; one dedicated rep to call when I have questions; no Fair-Housing exposure on my side.</li>
+<li><em>&quot;Receive a guaranteed monthly payment from Belong.&quot;</em> Criteria: paid on the 1st of every month; the amount doesn&#39;t depend on whether the unit is currently occupied; year-end 1099 and Schedule E inputs delivered ready to drop into TurboTax.</li>
+</ul>
+<p>Now look at the behavior change at the Core-Job level. The Jobs <em>&quot;post a listing&quot;, &quot;screen tenants&quot;, &quot;negotiate the lease&quot;, &quot;chase rent&quot;</em> — and all their success criteria — stop being performed by the customer at all. They are not done worse. They are done by <em>zero people</em> in this segment going forward. Belong didn&#39;t sell &quot;a property-management app.&quot; It sold the cancellation of an entire chain of Core Jobs, and the substitution of two simpler ones in their place. The Belong app got hired <em>onto</em> the two new Core Jobs as the delivery format.</p>
+<p>That is the actual behavior change. <strong>What was sold to the owner is the new set of Core Jobs and their success criteria, not &quot;the Belong solution.&quot;</strong></p>
+<hr>
+<h2>2. A Solution lives in two registers — a thing in the world, and a label for a Job Graph</h2>
+<p><strong>Solutions live in two registers at once.</strong> In the world they are real things: products, brands, services, self-performed routes such as Belong, Zillow Rental Manager, Wealthfront, or <em>manage it myself</em>. Inside the Job Graph, the same Solution exists as the label for the specific sub-graph of Core Jobs and Micro Jobs the customer walks under it. Both registers are real. Switching Solutions means switching the Job Graph below.</p>
+<p>The label-side is what does the work inside the methodology. When we talk about <em>&quot;the customer hired Solution X&quot;</em>, we mean the customer walked the sub-graph that Solution X installs. The brand handle is convenient shorthand. The sub-graph is what the customer actually performs.</p>
+<p>The label can be a product or brand (Belong, Zillow Rental Manager, Wealthfront, Chase savings), a service request (hire a property manager, book a tax accountant, call a contractor), or a self-performed action (manage the rental myself, do my own taxes, fix the leak with a YouTube video). In every case, what the customer is actually picking is a specific Job Graph. That graph is a particular set of Core Jobs with their success criteria, the Small Jobs at the same level, and the Micro Jobs underneath, which together perform the Big Job the customer cares about. The &quot;solution&quot; is just the label for that sub-graph.</p>
+<p><strong>Behavior change, in this framing, is the customer swapping one labeled Job Graph for another</strong> — exactly what we saw in the worked example in §1. The label changes; the more interesting thing is the new graph underneath. §3 unpacks what that means in practice for product, marketing, and sales.</p>
+<hr>
+<h2>3. What this means in practice: different Core Jobs for different solutions</h2>
+<p>Treat the ontology of section 2 as the working principle and three structural facts fall out at once:</p>
+<ol>
+<li>Different labels mean different Core Jobs, plus the sibling Small Jobs at the same level and the Micro Jobs underneath, each with their own success criteria. One Big Job served by many labels yields many different Core Jobs. That means many different segments, with many different behavior changes possible.</li>
+<li>Switching a customer to your solution means switching the Core Jobs the customer performs. That switch <em>is</em> the behavior change. Switching the vendor without switching the Core Jobs and criteria is just shopping.</li>
+<li>What you actually sell is the Core Jobs and their success criteria, not &quot;the solution.&quot; The solution label rides along on top of the Core-Job-and-criteria sale. It gets hired <em>onto</em> those Core Jobs as the delivery format.</li>
+</ol>
+<p>Two industry clusters below make this concrete. A consumer-services cluster (rental management) and a knowledge-work cluster (writing code) show the same pattern across different domains.</p>
+<h3>Cluster 1 — Rental management (the Zillow → Belong case from §1, extended)</h3>
+<p>The §1 case showed one switch: <em>&quot;Manage my own rental&quot;</em> (Zillow Rental Manager) → <em>&quot;Outsource turnkey&quot;</em> (Belong). That is one move on a wider landscape. For the same Big Job <em>&quot;Rent out my duplex&quot;</em>, serving the Super Big Job <em>&quot;Generate predictable monthly income from my real estate,&quot;</em> three different Core Jobs are available to the customer. Each comes from a different Solution:</p>
+<ul>
+<li>Zillow Rental Manager (DIY listings plus screening). Core Job: <em>&quot;Manage my own rental.&quot;</em> Criteria: I run everything; Zillow distributes the listing and pulls credit and background reports; I keep all upside <em>and</em> eat all variance.</li>
+<li>Local property manager (traditional PM, 8–12% of gross rent). Core Job: <em>&quot;Delegate the rental to a local PM.&quot;</em> Criteria: PM screens tenants and handles repairs; I approve major calls such as vacancies and repairs over $X; income still varies with occupancy and PM quality.</li>
+<li>Belong (turnkey rental management with guaranteed monthly payments). Core Job: <em>&quot;Outsource the rental entirely turnkey.&quot;</em> Criteria: one 2-hour onboarding; Belong does listing, screening, leasing, and repairs; I receive a guaranteed amount on the 1st of each month regardless of occupancy.</li>
+</ul>
+<p>Three Core Jobs, three sets of success criteria. The verbs differ (<em>manage · delegate · outsource</em>), the delegation level differs (<em>none · partial · full</em>), the criteria differ (<em>control plus full upside</em> · <em>partial delegation plus approval rights</em> · <em>guarantee plus zero involvement</em>). The §1 homeowner walked across this landscape from Core Job 1 to Core Job 3, deleting the Micro-Job chain that the §1 Before and After enumerated.</p>
+<h3>Cluster 2 — Writing code (same pattern, knowledge-work domain)</h3>
+<p>Take an engineer at a Series-B startup. The Super Big Job is <em>&quot;ship the feature my team committed to this sprint&quot;</em> and the Big Job is <em>&quot;ship a working change in this codebase.&quot;</em> Three Core Jobs are available. With VS Code plus Stack Overflow, the Core Job is <em>&quot;write the code myself, line by line&quot;</em> — I own every keystroke and the architecture. With GitHub Copilot, the Core Job is <em>&quot;write the code with line-level AI assistance&quot;</em> — completions match my intent inside the function, I review every suggestion, I still own the architecture. With Claude Code or Codex, the Core Job is <em>&quot;describe the change in English; the agent writes it, runs the tests, iterates on failures&quot;</em> — I review diffs not characters, and intervene on architectural calls not syntax.</p>
+<p>Same Big Job, three radically different verbs (<em>write · assist · delegate</em>), three different Micro-Job sets deleted. The <em>look up the API in docs · type the call character by character · run the linter manually · re-run failing tests by hand</em> class collapses entirely for the engineer who adopts agent-pair-programming.</p>
+<p><strong>The pattern holds across domains: one Big Job, several Core Jobs, each Core Job a different Job Graph underneath, each with a different segment willing to hire it.</strong></p>
+<hr>
+<h2>4. The necessary condition: Big Jobs and Super Big Jobs performed more effectively, by their success criteria</h2>
+<p>Everything else in the document depends on this condition.</p>
+<p><strong>The customer&#39;s Big Jobs and Super Big Jobs, measured by their own success criteria, must be performed more effectively through our Job Graph than through the Job Graph the customer performs today.</strong> Our Job Graph means our Core Jobs at our criteria. If that condition doesn&#39;t hold, the customer doesn&#39;t switch — no matter how impressive any individual Core-Job criterion of ours looks in isolation.</p>
+<p>Three operational consequences follow, on three different planes: comparison, design, and communication.</p>
+<p>Comparison ladders up to the Big Job and Super Big Job. Customers compare Core Jobs <em>by how well they perform the Big Jobs above them</em>, against the segment&#39;s Big-Job criteria, not by Core-Job criteria in isolation. Even a Core-Job criterion we deliver perfectly won&#39;t drive the switch unless it connects to a Big-Job criterion the customer cares about. <em>&quot;App loads in 800ms&quot;</em> is a Core-Job criterion. <em>&quot;Generate predictable monthly income&quot;</em> is the Big-Job criterion the customer evaluates against. If the 800ms doesn&#39;t visibly help generate predictable monthly income, it doesn&#39;t carry the switch, however true it is. In the rental example, Belong didn&#39;t beat Zillow on <em>&quot;managing the rental&quot;</em> compared as an isolated Core Job. Belong beat Zillow on <em>&quot;generate predictable monthly income from my real estate.&quot;</em> Belong&#39;s Core-Job criteria — one-time onboarding, guaranteed payment, zero involvement — won because they delivered that Big-Job criterion, and Zillow&#39;s <em>&quot;manage my own rental&quot;</em> did not.</p>
+<p>Design flows top-down: Big-Job criteria first, then Core-Job criteria, not the other way. The success criteria of <em>our</em> Core Jobs are downstream of the criteria of the Big Jobs and Super Big Jobs they serve, and must be derived against them. Every Core-Job criterion must ladder up to a Big-Job or Super-Big-Job criterion the customer cares about. <em>&quot;App loads in 800 ms&quot;</em> doesn&#39;t ladder up to <em>&quot;generate predictable monthly income,&quot;</em> and so, however true, it&#39;s irrelevant to behavior change. The common error is to optimize Core-Job criteria in isolation. Local metrics look healthy and the customer still doesn&#39;t switch.</p>
+<p>Communication, the Consideration Activators, goes through Big Jobs and Super Big Jobs, with <em>their</em> criteria. Messaging at the Core-Job level alone doesn&#39;t activate. Messaging that lands on the Big-Job and Super-Big-Job criteria does. This is why Consideration Activators doctrine emphasizes Big-Job framing — see §5 and <a href="consideration-activators.html">Consideration Activators</a>.</p>
+<p><strong>Without this condition holding, nothing downstream compounds.</strong> Neurobiology, forces, durability, and B2B specifics are all built on this gate. The Big-Job and Super-Big-Job success criteria are where the customer evaluates, where you must design, and where you must communicate. Get all three lined up and the rest of the document is operationalizable. Miss any one of them and the rest is decoration.</p>
+<hr>
+<h2>5. Consideration Activators — the mechanism that loads new Core Jobs into the customer&#39;s head</h2>
+<p><strong>Behavior change happens when Consideration Activators land in the customer&#39;s head.</strong> That is the knowledge, or lived realization, that a more energy-efficient way to perform their Big Jobs exists, in a form they can act on. Consideration Activators can be loaded through any channel that lets the customer encounter the new way: communication (advertising, content, salesperson, peer story), social observation (seeing someone else use it), or first-hand trial (<em>&quot;I tried it, and — oh, it actually works&quot;</em>). Every act of behavior change is, in its core, an act of Consideration Activators loading — propositional or experiential. Loading Consideration Activators, by any of these channels, is the operational lever for changing customer behavior. (Full treatment: <a href="consideration-activators.html">Consideration Activators</a>. A parallel treatment in <a href="ajtbd-key-theses.html">AJTBD key theses</a>.)</p>
+<p>For behavior change to start, the customer must learn five units of information:</p>
+<ol>
+<li>A new Job Graph for performing their Big Jobs exists. Specifically: with <em>this</em> Job Graph, with <em>these</em> Small Jobs and Core Jobs (ours), to <em>these</em> concrete success criteria. This is the customer&#39;s knowledge of <em>what</em> they would now perform — <em>rent a car through Zipcar</em>, <em>outsource the rental to Belong</em>, <em>file through TurboTax</em> — not yet the value claim.</li>
+<li>The new Job Graph performs the Big Job more efficiently than the customer&#39;s current way. The Core Jobs in our Graph sit one level below the Big Job and deliver it at better success criteria: cheaper enough, faster enough, higher-status enough, or more reliable enough to overweight the cost of switching. Abstract <em>&quot;more efficient&quot;</em> doesn&#39;t activate. The brain doesn&#39;t switch on a directional claim; it switches on a meaningful, criteria-anchored delta. The pitch is in the language of <em>our Core Jobs and their criteria with the delta attached</em>, not features.</li>
+<li>A concrete named product performs that Job Graph, and here is the door. The customer needs a <em>name</em> (the product, service, or brand that runs the Core Jobs at the criteria) and a <em>first concrete step</em> (download the app, book a 15-min call, sign up at this URL, ask the bank teller). Without name plus door, components 1 and 2 stay unactable. The customer knows a better graph exists and why it matters, but has no handle to move — solution-aware but not product-aware, in Hunt&#39;s Pyramid terms.</li>
+<li>Specific fears about this new Job Graph are reduced. A fear is the customer&#39;s prediction that the Big Job won&#39;t be performed well through our new graph — a Critical Chain of Jobs break, Problem, Tax Job, personal risk, or irreversible loss along the way. The message names the specific feared break, then shows why it is prevented, absorbed, reversible, insured, or irrelevant for this Solution. If the break is real, communication cannot reduce it; the team must change reality first.</li>
+<li>Alternative Job Graphs are fired. Competing Job Graphs for performing the same Big Jobs are shown to be <em>less</em> energy-efficient by the Big Jobs&#39; success criteria. (Per §2, the everyday-language label <em>Solution</em> names the Job Graph the customer walks under it.) The firing names the specific Problems and Risks that follow from sticking with the alternative — failures that produce Problems (see §7), forced Tax Jobs, criteria the alternative cannot hit, chain-breaks it leaves open. Abstract <em>&quot;they&#39;re worse&quot;</em> doesn&#39;t fire anything. The customer&#39;s brain doesn&#39;t down-weight an option without a concrete reason. The fire lands when the customer can name, in their own words, <em>which</em> Big-Job criterion the alternative misses and <em>what</em> it costs them when it misses.</li>
+</ol>
+<p><strong>Components 1, 2, 4, and 5 all ride on the Big Job. Only component 3 doesn&#39;t.</strong> Components 1, 2, and 5 carry the <em>motivation</em>: they run through the Big Jobs and the Big Jobs&#39; success criteria (§4), where the customer&#39;s brain actually compares. Component 4 (specific fears reduced) rides on the Big Job too, but as <em>blocker-removal</em>. A fear is the customer&#39;s prediction that the Big Job won&#39;t be performed well through our graph, so reducing it deletes a predicted reason the Big Job would fail under us. Only component 3 (named product plus the door) is Big-Job-agnostic: pure actionability, the handle the customer grips once the other four have done the evaluation. Load the right Consideration Activators at the right moment, and our new Core Jobs (with our criteria) awaken in the customer&#39;s consideration set as a way to perform the Big Job they already have. Then they perform the new Core Jobs, and our Solution gets hired onto them. Trigger timing — <em>when</em> the customer is most receptive to a load — is unpacked in §8.</p>
+<p>Environment is one of the most underweighted Consideration Activators channels. Not all Jobs are top-of-mind at the moment of contact. Many sit <em>latent</em>: the customer has the Job in their graph, but the conditions to activate it aren&#39;t present. Proximity and context can mass-activate latent Jobs, producing what looks like <em>&quot;impulse buying&quot;</em> but is really Consideration Activators loaded through environment.</p>
+<p>The canonical case is IKEA. Its showroom route and furnished interiors work as visual Consideration Activators. The customer walks through finished room arrangements, and latent Jobs activate (<em>&quot;oh, I need a shelf like that,&quot; &quot;so that&#39;s how you can organize a closet&quot;</em>). The low-cost food court functions as a loss leader that primes the latent Job <em>&quot;furnish my home.&quot;</em></p>
+<p><strong>Environmental context can mass-activate Jobs the customer wasn&#39;t consciously aware of having.</strong> Shopping malls, demo zones, showrooms, SaaS onboarding tours, <em>&quot;people you may know&quot;</em> suggestions in social products — all are forms of context-loaded Consideration Activators that wake latent Jobs.</p>
+<p>(IKEA design analysis from <a href="https://time.com/3742007/find-out-why-you-overshop-in-ikea/">TIME, <em>This Is Why You Overshop in Ikea</em></a>.)</p>
+<hr>
+<h2>6. The brain detects value as energy-efficiency above its own prediction</h2>
+<p><strong>The brain runs as an energy-budget investor that predicts both cost and outcome on every Job performance, then compares reality against both predictions and registers a signed delta on each.</strong> A positive delta produces an Aha Moment, the customer-experience side of a Positive Prediction Error. A negative delta produces a Problem, the customer-experience side of a Negative Prediction Error, whose structural cause is a Solution hired for a Job performed below its success criteria. Value is the more energy-efficient experience itself. The Aha Moment and the Problem are the brain&#39;s <em>noticing</em> of value delivered above or below the prediction the customer arrived with.</p>
+<p>Full neuroscience grounding: <a href="scientific-foundations.html">Scientific Foundations §1, §11</a>. Full value canon: <a href="value-creation.html">Value Creation §2–§7</a>. Short version: <a href="ajtbd-key-theses.html">AJTBD key theses §6, §7</a>.</p>
+<hr>
+<h2>7. Prediction errors rewire behavior — one cycle, two signs</h2>
+<p>§6 set up <em>what</em> the prediction error is. This section is <em>what happens after it fires.</em> The Aha Moment and the Problem run through the same five-step cycle. What differs is the sign of the delta at step 4 and the direction of re-learning that follows.</p>
+<ol>
+<li>Customer arrives with a prediction, set by past experience plus the success criteria they came in with.</li>
+<li>Customer encounters the Job Graph being performed, through communication, observation, or first-hand trial — the three Consideration Activators channels (§5).</li>
+<li>Reality lands and is compared against the prediction. The Big Job is performed at some level of energy-efficiency against the customer&#39;s own criteria, and the brain produces a signed delta on each prediction term (cost and outcome).</li>
+<li>The brain registers the signed delta as a teaching signal, and bifurcates:<ul>
+<li>Positive delta produces an Aha Moment. A dopamine spike fires (<a href="https://www.cell.com/current-biology/fulltext/S0960-9822%2817%2930266-X">Schultz RPE, <em>Current Biology</em> 2017</a>). The teaching signal is <em>&quot;this Job Graph performs the Big Job well — repeat it.&quot;</em> Habit autopilot loosens; conscious evaluation engages.</li>
+<li>Negative delta produces a Problem. Dopamine dips below baseline, and negative emotions fire (irritation, anxiety, anger). The teaching signal inverts: <em>&quot;this Job Graph performs the Big Job worse than I thought — avoid it next time.&quot;</em> The most toxic case is when the Job isn&#39;t performed at all and the customer is forced into a Tax Job the Solution promised to absorb.</li>
+</ul>
+</li>
+<li>Re-learning runs in the direction of the signal. On the positive side, a window opens in which the customer is biologically inclined to perform the new Job Graph again, <em>if reinforced</em>. Without reinforcement the old habit reasserts and the customer reverts (see <a href="scientific-foundations.html">Scientific Foundations §15</a>). On the negative side, behavior shifts away from the Graph, and if the Problem is severe or repeated the customer abandons it. The customer may even generalize (<em>&quot;the whole class of Solutions is a Tax-Job factory&quot;</em>) and avoid the category in the future.</li>
+</ol>
+<h3>What this means for the product</h3>
+<ul>
+<li>One Aha Moment is necessary but may not be sufficient. Durable behavior change typically requires a <em>stream</em> of Aha Moments against the rising prediction bar (Red Queen — <a href="value-creation.html">Value Creation §6</a>).</li>
+<li>A single severe Problem can undo months of Aha Moments. The brain&#39;s negative-learning rate is faster than its positive-learning rate, since loss aversion has a neurobiological substrate (<a href="scientific-foundations.html">Scientific Foundations §13</a>). Tax Jobs are especially toxic.</li>
+<li>Activation is an engineered first Aha Moment. Retention is a sustained Aha-stream, reinforced by the habit and switching cost that can hold a customer even when fresh Aha Moments thin out. Churn is accumulated Problems overwhelming all three.</li>
+<li><strong>Overpromise is a manufactured-Problem machine.</strong> Inflated expectations lead to reality below them, which produces a Problem and re-learning in the wrong direction. Match the promise to what the chain actually delivers (§4).</li>
+</ul>
+<hr>
+<h2>8. Triggers that launch behavior-change evaluation</h2>
+<p>A behavior-change event has a <em>moment of launch</em>. That is the point at which the customer goes from <em>performing their current Job Graph</em> to <em>actively evaluating alternatives</em>. The forces in section 9 operate <em>after</em> this moment, on a customer who is already in evaluation mode. Without a trigger, no evaluation happens, and most forces don&#39;t act on a customer in steady-state habit.</p>
+<p>The methodology recognizes the following triggers of behavior-change evaluation. Some are events in the customer&#39;s life, some are events created by the world, and some are events we can deliberately engineer.</p>
+<ul>
+<li>A break in the customer&#39;s Critical Chain of Jobs. The current solution stops performing one of the Jobs in the chain to a Big Job. The chain breaks, the Big Job is at risk, and the customer launches an Orientation Job (<em>&quot;what else can I use?&quot;</em>) and becomes much more receptive to Consideration Activators. (See <a href="critical-chain.html">Critical Chain of Jobs</a>.)</li>
+<li>Accumulated Problems with the current solution. Even when the chain isn&#39;t broken, a steady drip of failures produces repeated Negative Prediction Errors until the threshold is crossed. The customer reframes: <em>&quot;this isn&#39;t working well enough; I should look for something else.&quot;</em> (See section 7 on Problem dynamics.)</li>
+<li>Life events and context shifts. A move, a new role, a child, a new market entry, a new regulation. The person ends up in a new context where new Jobs appear and old Jobs change — different success criteria, different triggers, different Big Jobs above. The previously fine Job Graph stops fitting. (Maps to the Job-structure element <em>Trigger</em> — see <a href="job-structure.html">Job Structure</a>.)</li>
+<li>Status or identity shift. Promotion, new role, life-stage change, social-group change. Who the customer wants to be has shifted, and the Job Graph that fit the old identity no longer fits the new one. (Related to Life events but distinct: the trigger is internal identity reformation, not external context.)</li>
+<li>External shock or forced switch. A regulatory change, a vendor discontinuation, a supplier failure, a price hike, a merger. The customer is <em>forced</em> to evaluate alternatives whether or not they wanted to.</li>
+<li>External Consideration Activators load. An advertisement, a peer&#39;s story, a piece of content, or a salesperson&#39;s outreach surfaces a new Job Graph the customer didn&#39;t know existed. The new load wakes up an Orientation Job: <em>&quot;wait, what robot vacuums are out there?&quot;</em> (See <a href="consideration-activators.html">Consideration Activators § Sources of Consideration Activators</a>.)</li>
+<li>First-hand trial of a new way. The customer encounters the new Job Graph directly (free trial, demo, friend&#39;s product) and experiences a strong Aha Moment. The Aha Moment itself becomes a trigger. Behavior change can begin from the experience side, not only from the information side. (See §5.)</li>
+</ul>
+<p>Two practical implications:</p>
+<ul>
+<li><strong>Marketing that hits a customer in steady-state habit, still satisfied with their current way of performing their Big Jobs, is mostly wasted.</strong> With no Problem and no chain-break, the current Job Graph still meets their criteria. The customer isn&#39;t evaluating, and the forces in section 9 aren&#39;t acting. Effective acquisition either <em>creates</em> a trigger (loads Consideration Activators that wake up an Orientation Job) or <em>times itself</em> to a trigger already firing — a Critical Chain of Jobs break, life event, identity shift, or shock.</li>
+<li><strong>Trigger-timing dominates message quality.</strong> Even brilliant messaging delivered to a habit-state customer underperforms mediocre messaging delivered at the moment of a Critical Chain of Jobs break or a life-event window.</li>
+</ul>
+<hr>
+<h2>9. Forces of Behavior Change</h2>
+<p>The classic Four Forces of Progress tool captured <em>part</em> of the behavior-change algorithm. Its four levers are the added value of the new solution, the Problems with the current solution, the fears toward the new solution, and the habit of the current way. Its authors saw a real slice of how a customer moves at the moment of evaluation. <strong>The list below is not an extension or a successor of that tool.</strong> It was developed independently, from first principles, and arrives at a more complete list of forces and a more complete logic of behavior change. A mapping at the end of the section shows where the two pictures overlap.</p>
+<p>These forces act on a customer already in evaluation mode (see section 8 on triggers). On a customer in steady-state habit, most of them don&#39;t fire at all.</p>
+<p>Forces below are grouped <em>by lever type</em> — what kind of intervention works against each. Diagnosing a stuck behavior change reduces to finding which lever-group is failing and choosing a move from that group. The §12 diagnostic uses this grouping.</p>
+<h3>Drivers: forces that drive behavior change forward</h3>
+<p>Brain-side, the neurobiological dopamine machinery itself:</p>
+<ul>
+<li>Positive Prediction Error, the Aha Moment from our product. Strongest single driver, neurobiologically primary (see §7).</li>
+<li>Curiosity. A genuinely curious customer treats an unfamiliar Solution as opportunity rather than threat. Perceived switching risk drops, and Consideration Activators are easier to absorb. Curiosity opens a brief learning window <em>before</em> the answer arrives, not after. (Neuroscience: <a href="scientific-foundations.html">Scientific Foundations §17</a>.)</li>
+<li>Positive emotions during use. Joy, calm, relief, satisfaction, status uplift. The brain seeks to repeat experiences that produced them (<a href="scientific-foundations.html">Scientific Foundations §9, §11</a>).</li>
+</ul>
+<p>Information-side, the Consideration Activators:</p>
+<ul>
+<li>Knowledge of a more energy-efficient way to perform the Big Jobs. The Job-Graph and value-delta components of Consideration Activators (§5, components 1–2). Once the customer learns a better Job Graph exists and the delta is meaningful, they are biologically motivated to evaluate it.</li>
+<li>Firing the competing Job Graph. Consideration Activators component 5 (§5): showing the current or competing Solution is concretely worse by the Big Job&#39;s success criteria, naming its Problems and Risks. This down-weights the alternative during the comparison and drives the customer toward switching. We can&#39;t manufacture those Problems, only <em>surface</em> the real ones (see <em>Working with the forces</em> below).</li>
+</ul>
+<p>Identity-side:</p>
+<ul>
+<li>Identity alignment with the new Job Graph. When our Big-Job framing matches who the customer thinks they are (<em>&quot;I&#39;m a person who takes care of their health&quot;</em>; <em>&quot;I&#39;m a founder who decides on data&quot;</em>), motivation is significantly stronger and more durable than at the outcome level (<a href="scientific-foundations.html">Scientific Foundations §7, §8</a>).</li>
+</ul>
+<h3>Blockers: forces that block behavior change</h3>
+<p>Brain-side, neurobiological:</p>
+<ul>
+<li>Negative Prediction Error from the new Job Graph, the Problem. Strongest single blocker, mirror of the Aha Moment. When reality from our Graph falls below prediction, or the Job isn&#39;t performed at all and becomes a forced Tax Job, the brain re-learns <em>not</em> to perform it next time. A single severe Problem can undo months of Aha Moments (§7).</li>
+<li>Cost asymmetry, price-as-pain. The brain registers price and effort in the same region it uses for physical pain (<a href="scientific-foundations.html">Scientific Foundations §4</a>). New Solutions demand investment now while gains are deferred, and the brain overweights present pains against future gains.</li>
+<li>Negative emotions during use. Frustration, anxiety, shame, anger, boredom while performing the new Graph. The brain learns not to repeat (<a href="scientific-foundations.html">Scientific Foundations §9, §11</a>).</li>
+</ul>
+<p>Habit and identity-side:</p>
+<ul>
+<li>Habit. A physical change in the brain: neural networks tuned to the current way of performing the current Job (§7; <a href="scientific-foundations.html">Scientific Foundations §15</a>). Customers and product teams systematically underestimate its strength.</li>
+<li>Identity-as-current-solution. When the customer identifies with the existing Solution (<em>&quot;I&#39;m an Apple person&quot;</em>, <em>&quot;I&#39;m a Nike runner&quot;</em>), switching threatens identity itself. This is the hardest blocker to address with logic alone.</li>
+</ul>
+<p>Reality-side:</p>
+<ul>
+<li>Objective barriers. Facts on the ground that derail the new Job Graph regardless of customer belief: incompatible data schema, missing permit, unsupported ZIP, land unsuitable. Reduced <em>only</em> by changing reality, not by communication. (See <a href="barrier-removal.html">Barrier Removal</a>.)</li>
+</ul>
+<p>Mental-models-side, conscious predictions plus unconscious commitments:</p>
+<ul>
+<li>Specific fears about the new Job Graph. Conscious predictions of a Critical Chain of Jobs break, Problem, Tax Job, personal risk, or irreversible loss. Reduced by stories, demos, guarantees, reversibility, insurance, and trusted proof — <em>only if the feared break is not real</em>. Real blockers require changing reality first (Barrier Removal).</li>
+<li>Unconscious competing Jobs, Immunity to Change (Kegan). Jobs the customer is unconsciously performing in service of the current state, beneath their conscious fears. The customer rationally wants to switch but is unconsciously performing a hidden Job like <em>&quot;don&#39;t look incompetent while learning a new tool&quot;</em> or <em>&quot;don&#39;t make my boss feel his earlier choice was wrong.&quot;</em> Standard fear analysis won&#39;t surface these; they have to be dug out at the unconscious-Jobs and identity level (<a href="https://hbr.org/2001/11/the-real-reason-people-wont-change">Kegan &amp; Lahey</a>).</li>
+</ul>
+<h3>Working with the forces</h3>
+<ul>
+<li>We <em>can</em> create added value — a stronger positive prediction error against the customer&#39;s criteria.</li>
+<li>We <em>can</em> load Consideration Activators.</li>
+<li>We <em>can</em> reduce specific fears, with stories, demos, guarantees, reversibility, insurance, and social proof.</li>
+<li>We <em>can</em> reduce objective barriers, by changing reality through migration tools, integrations, and fundament fixes.</li>
+<li>We <em>can</em> time our outreach to Critical Chain of Jobs breaks and life events.</li>
+<li>We <em>largely cannot</em> create problems in the customer&#39;s current solution. We can only surface them.</li>
+<li>We <em>largely cannot</em> reduce the customer&#39;s habit toward the current solution. We should reuse it instead of fighting it (see section 11).</li>
+<li>We <em>largely cannot</em> directly change identity. But we can speak in identity-level language and let the customer&#39;s identity match ours.</li>
+</ul>
+<h3>Mapping back to the Four Forces of Progress</h3>
+<p>For readers familiar with the classic tool, here is how the legacy four map to the extended list above:</p>
+<table>
+<thead>
+<tr>
+<th>Four Forces of Progress (legacy)</th>
+<th>Corresponding Forces of Behavior Change (above)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>(1) Added Value of new solution</strong> <em>(pulls forward)</em></td>
+<td>Positive Prediction Error — the Aha Moment; Knowledge of a more energy-efficient way; Positive emotions during use; Identity alignment with the new way</td>
+</tr>
+<tr>
+<td><strong>(2) Problems with current solution</strong> <em>(pushes from old)</em></td>
+<td>Splits in two. The customer&#39;s <em>own accumulated</em> Problems are a trigger (section 8 — Accumulated Problems / Critical Chain of Jobs break) that pushes them into evaluation; once there, <em>our communication firing the competing Graph</em> — surfacing those Problems and Risks against the Big Job&#39;s criteria — is a driver above that keeps pushing them off it.</td>
+</tr>
+<tr>
+<td><strong>(3) Fears / barriers toward new solution</strong> <em>(holds back)</em></td>
+<td>Subjective fears; Objective barriers; Unconscious competing Jobs (Immunity to Change) — the deepest layer the original Four Forces didn&#39;t separate</td>
+</tr>
+<tr>
+<td><strong>(4) Habit of the current way</strong> <em>(holds back)</em></td>
+<td>Habit (physical neural networks); Identity-as-current-solution; Cost asymmetry (price-as-pain in the brain)</td>
+</tr>
+</tbody></table>
+<p>Forces above that the Four Forces tool did not capture:</p>
+<ul>
+<li>Negative prediction error from <em>our</em> new Job Graph. Once the customer has tried the new way, a Problem on <em>our</em> side becomes a fast, powerful blocker. It is distinct from &quot;problems with the current solution&quot; and absent from the classic tool.</li>
+<li>Negative emotions during use of the new way. This is the mirror of positive emotions, where the brain seeks not to repeat. It is not in the classic list.</li>
+<li>Curiosity. Anticipatory dopamine firing in the SN/VTA → hippocampus circuit <em>before</em> the answer arrives (Gruber, Gelman &amp; Ranganath 2014), which lowers the cost of absorbing Consideration Activators about a new Solution. It is not in the classic list.</li>
+</ul>
+<p>For the original Four Forces of Progress tool — its self-contained framing, the segment-selection use case, and the case studies — see the archive at the bottom of this document.</p>
+<hr>
+<h2>10. Two classes of behavior change</h2>
+<p>The distinction is about whether our Core Jobs are familiar or unfamiliar to the customer.</p>
+<p>Take a US example. The Big Job <em>&quot;run my errands across the city&quot;</em> exists for almost every adult in San Francisco, and has for decades. Underneath it sit Core Jobs of several kinds: the familiar one (<em>&quot;get from A to B in my own car&quot;</em>), a less-old-but-now-familiar one (<em>&quot;get from A to B in an Uber&quot;</em>), and a new one that&#39;s still becoming familiar (<em>&quot;get from A to B in a Waymo robotaxi&quot;</em>). The Big Job is constant. The Core Jobs differ in how familiar they are to the segment.</p>
+<p><strong>That familiarity dimension is what splits behavior change into two classes, with very different operational difficulty.</strong></p>
+<h3>Class 1: our Core Jobs are familiar to the segment</h3>
+<p>The customer already understands the <em>category</em> of our Core Jobs. They have a mental model for what hiring this kind of Core Job looks like and how to evaluate it. Behavior change here means moving the customer from one familiar Core Job to another familiar Core Job. Examples: Uber → Waymo (both ride-hailing Core Jobs); Chase → Wealthfront (both savings Core Jobs); Word → Notion (both document Core Jobs).</p>
+<ul>
+<li>Communication leads on Core Jobs and their criteria, because the customer can evaluate at that level, with Big Jobs as reinforcement. <em>&quot;Waymo gets you from A to B with no driver, 20% cheaper, no surge.&quot;</em></li>
+<li>Fears center on whether our specific Core Job actually delivers on its criteria (<em>&quot;is a driverless car actually safe?&quot;</em>), not on whether the Core Job is sensible at all.</li>
+<li>Consideration Activators is often about firing the competing solution and reducing those specific delivery fears. The customer doesn&#39;t need to be convinced the Core Job category is real; they need to be convinced <em>our</em> Core Job is the best instance in the category.</li>
+<li>The Aha Moment usually fires in the first session, because the customer has a clear prediction to be exceeded.</li>
+</ul>
+<h3>Class 2: our Core Jobs are unfamiliar to the segment</h3>
+<p>The customer&#39;s Big Job exists, but our specific <em>Core Job</em> — the way we propose to perform that Big Job — is new and unfamiliar. Examples: own-car → first-ever Uber (in 2010, asking a stranger via app for a ride was unfamiliar); cash → first-ever Robinhood (asking an app to buy fractional stocks was unfamiliar); offline tutor → first-ever Coursera MOOC (learning at scale from a recorded professor was unfamiliar).</p>
+<p>Behavior change here is structurally harder, and the rules are different:</p>
+<ul>
+<li>Communication leads on Big Jobs, not Core Jobs. The customer doesn&#39;t yet have a mental model for the new Core Job, so pitching its features doesn&#39;t land. The pitch lands when it shows that our <em>Big Job</em> outcomes are radically better (<em>&quot;never own a car again — get anywhere in 5 minutes for less than you spend on gas&quot;</em>), and only then back-fills the Core Job that delivers them.</li>
+<li>The Aha Moment is forward-loaded. The customer needs heavy Consideration Activators (peer stories, demos, free trial, social proof) <em>before</em> the first session, because they can&#39;t predict what the new Core Job will feel like.</li>
+<li>Fears are about the Core Job itself being a sensible thing to do at all (<em>&quot;is it safe to get in a stranger&#39;s car?&quot;</em>), not about delivery quality. Fear reduction has to address the category-existence question first.</li>
+<li>Waking up an unfamiliar Core Job is a significantly higher-risk move. The category-creation curve is long, expensive, and full of failures.</li>
+</ul>
+<h3>Diagnostic question</h3>
+<p>Before designing communication for a behavior change, ask the segment: <em>&quot;Have they performed the category of our Core Job before — with anyone? Or is this their first encounter with this kind of Core Job?&quot;</em> The answer routes you to Class 1 or Class 2, and the operational playbook is different in each.</p>
+<blockquote>
+<p>Note. The methodology contains a specific algorithm for distributing an unfamiliar-Core-Job product through a market — sequencing across segments, the role of opinion-leader segments, the role of free-trial and loss-leader phases, the timing of fear-reduction content versus value-demonstration content. <strong>That algorithm is intentionally not part of the public canon.</strong> It will be part of future paid products. To get notified when those materials become available, subscribe to the newsletter on the canon website.</p>
+</blockquote>
+<hr>
+<h2>11. Durable behavior change requires engineered streams of Aha Moments against rising prediction bars</h2>
+<p><strong>Engineer positive prediction errors in the first session, then keep delivering them.</strong> The Aha Moment is necessary but not sufficient (§7). Durable behavior change requires repeated positive prediction errors over time, because the customer&#39;s expectations rise as they adapt. Yesterday&#39;s wow is today&#39;s baseline, and the bar for <em>&quot;above prediction&quot;</em> climbs with every comparison the customer makes against every adjacent product they touch.</p>
+<p><strong>Reuse existing habits; don&#39;t try to install new ones.</strong> A habit is a physical neural network, and building a new one is expensive in dopamine, time, and customer patience. Three rules. First, don&#39;t instill new habits — it is painful, slow, and expensive. Second, reuse existing habits — embed your product into rituals the customer already runs. Apple Pay reused the existing physical-card-tap gesture at the terminal instead of teaching a new payment ritual, and adoption ran far ahead of competitors who tried to install their own ritual from scratch. Third, roll out changes to existing products <em>very gradually</em>.</p>
+<p>Hit identity, not just outcomes, when motivation needs to be durable. <em>&quot;Lose 5 kg&quot;</em> is an outcome; <em>&quot;I&#39;m someone who takes care of their health&quot;</em> is identity. Identity is multi-need (status, consistency, self-actualization) and harder to drop. Frame Big Jobs at the identity level wherever the customer is ready for that framing. Outcome-level framing is enough for one purchase, while identity-level framing carries renewal and word-of-mouth.</p>
+<p>Time outreach to receptivity windows. The same Consideration Activators delivered to a customer in steady-state habit costs an order of magnitude more to land than one delivered at a Critical Chain of Jobs break, a life event, or a market or regulatory shift. Most marketing budgets are spent on customers in habit-state, which is why most marketing budgets underperform their best case. The full taxonomy of receptivity windows, including the engineerable ones, is in §8.</p>
+<p><strong>Don&#39;t substitute communication for product.</strong> A positive prediction error has to be <em>experienced</em>, not promised. Communication loads Consideration Activators; the product delivers the prediction error. If communication promises a Big Job that the product only partly performs, the customer arrives with inflated expectations, hits a negative prediction error, and is disappointed, no matter how well the Core Jobs were actually performed. The promise must match what the chain actually delivers. Overpromise is the single most common way teams manufacture their own churn.</p>
+<p>Stack-rank behavior changes against unit economics. Not all behavior changes are worth engineering. Some are too expensive — fighting habit, fighting identity, fighting Immunity to Change — for the per-unit margin they unlock. The decision to engineer a specific behavior change is itself a strategic choice. Segment selection upstream determines which behavior changes a product is even <em>trying</em> to engineer (see <a href="ajtbd-key-theses.html">AJTBD key theses § Strategy</a> and <a href="segmentation.html">Segmentation</a>).</p>
+<hr>
+<h2>12. Diagnose broken metrics by asking which force is missing or dominating</h2>
+<p>When a metric is broken — low conversion, slow activation, high churn — the right diagnostic question is:</p>
+<blockquote>
+<p><em>&quot;Which behavior change is supposed to happen at this step, and which of the driving forces is missing — or which blocking force is dominating?&quot;</em></p>
+</blockquote>
+<p>This question routes you upstream of the broken metric, into the actual cause:</p>
+<ul>
+<li><em>No Aha Moment in the first session?</em> The positive prediction error is missing. Fix the value, fix the criteria match, fix the expectations alignment.</li>
+<li><em>Customer activates but churns?</em> There is no repeated reinforcement and habit reasserted. Engineer more prediction errors over time.</li>
+<li><em>Customer doesn&#39;t even start to evaluate?</em> Consideration Activators isn&#39;t loaded, or it doesn&#39;t land on their Big Jobs.</li>
+<li><em>Customer evaluates but doesn&#39;t switch?</em> Fears not reduced; competing solution not fired; identity-as-current-solution holding them; Immunity-to-Change protecting an unconscious commitment.</li>
+<li><em>Whole segment isn&#39;t moving?</em> Maybe the segment-and-Job choice is wrong. Switch segment (see <a href="ajtbd-key-theses.html">AJTBD key theses §12</a>).</li>
+</ul>
+<hr>
+<h2>13. Behavior change as the unifying lens of Next Move Theory</h2>
+<p><strong>Every algorithm in Next Move Theory is, at the most basic level, an algorithm for engineering a specific behavior change in a specific segment.</strong> Launch, scale, grow conversion, exit competition, decrease churn, increase retention, create acquisition channel, grow existing product — each one decides which Big Jobs to hit, which Consideration Activators to load, which prediction error to engineer, which habit to reuse, which fears to reduce, and which competing Job Graph to fire.</p>
+<p><strong>A churn-diagnostic and a positioning rewrite are the same behavior-change algorithm applied at two different steps in the customer lifecycle.</strong> The lens is invariant across the work. What changes is which forces are dominant at the step in question and which Consideration Activators land in the customer&#39;s head at that step. For a product organization, this is the unifying instruction set. Every functional team — acquisition, growth, product, support, marketing — is engineering behavior change at its own step, and the algorithm reduces to: who is the segment, what is the Big Job, which prediction error are we engineering, which forces are blocking, which Consideration Activators close the gap.</p>
+<p>If you don&#39;t see the behavior change underneath the algorithm, you&#39;re applying the algorithm mechanically. If you see it, you understand <em>why</em> the algorithm works and <em>when</em> it doesn&#39;t.</p>
+<hr>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

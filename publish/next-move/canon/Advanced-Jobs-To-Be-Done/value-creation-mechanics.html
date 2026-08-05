@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Value-Creation Mechanics — the Canonical Catalog</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Value-Creation Mechanics — the Canonical Catalog</h1>
+<p>The foundational catalog of value-creation mechanics referenced from <a href="value-creation.html">Value Creation §11</a>. Each mechanic is one operational way to raise the energy-efficiency ratio of a Solution × Job pairing (per <a href="value-creation.html">Value Creation §3</a>). It does this by raising P (probability the Solution performs the Job at criteria), raising Outcome (criteria-met-better), or lowering Cost (time, money, effort, cognitive load, negative emotion, Tax Jobs).</p>
+<blockquote>
+<p>For the full operational catalog of 100+ mechanics across the four Next Move Theory pillars — with detailed how-tos, decision tables, per-mechanic risks, combinations, and adjacent business-task mechanics (retention, pricing, go-to-market, scaling) — see the Mechanics Catalog (internal-only).</p>
+</blockquote>
+<hr>
+<h3>Kill a Job</h3>
+<p><strong>Lower-level Jobs disappear as a class.</strong> The product performs the higher-level Job through fewer lower-level Jobs, or eliminates the lower-level Jobs entirely. This is one of the two highest-leverage moves in the catalog. The customer&#39;s brain weights the removal at roughly 2× the value of an equivalent feature addition (loss aversion applied to Jobs).</p>
+<p>Examples: AirPods killed <em>&quot;untangle my headphones&quot;</em>; Face ID killed <em>&quot;type my password&quot;</em>; Apple Pay killed <em>&quot;reach for my wallet&quot;</em>; Tesla&#39;s stripped-down interior killed <em>&quot;find the right knob&quot;</em>; Square&#39;s QR-tipping killed <em>&quot;find cash to leave a tip&quot;</em>; auto-pay killed <em>&quot;remember to send the credit card payment by the 12th&quot;</em>.</p>
+<p>Deeper: <a href="value-creation.html">Value Creation §14.2</a>; <a href="../Next-Move-Theory/subtraction.html">Subtraction</a>.</p>
+<hr>
+<h3>Reduce time-gaps between Jobs → reach the Big Job faster</h3>
+<p><strong>Faster end-to-end delivery of the Big Job creates value.</strong> Wait-time between Jobs in the chain is felt as cost. Compress it and the entire chain reads as a different Job to the brain. Threshold effects matter. Many categories have a step-change point below which retention jumps.</p>
+<p>Examples: Just Eat&#39;s London experiment found dark-kitchen density below 25-min delivery produced a step-change in retention; DoorDash reduced kitchen-prep latency via restaurant tablets and unlocked courier capacity; Stripe shipped instant payouts where banks had taken 2–3 days; ChatGPT collapsed <em>&quot;find template → format headings → draft → restructure&quot;</em> from hours to seconds; modern checkouts collapsed <em>&quot;enter address + card + verification&quot;</em> into a single tap (Apple Pay, Shop Pay).</p>
+<p>Deeper: <a href="critical-chain.html">Critical Chain of Jobs §9</a>.</p>
+<hr>
+<h3>Perform more Jobs with one Solution</h3>
+<p><strong>The product performs several of the customer&#39;s Jobs with one Solution, raising value through reduced context-switching across tools.</strong> The mechanic isn&#39;t <em>&quot;add features.&quot;</em> It&#39;s <em>&quot;absorb adjacent Jobs the customer was performing in another product.&quot;</em> Each absorbed Job is one less switch-cost paid.</p>
+<p>Examples: Figma absorbed <em>&quot;share design with team,&quot; &quot;comment in context,&quot; &quot;review on a call&quot;</em> into one canvas; Notion absorbed <em>&quot;docs + databases + tasks + wikis&quot;</em> into one workspace; Slack absorbed <em>&quot;chat + huddles + Canvas + AI summaries&quot;</em>; a modern hotel absorbed <em>&quot;sleep + dine + meet + book a restaurant&quot;</em>; AirPods added a microphone absorbing <em>&quot;take a call without holding the phone.&quot;</em></p>
+<hr>
+<h3>Create new connections to higher-level Big Jobs</h3>
+<p><strong>Connect your Core Job to a Big Job above it that wasn&#39;t previously linked.</strong> The more Big Jobs your Core Job serves, the higher the customer&#39;s motivation to perform it with you. This adds a multiplicative motivation surface without changing the Core Job at all.</p>
+<p>Examples: premium bottled water ($10/bottle) performs the Core Job <em>hydrate</em> but links to <em>&quot;create aesthetics at my dinner table&quot;</em>; Apple&#39;s MacBook performs <em>&quot;do creative knowledge work&quot;</em> and links to <em>&quot;signal status and aesthetic taste&quot;</em>; Patagonia links <em>outdoor clothing</em> to <em>&quot;signal my values around environmental responsibility&quot;</em>; an AJTBD course links <em>learn product methodology</em> to multiple Big Jobs at once — <em>grow my career, build a side project, consult, become a respected practitioner.</em></p>
+<p>Deeper: <a href="value-creation.html">Value Creation §16</a>.</p>
+<hr>
+<h3>Adjust the customer&#39;s expectations</h3>
+<p><strong>Behaviour change is the delta against the customer&#39;s prediction, not the absolute level of value.</strong> A real value delivery against inflated expectations registers as no Aha Moment, or as a Problem. The same delivery against calibrated expectations registers as an Aha Moment. Manage the prediction <em>before</em> the customer experiences the product, through communication, pricing, brand framing, and sales-call honesty.</p>
+<p>Examples: Tesla deliberately understates 0–60 acceleration in marketing for newer models so the test drive over-delivers; Wealthfront&#39;s onboarding sets explicit return expectations <em>below</em> historical S&amp;P returns so the first quarter reads as positive; Lenny Rachitsky&#39;s newsletter explicitly says <em>&quot;this is not a step-by-step playbook — it&#39;s a synthesis of patterns&quot;</em> before the read; modern SaaS-onboarding screens that say <em>&quot;this will take 4 minutes&quot;</em> and then take 3.</p>
+<p>Deeper: <a href="value-creation.html">Value Creation §6</a>.</p>
+<hr>
+<h3>Ecosystem — combine products for unique combined value, raise switching cost</h3>
+<p><strong>Link several products so that 1 + 1 &gt; 2.</strong> When a customer uses multiple products, leaving one degrades the value of the others, which raises the Switching Cost. The mechanic is additive in connection points, not in features. Each new Solution in the ecosystem lowers the cost of performing any Job already in the system. The switching cost out of the ecosystem rises with every piece adopted.</p>
+<p>Examples: Apple ecosystem (iPhone + Mac + Watch + AirPods + iCloud — leave any one and several others lose half their value); Google Workspace (Gmail + Drive + Docs + Calendar + Meet); Microsoft 365; Amazon Prime (Shipping + Video + Music + Photos + Kindle); Salesforce Customer 360 (Sales + Service + Marketing + Commerce + Analytics).</p>
+<hr>
+<h3>Lower the price</h3>
+<p><strong>Cheaper performance of the Job is a powerful lever, but structurally hard to scale.</strong> At scale it requires either an order-of-magnitude cost-structure advantage or willingness to operate at a margin competitors won&#39;t. It&#39;s often the first move teams reach for and the last move they should. Value mechanics that don&#39;t compete on price usually beat price cuts on long-term defensibility.</p>
+<p>Examples: Costco runs a structurally cheaper supply chain (members pay annual fees that fund margin compression on goods); Robinhood&#39;s commission-free trading collapsed the per-trade fee from $10 to $0 across the industry; Vanguard&#39;s index funds operate at 0.03–0.10% expense ratios versus 1–2% for active managers; Aldi runs a 1,500-SKU range against Walmart&#39;s 100,000 to compress operational cost per dollar of revenue.</p>
+<hr>
+<h3>Remove negative emotions and bring them to positive ones</h3>
+<p><strong>Wherever the chain produces a negative emotion, remove it.</strong> That covers anxiety, doubt, irritation, shame, and fear of failure. Emotions are the brain&#39;s signaling system about how a Job is being performed. Removing a negative emotion registers as ~2× the value of adding an equivalent feature. The closer to the customer&#39;s underlying need, the stronger the emotional signal.</p>
+<p>Examples: Square&#39;s tip screen removed the awkwardness of choosing a tip while the barista watches; TurboTax removed <em>&quot;am I doing this wrong&quot;</em> by adding accuracy guarantees; insurance products sell <em>&quot;peace of mind tonight,&quot;</em> not <em>&quot;fewer claims&quot;</em>; therapy-matching services sell <em>&quot;someone who actually understands me,&quot;</em> not <em>&quot;licensed therapist nearby&quot;</em>; Wealthfront sells <em>&quot;you&#39;ll be OK in retirement,&quot;</em> not <em>&quot;diversified asset allocation.&quot;</em></p>
+<p>Deeper: <a href="scientific-foundations.html">Scientific Foundations §13</a> (loss aversion).</p>
+<hr>
+<h3>Reduce role-to-role hand-offs in Critical Chains of Jobs</h3>
+<p><strong>Fewer roles in the chain means fewer break-boundaries and higher end-to-end completion probability.</strong> This is distinct from <em>Fix Critical Chain of Jobs breaks between different people</em>, which repairs at existing boundaries. This mechanic <em>removes</em> the boundaries by collapsing roles.</p>
+<p>Examples: Tesla collapsed dealer + finance + service into one company; in-house procurement at large enterprises collapses <em>vendor → distributor → procurement → end-user</em>; Salesforce&#39;s full-suite play absorbs Marketo + Service Cloud + Tableau roles; Apple&#39;s vertical integration (chip → device → OS → store → service) collapses every traditional consumer-electronics hand-off.</p>
+<p>Deeper: <a href="critical-chain.html">Critical Chain of Jobs §11</a>.</p>
+<hr>
+<h3>Lower Job/Solution Cost before the value lands</h3>
+<p><strong>Lower the customer&#39;s cost on the path to first value.</strong> Cost here is time, money, effort, and cognitive load. The chain <code>pay → integrate → configure → try → see-value</code> has a high abandonment rate at every step. Collapsing the steps before value lands is a direct conversion lever and a direct value lever, because the brain doesn&#39;t pay for value it never reached.</p>
+<p>Examples: free trials and freemium tiers (Notion, Linear, ChatGPT free); <em>&quot;first month free, no card&quot;</em> in B2B SaaS; tripwire offerings — disproportionately high value at a low price for first-time customers; Skillshare&#39;s free-class introductory experience; Stripe&#39;s <em>&quot;9 lines of code, test mode works without an account&quot;</em> — value visible before money or onboarding.</p>
+<p>Deeper: <a href="value-creation.html">Value Creation §8</a>.</p>
+<hr>
+<h3><em>&quot;This value is only available with us&quot;</em> — exclusive value</h3>
+<p><strong>Lock unique value that competitors structurally cannot match.</strong> Exclusivity sources include licensed content, proprietary technology, exclusive partnerships, regulatory protection, and network effects past the tipping point. This builds the comparative anchor that makes the Solution the obvious hire.</p>
+<p>Examples: Spotify-exclusive podcasts (Joe Rogan early years); Apple TV+ exclusive content; Disney+&#39;s Marvel/Star Wars libraries; HBO&#39;s exclusive HBO Originals; Bloomberg Terminal&#39;s proprietary data feeds; LinkedIn&#39;s professional graph (network effect past tipping point); Stripe&#39;s Atlas (regulatory-and-relationship infrastructure for company-formation that competitors cannot easily clone).</p>
+<hr>
+<h3>Perform the Core Job at the level of the segment&#39;s expectations</h3>
+<p><strong>Until the Core Job lands at the target segment&#39;s success criteria, every mechanic stacked on top is leverage on nothing.</strong> This is the most-skipped baseline. Performing the Core Job <em>at the criteria the segment expects</em> is itself a value mechanic. Most teams over-invest in adjacent features and under-invest in nailing the criteria. Without criteria, value is a wish.</p>
+<p>Examples: Chrome&#39;s address bar performs <em>&quot;open the news site whose domain I half-remember&quot;</em> with the criterion <em>&quot;&lt;3 seconds, no extra clicks&quot;</em>; Wealthfront performs <em>&quot;rebalance my portfolio quarterly without my involvement&quot;</em> with the criterion <em>&quot;I see the projected balance at 65 in plain English&quot;</em>; Stripe performs <em>&quot;accept online payments turnkey&quot;</em> with the criterion <em>&quot;integrate in one afternoon with 9 lines of code.&quot;</em></p>
+<p>Deeper: <a href="value-creation.html">Value Creation §9</a>.</p>
+<hr>
+<h3>Start performing a Job that nobody currently performs well</h3>
+<p>The Job exists, the customers exist, no acceptable Solution does. Whoever performs it first wins the segment outright. There is no incumbent to displace, only a vacuum the customer has been routing around with workarounds.</p>
+<p>Examples: Stripe in 2010 — <em>&quot;accept online payments without spending two weeks integrating PayPal&quot;</em> — the Job was real (every internet business wanted it), and the existing options (PayPal Standard, Authorize.net) were broken for developers. Wealthfront in 2012 — <em>&quot;manage my retirement turnkey at low cost&quot;</em> — big banks charged 1%+ for a worse product. Bench in 2013 — <em>&quot;do my small-business bookkeeping turnkey&quot;</em> — existing options were either DIY in QuickBooks or a $400/month local CPA. ChatGPT in 2022 — <em>&quot;generate a usable first draft of any short-form writing in 4 seconds&quot;</em> — nobody else was performing this Job at this quality.</p>
+<hr>
+<h3>Fix the Problems</h3>
+<p>Perform a Job without the Problem the customer has been hitting in their current Solution. <strong>This is especially high-leverage when the Problem sits inside the Critical Chain of Jobs, because one broken Job halts the entire Big Job.</strong> Reconstruct the chain <code>Job → Solution → Problem</code> before fixing. The named Problem is rarely the root.</p>
+<p>Examples: Stripe Checkout fixed <em>&quot;I don&#39;t know what an API key is&quot;</em> for local merchants who had been blocked at integration; Plaid fixed <em>&quot;upload bank statements as PDFs&quot;</em> for digital mortgage applications; TurboTax fixed <em>&quot;will the IRS catch a mistake&quot;</em> by adding accuracy guarantees; modern telehealth fixed <em>&quot;the video call won&#39;t connect after I&#39;ve filled out a 30-minute intake form&quot;</em> with end-to-end session reliability.</p>
+<p>Deeper: <a href="critical-chain.html">Critical Chain of Jobs §2, §11</a>.</p>
+<hr>
+<h3>Fix unperformed Jobs in the Critical Chain of Jobs (including Jobs outside our Core Jobs)</h3>
+<p><strong>Find Jobs that break the chain and fix them, even Jobs outside your core competence.</strong> That can mean owning a Job adjacent to your category. This is common during scaling into a new sub-segment, when the chain breaks at a Job your product never touched in the launch segment. Repair the Job onto your product, or partner with a vendor who reliably performs it.</p>
+<p>Examples: Stripe Checkout absorbed <em>&quot;explain to a non-technical merchant how to integrate payments&quot;</em> — a Job Stripe never had in their YC-stage launch market; Notion Enterprise absorbed <em>&quot;pass IT security review with SOC 2, SAML, SCIM, audit log&quot;</em> — Jobs Notion never had at the individual / small-team level; Zoom for Education absorbed <em>&quot;FERPA-compliant waiting rooms, breakout rooms, locked meetings&quot;</em> during 2020 K-12 expansion.</p>
+<p>Deeper: <a href="critical-chain.html">Critical Chain of Jobs §6, §11</a>.</p>
+<hr>
+<h3>Take the Job off the customer entirely (done-for-you)</h3>
+<p><strong>Convert the product from a tool into a service.</strong> The customer was performing the Job, and now you perform it for them. This is the strongest form of value compression, because the customer&#39;s chain shrinks by the entire Job, not just a step inside it. It carries a money premium that the <em>done-for-me-first</em> segment will pay (see <a href="value-creation.html">Value Creation §10</a>).</p>
+<p>Examples: robot vacuum vs manual vacuuming; Wealthfront vs DIY rebalancing; Belong / Mynd vs self-managed rental property; DoorDash vs cooking; Bench vs DIY bookkeeping; modern AI agents performing entire workflows (code-review, customer-outreach, document-drafting) end-to-end.</p>
+<hr>
+<h3>Perform the Next Job in the Critical Chain of Jobs (cross-sell into adjacency)</h3>
+<p><strong>Take over the next Job the customer performs after your current Core Job lands.</strong> Each absorbed Next Job is retention plus AOV growth. The customer doesn&#39;t have to leave to perform the Job, and doesn&#39;t return to a competitor&#39;s product for that adjacency.</p>
+<p>Examples: Typeform&#39;s natural next Job after <em>&quot;build the form, collect responses&quot;</em> is <em>&quot;analyze and respond to responses&quot;</em> — Typeform&#39;s Insights and integrations expand into this; Figma&#39;s natural next Job after design is implementation handoff — Dev Mode performs that Job; after-sale auto-service contracts on car sales; tax-advisor add-on after TurboTax filing; Carfax adding mortgage referral after vehicle-history report; a kitchen-and-bath remodel firm cross-selling appliances after the renovation.</p>
+<p>Deeper: <a href="critical-chain.html">Critical Chain of Jobs §9</a>.</p>
+<hr>
+<h3>Perform Orientation Jobs (including explaining what the Job Graph looks like)</h3>
+<p><strong>Perform the meta-Jobs whose verbs are <em>understand, discover, find, choose, figure out</em>.</strong> First-time customers facing a Big Job must perform an Orientation Job before they can pick a Solution. They don&#39;t know the Job Graph yet, don&#39;t know which Solutions exist, don&#39;t know how to evaluate them. The product that performs the Orientation Job becomes the customer&#39;s guide and routes them into its own Core Jobs.</p>
+<p>Examples: Lenny&#39;s Newsletter performs the Orientation Job <em>&quot;understand how to be a great product person&quot;</em> and routes paying readers to its courses and recommended tools; SmartAsset performs <em>&quot;figure out my retirement plan&quot;</em> and routes to advisor partners; Bench&#39;s blog performs <em>&quot;understand small-business bookkeeping&quot;</em> and routes to Bench&#39;s service; Coursera&#39;s recommendation engine performs <em>&quot;choose what to learn next&quot;</em> and routes to its catalog; The Wirecutter performs <em>&quot;choose the best version of this product&quot;</em> and routes to merchant affiliates.</p>
+<p>Deeper: <a href="job-types-and-properties.html">Job Types and Properties</a>; <a href="consideration-activators.html">Consideration Activators</a>.</p>
+<hr>
+<h3>Break value into slices and deliver parts of it earlier in the Critical Chain of Jobs</h3>
+<p><strong>Spread the cost of getting to value across multiple steps, each delivering a slice of value.</strong> The mechanic is partial-value-delivery before commitment: lead magnet, free trial, MVP-with-basic-features, intro consultation. The customer pays less upfront, gets enough value to keep moving forward, and completes the full chain over multiple sessions. The earlier the first slice lands, the smaller the abandonment window before the first Aha Moment.</p>
+<p>Examples: a free chapter of a book; free intro lesson on Coursera / Skillshare; the first analysis free at a market-research consultancy; chatbot products that deliver a partial answer in the free tier and full reasoning in the paid; financial advisors offering a free financial-plan review as the first slice; a CRM tool&#39;s <em>&quot;see your top 10 leads scored — upgrade to see all 1,000.&quot;</em></p>
+<p>Deeper: <a href="value-creation.html">Value Creation §12</a> (Aha Moment placement).</p>
+<hr>
+<h3>Perform Jobs while simultaneously satisfying deeper needs</h3>
+<p><strong>Connect the Core Job to a base human need — status, autonomy, control, competence, belonging, safety, recognition, self-actualization.</strong> Status in particular is enormous and routinely underweighted. People pay vast sums for status-coded objects and experiences. The mechanic: identify which need your target segment is also paying to satisfy, and design the product to deliver against that need alongside the Core Job.</p>
+<p>Examples: Patek Philippe sells <em>&quot;signal who I am to my peers&quot;</em> through the watch; Tesla&#39;s interior + acceleration profile sell <em>&quot;competence + status&quot;</em> through the car; Apple Vision Pro sells <em>&quot;belong to the early-adopter tribe&quot;</em>; a Peloton bike sells <em>&quot;competence in fitness&quot;</em> visible to the household; Mercedes-Maybach sells <em>&quot;status + autonomy&quot;</em> (chauffeur-implied); premium bottled water (Voss, Fiji) sells <em>&quot;aesthetics at my dinner table.&quot;</em></p>
+<p>Deeper: <a href="scientific-foundations.html">Scientific Foundations §5-7</a>.</p>
+<hr>
+<h3>Better meet the success criteria of Core Jobs / Big Jobs</h3>
+<p><strong>Perform the same Job better against the criteria the target segment uses to evaluate it.</strong> Different segments value different criteria. The priority order over criteria is what makes them different segments (<a href="segmentation.html">Segmentation</a>). The mechanic: identify which one or several criteria dominate for your target segment, and raise performance on those specifically.</p>
+<p>Examples: Uber&#39;s tariff ladder — same Big Job <em>get from A to B</em>, different criteria per tier: Comfort raises <em>clean cabin, recent-model car, quiet driver</em>; Black raises <em>luxury vehicle, driver in formal attire</em>; XL raises <em>6+ seats, room for luggage</em>. Apple raises <em>aesthetics, build quality, ecosystem coherence</em> against the same Core Job other phones perform. Bloomberg Terminal raises <em>latency, breadth of data feeds, keystroke speed</em> against the same financial-data Core Job.</p>
+<p>Deeper: <a href="value-creation.html">Value Creation §9, §10, §11</a>.</p>
+<hr>
+<h3>Perform Small Jobs for additional Big Jobs that emerged in the process</h3>
+<p><strong>During the chain-walk, the customer&#39;s other needs activate and new Jobs appear that the customer didn&#39;t predict at the start.</strong> Those needs include safety, control, status, and recognition. Perform these emergent Small Jobs in-flight. The criterion: the customer didn&#39;t know, at the start, that they&#39;d need this Job done.</p>
+<p>Examples: during a used-car sale, the seller suddenly needs <em>&quot;verify the buyer is real,&quot; &quot;draft a watertight bill of sale,&quot; &quot;check for liens before transferring title&quot;</em> — Carfax and TruePeopleSearch absorb these. During a home renovation, the homeowner suddenly needs <em>&quot;check the contractor&#39;s license,&quot; &quot;review the change order I just received,&quot;</em> — Houzz Pro and Angi expand into these. During an enterprise SaaS evaluation, the buyer suddenly needs <em>&quot;a SOC-2 letter, a security questionnaire response&quot;</em> — modern SaaS vendors pre-prepare these.</p>
+<hr>
+<h3>Bundle multiple products / services together</h3>
+<p><strong>Combine multiple products into one package at a combined price.</strong> The customer pays less per individual product than buying them separately, but the total spend rises. This is often used with cross-sell — bundle the Next Job in the chain (a service contract with the car).</p>
+<p>Examples: Adobe Creative Cloud (Photoshop + Illustrator + InDesign + Premiere + more, priced below the individual sum); Microsoft 365; AppleCare bundling extended warranty with accidental damage protection; insurance multi-line discounts (home + auto + umbrella); cable bundles (TV + internet + phone — declining but still common).</p>
+<hr>
+<h3>Kill cycles in the Critical Chain of Jobs — including across different people</h3>
+<p><strong>Eliminate customer-visible return-for-rework loops in the chain.</strong> Cycles are the dominant break source. Each return iteration is felt at ~2× the weight of forward progress, and three cycle iterations wipe out six forward Jobs&#39; worth of perceived value. The default fix: front-load requirements so the customer provides everything upfront and the chain runs without returns.</p>
+<p>Examples: Plaid&#39;s instant account-linking killed the document-cycle in digital mortgage applications (lender requests doc A → submit → asks for B → submit → asks for C that could have been asked at A); modern PSA systems front-load tax requirements; SOC-2 audit firms that ask for the full evidence list upfront vs. iteratively; TurboTax&#39;s <em>&quot;let&#39;s collect all your forms at once&quot;</em> import flow replaced the cycle where the user had to re-enter when something was missing.</p>
+<p>Deeper: <a href="critical-chain.html">Critical Chain of Jobs §8</a>.</p>
+<hr>
+<h3>Fix Critical Chain of Jobs breaks between different people</h3>
+<p><strong>Repair role-to-role hand-offs where ownership ambiguity, latency, and information loss cluster.</strong> The majority of multi-role chain-breaks happen at role boundaries, not inside a single role&#39;s lane. Diagnostic order: map the chain, fix hand-offs first, kill cycles second, optimize single-role lanes last.</p>
+<p>Examples: Tesla owns sales + service + financing — collapses the typical car-buy hand-off sequence (dealer → finance → service department) into one company. Stripe owns merchant-onboarding + payments + reconciliation + dispute-handling. Warby Parker owns prescription + frames + retail. Zappos owns service + fulfillment. In healthcare, integrated systems (Kaiser Permanente, Mayo) collapse the GP → lab → specialist → primary-care hand-off chain that breaks routinely in fragmented systems.</p>
+<p>Deeper: <a href="critical-chain.html">Critical Chain of Jobs §7, §11</a>.</p>
+<hr>
+<h2>How §11 picks from this catalog</h2>
+<p><a href="value-creation.html">Value Creation §11</a> maps each segment&#39;s priority criterion (or criteria) to the lead mechanic(s) to test first. The full set above is what §11 picks from. Real value-design sessions layer two or three mechanics, but the <em>lead</em> mechanic is chosen against the segment&#39;s priority criterion (per <a href="value-creation.html">Value Creation §10</a>).</p>
+<p>For operational how-tos — when to apply each mechanic, what to test before building, common failure modes, layered combinations, and the broader 100+ catalog including go-to-market, retention, pricing, scaling, exit-from-direct-competition — see the internal-only Mechanics Catalog.</p>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

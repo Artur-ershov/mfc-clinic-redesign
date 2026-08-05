@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Basic AJTBD Interview Guide and Principles</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Basic AJTBD Interview Guide and Principles</h1>
+<p>An AJTBD interview reconstructs a customer&#39;s motivation from what they actually did. One 30–90 minute conversation surfaces the Jobs the person performs, the success criteria by which they judge &quot;good enough,&quot; and the Consideration Set they compared at the moment of choice. It also surfaces the Critical Chain of Jobs they walked, the Aha Moments and Problems along the way, and the Barriers that stopped them. Throughout, it anchors on past performance rather than on what they say they&#39;ll do next.</p>
+<p>This guide is the distilled version. It covers the principles that govern every interview and the question bank you actually ask. The conceptual base lives in the canon — start with <a href="../Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html">AJTBD key theses</a>. The interview is upstream of everything else. The Jobs, criteria, and competitors it surfaces are what the strategy is later built from.</p>
+<hr>
+<h2>1. Main principles</h2>
+<ol>
+<li><p><strong>The question set for one Job is universal — the real skill is choosing which Jobs to study.</strong> Every Job, from a life-level Big Job to a tiny Micro Job, has the same eight elements (<a href="../Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html">AJTBD key theses §3</a>), and the same questions surface them (§7). What changes between interviews is selection. A customer&#39;s Job Graph holds hundreds of Jobs and interview time is fixed. Choosing the right Jobs to dig for the business problem at hand is the highest-leverage decision in the method.</p>
+</li>
+<li><p><strong>Every interview moves a specific business goal.</strong> You never start from a blank slate. You know which product, which stage, which business goal, and which candidate mechanic (Value, Go To Market, Growth, or any other). The strategy tells you which Jobs to dig. &quot;Add an adjacent segment&quot; sends you to people paying for a variation of the same Core Jobs. &quot;Perform the Next Job&quot; sends you to the Next Small Jobs in the chain. &quot;Capture the Previous Job&quot; sends you to the Previous Small Jobs.</p>
+</li>
+<li><p><strong>Study Jobs by past expenditure of money, time, and energy — never by future intent.</strong> People are poor forecasters of their own behavior and love to fantasize. They buy gym memberships and don&#39;t go. The reliable filter is a past expenditure: they paid, spent time, burned energy. Future-tense intent with no past commitment is a Fake Job (<a href="../Advanced-Jobs-To-Be-Done/job-types-and-properties.html">Job Types and Properties §8</a>). Building for it is among the most expensive errors in product work. Screen on it: <em>&quot;When did you last pay for X? What did you pay? What did you do as a result?&quot;</em> The one narrow exception is B2B. A Decision Maker is paid to forecast, so you may study Jobs they&#39;re already starting to act on, knowing the Job may still never get performed (<a href="../Advanced-Jobs-To-Be-Done/b2b.html">B2B</a>).</p>
+</li>
+<li><p><strong>Open with an open question, then test your hypotheses, then check you didn&#39;t lead them.</strong> Open with <em>&quot;Tell me which tasks you solve with {product}&quot;</em> (use the everyday word <em>task</em>, never the term <em>Job</em>). Then probe your hypotheses about trigger, context, and criteria. Then verify: <em>&quot;Does this genuinely annoy you, or did I lead you?&quot;</em> The open question protects against planting answers. The probe protects against the respondent not knowing what you mean or simply forgetting.</p>
+</li>
+<li><p><strong>Capturing the Jobs is your responsibility, not the respondent&#39;s.</strong> They don&#39;t owe you a complete, well-structured Job — you reconstruct it. That&#39;s why you probe, paraphrase, and remind. If a Job or one of its elements slips by unnamed, that&#39;s on you, not on them.</p>
+</li>
+<li><p><strong>Record what they said — don&#39;t invent.</strong> Copy the respondent&#39;s own words for the criteria, context, trigger, and emotions. The moment you paraphrase a Job into your own tidy wording, you&#39;ve quietly swapped their Job for your hypothesis. Then you design for the hypothesis.</p>
+</li>
+<li><p><strong>A Problem is a consequence of a Job — study Jobs first.</strong> A Problem is what the customer feels when a Solution hired for a Job performs below its success criteria (<a href="../Advanced-Jobs-To-Be-Done/behaviour-change.html">Behaviour Change §7</a>). You can recruit people with a Problem and dig it. But always reconstruct which Job was being performed when it fired, or you&#39;re working a symptom.</p>
+</li>
+<li><p><strong>Establish emotional contact before you dig.</strong> You&#39;re talking person-to-person, not function-to-function. Without contact you never reach the Big Job, the emotions, or an honest answer to the sell. Spend the first minutes earning it (§3).</p>
+</li>
+<li><p><strong>Never accept an abstract answer.</strong> &quot;Fast,&quot; &quot;safe,&quot; &quot;easy,&quot; &quot;good&quot; are not data. Push each to a concrete number or fact: &quot;fast?&quot; becomes &quot;it took 4 minutes,&quot; &quot;safe?&quot; becomes &quot;my data was encrypted.&quot; Stop at the abstraction and you have nothing to design, price, or measure against (§7).</p>
+</li>
+<li><p><strong>Always come with an offer, and sell.</strong> The sell is the ultimate test of everything you think you learned. It tests whether the Job is real and present, whether the money is there, and whether the value and its communication land. It often teaches more than the Job study itself (§9).</p>
+</li>
+<li><p><strong>In B2B, always study personal Jobs.</strong> Behind every business Job (<em>hit the plan, cut cost, ship by Q3</em>) sits a personal Job (<em>don&#39;t get fired, get promoted, win recognition</em>). The personal Job is usually what actually moves the human. A team that sells only to the business Job loses to one that knows the personal one (<a href="../Advanced-Jobs-To-Be-Done/b2b.html">B2B §5</a>).</p>
+</li>
+<li><p><strong>The respondent&#39;s time is a gift — moderate the conversation to spend it well.</strong> Some respondents ramble, and letting them run costs you the information you came for. Interrupt gently and steer back: <em>&quot;sorry to cut in; we have little time and a lot I still want to learn from you.&quot;</em> Extracting their gift sloppily wastes what they gave you.</p>
+</li>
+</ol>
+<p>One caveat on what interviews can reach. Mostly-conscious Jobs (<em>&quot;file my return on time,&quot; &quot;ship the feature this sprint&quot;</em>) interview cleanly. Mostly-unconscious drivers (status, identity, safety) don&#39;t. Ask <em>&quot;why did you buy the premium one?&quot;</em> and the inner narrator returns a convincing, functional, false story (<a href="../Advanced-Jobs-To-Be-Done/scientific-foundations.html">Scientific Foundations §10</a>). For those, generate the hypothesis yourself and validate it through sales, A/B, or messaging tests, not through more direct questioning.</p>
+<h2>2. The interview arc — eight blocks</h2>
+<p>A fixed time budget (30, 45, 60, or 90 minutes), spent to extract the most valuable information for the business problem. For a 60-minute interview:</p>
+<ol>
+<li>Establish emotional contact (§3) — 3–5 min</li>
+<li>Qualifying questions (segment-routing characteristics) — up to 10 min</li>
+<li>Map the Job Graph (§4–§5) — 5–10 min</li>
+<li>Choose which Jobs to dig — rolls into the mapping and the detail</li>
+<li>Dig several Jobs in detail (§7–§8) — 30–40 min, the main event</li>
+<li>Sell (§9) — 5–10 min</li>
+<li>Get a referral — <em>&quot;Which of your colleagues or peers would you recommend I talk to?&quot;</em> — 2–3 min</li>
+</ol>
+<p>(B2B adds a roles, deals, and budget block — see <a href="../Advanced-Jobs-To-Be-Done/b2b.html">B2B</a>.)</p>
+<h2>3. Establish emotional contact first — it&#39;s the gate to the Big Job and the emotions</h2>
+<p><strong>Talk person-to-person, not function-to-function — and do it in the first minutes.</strong> Without emotional contact the respondent only opens up in the second half, and you lose the part of the interview where the prime cuts live: the emotions and the Big Job. Emotions matter because they&#39;re the brain&#39;s read-out of how Jobs are being performed (<a href="../Advanced-Jobs-To-Be-Done/scientific-foundations.html">Scientific Foundations §9</a>). You can&#39;t create value against an emotion you never surfaced.</p>
+<p>A firewall fires whenever you want something from someone who doesn&#39;t yet know why they should talk to you. It searches, instantly, for three answers: <em>Is this person a threat? Where do they rank me — above, level, below? Do I want them in my pack?</em> Leave the questions unanswered and the respondent checks out. The moves below answer them.</p>
+<ul>
+<li>Basic contact (1–5 min): smile, show your hands, sit up straight, demonstrate emotion and a little vulnerability (it raises trust once you&#39;re at equal status), and find something in common.</li>
+<li>Great contact (4–5 min) is where the unprompted sharing starts: a <em>sincere</em> compliment (never fake, the detector is excellent), active listening (<em>&quot;mm-hmm, got it, interesting&quot;</em> — over video it also signals the channel is alive), and paraphrasing the respondent&#39;s last few words back with a small shift, until they say <em>&quot;exactly — that&#39;s it.&quot;</em></li>
+</ul>
+<p>Great contact also makes the sell (§9) diagnostic. When you&#39;re on warm terms and they still don&#39;t buy, the likeliest reason is they don&#39;t need it — a clean signal weak contact would have muddied.</p>
+<h2>4. Open the Graph dig from what you already know — a Job hypothesis, or a Solution</h2>
+<p><strong>This first pass defines only the main Jobs and Solutions, not in detail.</strong> The aim is to surface the Graph&#39;s main nodes and pick the most important or most problematic expected outcome (= Job) to dig in detail later (§7). Where you open depends on what you walk in knowing:</p>
+<ul>
+<li>You have a Job hypothesis but don&#39;t know which Solution they use. Open on the Job, surface the Solutions, then read the outcomes off each Solution:<ul>
+<li><em>(all solutions)</em> — <em>&quot;Tell me how you {job hypothesis}.&quot;</em> This lists the Solutions they hire for it.</li>
+<li><em>(all expected outcomes)</em> — <em>&quot;What outcomes do you typically expect from using {each solution}?&quot;</em> Ask per Solution, then <em>&quot;Is there anything else?&quot;</em> to exhaust the list.</li>
+</ul>
+</li>
+<li>You don&#39;t have a Job hypothesis but know which Solution they use. Start from the Solution and read the Jobs off it directly:<ul>
+<li><em>(all expected outcomes)</em> — <em>&quot;What outcomes do you typically expect from using {solution}?&quot;</em> Then <em>&quot;Is there anything else?&quot;</em></li>
+</ul>
+</li>
+</ul>
+<p>Either branch ends with a list of expected outcomes (Jobs). <strong>Pick the most important or most problematic one to dig in detail (§7)</strong>, then expand around it with the six directions below (§5). If a single answer contains several expected outcomes, split them into separate Jobs before continuing (§7).</p>
+<h2>5. Map the Graph fast — six directions, every question anchored on the higher-level Job</h2>
+<p>With practice you map a Graph in 5–10 minutes. From any node §4 surfaced, expand up, sideways, and down. <strong>The anchoring rule: every question carries the expected outcome of the higher-level Job in its frame.</strong> That anchor is what keeps the answer inside the Graph instead of drifting (<a href="../Advanced-Jobs-To-Be-Done/job-graph.html">Job Graph §17</a>). Substitute <code>{braces}</code> with the respondent&#39;s own words.</p>
+<ul>
+<li>Anchor, Core Jobs: the Jobs §4 surfaced for the Solution under study.</li>
+<li>Up, Big Jobs: <em>&quot;Why do you want {the expected outcome of the Core Job}? In order to do what?&quot;</em> Ask for every Core Job, and go at least one level up.</li>
+<li>Sideways, Previous Jobs (through the Big Job): <em>&quot;Step by step, what tasks did you do for {the Big Job&#39;s expected outcome} before {the Core Job&#39;s expected outcome}?&quot;</em></li>
+<li>Sideways, Next Jobs (through the Big Job): <em>&quot;What tasks do you do for {the Big Job&#39;s expected outcome} after {the Core Job&#39;s expected outcome}?&quot;</em></li>
+<li>Sideways, parallel siblings: <em>&quot;What other tasks do you do for {the Big Job&#39;s expected outcome}, besides {the Core Job&#39;s expected outcome}?&quot;</em></li>
+<li>Down, sequential: <em>&quot;Step by step, what tasks did you do to get {the expected outcome of the Job we&#39;re zooming into}?&quot;</em></li>
+<li>Down, parallel uses: <em>&quot;What are your usual usage scenarios with {product}?&quot;</em></li>
+</ul>
+<p>Ask Previous and Next through the Big Job. Unanchored, <em>&quot;what did you do before {product}?&quot;</em> invites <em>&quot;I had breakfast.&quot;</em> Anchored to the outcome, the answer stays in the Graph.</p>
+<h2>6. Get the Core / Big level right — it&#39;s the origin of the coordinate system</h2>
+<p>The Core Job is the highest-level Job the product performs fully and can&#39;t climb above right now. The Big Job is one level above. It carries the motivation, but the product doesn&#39;t fully perform it (<a href="../Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html">AJTBD key theses §9</a>). <strong>Place the Core Job wrong and Previous, Next, up, and down all come out wrong</strong> — so pin the level with the climb test (<a href="../Advanced-Jobs-To-Be-Done/job-graph.html">Job Graph §3</a>):</p>
+<ol>
+<li>Start from a Job the customer named when you opened the dig (§4) — the same open <em>&quot;which tasks do you solve with our product?&quot;</em> question. Its answers are your candidate Core Jobs.</li>
+<li>Does our product perform this Job fully, end-to-end, every sub-Job inside the product? If no, it sits too high, so drop one level and retry. The operational tell of &quot;fully&quot; is that most Micro Jobs underneath happen inside the product.</li>
+<li>If yes, can we climb one level up and still fully perform that higher Job? If yes, climb and retry from step 2. Stop when it&#39;s fully-performed but one level up is not. That level is the Core Job.</li>
+</ol>
+<p>Climb as high as you honestly can: the highest level the product fully performs today (it rises as the product absorbs more sibling and Micro Jobs). Then validate the finished Graph by applying <em>&quot;for what? / in order to do what?&quot;</em> to every node (<a href="../Advanced-Jobs-To-Be-Done/job-graph.html">Job Graph §18</a>).</p>
+<h2>7. Dig one Job in detail — first decide: a recurring Job or a one-off?</h2>
+<p><strong>Before you dig, decide which kind of Job you&#39;re studying — it changes how you ask.</strong></p>
+<ul>
+<li>A one-off or rarely-performed Job the person did once or a few times — <em>rent an apartment, buy a house, hire an employee.</em> Anchor on that one concrete past instance and ask in the past tense: what they wanted that time, what they did, how it went.</li>
+<li>A high-frequency Job the person performs many times — <em>take a rideshare, order food delivery.</em> Here you usually want how they perform it in general, the typical habitual pattern, not the single last instance (one instance can be idiosyncratic). So ask in the present or habitual tense (<em>&quot;usually&quot;</em>), and also ask how often they do it.</li>
+</ul>
+<p>Match the framing to the Job. The two columns below give the wording for each. Three disciplines hold for both. Never stop at an abstract criterion or value (<em>&quot;fast&quot;</em> → <em>&quot;fast as in what? — it took 4 minutes&quot;</em>; a concrete criterion has a direction, which axis, and a level, the threshold above which they feel value and below which a Problem — <a href="../Advanced-Jobs-To-Be-Done/job-structure.html">Job Structure §8</a>). Each <code>I want to + verb</code> is a separate Job (parse a multi-verb answer like <em>&quot;rent out my place and earn steady income&quot;</em> into levels before recording). And copy the respondent&#39;s exact words — don&#39;t invent.</p>
+<h3>The Job — ask in the matching tense</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Recurring Job (usual pattern)</th>
+<th>One-off Job (that one time)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Expected outcome</strong></td>
+<td><em>&quot;What outcome <strong>do</strong> you <strong>usually get</strong> from {solution}? What <strong>are</strong> your objectives?&quot;</em></td>
+<td><em>&quot;What outcome <strong>were</strong> you <strong>expecting</strong> from {solution}? What <strong>were</strong> your objectives?&quot;</em></td>
+</tr>
+<tr>
+<td><strong>Success criteria</strong></td>
+<td><em>&quot;Thinking about {expected outcome}, what specific criteria <strong>tell</strong> you you&#39;ve reached it well enough — and how would you <strong>ideally like to reach</strong> it?&quot;</em></td>
+<td><em>&quot;Thinking about {expected outcome}, what specific criteria <strong>told</strong> you you&#39;d reached it well enough — and how would you <strong>ideally have wanted to reach</strong> it?&quot;</em></td>
+</tr>
+<tr>
+<td><strong>Activating knowledge</strong> <em>(optional — ask if the Job may be dormant; same question either way)</em></td>
+<td><em>&quot;Was there something you learned that made you want {expected outcome}? Did it follow some experience?&quot;</em></td>
+<td><em>&quot;Was there something you learned that made you want {expected outcome}? Did it follow some experience?&quot;</em></td>
+</tr>
+<tr>
+<td><strong>Context</strong></td>
+<td><em>&quot;What <strong>situations do</strong> you <strong>usually find yourself</strong> in when you <strong>decide</strong> to use {solution} to get {expected outcome}?&quot;</em></td>
+<td><em>&quot;What <strong>situation were</strong> you in when you <strong>decided</strong> to use {solution} to get {expected outcome}?&quot;</em></td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td><em>&quot;Tell me about the moment you <strong>start</strong> doing something to get {expected outcome} — what <strong>usually triggers</strong> you?&quot;</em></td>
+<td><em>&quot;Tell me about the moment you <strong>started</strong> doing something to get {expected outcome} — what <strong>triggered</strong> you?&quot;</em></td>
+</tr>
+<tr>
+<td><strong>Higher-level Job</strong></td>
+<td><em>&quot;Why <strong>do</strong> you <strong>need</strong> {expected outcome}? Why <strong>does</strong> it matter to you?&quot;</em></td>
+<td><em>&quot;Why <strong>did</strong> you <strong>want</strong> {expected outcome}? Why <strong>did</strong> it matter to you?&quot;</em></td>
+</tr>
+<tr>
+<td><strong>Positive emotions</strong></td>
+<td><em>&quot;How <strong>do</strong> you want to feel after getting {the higher-level Job&#39;s expected outcome}?&quot;</em></td>
+<td><em>&quot;How <strong>did</strong> you want to feel after getting {the higher-level Job&#39;s expected outcome}?&quot;</em></td>
+</tr>
+<tr>
+<td><strong>Negative emotions</strong></td>
+<td><em>&quot;Until you <strong>get</strong> {the higher-level Job&#39;s expected outcome}, <strong>do</strong> you feel any negative emotions?&quot;</em></td>
+<td><em>&quot;Until you <strong>got</strong> {the higher-level Job&#39;s expected outcome}, <strong>did</strong> you feel any negative emotions?&quot;</em></td>
+</tr>
+</tbody></table>
+<p><em>On negative emotions: you want what they felt before using {solution}, not problems that came up during use. A flat &quot;nothing&quot; isn&#39;t proof there&#39;s no emotion — offer an example and build a little safety first.</em></p>
+<h3>The Job&#39;s weight</h3>
+<ul>
+<li>Frequency <em>(recurring Jobs)</em> — <em>&quot;How many times per month or year do you use {solution} to get {expected outcome}?&quot;</em></li>
+<li>Importance (1–10) — <em>&quot;How important is getting {expected outcome}, where 10 is a matter of life-and-death or the safety of you and your family?&quot;</em> — <em>if 8–10: &quot;help me understand why it&#39;s so high.&quot;</em></li>
+</ul>
+<h3>The chosen solution — go deeper (same for both)</h3>
+<ul>
+<li>Satisfaction (1–10) — <em>&quot;How satisfied are you with how {solution} lets you get {expected outcome} — 10 fits perfectly, 1 not at all?&quot;</em> — <em>if not 10, why not?</em></li>
+<li>Value — <em>&quot;What is the value of {solution} for you, in the context of {expected outcome}?&quot;</em></li>
+<li>Aha Moment — <em>&quot;At what point did you realize {solution}&#39;s value — the moment you thought &#39;oh, that&#39;s cool&#39;?&quot;</em></li>
+<li>Price and value for money — <em>&quot;How much did you pay for {solution}? On a 1–10 scale, how well does the price match its value?&quot;</em></li>
+<li>Problems — <em>&quot;Did you hit any issues getting {expected outcome} with {solution}? Was there ever a time you simply couldn&#39;t get it?&quot;</em> — <em>if problems pile up, run a full problem interview.</em></li>
+<li>Solution drivers — <em>&quot;Was there something that motivated you to start using {solution}?&quot;</em></li>
+<li>Fears — <em>&quot;Did you have any fear or worry that {solution} wouldn&#39;t get you {expected outcome} the way you needed? What was it?&quot;</em></li>
+<li>Barriers — <em>&quot;Was there anything that stopped you from buying or starting to use {solution}?&quot;</em></li>
+<li>Alternatives — <em>&quot;Have you considered other products to get {expected outcome}? If so, tell me more.&quot;</em> — <em>if they used a different solution for this Job in the past, this is where a switch interview fits.</em></li>
+</ul>
+<h2>8. Two reminders for reading those answers right — Fears, and where competitors live</h2>
+<p>The §7 bank already asks the Consideration-Activators, Fears, Barriers, alternative-solution, and Problem questions. Two concepts sharpen those answers, each with a wider version of a bank question:</p>
+<ul>
+<li>A Fear is not a Barrier. A Barrier is an objective fact that makes the new way non-executable: no integration, an unsupported region, no budget code. A Fear is the customer&#39;s prediction that a Barrier, Problem, or loss will happen (<a href="../Advanced-Jobs-To-Be-Done/barrier-removal.html">Barrier Removal §1, §3</a>). The §7 bank surfaces fears about the chosen Solution. Widen them across the alternatives too — <em>&quot;What bad thing could happen if you go after {expected outcome} this way?&quot;</em> — because customers fear the other ways as much as yours. To <em>&quot;make idle cash work&quot;</em> there&#39;s a savings account, T-bills, an index fund, real estate, each with its own Fears.</li>
+<li>The real competitive set sits at the Big Job, not the Core Job (<a href="../Advanced-Jobs-To-Be-Done/job-graph.html">Job Graph §15</a>). Read the §7 alternatives answer at that level. The substitutes a customer weighs against the Big Job (a mattress competes with coffee for <em>&quot;function on no sleep&quot;</em>), not just the direct look-alikes, are who you actually compete with.</li>
+</ul>
+<h2>9. Always sell — it&#39;s the ultimate test of what you think you learned</h2>
+<p>Once you know the Jobs, you can sell through them — so come to every interview with an offer (at minimum a verbal one, at most a landing page or a proposal). Describing value gets you a polite <em>&quot;yeah, sounds good.&quot;</em> <strong>Getting the person to do something right now is the real test.</strong> It tests, all at once, whether the Job is real and present, whether they have the money, whether it&#39;s important enough, whether the value lands, whether your value communication works, and whether your way of removing Barriers works — or whether Barriers exist you never knew about. Often the sell teaches you more than the Job study did.</p>
+<h2>10. Two starting points</h2>
+<ul>
+<li><p>Research among paying customers: segment the base by margin and satisfaction, interview the profitable-and-satisfied (A/B), and prioritize Core Jobs with criteria, Consideration Activators, value, Aha Moment, and Barriers (<a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation §13</a>). Output: everything you need for landing pages, communication, funnels, and onboarding.</p>
+</li>
+<li><p>Finding segments from scratch (no sales, or looking outside the base): recruit people who already pay a competing Solution, and choose the altitude you sample at (<a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation §3, §14</a>):</p>
+<ul>
+<li>From the broad Big Job — the widest net. It surfaces Core Jobs and segments you&#39;d never have imagined, but it&#39;s the longer, more expensive search, and it raises the odds you&#39;ll end up reshaping the product to fit what you find.</li>
+<li>From the current Core Job in all its success-criteria variants, with the narrowing factors stripped off — faster and cheaper, but a lower chance of a radically new discovery, because you&#39;re searching close to what you already do.</li>
+</ul>
+<p>Either way: sell on every interview, run ~60 interviews comparing segment against segment, and stop when ten in a row produce no new Jobs. Output: a Map of Segments and the choice of target segment.</p>
+</li>
+</ul>
+<p>Across both, the per-Job questions are universal. You choose which Jobs to dig. All else equal, importance order is success criteria &gt; Consideration Activators &gt; value &gt; Aha Moment &gt; Barriers. Discover the broad market before you narrow, so a filter applied too early doesn&#39;t delete an attractive segment unseen (<a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation §2</a>).</p>
+<hr>
+<h2>Cross-references</h2>
+<ul>
+<li><a href="../Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html">AJTBD key theses</a> — the conceptual base: the eight-element Job (§3), the four levels (§9), the Critical Chain of Jobs (§10), segmentation by Jobs (§12), Consideration Activators (§18), past-payment recruiting (§15), B2B specifics (§25).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/job-structure.html">Job Structure</a> — the eight elements and the per-element interview questions (§3–§10).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/job-graph.html">Job Graph</a> — the six-direction Graph-study question set (§17), the climb test (§3), Graph validation (§18), the real competitive set (§15).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/critical-chain.html">Critical Chain of Jobs</a> — researching the chain in an interview (§11).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation</a> — define the broad market before narrowing, at the Big-Job or current-Core-Job altitude (§2, §3, §14); ABCDX before AJTBD-on-A/B (§13).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/consideration-activators.html">Consideration Activators</a> — the five Activators (§1) and the surfacing question (§12).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/behaviour-change.html">Behaviour Change</a> — Aha Moment and Problem (§7); receptivity windows / triggers (§8).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/barrier-removal.html">Barrier Removal</a> — Barrier vs Fear (§1, §3); Barrier interview questions (§7).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/job-types-and-properties.html">Job Types and Properties</a> — Fake Jobs and the past-payment filter (§8).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/scientific-foundations.html">Scientific Foundations</a> — why direct &quot;why&quot; questions are unreliable (§10).</li>
+<li><a href="../Advanced-Jobs-To-Be-Done/b2b.html">B2B</a> — the B2B roles / deals / budget block and personal Jobs.</li>
+</ul>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

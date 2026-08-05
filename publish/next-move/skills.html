@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Скиллы Next Move Theory — восемь производителей и два контракта</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../">← весь набор</a> · <a href="./">next-move/</a></p>
+<h1>Скиллы Next Move Theory — восемь производителей и два контракта</h1>
+<p>Это описание, а не сами файлы скиллов. Исходники живут в
+<a href="https://github.com/zamesin/Next-Move-Theory-Canon-and-Skills">github.com/zamesin/Next-Move-Theory-Canon-and-Skills</a>
+и ставятся одной командой установщика; локально они лежат в <code>.claude/skills/</code> (для Claude Code)
+и <code>.agents/skills/</code> (для Codex и прочих агентов).</p>
+<p>Все скиллы читают канон <strong>во время работы</strong>, а не по памяти модели. Это и есть главная
+разница с обобщённым JTBD: определения берутся из файла, а не из обучающих данных.</p>
+<hr>
+<h2>Цепочка</h2>
+<pre><code>новая идея         →  nmt-market-research
+живой продукт      →  nmt-diagnose
+есть интервью      →  nmt-analyze-interviews
+                        ↓
+                   nmt-craft-value-proposition
+                        ↓                  ↓
+         nmt-product-requirements   nmt-craft-go-to-market
+</code></pre>
+<p><code>nmt-chat</code> стоит сбоку — это собеседник, а не производитель; он же маршрутизирует
+в нужный скилл, если не понятно, с какого начинать.</p>
+<hr>
+<h2>Производители</h2>
+<h3><code>nmt-diagnose</code> — где на самом деле сломано</h3>
+<p>Разговорный скилл: до ~15 адаптивных вопросов. Сначала <strong>оспаривает цель</strong>, с которой
+вы пришли — лезет вверх по графу бизнес-задач и ищет точку роста с большим рычагом.
+Потом выкладывает всё, что находит методология: все риски (каждый слабый узел цепочки
+к прибыли, с прослеживанием к причине выше), все точки роста (убить задачу, предыдущая
+или следующая задача, подъём на уровень, соседние мелкие задачи, недообслуженные
+критерии успеха) и рискованные допущения внутри текущих инициатив (RAT).
+Исчерпывающий по находкам, сфокусированный по действию: перечисляет всё, потом говорит,
+за что взяться.</p>
+<p><strong>В прогоне МФЦ:</strong> указал сломанный узел «Сегмент + Задача» и запросил ровно ту выгрузку
+CRM, которая всё решила. Повторный проход после выгрузки пересобрал цепочку от этого узла.</p>
+<h3><code>nmt-market-research</code> — стоит ли этим заниматься</h3>
+<p>Сайзинг рынка, сегменты со скорингом по экрану отбора, конкуренты, определённые через
+задачи, гипотеза дифференциации, план рисков от действия, ранжированные стратегические
+опции — включая альтернативные рынки для разворота. Вердикт <strong>GO (к проверке) / СУЗИТЬ /
+РАЗВЕРНУТЬ</strong>. Два режима: Quick (быстро, без интернета) и Deep (сабагенты + веб).</p>
+<p><strong>В прогоне МФЦ:</strong> рынка хватает с запасом — вердикт «СУЗИТЬ». Ось сужения потом
+измерилась по CRM.</p>
+<h3><code>nmt-analyze-interviews</code> — вытащить структуру из того, что уже есть</h3>
+<p>Берёт папку или список файлов — расшифровки глубинных интервью, заметки, записи
+sales-звонков и демо, логи поддержки, открытые ответы опросов — и вытаскивает
+AJTBD-структуру: сегменты по главным задачам, персоны, набор рассмотрения,
+существующие решения и проблемы, гипотезы ценности. Каждое интервью читается в
+отдельном сабагенте, поэтому объём файлов не переполняет контекст.</p>
+<h3><code>nmt-craft-value-proposition</code> — почему они переключатся</h3>
+<p>Достаёт доминирующие критерии успеха сегмента, строит подложку из графа задач и
+критической цепочки, генерирует гипотезы ценности, прогоняя по этому графу <strong>каталог
+механик</strong> (а не придумывая одну из головы), фильтрует по выполнимости, стоимости
+стройки, юнит-экономике и конкурентоспособности, ранжирует по RICE и выдаёт
+основное + дополнительное предложение с тремя RAT-карточками и спецификацией
+под PRD.</p>
+<h3><code>nmt-product-requirements</code> — что строить</h3>
+<p>Потребляет то, что сделано выше, и <strong>никогда не переизобретает сегмент и ценность</strong>.
+Перед первым требованием прогоняет гейт <strong>«а надо ли строить»</strong> — есть ли более дешёвый
+и более эффективный способ добиться той же бизнес-цели; если способ выигрывает, PRD
+пишется под него. На выходе — функциональность, размеченная как
+главная задача → большая задача → механика ценности → критерии успеха → Aha-момент
+на критической цепочке, плюс таблица пограничных случаев на ~90% сценариев.</p>
+<p><strong>В прогоне МФЦ:</strong> гейт развернул заказ клиента — полный редизайн сайта уехал из первой
+фазы в последнюю, а вперёд встал обзвон за ~0 ₽.</p>
+<h3><code>nmt-craft-go-to-market</code> — как об этом сказать</h3>
+<p>Копия лендинга, готовая к публикации, тексты объявлений по семи формулам языка задач и
+план роста: гипотезы каналов, лид-магниты, вирусные петли, сообщения кросс-села,
+ап-села и удержания. Всё говорится <strong>через большую задачу</strong> (там живёт мотивация),
+в конкретных критериях успеха, а не прилагательных; фичи идут доказательством, а не
+сообщением. Если ценность ещё не доказана, скилл говорит об этом прямо в начале: копия
+может нести ценность, но не производит её.</p>
+<h3><code>nmt-chat</code> — второе мнение</h3>
+<p>Многоходовый диалог с продуктовым советником, который думает в этой методологии.
+Объясняет понятия, диагностирует ситуации, продавливает гипотезы как скептичный
+senior PM, учит методологии и передаёт тяжёлые запросы в нужный производящий скилл.</p>
+<h3><code>nmt-upgrade</code> — обновить установку</h3>
+<p>Перезапускает официальный установщик: тянет свежий канон и скиллы из публичного репозитория,
+обновляет блок правил в <code>CLAUDE.md</code> / <code>AGENTS.md</code> и README. Идемпотентен, не трогает
+ваши файлы и не удаляет посторонние скиллы.</p>
+<hr>
+<h2>Контракты</h2>
+<h3>Контракт продюсера (<code>PRODUCER-CONTRACT.md</code>)</h3>
+<p>Шесть сквозных требований ко всем производящим скиллам, выросшие из обратной связи:</p>
+<ol>
+<li><strong>Вертолётный вид</strong> печатается до первого вопроса — читатель понимает, куда его ведут.</li>
+<li>Спрашивается формат вывода — <strong>Markdown или HTML</strong>.</li>
+<li>Любой ввод пользователя держится как <strong>гипотеза</strong>, а не факт, и наверх выносится блок
+«риски в том, что вы мне дали».</li>
+<li>Печатается <strong>долг проверки</strong>, и вердикт пишется как <strong><code>GO (к проверке)</code></strong> — никогда
+голым <code>GO</code>.</li>
+<li>Принимается произвольный путь сохранения.</li>
+<li>Режим Deep гоняет <strong>порог доказательности + цикл самокритики</strong>.</li>
+</ol>
+<h3>Контракт читаемости (<code>READABILITY-CONTRACT.md</code>)</h3>
+<p>Три слоя чтения в одном документе: слой 1 — простым языком для того, кто принимает
+решение; слой 2 — рассуждение, почему именно так; слой 3 — полная работа с трассировкой.
+Ссылки-якоря разрешаются однозначно, дисклеймеры даются один раз, цитаты методологии
+убираются из потока чтения в свёрнутые блоки.</p>
+<hr>
+<p>Автор методологии и скиллов — <strong>Иван Замесин</strong>, <a href="http://nextmovetheory.com/?utm_source=bundle&utm_medium=skills">nextmovetheory.com</a>.
+Лицензия CC BY-NC-SA 4.0.</p>
+
+</div>
+</body>
+</html>

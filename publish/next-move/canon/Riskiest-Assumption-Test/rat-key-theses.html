@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Riskiest Assumption Test (RAT) key theses</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Riskiest Assumption Test (RAT) key theses</h1>
+<p>RAT is the Next Move Theory discipline for validating product ideas, feature ideas, and strategic-initiative ideas before the resources of a build are spent on them. Every new initiative is a stack of assumptions — beliefs about who the customer is, what they will pay for, whether the channel will scale, whether the unit economics close, whether the regulator allows it. <strong>RAT is the practice of surfacing every assumption, ranking them by how lethal they are if wrong, and buying the cheapest possible evidence against the most lethal ones first.</strong></p>
+<p>Most of what a product team will ever decide is downstream of running RAT well. Whether to start an initiative, whether to pivot it, whether to kill it, what to test next — all of it. It is among the most consequential disciplines in the methodology, and the operational backbone of every product decision under uncertainty.</p>
+<blockquote>
+<p><strong>Authorship.</strong> The name <em>Riskiest Assumption Test</em> was introduced by Rik Higham, then a Senior Product Manager at Skyscanner, in <a href="https://hackernoon.com/the-mvp-is-dead-long-live-the-rat-233d5d16ab02"><em>The MVP is dead. Long live the RAT</em>, HackerNoon, 2016</a>. The underlying instinct — that an early-stage product is a stack of risky beliefs that must be tested, not built around — runs back to Steve Blank&#39;s Customer Development and Eric Ries&#39;s <a href="https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898"><em>The Lean Startup</em>, 2011</a>. Higham&#39;s contribution was the inversion in framing: the MVP is not the answer, the riskiest-assumption test is. This page extends Higham&#39;s name with the Next Move Theory operating logic on top.</p>
+</blockquote>
+<hr>
+<h2>1. RAT is a written list of positively-stated risky assumptions — a cause-and-effect chain rooted in Segments and Jobs</h2>
+<p>Every new initiative is a chain of cause-and-effect-linked risky assumptions. Any product, any feature, any market entry, any pricing change, any new channel, without exception. The chain is rooted in Segments and Jobs: the segments we serve and the Core Jobs we choose to compete on (per <a href="../Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html">AJTBD key theses §12</a>).</p>
+<p><strong>The RAT is a <em>written</em> list of positively-stated risky assumptions on which the initiative&#39;s success depends.</strong> Every link of the chain appears in a form falsifiable by a single experiment. The form is positive: <em>&quot;the market is large enough&quot;</em> not <em>&quot;the market might be too small,&quot;</em> <em>&quot;the segment pays at our price&quot;</em> not <em>&quot;customers might not pay.&quot;</em> The positive form tells the team what to confirm, not what to worry about.</p>
+<p>The main risky assumptions in the chain (a real RAT usually contains many more; see §5 on the product-specific custom layer):</p>
+<ul>
+<li>Market. <em>A market exists, is large enough to support the business, is growing, and is free of regulation that would prevent us from operating in it.</em></li>
+<li>Segments and Jobs. <em>Specific segments of people performing similar Core Jobs exist inside the market, are large enough, and are reachable — and the Core Jobs we have chosen to compete on are the most attractive Jobs of those segments: economically most viable and we&#39;re able to create substantial value for these Core Jobs</em></li>
+<li>Value. <em>Customers from those segments buy our product to perform those Core Jobs.</em></li>
+<li>Unit economics. <em>Average margin per paying customer hits target.</em></li>
+<li>Acquisition channels. <em>Repeatable channels exist that work in tight coupling with the unit-economics shape — channel CPA fits inside the unit-econ budget; channels scale; lead flow is predictable.</em></li>
+</ul>
+<p><strong>Get the Segments-and-Jobs assumption wrong and every assumption below it collapses with it.</strong> That happens when you pick a non-existent segment, or pick the wrong Core Jobs to compete on. The reverse is not true. A failure in channels does not invalidate a working Segments-and-Jobs choice. Segments-and-Jobs is almost always the highest-leverage decision in a product cycle, and the most common location of the killing mistake (detail in §2; chain-break propagation in §9). We compete on the Jobs we picked, for the segments we picked. Get either side wrong and the rest of the chain has nothing to stand on.</p>
+<p><strong>Survival across the stack is multiplicative.</strong> Each assumption is an independent bet. The probability the initiative survives is the product of the per-assumption survival probabilities. Take a worked example with three of the main risky assumptions: segments with the Core Jobs we want to compete on exist, customers in those segments buy our product to perform those Jobs, unit economics close. At a per-assumption survival rate of 20% (empirically optimistic; see <a href="https://www.abtasty.com/blog/1000-experiments-club-ronny-kohavi/">Ronny Kohavi interview, AB Tasty</a>, <em>&quot;over two-thirds of ideas actually fail to move the metrics they were designed to improve&quot;</em>), combined survival is <code>0.2³ = 0.8%</code>, roughly one in a hundred and twenty-five. Every additional risky assumption multiplies the death rate. Every dropped assumption multiplies survival by <code>1/p</code>. <strong>The highest-leverage move on a new initiative is rarely to add anything — it is to remove a risky assumption from the stack</strong> (drop-it exercise; detailed examples in §10).</p>
+<p>Operational consequences:</p>
+<ul>
+<li>Every assumption must be visible, the comfortable ones and the painful ones equally. Most teams unconsciously work on a sub-list — market, segment, value, maybe demand — and skip unit economics, regulatory risk, founder-team risk, and the operational assumptions that will actually kill them. The skipped ones bet against the team silently and win silently. Write down every belief the product depends on before the first dollar is spent on the build.</li>
+<li>The killing assumption often hides in product-specific custom risks, not in the main chain. The chain above is the universal layer that every initiative has. The custom layer (§5) is where the assumptions specific to <em>this</em> product live.</li>
+<li>The default direction on a new initiative is subtractive, not additive. When the team cannot decide whether to add or remove a complication, the math says remove (compare with <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §1 Problem 1</a>, where the brain&#39;s drive is to remove entities).</li>
+</ul>
+<p>A worked example — Claude Code at launch. A real RAT, in rough reconstruction (the actual one belongs to the team):</p>
+<ol>
+<li><em>The TAM is not the AI-coding-tools market — it is the market for writing software (global engineering labor and tooling spend). Enormous, growing fast, free of regulation that would block the product.</em></li>
+<li><em>A segment of decision-makers — CTOs, VPs of Engineering, Heads of Platform / Developer Productivity — at companies with engineering teams exists, is large enough, and is reachable. The Core Jobs we have chosen to compete on are <em>&quot;allocate the engineering-AI / developer-tools budget,&quot;</em> <em>&quot;pick an AI coding tool to standardize on across the team,&quot;</em> and <em>&quot;increase shipping velocity per engineer per dollar.&quot;</em></em></li>
+<li><em>Decision-makers in that segment buy enterprise / corporate Claude Code subscriptions for their developers — i.e., when performing the Core Job of allocating their engineering-AI budget, they choose Claude Code.</em></li>
+<li><em>Unit economics close — per-seat enterprise pricing produces target margin after per-task token costs at the developer-usage levels we anticipate.</em></li>
+<li><em>Acquisition is led primarily by PR, reinforced by the team appearing on podcasts and interviews, distributed through Anthropic&#39;s own social channels, amplified by viral spread among developers who recommend Claude Code upward to their decision-makers, with direct sales for the largest enterprise accounts.</em></li>
+</ol>
+<hr>
+<h2>2. Most product cycles die at the Segments-and-Jobs choice — verify the people exist and the Jobs are right before anything else</h2>
+<p>The chain in §1 has a root: Segments and Jobs. <strong>More product cycles die from a wrong Segments-and-Jobs choice than from any other single cause.</strong> The choice sits at the top of the cascade, and every assumption below it inherits the error. A team that picks the right Segments and Jobs with the wrong product can iterate the product into value. A team that builds the right product for the wrong Segments-and-Jobs cannot — every iteration runs further from a value hypothesis that will never land.</p>
+<p>The choice has two halves, each individually fatal:</p>
+<ul>
+<li>Segments — do the people exist? Do people performing the Core Jobs we want to compete on exist, in numbers large enough to support the business, and are they reachable? A non-existent segment kills every downstream assumption immediately.</li>
+<li>Jobs — are these the right Core Jobs to compete on? Of the Core Jobs those segments perform, did we pick the most attractive — most central to the segment&#39;s motivation, most economically viable for our product to compete on? Picking a peripheral Core Job kills value and unit economics together. The segment exists, but won&#39;t pay for our solution against this Job.</li>
+</ul>
+<p>The asymmetry: a wrong Segments-and-Jobs choice cascades downstream into every link of the chain. A wrong channel does not invalidate a working Segments-and-Jobs choice. The team that gets Segments-and-Jobs wrong loses every iteration. The team that gets it right and channel wrong loses only this channel cycle. The leverage is disproportionate.</p>
+<p>Operational consequences:</p>
+<ul>
+<li>Before committing any build budget, verify that the people performing the Core Jobs you want to compete on actually exist. Not as team intuition, but as evidence from customer interviews against the actual segment definition. Existence is the cheapest assumption to validate, and failing to validate it is the most expensive miss in product work.</li>
+<li>Segment by Core Jobs and success criteria, not by Big Jobs and not by demographics. Segmentation in this methodology runs through sets of similar Core Jobs with similar success criteria and similar expected outcomes. <strong>The success criteria <em>are</em> the segmentation criteria</strong> — not demographics, not firmographics, not Big-Job similarity. Two groups of people with identical demographics and the same Big Job can have inverted Core-Job sets and are different segments. (Canon treatment: <a href="../Advanced-Jobs-To-Be-Done/ajtbd-key-theses.html">AJTBD key theses §12</a>, <a href="../Advanced-Jobs-To-Be-Done/segmentation.html">Segmentation</a>.)</li>
+</ul>
+<p>The downstream consequence. Most of the rest of this page is a methodology for making wrong-Segments-and-Jobs decisions cheaper to detect and faster to recover from. The single most leveraged hour the team spends on RAT, however, is the hour before any of that — when Segments and Jobs are being chosen for the first time.</p>
+<hr>
+<h2>3. The goal of a new initiative is not to launch it — it is to kill it or to pivot it. The work is buying knowledge.</h2>
+<p>The default mental mode in product work is <em>we are building a thing and then launching it.</em> Every dollar spent in that mode is spent on the build. Every status meeting tracks how far along the build is. Every team conversation is about what to add next. The mode is so default it is invisible. The alternative does not occur to most teams until they have written off their second or third dead product.</p>
+<p><strong>The correct mental mode is the opposite — the most likely outcomes of a new initiative are killing it or pivoting it, not launching it.</strong> The product you are imagining is, with high probability, already carrying the gene that will end its current form. You do not yet know which gene, only that one is most likely there. The work is buying knowledge. Every dollar spent buys a unit of evidence that tells the team either to kill this part of the plan, to pivot the set of assumptions, or to proceed to the next risk.</p>
+<p>Three possible outcomes for any new initiative, in descending order of probability:</p>
+<ul>
+<li>Kill the initiative. The most lethal risk hits: segment does not exist, unit economics never close, regulation kills the model, demand cannot be created. The team shuts the initiative down. This is a successful run of RAT, not a failure. The team bought the knowledge cheaply, before the build, and reallocated the capital to the next bet.</li>
+<li>Pivot the initiative. Some risky assumptions failed, some survived. The team changes the set (see §7 — a pivot is a change in the set of risky assumptions) and continues. Most products that eventually reach PMF have pivoted several times along the way.</li>
+<li>Proceed. The initiative survives validation and scales on the first assumption set. This is the rare path, and the best outcome a product cycle can produce. If you arrive here, congratulations; you do not bet on it. The default mental mode treats this as the only outcome. In reality it is the long-tail one, and the team&#39;s plan must assume the other two.</li>
+</ul>
+<p>In all three, the team&#39;s job is the same: spend the next dollar on the unknown whose answer would change the most about whether this initiative should exist at all. In this mode the team is a cold-blooded breeder — drowning the kittens that cannot survive, recognizing the one that can.</p>
+<p>Three operational consequences:</p>
+<ul>
+<li>Plan for kill-or-pivot, not for launch. Spend on finding where and how the death will happen, or on finding the smaller working subset inside the larger broken plan. Don&#39;t spend on delaying the moment of discovery.</li>
+<li>The fastest-learning team wins. Cycle time on evidence-per-dollar against the top risk is the operational metric, not features-shipped-per-quarter. If a team needs three months to falsify what a faster team falsifies in three days, the problem is not the product. It is learning velocity.</li>
+<li>The team designs experiments, not product. Each experiment is a probe at a single risky assumption. It is designed to come back either <em>the risk is real — kill or pivot this part of the plan</em> or <em>the risk is mitigated — proceed to the next risk.</em> §8 covers which probe to run first.</li>
+</ul>
+<p>The launch mode and the knowledge mode use the same calendar, the same headcount, the same budget. They spend them on entirely different things.</p>
+<hr>
+<h2>4. The MVP is not a product — it is a probe</h2>
+<p>The most damaging word in the product lexicon is the <em>P</em> in <em>MVP.</em> A &quot;Minimum Viable Product&quot; is not a product. <strong>It is a probe — a way of testing the set of risky assumptions the team has explicitly packaged into it, as fast and as cheaply as possible.</strong> The set is usually small, one to a few of the top-priority assumptions from §8&#39;s formula. But it <em>is</em> a set, and every assumption in it must be named in advance, in §1&#39;s positive form. Higham&#39;s <a href="https://hackernoon.com/the-mvp-is-dead-long-live-the-rat-233d5d16ab02">original 2016 framing</a> made the same correction by abandoning the name entirely: MVP is dead, what you build is the Riskiest Assumption Test. The replacement name is less catchy. The surgical clarity it forces is what matters.</p>
+<p>Teams that read &quot;Minimum Viable Product&quot; hear <em>build a small version of the product you want to ship.</em> The mistake compounds at every step. The team scopes a small version of the wrong product, the one whose risks were never inventoried. It ships to nobody, because the segment was never confirmed. It iterates, because identity has now attached (see <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §1, Problem 2</a>). And it only kills the product after the budget is gone. The <em>M</em> and the <em>V</em> both did their job. The <em>P</em> killed the team.</p>
+<p>Three operational consequences:</p>
+<ul>
+<li>The MVP&#39;s success criterion is <em>did the risk reveal itself,</em> not <em>did the product sell.</em> A perfectly designed probe whose answer is <em>&quot;the segment doesn&#39;t exist&quot;</em> is a success. You bought the most expensive piece of knowledge for the cheapest possible price. A probe that sold for one cycle and then collapsed is a failure regardless of revenue, because it answered nothing.</li>
+<li>The probe&#39;s design is dictated by the risk you are testing, not by the product you want to ship. Risk <em>the segment will not pay</em> gives a price-anchored landing page to Stripe Checkout. Risk <em>drivers will sabotage the product</em> (§5 example below) gives a phone call to a driver. Risk <em>enterprise will not buy without SOC 2</em> gives a customer-interview call to the buyer, not an audit. The shape of the probe is downstream of the shape of the risk.</li>
+<li>An MVP must name every risky assumption it is built to test. A single MVP can test more than one assumption. But if the team cannot list which assumptions this MVP is probing, by name and in §1&#39;s positive form, the MVP has drifted back into small-version-of-the-product mode and is no longer RAT.</li>
+</ul>
+<p>(The concierge MVP — founders performing the Job manually for the first cohort — is RAT&#39;s logic on the value side: buy the can-we-deliver-the-Job-at-criteria knowledge before building the system. Maps to mechanic #4 in <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §18</a>.)</p>
+<hr>
+<h2>5. Custom risky assumptions — usually where products actually die</h2>
+<p>The risks in §1&#39;s chain are universal. <strong>The actual cause of death is almost always a custom risk specific to <em>this</em> product.</strong> A custom risky assumption is one specific to the product&#39;s mechanics, not its category. It is a belief about how the real world — drivers, suppliers, regulators, integrations, internal staffing, distribution partners — will behave at a specific point in the operating model.</p>
+<p>Custom risks beat base risks in three ways. They are invisible from category-level analysis. They are invisible to the founders themselves until they hit the wall. And they are uniquely positioned to kill a product after significant capital has gone in.</p>
+<p>Four canonical custom-risk failures, each turning on a single missed assumption:</p>
+<ul>
+<li>Quibi (2020) — <em>&quot;people will pay $5–8/month for premium mobile-only short-form video.&quot;</em> Jeffrey Katzenberg and Meg Whitman launched Quibi in April 2020 with <a href="https://news.crunchbase.com/startups/quibi-shutting-down/">$1.75B raised, A-list talent, and a mobile-only design</a> — no casting to TVs, no clip sharing to social platforms. Each constraint was a custom risky assumption never stress-tested against real customer behavior. Quibi shut down in December 2020, eight months after launch, with ~500K subscribers. The content library sold to Roku for under $100M.</li>
+<li>Google Glass (2013) — <em>&quot;consumers will wear always-on cameras in public.&quot;</em> The custom risk that killed the consumer launch was social: <em>&quot;glasshole&quot;</em> backlash, bars and restaurants banning the device, third-party privacy concerns. The consumer product was withdrawn in 2015 after two years. Only the enterprise variant (warehouse-pick, healthcare-imaging) survives.</li>
+<li>Juicero (2017) — <em>&quot;the $400 connected press is essential to the value.&quot;</em> Premium pouch-and-press juicer with a $5–8/pouch subscription. Nobody had stress-tested one custom risk: Bloomberg reporters revealed in April 2017 that the pouches could be <a href="https://www.bloomberg.com/news/features/2017-04-19/silicon-valley-s-400-juicer-may-be-feeling-the-squeeze">squeezed by hand to yield the same juice</a>. The $400 machine became visibly unnecessary overnight. The company shut down within five months.</li>
+<li>The Excel-switching custom risk — <em>&quot;target users will abandon Excel and adopt our tool.&quot;</em> This is the canonical custom risky assumption for every B2B SaaS competing with spreadsheets. Users have years of muscle memory, embedded macros, and established workflows, so the switching cost is enormous. Many <em>&quot;Excel-killer&quot;</em> tools have died here because they tested the wrong risk first (<em>build the app</em>) instead of the right one (<em>will users actually switch, and what would it take?</em>). The survivors — Airtable, Smartsheet, Anaplan — won by not positioning as Excel-replacement. They offered different primary value (relational database, project workflow, enterprise planning) and let users keep Excel for what Excel wins at.</li>
+</ul>
+<p>Two operational consequences for inventorying custom risks:</p>
+<ul>
+<li>Talk to a competitor&#39;s salesperson before you build. People who tried to launch in this market and failed have the custom-risk knowledge nobody on your team has. ROI on expert interviews is among the highest in product work. A single market expert can kill a six-month engineering plan in a 45-minute call.</li>
+<li>Walk the operating model, every actor, every step. The driver — what do they hear when they tap that button? The restaurant — who picks up the tablet? The regulator — what filing do they require? The reseller — what commission split? Custom risks live at the joins between actors. Inventory them at the joins.</li>
+</ul>
+<hr>
+<h2>6. A risky assumption is concrete when it names the specific segment, product, price, and channel that make it falsifiable</h2>
+<p>A risky assumption is an assertion specific enough that a single experiment could falsify it. <strong>A slogan is not an assumption.</strong> <em>&quot;The market is growing&quot;</em> is not falsifiable; it is a feeling. <em>&quot;There is a segment&quot;</em> is not falsifiable; it is an aspiration. The bold elements below are what makes the assumption concrete — the specific segment, the specific price, the specific channel, the specific geography. Strip them out and the assumption collapses back into a slogan.</p>
+<p>A real risky assumption for Stripe at launch (2010) looks like this (rough reconstruction; the actual one belongs to the team):</p>
+<ul>
+<li>❌ <em>&quot;The market is growing.&quot;</em> → ✅ <em>&quot;The US online-payments market for <strong>SaaS startups under 50 employees</strong> processing <strong>under $1M/year in card volume</strong> is large enough to support a $100M-ARR business and has grown <strong>at ≥10% per year for the last three years</strong>.&quot;</em></li>
+<li>❌ <em>&quot;There is a segment.&quot;</em> → ✅ <em>&quot;A US segment of <strong>solo founders and 2-to-3-person engineering teams at YC-stage B2B SaaS startups</strong> exists — currently spending <strong>weeks of engineering time integrating PayPal or Authorize.net</strong> — and would pay <strong>2.9% + $0.30 per transaction</strong> for an API-first integration deliverable in <strong>an afternoon</strong>. The segment is reachable through <strong>Hacker News, developer mailing lists, conference talks, and YC&#39;s portfolio network</strong>.&quot;</em></li>
+<li>❌ <em>&quot;The segment buys our product.&quot;</em> → ✅ *&quot;Among the segment above, with <strong>a 9-line-of-code Ruby/Python SDK at the published pricing</strong>, reached through <strong>developer-marketing channels (docs.stripe.com, HN, conference talks)</strong>, purchase rate is <strong>≥10% per qualified developer</strong> who completes a first test-mode checkout, within <strong>30 days of landing on stripe.com</strong>.&quot;*</li>
+<li>❌ <em>&quot;There is no regulatory risk.&quot;</em> → ✅ <em>&quot;Across <strong>all 50 US states</strong>, our partnership with <strong>Wells Fargo as the acquiring bank</strong> lets us process at scale without requiring a state-level Money Transmitter License of our own; <strong>PCI-DSS Level 1 compliance</strong> is achievable inside our planned engineering cycle.&quot;</em></li>
+</ul>
+<p>The hard part of writing risky assumptions is that the abstract version feels right. <em>&quot;The market is growing&quot;</em> reads as a true statement, so the team moves on. The concrete version forces the team to bind the assumption to the specific product, segment, channel, price, and geography. At that point the assumption either becomes visibly testable or visibly absurd. <strong>Most &quot;validated&quot; assumptions in real product work are abstract assumptions that nobody bothered to make concrete.</strong></p>
+<hr>
+<h2>7. Pivot is a change in the set of risky assumptions</h2>
+<p>A pivot is not a copy change, a re-skin, a price test, or a channel swap. <strong>A pivot is a change in one or more of the product&#39;s risky assumptions.</strong> On most product cycles, several pivots happen before product-market fit lands.</p>
+<p>The taxonomy:</p>
+<ul>
+<li>One-assumption pivot. Only one of the chain&#39;s risky assumptions changes; the rest are held constant. <em>eBay → Japan (2000–2002)</em> is canonical. eBay replicated its winning US auction model exactly, kept the same product, segment definition, value framing, and business model, and changed only the market. <a href="https://www.icmrindia.org/casestudies/catalogue/Business%20Strategy/BSTR312.htm">Yahoo Japan&#39;s locally-built free auction service captured ~95% of the market</a> while eBay relied on brand alone. eBay exited Japan in March 2002. The product was right; the market alone was wrong.</li>
+<li>Multi-assumption pivot. Three or four of the chain&#39;s risky assumptions get re-bet at once. Instagram is canonical. Kevin Systrom and Mike Krieger started with <em>Burbn</em>, a Foursquare-style location check-in app with photo features. They observed that customer interviews kept circling back to the photo feature, and pivoted segment, value, product surface, and channel simultaneously to a single-purpose photo-sharing app in October 2010. PMF arrived within months. Facebook acquired Instagram in April 2012 for $1B.</li>
+<li>Whole-set pivot. Every link of the chain re-bet, sometimes multiple times across a founder&#39;s career. Stewart Butterfield&#39;s arc is canonical. <em>Game Neverending</em> (online game, 2002–2004) pivoted to <em>Flickr</em> (photo-sharing, acquired by Yahoo in 2005 for ~$35M). Years later, <em>Glitch</em> (massively-multiplayer browser game, 2009–2012) pivoted to <a href="https://buildingslack.com/the-death-of-glitch-the-birth-of-slack/">Slack</a> (team chat, sold to Salesforce in 2020 for $27.7B). Two whole-set pivots, both born from gaming products that did not reach PMF, each preserving only an incidental internal tool the team had built for itself.</li>
+</ul>
+<p>Three operational principles for pivoting:</p>
+<ul>
+<li>Change the assumption with the highest risk priority first. If §8&#39;s formula has ranked the assumptions, the pivot starts at the top of the ranking, not at whatever the founder feels strongest about.</li>
+<li>Prefer changing un-validated assumptions; keep what is already validated. A confirmed segment, a working channel, a measured Aha Moment — these are paid-for evidence. Burning them in a pivot wastes the cost of the prior validation. <strong>The segment-Job pivot is usually the highest-leverage move when both segment and value are in question.</strong> Segment changes cascade into changes in value, communication, channels, and business model; value changes do not cascade back into segment.</li>
+<li>Change one set per iteration when possible. Changing segment, value, channel, and business model simultaneously means the team cannot tell what worked and what didn&#39;t — it is running an un-blocked experiment. Sometimes everything has to flip at once. When it doesn&#39;t, don&#39;t make it.</li>
+</ul>
+<p>Why most product founders resist pivoting: because they are launching a product, not building a business. The product becomes identity, and pivoting becomes admitting failure. The cold-blooded-breeder framing (§3) is the antidote. The team is not launching the AI productivity app. The team is spending capital to find a working business, and the AI productivity app was a hypothesis that returned negative evidence.</p>
+<hr>
+<h2>8. The RAT formula — what to validate first</h2>
+<p><code>Risk priority = (P(risk hits) × Cost if risk hits) / Cost of validation</code></p>
+<p>What floats to the top is the assumption with the highest probability of being wrong, the most expensive consequences if it is wrong, and the cheapest experiment that would tell us so. <strong>The formula&#39;s job is not to score risks; it is to order them.</strong> You go validate whatever is at the top right now.</p>
+<p>Three operational consequences:</p>
+<ul>
+<li>Put Segments-and-Jobs validation at the top of nearly every new-product priority list. The assumption is upstream, usually high-risk, catastrophic when wrong, and cheap to test through 15–25 <a href="../HowTos/basic-ajtbd-interview-guide-and-principles.html">AJTBD interviews</a> before build budget is committed.</li>
+<li>Delegation by risk level. Risky assumptions with expensive consequences and high probability are top-management work. Cheap-and-low-probability risks are delegated down. New products are launched by senior people; features are shipped by juniors. The asymmetry of the formula is the reason. A feature whose worst case is <em>&quot;nobody uses it&quot;</em> is not a top-management problem. A market entry whose worst case is <em>&quot;$5M and three years gone&quot;</em> is.</li>
+<li>The denominator changes the answer. Take two assumptions equally risky and equally expensive — the one with the cheaper validation comes first. This is why concierge MVPs, fake-door tests, smoke-test landing pages, and partner phone calls beat building. A cheaper denominator means revisiting the assumption sooner with new evidence.</li>
+</ul>
+<p>The diagnostic question, when the team cannot decide what to do this week: <em>&quot;What is the single riskiest assumption right now, and what is the cheapest experiment that would falsify it?&quot;</em> Whatever answers that question is what gets done.</p>
+<hr>
+<h2>9. Breaking the chain — once a link fails, downstream effort is decorative</h2>
+<p>§1&#39;s chain is a chain, not a set. <strong>A break anywhere upstream renders every dollar spent downstream meaningless.</strong> This is the failure mode that kills the most corporate product cycles, and the easiest one to prevent.</p>
+<p>The pattern:</p>
+<ul>
+<li><em>Committed to a Segments-and-Jobs choice that turned out wrong</em> (§2). Every dollar spent on MVP, brand, channel, funnel, team is meaningless. Start over from Segments-and-Jobs.</li>
+<li><em>Committed to a value hypothesis that does not produce a positive prediction error.</em> Every dollar spent on optimization, retention, scaling is meaningless. Start over from value.</li>
+<li><em>Committed to unit economics that do not close</em> — leads too expensive, no acquisition channel, no margin per customer. Every dollar spent on growth is meaningless. Start over from business model.</li>
+</ul>
+<p>A team that does not internalize the chain logic spends downstream while upstream is broken. <strong>The chain logic is the single largest determinant of how much of a product cycle is wasted.</strong> It is also the easiest defect to fix. Write the chain, run §8&#39;s formula against it, validate the top assumption, and only then spend downstream.</p>
+<hr>
+<h2>10. The guaranteed way to kill a product — stack more risks. The antidote — strip them.</h2>
+<p>The fastest method to guarantee a new product dies is to load it with as many risky assumptions as possible. The math is in §1: every added risky assumption multiplies the death rate.</p>
+<p>The antidote — <em>what can we drop?</em> — is the most under-used exercise in product strategy. Ask at kickoff and at every milestone:</p>
+<blockquote>
+<p><em>Which risky assumption can we drop entirely without breaking the product&#39;s essential proposition? Which idea? Which integration? Which partnership? Which hire? Which line in the budget?</em></p>
+</blockquote>
+<p>Examples of dropping things:</p>
+<ul>
+<li><em>Drop the in-house dev team.</em> Build the MVP on Bubble or Webflow + Airtable; ship in 3 weeks.</li>
+<li><em>Drop the marketplace component.</em> Run the supply side as a concierge service for the first 50 transactions.</li>
+<li><em>Drop the integrations.</em> Pretend the integration exists; ask the customer to email the data manually for the first cohort.</li>
+</ul>
+<p>The default disposition is <em>drop it unless we can show the product cannot exist without it.</em> (This is the methodological inversion of feature thinking; compare <a href="../Advanced-Jobs-To-Be-Done/value-creation.html">Value Creation §1</a>.)</p>
+<p>Sequencing principle. A broader, scrappier version first; a narrower one next. When the broad version finds traction, the team has validated other risky assumptions along the way — segment, channel, unit-economics direction. A narrower version can then be built on top of the validated evidence. Starting narrow with everything custom multiplies risk by stacking specificity on top of unknowns.</p>
+<hr>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>

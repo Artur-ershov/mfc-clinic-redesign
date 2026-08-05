@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Local vs Global optimum</title>
+<style>
+:root{
+  --bg:#faf8f4; --fg:#1c1a17; --muted:#6b6660; --line:#e0dbd2; --card:#fff;
+  --accent:#3f706a; --accent-soft:#eaf1ef; --warn:#8a6d3b; --warn-soft:#fbf3e2;
+  --bad:#8c3a34; --bad-soft:#fbeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#16171a; --fg:#e8e6e1; --muted:#9c968d; --line:#2e3035; --card:#1d1f23;
+  --accent:#7fb3aa; --accent-soft:#1e2b29; --warn:#c9a35e; --warn-soft:#2a2417;
+  --bad:#d98b83; --bad-soft:#2b1c1a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:48rem;margin:0 auto;padding:2.4rem 1.25rem 6rem}
+.nav{color:var(--muted);font-size:.9rem;margin:0 0 2rem;font-family:var(--mono)}
+h1{font-size:2rem;line-height:1.2;margin:.4em 0 .5em;letter-spacing:-.015em}
+h2{font-size:1.35rem;margin:2.2em 0 .7em;letter-spacing:-.01em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em;color:var(--muted)}
+p,ul,ol{margin:0 0 1em}
+li{margin:.3em 0}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+blockquote{margin:1.2em 0;padding:.1em 1.1em;border-left:3px solid var(--accent);
+  background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--fg)}
+code{font-family:var(--mono);font-size:.88em;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .35em}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;overflow-x:auto}
+pre code{border:0;padding:0;background:none;font-size:.85rem;line-height:1.55}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1.2em 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+img{max-width:100%;height:auto}
+@media (max-width:640px){.wrap{padding:1.6rem 1rem 4rem}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="nav"><a href="../../../">← весь набор</a> · <a href="../../">next-move/</a></p>
+<h1>Local vs Global optimum</h1>
+<h2>1. Definitions (mathematical metaphor)</h2>
+<p>Local and global optimum are terms from mathematics. They describe and explain the decisions we make, the risks, and the payoff from those decisions very well.</p>
+<p>Picture this. You&#39;re walking across terrain and you see a hill in front of you. That hill is the only thing you see. Flat steppe all around, and a tall hill ahead. That hill is the local optimum. You see that you can climb it, and you don&#39;t see any higher points.</p>
+<p><strong>Once you&#39;ve climbed the hill, you can see that beyond it there&#39;s actually a mountain range, with huge mountains.</strong> While you were standing at the base, those mountains may have been invisible to you. The global optimum is something fundamentally different. Maybe a different country, maybe an entirely different Job, maybe not just companies that sell something on a marketplace.</p>
+<h2>2. Local optimum</h2>
+<p>In business, the local optimum is when you don&#39;t fundamentally change the segment, the Core Jobs, or the business model. You were selling SaaS for marketing optimization on a marketplace, and you keep selling it. Yes, you do it a bit better. Yes, a bit fewer problems, a bit more efficiently, a bit better efficiency for the customer. Yes, you&#39;ve added some adjacent segment. But you don&#39;t fundamentally change the Core Jobs.</p>
+<p><strong>The local optimum is low-risk and gives you, by definition, less return on investment than the global optimum.</strong> Its growth is limited (+10–30%).</p>
+<p>The local-optimum hypothesis zone is the stuff where we can&#39;t lose much money. This is what on average gets delegated to less competent employees.</p>
+<p>Examples: A/B tests, UX improvements, conversion growth, feature work for A/B segments. This is a task for Junior and Middle specialists. You improve the current product in the current segment. Low risk, low growth ceiling.</p>
+<h3>2.1 What you can do in the local optimum</h3>
+<ul>
+<li>Add +1 Job below the level: perform an additional Job in the graph.</li>
+<li>Fix problems with the current solution: remove bugs, improve UX.</li>
+<li>Better execution of the critical sequence: optimize the user&#39;s main path.</li>
+<li>Kill a Job below the level: automate what used to be done manually, so it gets a bit more convenient.</li>
+<li>Grow conversion and return rate: funnel optimization, retention.</li>
+<li>Acquire a bit better: optimize channels and creatives.</li>
+</ul>
+<h3>2.2 What does NOT change in the local optimum</h3>
+<ul>
+<li>Doesn&#39;t fundamentally change the segment, the Core Jobs, or the business model.</li>
+<li>Stays in the low-risk zone, where we can&#39;t lose much money.</li>
+<li>Gets delegated, on average, to less competent employees.</li>
+</ul>
+<h2>3. Global optimum</h2>
+<p>In the global optimum you can change the fundamental segment, change the Core Jobs, move to Previous Jobs or Next Jobs, add adjacent high-frequency Core Jobs, or change the business model. You enter another country, or you move up to a Job a level higher.</p>
+<p><strong>The global optimum is a riskier investment, but by definition its return on investment can be much larger.</strong> High risk, potentially multiplicative growth (x2–x10).</p>
+<p>Examples follow. If you exit Russia for the international market, a market tens of times larger opens up to you. If you change the business model — you used to sell home gym equipment, and now you sell it like Peloton, equipment with a subscription — that model lets you manage margin across the customer&#39;s entire lifetime. It lets you retain the customer and upsell them.</p>
+<p>This is a task for founders and C-level. You change the segment, the business model, the market, or the Core Job.</p>
+<h3>3.1 Examples of the global optimum</h3>
+<ul>
+<li>Country switch: exit from Russia to the international market, a market tens of times larger.</li>
+<li>Business-model switch: you used to sell home gym equipment, now like Peloton (equipment with a subscription). This lets you manage margin across the customer&#39;s entire lifetime, retain, and upsell.</li>
+<li>Segment switch: find and create value for segments outside your current paying customers. Your market share could be 0.1%. You can carve out segments among the customers you&#39;re already acquiring, but it&#39;s unlikely you have value and knowledge for how to acquire segments among the 99% of customers you don&#39;t yet have.</li>
+<li>Move up to a Job a level higher: compete not for the Core Job, but for the Big Job.</li>
+</ul>
+<h2>4. Balance and delegation</h2>
+<p>Delegate tasks by risk. Top management launches new products, solves the hardest problems, and owns the most important and risky partnerships. Juniors, mids, and PMs get small zones of responsibility. For example: &quot;Here&#39;s your product card on a marketplace, your job is to grow conversion to purchase, to wishlist, to writing reviews, and so on.&quot;</p>
+<p>More competent employees get more complex, riskier tasks. Less competent employees get less complex, less risky ones.</p>
+<p><strong>Local and global aren&#39;t an opposition, they&#39;re two parallel investment tracks you can fund at the same time.</strong> Optimize locally for stability and search globally for growth simultaneously.</p>
+<h2>5. Local-optimum strategies (concrete actions)</h2>
+<ul>
+<li>Segment existing customers: ABCD segmentation, Sean Ellis segmentation.</li>
+<li>For AB segments, create value from the Job tree toward the targets:<ul>
+<li>Fix problems with the current solution</li>
+<li>Perform a +1 Job from the Job tree toward the targets</li>
+<li>Kill one of the Jobs a level below</li>
+</ul>
+</li>
+<li>Grow conversion and return rate.</li>
+<li>Level up acquisition, including by performing the previous Job.</li>
+</ul>
+<h2>6. Global-optimum strategies (concrete actions)</h2>
+<ul>
+<li>Switch the segment by Core Jobs or Big Jobs: find new segments outside current paying customers.</li>
+<li>Switch the country: enter the international market.</li>
+<li>Move up to a higher-level Job: compete for the Big Job instead of the Core Job.</li>
+<li>Switch the business model: move to a more effective monetization model.</li>
+</ul>
+<h2>7. The question of choosing between Local and Global Optima</h2>
+<p>The core question: from investments in Global Optima or Local Optima, which gives us a larger return on investment, and over what time horizons?</p>
+<p>Two more questions shape the answer. Do we have employees competent enough? The global optimum requires more competent people. And what do shareholders and stakeholders expect from us? Expectations shape the acceptable risk level and the planning horizon.</p>
+<h2>8. The Innovator&#39;s Dilemma</h2>
+<p><strong>Fear of losing current revenue prevents you from investing in the global optimum until competitors overtake you.</strong> That is the Innovator&#39;s Dilemma.</p>
+<p>Studying the graph and applying strategic mechanics is a way out. Next Move Theory helps you make this jump deliberately.</p>
+<p>When to switch: if the local optimum is exhausted — growth has stalled, competition has intensified, the market has shrunk — it&#39;s time to look for the global one.</p>
+<hr>
+<p><em>Methodology and text by <strong>Ivan Zamesin</strong> — <a href="https://x.com/zamesin">X</a> · <a href="https://www.linkedin.com/in/ivan-zamesin/">LinkedIn</a> · Learn more at <a href="http://nextmovetheory.com/?utm_source=canon&utm_medium=github">nextmovetheory.com</a>. Distributed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</em></p>
+
+</div>
+</body>
+</html>
