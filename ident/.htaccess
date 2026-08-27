@@ -1,0 +1,23 @@
+# Шлюз IDENT. Программа обращается по адресам вида …/mfc/ident/GetTickets —
+# реальных файлов с такими именами нет, поэтому всё уводим в index.php.
+#
+# Важно: редирект здесь недопустим. IDENT принимает перенаправление только с
+# кодом 307, а Apache на несуществующем пути отдал бы 301 — POST-выгрузка
+# расписания на этом ломается. Rewrite отрабатывает внутри сервера, без ответа
+# браузеру, поэтому проблемы не возникает.
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /mfc/ident/
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^.*$ index.php [QSA,L]
+</IfModule>
+
+# Ключ доступа лежит в config.php — PHP читает его с диска, по HTTP он не нужен.
+<Files "config.php">
+    Require all denied
+</Files>

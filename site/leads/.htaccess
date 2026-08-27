@@ -1,0 +1,3 @@
+# Block all public HTTP access — this folder only ever holds the
+# fallback lead log (leads.ndjson), which contains personal data.
+Require all denied

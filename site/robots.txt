@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Приём заявок — обработчик и лог. На этом домене их нет (статика без PHP),
+# закрыто на случай, если бэкенд когда-нибудь переедет сюда.
+Disallow: /send-lead.php
+Disallow: /leads/
+
+Sitemap: https://mfc-clinic.ru/sitemap.xml
+
+# Незначащие GET-параметры: рекламные метки и идентификаторы кликов.
+# Без этого робот считает /?utm_source=yandex и / разными страницами
+# и обходит один и тот же контент по многу раз.
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&utm_referrer
+Clean-param: yclid&ysclid&gclid&fbclid&_openstat&etext&ybaip&roistat&from&_ga

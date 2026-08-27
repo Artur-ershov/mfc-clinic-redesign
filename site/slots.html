@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Свободные окошки — МФЦ Клиника</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4EFE6;--surface:#FBF8F2;--surface2:#EFE7D8;--ink:#2E2A24;--muted:#665F54;
+  --line:#E2DACB;--sage:#8FA6A1;--sageDeep:#6E8782;--clay:#C9A98C;--amber:#D8B27E;
+  --gold:#8F6D3C;--goldSoft:#ECDCC0;--sageText:#3F5A54;
+  --soft:20px;--shadow:0 24px 60px rgba(46,42,36,.10);--shadow-sm:0 10px 30px rgba(46,42,36,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased;padding-bottom:96px}
+.serif{font-family:'Cormorant Garamond',serif}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:-.01em}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sageText);font-weight:700}
+
+/* header */
+header.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.top .row{display:flex;align-items:center;gap:14px;padding:16px 0}
+.logo{font-family:'Cormorant Garamond';font-weight:600;font-size:22px;margin-right:auto;line-height:1.05}
+.logo b{color:var(--sageDeep)}
+.nav-phone{font-size:14.5px;font-weight:600;white-space:nowrap}
+.back{font-size:13.5px;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:8px 16px;white-space:nowrap}
+.back:hover{border-color:var(--sageDeep);color:var(--sageDeep)}
+
+/* hero */
+.hero{padding:40px 0 22px}
+.hero h1{font-size:clamp(34px,5vw,50px);line-height:1.02;margin:10px 0 10px}
+.hero .lead{font-size:17px;color:var(--muted);max-width:56ch}
+.meta{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:16px;font-size:13.5px;color:var(--muted);align-items:center}
+.meta b{color:var(--ink);font-weight:700}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--clay);display:inline-block}
+.badge-demo{background:var(--goldSoft);color:var(--gold);border:1px solid var(--amber);border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;letter-spacing:.02em}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 6px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:600;color:var(--ink);cursor:pointer;transition:.2s;white-space:nowrap}
+.chip:hover{border-color:var(--sageDeep)}
+.chip.on{background:var(--sage);border-color:var(--sage);color:#fff}
+
+/* days */
+.day{margin-top:26px}
+.day-h{display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.day-h .d{font-family:'Cormorant Garamond';font-size:26px;font-weight:600;text-transform:capitalize}
+.day-h .dc{font-size:13px;color:var(--muted)}
+.day-h .today{background:var(--sage);color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;letter-spacing:.04em}
+
+.docgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.doc{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px}
+.doc-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ava{width:44px;height:44px;border-radius:50%;background:var(--surface2);display:grid;place-items:center;font-family:'Cormorant Garamond';font-size:19px;font-weight:600;color:var(--sageDeep);flex:none}
+.doc-name{font-size:15.5px;font-weight:700;line-height:1.15}
+.doc-spec{font-size:12.5px;color:var(--muted);margin-top:1px}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slot{border:1px solid var(--line);background:var(--bg);border-radius:11px;padding:9px 13px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;transition:.15s;font-variant-numeric:tabular-nums}
+.slot:hover{border-color:var(--sageDeep);background:var(--surface);transform:translateY(-1px)}
+.slot.sel{background:var(--sageDeep);border-color:var(--sageDeep);color:#fff}
+.no-slots{font-size:13px;color:var(--muted);font-style:italic}
+
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty h3{font-size:24px;color:var(--ink);margin-bottom:8px}
+
+/* sticky book bar */
+.bookbar{position:fixed;left:0;right:0;bottom:0;transform:translateY(120%);transition:transform .3s cubic-bezier(.22,.61,.36,1);z-index:40}
+.bookbar.show{transform:none}
+.bookbar .in{max-width:1080px;margin:0 auto;padding:14px 20px calc(14px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:16px;background:var(--ink);color:var(--bg);border-radius:20px 20px 0 0;box-shadow:0 -18px 40px rgba(46,42,36,.18)}
+.bookbar .txt{font-size:14px;line-height:1.3;margin-right:auto}
+.bookbar .txt b{color:var(--amber);font-weight:700}
+.bookbar .txt span{color:#c8c0b3;font-size:12.5px;display:block;margin-top:2px}
+.btn-book{background:var(--amber);color:var(--ink);font-weight:700;border:none;border-radius:999px;padding:12px 26px;font-size:14.5px;cursor:pointer;white-space:nowrap;text-decoration:none;transition:.2s}
+.btn-book:hover{background:#e6c18f;transform:translateY(-1px)}
+.foot{color:var(--muted);font-size:12.5px;text-align:center;padding:28px 20px 8px}
+@media(max-width:560px){
+  .bookbar .in{flex-direction:column;align-items:stretch;gap:10px;text-align:center}
+  .btn-book{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap row">
+    <div class="logo">МФЦ<b>·</b>Клиника</div>
+    <a class="nav-phone" href="tel:+74959840885">+7 (495) 984-08-85</a>
+    <a class="back" href="index.html">← На сайт</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Онлайн-запись</div>
+    <h1>Свободные окошки</h1>
+    <p class="lead">Ближайшее свободное время у наших врачей. Выберите удобный слот — мы подтвердим запись по телефону.</p>
+    <div class="meta" id="meta"></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="filters" id="filters"></div>
+  <div id="board"></div>
+</div>
+
+<p class="foot" id="foot"></p>
+
+<div class="bookbar" id="bookbar">
+  <div class="in">
+    <div class="txt" id="booktxt"></div>
+    <a class="btn-book" id="bookbtn" href="#">Записаться</a>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Источник данных.
+   Формат — как отдаёт IDENT в POST /PostTimeTable:
+     { Doctors:[...], Branches:[...], Intervals:[{DoctorId,BranchId,Begin,End,IsBusy}] }
+   Свободное окошко = интервал с IsBusy:false.
+
+   Сейчас боевого файла нет (Status: timetable.received=null),
+   поэтому страница рисует ОБРАЗЕЦ. Когда расписание поедет —
+   раскомментируй loadLive() и укажи URL отдающего JSON эндпоинта;
+   normalize() понимает и PascalCase (IDENT), и camelCase.
+   ============================================================ */
+
+const CLINIC = { branch: 'ул. 2-й Боткинский пр., д. 8, Москва', phone: '+7 (495) 984-08-85' };
+const BOOK_URL = 'index.html'; // куда ведёт «Записаться» (форма на сайте)
+
+// врачи и специализации — реальные фамилии из выгрузок клиники
+const DOCTORS = [
+  { Id:'d1', Name:'Додова З. И.',    Spec:'Имплантация, хирургия' },
+  { Id:'d2', Name:'Магомедов М. И.', Spec:'Хирург-имплантолог' },
+  { Id:'d3', Name:'Султыгова П. А.', Spec:'Терапия, лечение кариеса' },
+  { Id:'d4', Name:'Керимов У. К.',   Spec:'Ортопедия, протезирование' },
+  { Id:'d5', Name:'Хасханова Д. Ш.', Spec:'Терапия, гигиена' },
+];
+
+let IS_DEMO = true;
+
+/* --- образец: генерим расписание на 7 дней вперёд в формате IDENT --- */
+function sampleTimetable(){
+  const times = ['09:00','10:00','11:00','12:00','15:00','16:00','17:00','18:00','19:00'];
+  const intervals = [];
+  const today = new Date(); today.setHours(0,0,0,0);
+  for(let day=0; day<7; day++){
+    const date = new Date(today); date.setDate(today.getDate()+day);
+    if(date.getDay()===0) continue; // вс — выходной
+    DOCTORS.forEach((doc,di)=>{
+      times.forEach((t,ti)=>{
+        // детерминированный «занят/свободен», чтобы не прыгало между рендерами
+        const busy = ((day*7 + di*3 + ti*5) % 10) < 6;
+        const [hh,mm] = t.split(':');
+        const begin = new Date(date); begin.setHours(+hh,+mm,0,0);
+        intervals.push({ DoctorId:doc.Id, BranchId:'b1', Begin:begin.toISOString(), IsBusy:busy });
+      });
+    });
+  }
+  return { Doctors:DOCTORS, Branches:[{Id:'b1',Name:CLINIC.branch}], Intervals:intervals };
+}
+
+/* --- нормализация IDENT/camelCase → удобная модель --- */
+function normalize(tt){
+  const docs = {};
+  (tt.Doctors||tt.doctors||[]).forEach(d=>{
+    docs[d.Id??d.id] = { name:d.Name??d.name??'Врач', spec:d.Spec??d.Specialization??d.spec??'' };
+  });
+  const free = (tt.Intervals||tt.intervals||[]).filter(i=>!(i.IsBusy??i.isBusy??i.busy));
+  const days = {};
+  free.forEach(i=>{
+    const begin = new Date(i.Begin??i.begin??i.DateTimeBegin??i.start);
+    if(isNaN(begin)) return;
+    const key = begin.toISOString().slice(0,10);
+    const did = i.DoctorId??i.doctorId??i.doctor;
+    (days[key] ??= {})[did] ??= [];
+    days[key][did].push(begin);
+  });
+  return { docs, days };
+}
+
+/* --- состояние фильтров/выбора --- */
+let MODEL=null, FILTER_DOC='all', selected=null;
+
+const RU_DAYS=['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+const RU_MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const fmtTime = d => d.toTimeString().slice(0,5);
+const initials = n => n.replace(/[^А-ЯЁA-Z. ]/gi,'').split(' ').filter(Boolean).slice(0,1).map(s=>s[0]).join('');
+
+function renderMeta(){
+  const now=new Date();
+  const upd = now.getDate()+' '+RU_MON[now.getMonth()]+', '+fmtTime(now);
+  document.getElementById('meta').innerHTML =
+    `<span>📍 <b>${CLINIC.branch}</b></span><span class="dot"></span>`+
+    `<span>обновлено ${upd}</span>`+
+    (IS_DEMO?`<span class="dot"></span><span class="badge-demo">демонстрационные данные</span>`:'');
+}
+
+function renderFilters(){
+  const el=document.getElementById('filters');
+  const btns=[['all','Все врачи']].concat(DOCTORS.map(d=>[d.Id,d.Name]));
+  el.innerHTML = btns.map(([id,label])=>
+    `<button class="chip ${FILTER_DOC===id?'on':''}" data-doc="${id}">${label}</button>`).join('');
+  el.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{FILTER_DOC=b.dataset.doc;renderBoard();renderFilters();});
+}
+
+function renderBoard(){
+  const board=document.getElementById('board');
+  const {docs,days}=MODEL;
+  const keys=Object.keys(days).sort();
+  const todayKey=new Date().toISOString().slice(0,10);
+  let html='', total=0;
+
+  keys.forEach(key=>{
+    const dObj=days[key];
+    let docIds=Object.keys(dObj);
+    if(FILTER_DOC!=='all') docIds=docIds.filter(id=>id===FILTER_DOC);
+    docIds=docIds.filter(id=>dObj[id] && dObj[id].length);
+    if(!docIds.length) return;
+
+    const dt=new Date(key+'T00:00');
+    const dayName=RU_DAYS[dt.getDay()];
+    const dateStr=dt.getDate()+' '+RU_MON[dt.getMonth()];
+    html+=`<div class="day"><div class="day-h">
+      <span class="d">${dayName}</span><span class="dc">${dateStr}</span>
+      ${key===todayKey?'<span class="today">сегодня</span>':''}</div><div class="docgrid">`;
+
+    docIds.forEach(id=>{
+      const info=docs[id]||{name:'Врач',spec:''};
+      const slots=dObj[id].slice().sort((a,b)=>a-b);
+      total+=slots.length;
+      html+=`<div class="doc"><div class="doc-top">
+        <div class="ava">${initials(info.name)}</div>
+        <div><div class="doc-name">${info.name}</div><div class="doc-spec">${info.spec}</div></div>
+      </div><div class="slots">`;
+      slots.forEach(s=>{
+        const sid=key+'|'+id+'|'+fmtTime(s);
+        html+=`<button class="slot" data-sid="${sid}" data-doc="${info.name}" data-date="${dateStr}, ${dayName}" data-time="${fmtTime(s)}">${fmtTime(s)}</button>`;
+      });
+      html+=`</div></div>`;
+    });
+    html+=`</div></div>`;
+  });
+
+  board.innerHTML = total ? html :
+    `<div class="empty"><h3>На эту неделю свободных окошек нет</h3>
+     <p>Позвоните — подберём ближайшее время: <a href="tel:${CLINIC.phone.replace(/[^+\d]/g,'')}"><b>${CLINIC.phone}</b></a></p></div>`;
+
+  document.getElementById('foot').textContent =
+    total ? `Свободных окошек на ближайшие дни: ${total}. Время московское. Запись подтверждается по звонку.` : '';
+
+  board.querySelectorAll('.slot').forEach(b=>b.onclick=()=>selectSlot(b));
+}
+
+function selectSlot(b){
+  document.querySelectorAll('.slot.sel').forEach(x=>x.classList.remove('sel'));
+  b.classList.add('sel');
+  selected={doc:b.dataset.doc,date:b.dataset.date,time:b.dataset.time};
+  const bar=document.getElementById('bookbar');
+  document.getElementById('booktxt').innerHTML=
+    `Выбрано: <b>${selected.date}, ${selected.time}</b><span>${selected.doc}</span>`;
+  const q=new URLSearchParams({doctor:selected.doc,date:selected.date,time:selected.time,source:'slots'});
+  document.getElementById('bookbtn').href=BOOK_URL+'?'+q.toString()+'#zapis';
+  bar.classList.add('show');
+}
+
+function boot(tt){
+  MODEL=normalize(tt);
+  renderMeta(); renderFilters(); renderBoard();
+}
+
+/* боевой источник — когда расписание поедет из IDENT:
+async function loadLive(){
+  try{
+    const r=await fetch('РЕАЛЬНЫЙ_URL_JSON',{cache:'no-store'});
+    if(!r.ok) throw 0;
+    IS_DEMO=false; boot(await r.json());
+  }catch(e){ boot(sampleTimetable()); }
+}
+loadLive();
+*/
+boot(sampleTimetable());
+</script>
+</body>
+</html>

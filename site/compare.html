@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MFC Clinic — сравнение правок текста</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700;800&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+:root{--ink:#2E2A24;--bg:#F4EFE6;--card:#FBF8F2;--muted:#665F54;--gold:#A9854E;--line:#E2DACB;--sage:#8FA6A1}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px}
+a{color:inherit;text-decoration:none}
+.top{padding:22px 0;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px}
+.top .logo{font-family:'Cormorant Garamond';font-weight:700;font-size:20px;margin-right:auto}
+.top a.back{font-size:14px;color:var(--muted)}
+.head{padding:48px 0 26px}
+.head .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.head h1{font-family:'Cormorant Garamond';font-size:clamp(28px,4.4vw,44px);line-height:1.06;margin:12px 0 14px}
+.head p{color:var(--muted);font-size:16.5px;max-width:800px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:8px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.pcard.win{border-color:var(--gold);box-shadow:0 20px 44px rgba(169,133,78,.16)}
+.plabel{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--line);font-weight:700;font-size:15px}
+.plabel .pill{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.pill.before{background:#f0e3d6;color:#8a5a32}
+.pill.after{background:#dfe9e2;color:#3f706a}
+.prev{height:560px;overflow:hidden;position:relative;background:#e7e2d6}
+.prev iframe{width:1280px;height:2600px;border:0;transform:scale(.42);transform-origin:top left;pointer-events:none}
+.prev .ov{position:absolute;inset:0}
+.pnote{padding:12px 18px;font-size:13px;color:var(--muted)}
+h2.sec{font-family:'Cormorant Garamond';font-size:clamp(22px,3vw,30px);margin:48px 0 6px}
+.sub{color:var(--muted);font-size:15px;max-width:800px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;margin:0 0 8px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th,td{text-align:left;padding:12px 16px;font-size:13.5px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#efe7d8;font-weight:700;font-size:12px;letter-spacing:.02em}
+td.b{color:#8a5a32}td.a{color:#3f706a}td.rule{color:var(--muted);font-style:italic}
+tr:last-child td{border-bottom:0}
+.note{font-size:13px;color:var(--muted);padding:34px 0 70px;max-width:820px}
+.note a{color:var(--gold);font-weight:700}
+@media(max-width:900px){.cmp{grid-template-columns:1fr}.prev{height:420px}}
+</style></head>
+<body>
+
+<div class="top"><div class="wrap"><div class="logo">MFC Clinic</div><a class="back" href="index.html">← К продакшн-версии</a></div></div>
+
+<div class="wrap">
+  <div class="head">
+    <span class="eyebrow">Правки текста · четыре раунда</span>
+    <h1>Что изменилось после правок</h1>
+    <p>Раунд 1 — редактура по методу Люды Сарычевой (<a href="https://github.com/N1arko/redaktura-skills" style="color:var(--gold);font-weight:700">redaktura-skills</a>): убраны пустые оценки без фактов, штампы, след нейротекста. Раунд 2 — убрана самопохвала за честность и намёк на конкурентов. Раунд 3 — проверка на естественность и логику: предлоги, двусмысленности, порядок причины и следствия. Раунд 4 — блок «Цены» и блок «Предварительный расчёт» показывали одни и те же 7 позиций дважды; калькулятор переделан в помощника «не знаю, что нужно» (ситуация → услуга), а не в дубль прайса.</p>
+  </div>
+
+  <h2 class="sec" style="margin-top:8px">Раунд 1 · Редактура текста</h2>
+  <div class="cmp">
+    <div class="pcard">
+      <div class="plabel"><span>До редактуры</span><span class="pill before">до</span></div>
+      <div class="prev"><iframe src="index-before-redaktura.html" scrolling="no" title="До редактуры" loading="lazy"></iframe><a class="ov" href="index-before-redaktura.html"></a></div>
+      <div class="pnote">Черновая версия — открыть целиком</div>
+    </div>
+    <div class="pcard">
+      <div class="plabel"><span>После редактуры</span><span class="pill after">после</span></div>
+      <div class="prev"><iframe src="index-before-tone-fix.html" scrolling="no" title="После редактуры, до правки тона" loading="lazy"></iframe><a class="ov" href="index-before-tone-fix.html"></a></div>
+      <div class="pnote">= состояние до раунда 2 — открыть целиком</div>
+    </div>
+  </div>
+
+  <p class="sub" style="margin-top:26px">Восемь мест, где текст был не отредактирован «пустыми» словами, а завязан на факт или снята нейросетевая симметрия.</p>
+  <table>
+    <tr><th>Где</th><th>До</th><th>После</th><th>Правило</th></tr>
+    <tr><td>Trust-полоса, Carl Zeiss</td><td class="b">«под микроскопом, бережно и точно»</td><td class="a">«видим на увеличении — не задеваем здоровые ткани»</td><td class="rule">оценка → факт</td></tr>
+    <tr><td>Флагман, честная приписка</td><td class="b">«без сюрпризов и додумывания»</td><td class="a">«без сюрпризов на кассе»</td><td class="rule">канцелярит-калька → живая фраза</td></tr>
+    <tr><td>Цена «Кариес» (карточка + калькулятор)</td><td class="b">«Аккуратная незаметная пломба. Спокойно и бережно, лечим под микроскопом»</td><td class="a">«Пломба незаметна на зубе. Лечим под микроскопом — видно даже небольшой кариес»</td><td class="rule">оценки → проверяемое свойство</td></tr>
+    <tr><td>Цена «Гигиена»</td><td class="b">«Бережно и внимательно, новый специалист клиники»</td><td class="a">«Приём ведёт новый специалист клиники — расскажет о каждом шаге»</td><td class="rule">оценка → действие</td></tr>
+    <tr><td>Галерея, подпись 2</td><td class="b">«Лечение под микроскопом — бережно и точно» (повтор фразы 3-й раз)</td><td class="a">«Микроскоп: видно то, что не видно глазом»</td><td class="rule">не повторять одну оценку по кругу</td></tr>
+    <tr><td>Галерея, подпись 4</td><td class="b">«Ювелирная точность в каждой детали»</td><td class="a">«Крупный план — видно каждое движение врача»</td><td class="rule">штамп → конкретика к фото</td></tr>
+    <tr><td>Alt-текст фото 4</td><td class="b">«Аккуратная работа стоматолога крупным планом»</td><td class="a">«Крупный план: врач работает с зубом пациента под увеличением»</td><td class="rule">alt описывает, не хвалит</td></tr>
+    <tr><td>Цитата в блоке доверия</td><td class="b">«Не потому что мы обещаем идеальность, а потому что объясняем честно… и делаем свою работу аккуратно»</td><td class="a">«Мы честно объясняем ситуацию, называем цену до начала лечения и отвечаем за то, что сделали»</td><td class="rule">след нейросети: симметрия «не X, а Y»</td></tr>
+  </table>
+
+  <h2 class="sec">Раунд 2 · Тон — без самопохвалы</h2>
+  <p class="sub">Твой фидбек: блок доверия звучал как «я молодец, что не ворую» — самопохвала за честность вместо демонстрации, плюс подозрительно конкретная отсылка («99% довольных»), которую читатель не считает как отсылку к конкурентам, а просто как странность. Убрано везде, где текст хвалил себя за то, что и так видно по факту (цена, план, отсутствие скрытых доплат).</p>
+  <div class="cmp">
+    <div class="pcard">
+      <div class="plabel"><span>До правки тона</span><span class="pill before">до</span></div>
+      <div class="prev"><iframe src="index-before-tone-fix.html" scrolling="no" title="До правки тона" loading="lazy"></iframe><a class="ov" href="index-before-tone-fix.html"></a></div>
+      <div class="pnote">Черновая версия — открыть целиком</div>
+    </div>
+    <div class="pcard">
+      <div class="plabel"><span>После правки тона</span><span class="pill after">после</span></div>
+      <div class="prev"><iframe src="index-before-logic-fix.html" scrolling="no" title="После правки тона, до проверки на естественность" loading="lazy"></iframe><a class="ov" href="index-before-logic-fix.html"></a></div>
+      <div class="pnote">= состояние до раунда 3 — открыть целиком</div>
+    </div>
+  </div>
+  <table style="margin-top:22px">
+    <tr><th>Где</th><th>До</th><th>После</th><th>Правило</th></tr>
+    <tr><td>Блок доверия — весь блок</td><td class="b">Цитата «мы честно объясняем...» + отдельная приписка «так мы сами описываем свой подход — коротко и по делу, без историй «99% довольных»»</td><td class="a">«У нас лечатся годами и приводят семью: цену видно до начала лечения, а если после приёма что-то беспокоит — осмотр в любое время бесплатный»</td><td class="rule">show, don't tell: убрана самоцитата и сравнение с чужим слоганом, добавлен конкретный факт про бесплатный осмотр</td></tr>
+    <tr><td>Цена «Консультация»</td><td class="b">«…спокойно ответим на вопросы — без давления»</td><td class="a">«…спокойно ответим на вопросы»</td><td class="rule">не хвались, что не делаешь очевидно плохого</td></tr>
+    <tr><td>Цена «Осмотр ортодонта»</td><td class="b">«Прикус, 3D-скан и варианты исправления — без давления»</td><td class="a">«Прикус, 3D-скан и варианты исправления»</td><td class="rule">та же самопохвала, второй раз подряд</td></tr>
+    <tr><td>Футер, о клинике</td><td class="b">«Двенадцатый год возвращаем улыбки — честно и по-человечески»</td><td class="a">«Двенадцатый год возвращаем улыбки — с понятными ценами и своим врачом на каждый случай»</td><td class="rule">оценка себя → факт со страницы</td></tr>
+  </table>
+
+  <h2 class="sec">Раунд 3 · Естественность и логика</h2>
+  <p class="sub">Твой вопрос: «говорят ли так, логично ли звучит». Прошёлся построчно как редактор: где предлог неродной, где формулировка допускает два прочтения, где два утверждения рядом не стыкуются по смыслу.</p>
+  <div class="cmp">
+    <div class="pcard">
+      <div class="plabel"><span>До проверки</span><span class="pill before">до</span></div>
+      <div class="prev"><iframe src="index-before-logic-fix.html" scrolling="no" title="До проверки на естественность" loading="lazy"></iframe><a class="ov" href="index-before-logic-fix.html"></a></div>
+      <div class="pnote">Черновая версия — открыть целиком</div>
+    </div>
+    <div class="pcard">
+      <div class="plabel"><span>После проверки</span><span class="pill after">после</span></div>
+      <div class="prev"><iframe src="index-before-calc-fix.html" scrolling="no" title="После проверки на естественность, до правки калькулятора" loading="lazy"></iframe><a class="ov" href="index-before-calc-fix.html"></a></div>
+      <div class="pnote">= состояние до раунда 4 — открыть целиком</div>
+    </div>
+  </div>
+  <table style="margin-top:22px">
+    <tr><th>Где</th><th>До</th><th>После</th><th>Что не так</th></tr>
+    <tr><td>Hero, лид</td><td class="b">«Ваш случай не похож на соседний — поэтому мы не лечим по шаблону»</td><td class="a">«Случай у каждого свой — от одной пломбы до плана на несколько этапов»</td><td class="rule">«случай не похож на соседний» — неестественная сочетаемость; «не лечим по шаблону» — та же самопохвала-через-отрицание</td></tr>
+    <tr><td>Trust-полоса, Carl Zeiss</td><td class="b">«видим на увеличении»</td><td class="a">«видим под увеличением»</td><td class="rule">так по-русски не говорят — нужен предлог «под», не «на»</td></tr>
+    <tr><td>Trust-полоса, «План и цена»</td><td class="b">«известны вам после консультации»</td><td class="a">«узнаете сразу на консультации»</td><td class="rule">канцелярская пассивная конструкция → живой глагол</td></tr>
+    <tr><td>Флагман, честная приписка</td><td class="b">«обсудим на консультации — без сюрпризов на кассе»</td><td class="a">«обсудим на консультации — заранее, а не сюрпризом»</td><td class="rule">речь о разговоре в будущем, а не о кассе — фраза была позаимствована не по смыслу</td></tr>
+    <tr><td>Флагман, цена</td><td class="b">«под ключ — первый этап»</td><td class="a">«первый этап под ключ»</td><td class="rule">порядок слов не давал понять, что «под ключ» относится именно к первому этапу, а не ко всему лечению</td></tr>
+    <tr><td>Цена «Консультация» + калькулятор + CTA (4 места)</td><td class="b">«бесплатно, если останетесь на лечение» — можно прочитать как «сегодняшний приём вернут деньгами»</td><td class="a">«это цена первой встречи — дальше консультации бесплатно»</td><td class="rule">двусмысленность: бесплатны следующие визиты, а не этот</td></tr>
+    <tr><td>Цена «Кариес» + калькулятор</td><td class="b">«Пломба незаметна на зубе. Лечим под микроскопом»</td><td class="a">«Лечим под микроскопом — видно даже небольшой кариес, а пломба потом незаметна»</td><td class="rule">причина и следствие стояли в обратном порядке</td></tr>
+    <tr><td>Атмосфера, лид</td><td class="b">«...бережный подход на каждом этапе»</td><td class="a">(убрано)</td><td class="rule">голая оценка без факта рядом — то же самое, что чистили в раунде 1, просто в другой формулировке</td></tr>
+    <tr><td>Врачи, лид</td><td class="b">«у каждого — реальный стаж»</td><td class="a">«у каждого — стаж от 10 лет»</td><td class="rule">«реальный» намекает, что у кого-то стаж ненастоящий — снова лёгкий укол в сторону конкурентов</td></tr>
+    <tr><td>Блок доверия</td><td class="b">«цену видно до начала лечения»</td><td class="a">«цену называем до начала лечения»</td><td class="rule">безличная конструкция → мы делаем это сами, а не «так само получается»</td></tr>
+  </table>
+
+  <h2 class="sec">Раунд 4 · Цены vs калькулятор — один и тот же блок</h2>
+  <p class="sub">Твой фидбек: «цены и предварительный расчёт будто один и тот же блок» — и это было ровно так: и там, и там одни и те же 7 позиций (консультация, чек-ап, гигиена, кариес, ортодонт, имплант, «зубы за 3 дня»), просто прайс — сеткой, а калькулятор — по одной карточке за клик. Калькулятор не считал ничего нового, только повторял то, что уже видно в сетке выше.</p>
+  <div class="cmp">
+    <div class="pcard">
+      <div class="plabel"><span>До правки</span><span class="pill before">до</span></div>
+      <div class="prev"><iframe src="index-before-calc-fix.html" scrolling="no" title="До правки калькулятора" loading="lazy"></iframe><a class="ov" href="index-before-calc-fix.html"></a></div>
+      <div class="pnote">Черновая версия — открыть целиком</div>
+    </div>
+    <div class="pcard win">
+      <div class="plabel"><span>После правки</span><span class="pill after">после</span></div>
+      <div class="prev"><iframe src="index.html" scrolling="no" title="После правки калькулятора" loading="lazy"></iframe><a class="ov" href="index.html"></a></div>
+      <div class="pnote">Продакшн-версия — открыть целиком</div>
+    </div>
+  </div>
+  <table style="margin-top:22px">
+    <tr><th>Что</th><th>До</th><th>После</th></tr>
+    <tr><td>Роль блока</td><td class="b">Второй раз показывает те же 7 цен, теперь по одной за клик</td><td class="a">Помогает тому, кто не знает термина: «болит зуб» → «Лечение кариеса»</td></tr>
+    <tr><td>Названия чипов</td><td class="b">Названия услуг — «Консультация», «Гигиена», «Имплант Osstem»…</td><td class="a">Ситуации пациента — «Болит или беспокоит зуб», «Не хватает одного зуба»…</td></tr>
+    <tr><td>Результат</td><td class="b">Только цена и заметка</td><td class="a">Плюс явное название услуги («Похоже, подойдёт: Лечение кариеса») — понятно, куда именно вас направили</td></tr>
+    <tr><td>Цены и структура прайса</td><td class="a" colspan="2">Не менялись — сетка выше осталась как есть, это единственное место, где можно быстро сравнить все 7 позиций сразу</td></tr>
+  </table>
+
+  <p class="note">Полный список принципов — в скиллах <a href="https://github.com/N1arko/redaktura-skills/blob/main/redaktura/SKILL.md">redaktura</a>, <a href="https://github.com/N1arko/redaktura-skills/blob/main/promo/SKILL.md">promo</a> и <a href="https://github.com/N1arko/redaktura-skills/blob/main/ux-copy/SKILL.md">ux-copy</a>. Остальной текст страницы уже проверен по этим же правилам при первой сборке и повторных правок не потребовал.</p>
+</div>
+</body></html>
